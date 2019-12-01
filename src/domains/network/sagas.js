@@ -1,5 +1,5 @@
 // @flow
-import { NetInfo } from 'react-native';
+//import { NetInfo } from 'react-native';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { eventChannel, type Effect } from 'redux-saga';
 
@@ -8,7 +8,7 @@ import type { ConnectionData } from './types';
 
 const networkChannel = () =>
     eventChannel(emitter => {
-        NetInfo.addEventListener('connectionChange', emitter);
+        //NetInfo.addEventListener('connectionChange', emitter);
 
         return () => {};
     });

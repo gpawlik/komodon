@@ -6,30 +6,18 @@ import { Header } from '~/components/header';
 import { NavigationMenu } from '~/components/navigation-menu';
 import { Container, Content } from '~/components/screen/styles';
 
-import { EventList } from './components/event-list';
-import { EventMap } from './components/event-map';
-
 import type { Props } from './types';
 
-type State = {
-    isListView: boolean,
-};
+type State = {};
 
-export class HomeComponent extends React.PureComponent<Props, State> {
-    state = {
-        isListView: true,
-    };
-
+export class HomeComponent extends React.PureComponent<Props, void> {
     onMenuPress = () => this.props.toggleNavigation({ isVisible: true });
 
-    handleToggleView = () => this.setState((state: State) => ({ isListView: !state.isListView }));
-
     render() {
-        const { isListView } = this.state;
-
+        console.log({ props: this.props });
         return (
             <Container testID="screen.home">
-                <NavigationMenu />
+                <NavigationMenu navigate={this.props.navigation.navigate} />
                 <Header
                     backIcon={generalIcons.MENU}
                     backAction={this.onMenuPress}
@@ -37,7 +25,7 @@ export class HomeComponent extends React.PureComponent<Props, State> {
                     secondaryAction={this.handleToggleView}
                     hasLogo
                 />
-                <Content isFullWidth>{isListView ? <EventList /> : <EventMap />}</Content>
+                <Content isFullWidth></Content>
             </Container>
         );
     }

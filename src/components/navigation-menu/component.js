@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 
-import { navigate } from '~/navigation';
+import * as routes from '~/constants/routes';
 import { Drawer } from '~/components/drawer';
 
 import { menuItems, MENU_WIDTH } from './constants';
@@ -14,7 +14,7 @@ export class NavigationMenuComponent extends React.Component<Props> {
     onHide = () => this.props.toggleNavigation({ isVisible: false });
 
     onPress = (route: string) => {
-        navigate.push(route);
+        this.props.navigate(route);
         this.onHide();
     };
 

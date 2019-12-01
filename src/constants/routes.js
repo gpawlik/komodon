@@ -1,5 +1,5 @@
 // @flow
-const prefix = 'papagaio';
+const prefix = 'komodon';
 
 export const home = `${prefix}.home`;
 export const about = `${prefix}.about`;

@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 
-import { navigate } from '~/navigation';
 import { SVGIcon } from '~/icons';
 import { generalIcons } from '~/constants/icons/general';
 import { IconContainer } from '../styles';
@@ -14,7 +13,7 @@ type Props = {|
 export class BackButton extends React.PureComponent<Props> {
     goBack = () => {
         const { backAction } = this.props;
-        return typeof backAction === 'function' ? backAction() : navigate.pop();
+        return typeof backAction === 'function' && backAction();
     };
 
     render() {

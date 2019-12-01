@@ -15,9 +15,4 @@ export const menuItems = [
         message: messages.about,
         route: routes.about,
     },
-    {
-        id: 'create-event',
-        message: messages.createEvent,
-        route: routes.eventCreate,
-    },
 ];
