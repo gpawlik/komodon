@@ -1,0 +1,44 @@
+{
+    "extends": ["react-app"],
+    "parser": "babel-eslint",
+    "globals": {
+        "GLOBAL": true,
+        "expect": true,
+        "render": true,
+        "__DEV__": true,
+        "jasmine": true,
+        "element": true,
+        "device": true,
+        "by": true
+    },
+    "rules": {
+        "camelcase": "error",
+        "eqeqeq": ["error", "allow-null"],
+        "no-duplicate-imports": "error",
+        "no-else-return": "error",
+        "no-nested-ternary": "error",
+        "no-restricted-syntax": ["error", "SequenceExpression"],
+        "no-unneeded-ternary": "error",
+        "no-unused-vars": "error",
+        "no-var": "error",
+        "react/display-name": "off",
+        "react/jsx-no-bind": "warn",
+        "react/jsx-boolean-value": "error",
+        "react/jsx-key": "error",
+        "react/jsx-no-comment-textnodes": "error",
+        "react/jsx-no-duplicate-props": "error",
+        "react/jsx-no-undef": "error",
+        "react/no-string-refs": "error",
+        "react/prefer-es6-class": "error",
+        "react/require-render-return": "error",
+        "react/self-closing-comp": "error",
+        "react/sort-prop-types": "error",
+        "curly": "warn",
+        "comma-dangle": ["error", "always-multiline"]
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    }
+}

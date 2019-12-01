@@ -1,0 +1,12 @@
+{
+    "about.button-another": "Go to screen",
+    "about.button-back": "Go back",
+    "about.title": "About",
+    "another.button": "Go back",
+    "another.title": "Another screen",
+    "home.button": "Add +",
+    "home.counter": "Sample value: {id}",
+    "home.go-to-modal": "Go to Modal",
+    "home.go-to-screen": "Go to Screen",
+    "home.title": "Home"
+}
