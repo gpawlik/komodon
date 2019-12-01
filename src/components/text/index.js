@@ -15,11 +15,7 @@ type Props = {|
 
 const TextBasic = styled.Text`
     color: ${selectors.slate};
-    ${({ size }) =>
-        R.compose(
-            getFontStyle,
-            R.clamp(1, 9)
-        )(size)};
+    ${({ size }) => R.compose(getFontStyle, R.clamp(1, 9))(size)};
 `;
 
 export const TextDefault = ({ message, children, style, ...rest }: Props) => {
@@ -115,10 +111,10 @@ const getFontStyle = R.cond([
 
 // TODO: integrate fonts
 const fontWeightRegular = css`
-    font-weight: 100;
+    font-weight: 300;
 `;
 const fontWeightMedium = css`
-    font-weight: 500;
+    font-weight: 600;
 `;
 
 const textAlignCenter = css`

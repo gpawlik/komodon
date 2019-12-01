@@ -1,5 +1,5 @@
 // @flow
 import { createAction } from 'redux-actions';
 
-const prefix = 'papagaio/network';
+const prefix = 'komodon/network';
 export const setConnectionType = createAction(`${prefix}/SET_CONNECTION_TYPE`);

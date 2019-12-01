@@ -32,7 +32,7 @@ export class Header extends React.PureComponent<Props> {
 
                     {title ? <TextMedium3 message={title} /> : null}
 
-                    {hasLogo ? <SVGIcon type={generalIcons.LOGO} size={36} /> : null}
+                    {hasLogo ? <SVGIcon type={generalIcons.LOGO} height={25} width={60} /> : null}
 
                     <SideBox>
                         {secondaryIcon ? (
