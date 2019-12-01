@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import { withNavigation } from 'react-navigation';
 
 import { SVGIcon } from '~/icons';
 import { generalIcons } from '~/constants/icons/general';
@@ -10,10 +11,10 @@ type Props = {|
     backAction?: () => Promise<*> | void,
 |};
 
-export class BackButton extends React.PureComponent<Props> {
+export class BackButtonComponent extends React.PureComponent<Props> {
     goBack = () => {
-        const { backAction } = this.props;
-        return typeof backAction === 'function' && backAction();
+        const { backAction, navigation } = this.props;
+        return typeof backAction === 'function' ? backAction() : navigation.goBack();
     };
 
     render() {
@@ -26,3 +27,5 @@ export class BackButton extends React.PureComponent<Props> {
         );
     }
 }
+
+export const BackButton = withNavigation(BackButtonComponent);
