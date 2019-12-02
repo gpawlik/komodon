@@ -25,6 +25,15 @@ export class CalendarBox extends React.PureComponent<Props> {
         isCalendarOpen: true,
     };
 
+    onChange = dates => {
+        const keys = Object.keys(dates);
+        const departureDate = moment(keys[0]).format('MMM, Do');
+        const returnDate = moment(keys[keys.length - 1]).format('MMM, Do');
+        const value = keys.length > 1 ? [departureDate, returnDate].join(' - ') : departureDate;
+
+        this.props.onValueChange(value);
+    };
+
     render() {
         const { value, onValueChange } = this.props;
         const { isCalendarOpen } = this.state;
@@ -38,6 +47,7 @@ export class CalendarBox extends React.PureComponent<Props> {
                         currentDay={currentTime}
                         onChangeCurrentDay={() => console.log('change current day')}
                         onClickInactiveDay={() => console.log('click inactive day')}
+                        onChange={this.onChange}
                         dayLimit={7}
                         timezone={timezone}
                     />
