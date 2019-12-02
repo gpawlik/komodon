@@ -23,7 +23,9 @@ const momentRange = extendMoment(moment);
 
 const makeRange = (start, end) => {
     if (!end) {
-        return { [start]: { color: 'green', textColor: 'white', selected: true, startingDay: true, endingDay: true } };
+        return {
+            [start]: { color: '#00cec9', textColor: 'white', selected: true, startingDay: true, endingDay: true },
+        };
     }
     const startMoment = moment(start);
     const endMoment = moment(end);
@@ -38,7 +40,7 @@ const makeRange = (start, end) => {
         (acc, item, idx) => ({
             ...acc,
             [item]: {
-                color: 'green',
+                color: '#00cec9',
                 textColor: 'white',
                 selected: true,
                 startingDay: idx === 0,
@@ -65,7 +67,7 @@ export class CalendarDaySelector extends React.Component<Props, State> {
             return {
                 markedDates: newValues,
                 hasFirstClick: !state.hasFirstClick,
-                lastMarkedDate: value,
+                lastMarkedDate: !state.hasFirstClick && value,
             };
         });
     };
@@ -82,14 +84,14 @@ export class CalendarDaySelector extends React.Component<Props, State> {
             timezone,
             disableDaysBeforeSelectionPeriod = false,
         } = this.props;
-        const { month, current, markedDates } = this.state;
+        const { month, current, markedDates, lastMarkedDate } = this.state;
 
         const minDate = moment.tz(timezone);
 
         return (
             <Calendar
                 //current={current}
-                minDate={minDate.format(configDateFormat)}
+                minDate={lastMarkedDate || minDate.format(configDateFormat)}
                 onDayPress={({ dateString }) => {
                     const pressedDay = moment.tz(dateString, timezone);
                     if (pressedDay.isBefore(minDate, 'day')) {
