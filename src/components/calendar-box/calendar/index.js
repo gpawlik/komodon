@@ -76,7 +76,6 @@ export class CalendarDaySelector extends React.Component<Props, State> {
         const {
             dayLimit,
             currentDay,
-            calendar,
             selectableDates,
             onClickInactiveDay,
             onChangeCurrentDay,

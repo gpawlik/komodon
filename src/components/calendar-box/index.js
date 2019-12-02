@@ -20,20 +20,6 @@ const currentTime = moment();
 const timezone = 'Europe/London';
 const DATE_FORMAT = 'YYYY-MM-DD';
 
-const getCalendar = () => {
-    const calendarRange = [1, 'month'];
-    const start = currentTime.clone().subtract(...calendarRange);
-    const end = currentTime;
-    const range = momentRange
-        .range(start, end)
-        .snapTo('day')
-        .by('days');
-
-    return Array.from(range)
-        .reverse()
-        .map(date => moment.tz(date, timezone).format(DATE_FORMAT));
-};
-
 export class CalendarBox extends React.PureComponent<Props> {
     state = {
         isCalendarOpen: true,
@@ -49,7 +35,6 @@ export class CalendarBox extends React.PureComponent<Props> {
 
                 {isCalendarOpen ? (
                     <CalendarDaySelector
-                        calendar={getCalendar()}
                         currentDay={currentTime}
                         onChangeCurrentDay={() => console.log('change current day')}
                         onClickInactiveDay={() => console.log('click inactive day')}
