@@ -12,10 +12,13 @@
   "dependencies": {
     "immutable": "^4.0.0-rc.12",
     "moment": "^2.24.0",
+    "moment-range": "^4.0.2",
+    "moment-timezone": "^0.5.27",
     "ramda": "^0.26.1",
     "react": "16.9.0",
     "react-intl": "^3.8.0",
     "react-native": "0.61.5",
+    "react-native-calendars": "^1.214.0",
     "react-native-gesture-handler": "^1.5.2",
     "react-native-svg": "^9.13.3",
     "react-navigation": "^4.0.10",

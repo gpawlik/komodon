@@ -3,8 +3,9 @@ import * as React from 'react';
 
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
+import { Searchbox } from '~/components/searchbox';
 import { NavigationMenu } from '~/components/navigation-menu';
-import { Container, Content } from '~/components/screen/styles';
+import { Container, ScrollContent } from '~/components/screen/styles';
 
 import type { Props } from './types';
 
@@ -25,7 +26,9 @@ export class HomeComponent extends React.PureComponent<Props, void> {
                     secondaryAction={this.handleToggleView}
                     hasLogo
                 />
-                <Content isFullWidth></Content>
+                <ScrollContent isFullWidth>
+                    <Searchbox />
+                </ScrollContent>
             </Container>
         );
     }
