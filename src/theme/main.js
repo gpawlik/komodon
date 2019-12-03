@@ -2,9 +2,9 @@
 import * as R from 'ramda';
 
 const colors = {
-    slate: 'rgb(51, 73, 91)',
+    slate: 'rgb(51, 73, 91)', // #33495b
     white: 'rgb(255, 255, 255)',
-    chalk: 'rgb(244, 245, 246)',
+    chalk: 'rgb(244, 245, 246)', // #f4f5f6
     midnight: 'rgb(41, 61, 72)',
     // Taken from: https://flatuicolors.com/palette/de
     red: 'rgb(234, 90, 82)',

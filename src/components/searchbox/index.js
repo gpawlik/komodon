@@ -8,6 +8,7 @@ import { Input } from '~/components/input';
 import { Button } from '~/components/button';
 import { CalendarBox } from '~/components/calendar-box';
 import { DaysBox } from '~/components/days-box';
+import { SliderBox } from '~/components/slider-box';
 import { Container, Label } from './styles';
 
 export const SearchboxComponent = props => {
@@ -43,7 +44,8 @@ export const SearchboxComponent = props => {
             <DaysBox onValueChange={onReturnWeekdaysChange} />
 
             <Label>Return Number Days</Label>
-            <Input value={returnDaysNumber} onValueChange={onReturnDaysNumberChange} />
+            <Label>{returnDaysNumber}</Label>
+            <SliderBox value={returnDaysNumber} onValueChange={onReturnDaysNumberChange} />
 
             <Button message="Search" />
         </Container>
