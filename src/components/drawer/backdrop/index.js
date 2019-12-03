@@ -30,8 +30,7 @@ class Backdrop extends React.Component<Props, State> {
         const { opacity } = this.state;
 
         if (this.props.isVisible !== nextProps.isVisible) {
-            this.setState(
-                { isAnimating: true },
+            this.setState({ isAnimating: true }, () =>
                 animate({ isVisible: nextProps.isVisible, opacity }, () => this.setState({ isAnimating: false }))
             );
         }

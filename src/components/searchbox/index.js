@@ -7,6 +7,7 @@ import { getDeparturePlace, getDestinationPlace, getDepartureDates } from '~/dom
 import { Input } from '~/components/input';
 import { Button } from '~/components/button';
 import { CalendarBox } from '~/components/calendar-box';
+import { DaysBox } from '~/components/days-box';
 import { Container, Label } from './styles';
 
 export const SearchboxComponent = props => {
@@ -31,13 +32,15 @@ export const SearchboxComponent = props => {
             <CalendarBox value={departureDates} onValueChange={onDepartureDatesChange} />
 
             <Label>Departure Days of week</Label>
-            <Input value={departureWeekdays} onValueChange={onDepartureWeekdaysChange} />
+            <Label>{departureWeekdays.toString()}</Label>
+            <DaysBox onValueChange={onDepartureWeekdaysChange} />
 
             <Label>Return Dates</Label>
             <Input value={returnDates} onValueChange={onReturnDatesChange} />
 
             <Label>Return Days of week</Label>
-            <Input value={returnWeekdays} onValueChange={onReturnWeekdaysChange} />
+            <Label>{returnWeekdays}</Label>
+            <DaysBox onValueChange={onReturnWeekdaysChange} />
 
             <Label>Return Number Days</Label>
             <Input value={returnDaysNumber} onValueChange={onReturnDaysNumberChange} />

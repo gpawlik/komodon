@@ -63,13 +63,16 @@ export class CalendarDaySelector extends React.Component<Props, State> {
     onChangeCurrentDay = value => {
         const newValues = !this.state.hasFirstClick ? makeRange(value) : makeRange(this.state.lastMarkedDate, value);
 
-        this.setState(state => {
-            return {
-                markedDates: newValues,
-                hasFirstClick: !state.hasFirstClick,
-                lastMarkedDate: !state.hasFirstClick && value,
-            };
-        }, this.props.onChange(newValues));
+        this.setState(
+            state => {
+                return {
+                    markedDates: newValues,
+                    hasFirstClick: !state.hasFirstClick,
+                    lastMarkedDate: !state.hasFirstClick && value,
+                };
+            },
+            () => this.props.onChange(newValues)
+        );
     };
 
     render() {

@@ -72,7 +72,7 @@ export class EventMapComponent extends React.PureComponent<Props, State> {
             latitudeDelta: region.latitudeDelta * coef,
             longitudeDelta: region.longitudeDelta * coef,
         };
-        this.setState({ region: zoom }, this.map.animateToRegion(zoom, 100));
+        this.setState({ region: zoom }, () => this.map.animateToRegion(zoom, 100));
     };
 
     onZoomIn = () => this.onZoom(3 / 2);
