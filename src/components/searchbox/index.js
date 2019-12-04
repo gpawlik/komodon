@@ -3,6 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { getDeparturePlace, getDestinationPlace, getDepartureDates } from '~/domains/search/selectors';
+import { searchFlights } from '~/domains/search/actions';
 
 import { Input } from '~/components/input';
 import { Button } from '~/components/button';
@@ -23,7 +24,7 @@ export const SearchboxComponent = props => {
     const [returnDaysOfWeek, onReturnWeekdaysChange] = React.useState([]);
     const [daysRange, onReturnDaysNumberChange] = React.useState({});
 
-    function onSubmit() {
+    const onSubmit = () => {
         const payload = {
             departurePlace,
             destinationPlace,
@@ -34,27 +35,27 @@ export const SearchboxComponent = props => {
             departureDaysOfWeek,
             returnDaysOfWeek,
             filter: {
-                departureTime: {
-                    from: '00:00',
-                    to: '23:59',
-                },
-                arrivalTime: {
-                    from: '00:00',
-                    to: '23:59',
-                },
-                returnDepartureTime: {
-                    from: '00:00',
-                    to: '23:59',
-                },
-                returnArrivalTime: {
-                    from: '00:00',
-                    to: '23:59',
-                },
-                stops: 0,
+                // departureTime: {
+                //     from: '00:00',
+                //     to: '23:59',
+                // },
+                // arrivalTime: {
+                //     from: '00:00',
+                //     to: '23:59',
+                // },
+                // returnDepartureTime: {
+                //     from: '00:00',
+                //     to: '23:59',
+                // },
+                // returnArrivalTime: {
+                //     from: '00:00',
+                //     to: '23:59',
+                // },
+                // stops: 0,
             },
         };
-        console.log({ payload });
-    }
+        props.searchFlights(payload);
+    };
 
     return (
         <Container>
@@ -93,4 +94,8 @@ export const mapStateToProps = (state: any): StateProps => ({
     departureDates: getDepartureDates(state),
 });
 
-export const Searchbox = connect(mapStateToProps, null)(SearchboxComponent);
+const mapDispatchToProps = {
+    searchFlights,
+};
+
+export const Searchbox = connect(mapStateToProps, mapDispatchToProps)(SearchboxComponent);

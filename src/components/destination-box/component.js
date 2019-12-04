@@ -21,7 +21,7 @@ export class DestinationBoxComponent extends React.PureComponent {
             <Container>
                 <Input value={value} onValueChange={this.onChange} />
                 {destinations.map(item => (
-                    <Item key={item.get('placeId')} onPress={() => this.onSelect(item.get('cityName'))}>
+                    <Item key={item.get('placeId')} onPress={() => this.onSelect(item.get('placeId'))}>
                         <ItemText>{item.get('placeName')}</ItemText>
                     </Item>
                 ))}
