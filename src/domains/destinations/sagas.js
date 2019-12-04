@@ -10,26 +10,53 @@ import { getDestinationsSuccess, getDestinationsError } from './actions';
 
 const payload = [
     {
-        id: 'MAD',
-        name: 'Madrid',
+        placeId: 'barcelona_es',
+        placeName: 'Barcelona',
+        placeCode: 'BCN',
+        cityId: 'BCN',
+        cityName: 'Barcelona',
+        countryId: 'ES',
+        countryName: 'Spain',
+        type: 'CITY',
+        airports: 1,
+        subPlaces: [],
     },
     {
-        id: 'BER',
-        name: 'Berlin',
+        placeId: 'bari_it',
+        placeName: 'Bari',
+        placeCode: 'BRI',
+        cityId: 'BRI',
+        cityName: 'Bari',
+        countryId: 'IT',
+        countryName: 'Italy',
+        type: 'CITY',
+        airports: 1,
+        subPlaces: [],
+    },
+    {
+        placeId: 'bariloche_rn_ar',
+        placeName: 'Bariloche',
+        placeCode: 'BRC',
+        cityId: 'BRC',
+        cityName: 'Bariloche',
+        countryId: 'AR',
+        countryName: 'Argentina',
+        type: 'CITY',
+        airports: 1,
+        subPlaces: [],
     },
 ];
 
 export function* searchDestinations({ payload: { destination = '' } = {} }): Generator<Effect, *, *> {
-    console.log({ destination });
     if (destination.length < 2) {
         yield put(getDestinationsError());
         return;
     }
-    const [res = {}] = yield call(handleApi(api.getDestinationsList), {
-        destination,
-    });
+    // const [res = {}] = yield call(handleApi(api.getDestinationsList), {
+    //     destination,
+    // });
 
-    yield put(getDestinationsSuccess(res));
+    yield put(getDestinationsSuccess(payload));
 }
 
 function* watchSearchDestinations(): Generator<Effect, *, *> {

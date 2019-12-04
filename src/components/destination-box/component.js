@@ -3,12 +3,16 @@ import * as React from 'react';
 
 import { Input } from '~/components/input';
 
-import { Container, ItemText } from './styles';
+import { Container, Item, ItemText } from './styles';
 
 export class DestinationBoxComponent extends React.PureComponent {
     onChange = (value: string) => {
         this.props.getDestinations({ destination: value });
         this.props.onValueChange(value);
+    };
+
+    onSelect = (name: string) => {
+        this.props.onValueChange(name);
     };
 
     render() {
@@ -17,7 +21,9 @@ export class DestinationBoxComponent extends React.PureComponent {
             <Container>
                 <Input value={value} onValueChange={this.onChange} />
                 {destinations.map(item => (
-                    <ItemText key={item.get('placeId')}>{item.get('placeName')}</ItemText>
+                    <Item key={item.get('placeId')} onPress={() => this.onSelect(item.get('cityName'))}>
+                        <ItemText>{item.get('placeName')}</ItemText>
+                    </Item>
                 ))}
             </Container>
         );
