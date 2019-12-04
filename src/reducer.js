@@ -9,6 +9,7 @@ import { networkReducer as network } from '~/domains/network';
 import { uiReducer as ui } from '~/domains/ui';
 import { userReducer as user } from '~/domains/user';
 import { searchReducer as search } from '~/domains/search';
+import { destinationsReducer as destinations } from '~/domains/destinations';
 
 export const reducer = combineReducers({
     alerts,
@@ -19,4 +20,5 @@ export const reducer = combineReducers({
     ui,
     user,
     search,
+    destinations,
 });
