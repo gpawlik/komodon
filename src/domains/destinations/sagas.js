@@ -1,9 +1,12 @@
 // @flow
-import { put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { type Effect } from 'redux-saga';
 
+import { handleApi } from '~/utils/api';
+
+import * as api from './api';
 import { GET_DESTINATIONS } from './constants';
-import { getDestinationsSuccess } from './actions';
+import { getDestinationsSuccess, getDestinationsError } from './actions';
 
 const payload = [
     {
@@ -16,8 +19,17 @@ const payload = [
     },
 ];
 
-export function* searchDestinations({ payload: { destination } = {} }): Generator<Effect, *, *> {
-    yield put(getDestinationsSuccess(payload));
+export function* searchDestinations({ payload: { destination = '' } = {} }): Generator<Effect, *, *> {
+    console.log({ destination });
+    if (destination.length < 2) {
+        yield put(getDestinationsError());
+        return;
+    }
+    const [res = {}] = yield call(handleApi(api.getDestinationsList), {
+        destination,
+    });
+
+    yield put(getDestinationsSuccess(res));
 }
 
 function* watchSearchDestinations(): Generator<Effect, *, *> {

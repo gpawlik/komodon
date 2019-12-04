@@ -7,7 +7,7 @@ import { Container, ItemText } from './styles';
 
 export class DestinationBoxComponent extends React.PureComponent {
     onChange = (value: string) => {
-        this.props.getDestinations(value);
+        this.props.getDestinations({ destination: value });
         this.props.onValueChange(value);
     };
 
@@ -17,7 +17,7 @@ export class DestinationBoxComponent extends React.PureComponent {
             <Container>
                 <Input value={value} onValueChange={this.onChange} />
                 {destinations.map(item => (
-                    <ItemText key={item.get('id')}>{item.get('name')}</ItemText>
+                    <ItemText key={item.get('placeId')}>{item.get('placeName')}</ItemText>
                 ))}
             </Container>
         );
