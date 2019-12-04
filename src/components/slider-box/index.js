@@ -22,8 +22,8 @@ export class SliderBox extends React.PureComponent {
                     thumbRadius={12}
                     selectionColor="#33495b"
                     blankColor="#f4f5f6"
-                    onValueChanged={(low, high) => {
-                        this.props.onValueChange(`${low};${high}`);
+                    onValueChanged={(from, to) => {
+                        this.props.onValueChange({ from, to });
                     }}
                     labelBackgroundColor="#33495b"
                     labelBorderWidth={0}

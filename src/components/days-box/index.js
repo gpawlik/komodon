@@ -23,7 +23,8 @@ export class DaysBox extends React.PureComponent {
 
     onValueChange = () => {
         const values = R.filter(R.identity)(this.state.selected);
-        this.props.onValueChange(Object.keys(values));
+        const indexes = Object.keys(values).map(item => days.indexOf(item));
+        this.props.onValueChange(indexes);
     };
 
     onChange = (value: number) => {

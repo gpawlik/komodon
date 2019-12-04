@@ -13,43 +13,76 @@ import { SliderBox } from '~/components/slider-box';
 import { Container, Label } from './styles';
 
 export const SearchboxComponent = props => {
-    const [departure, onDepartureChange] = React.useState(props.departurePlace);
-    const [destination, onDestinationChange] = React.useState(props.destinationPlace);
+    const [departurePlace, onDepartureChange] = React.useState(props.departurePlace);
+    const [destinationPlace, onDestinationChange] = React.useState(props.destinationPlace);
 
     const [departureDates, onDepartureDatesChange] = React.useState(props.departureDates);
-    const [departureWeekdays, onDepartureWeekdaysChange] = React.useState([]);
+    const [departureDaysOfWeek, onDepartureWeekdaysChange] = React.useState([]);
 
-    const [returnDates, onReturnDatesChange] = React.useState('');
-    const [returnWeekdays, onReturnWeekdaysChange] = React.useState([]);
-    const [returnDaysNumber, onReturnDaysNumberChange] = React.useState('');
+    const [returnDates, onReturnDatesChange] = React.useState({});
+    const [returnDaysOfWeek, onReturnWeekdaysChange] = React.useState([]);
+    const [daysRange, onReturnDaysNumberChange] = React.useState({});
+
+    function onSubmit() {
+        const payload = {
+            departurePlace,
+            destinationPlace,
+            roundTrip: true,
+            departureDates,
+            returnDates,
+            daysRange,
+            departureDaysOfWeek,
+            returnDaysOfWeek,
+            filter: {
+                departureTime: {
+                    from: '00:00',
+                    to: '23:59',
+                },
+                arrivalTime: {
+                    from: '00:00',
+                    to: '23:59',
+                },
+                returnDepartureTime: {
+                    from: '00:00',
+                    to: '23:59',
+                },
+                returnArrivalTime: {
+                    from: '00:00',
+                    to: '23:59',
+                },
+                stops: 0,
+            },
+        };
+        console.log({ payload });
+    }
 
     return (
         <Container>
             <Label>From</Label>
+            <DestinationBox value={departurePlace} onValueChange={onDepartureChange} />
 
-            <DestinationBox value={departure} onValueChange={onDepartureChange} />
             <Label>To</Label>
-            <Input value={destination} onValueChange={onDestinationChange} />
+            <DestinationBox value={destinationPlace} onValueChange={onDestinationChange} />
 
             <Label>Departure Dates</Label>
             <CalendarBox value={departureDates} onValueChange={onDepartureDatesChange} />
 
             <Label>Departure Days of week</Label>
-            <Label>{departureWeekdays.toString()}</Label>
+            <Label>{departureDaysOfWeek.join(',')}</Label>
             <DaysBox onValueChange={onDepartureWeekdaysChange} />
 
             <Label>Return Dates</Label>
-            <Input value={returnDates} onValueChange={onReturnDatesChange} />
+            <CalendarBox value={returnDates} onValueChange={onReturnDatesChange} />
 
             <Label>Return Days of week</Label>
-            <Label>{returnWeekdays.toString()}</Label>
+            <Label>{returnDaysOfWeek.join(',')}</Label>
             <DaysBox onValueChange={onReturnWeekdaysChange} />
 
             <Label>Return Number Days</Label>
-            <Label>{returnDaysNumber}</Label>
-            <SliderBox value={returnDaysNumber} onValueChange={onReturnDaysNumberChange} />
+            <Label>{`${daysRange.from};${daysRange.to}`}</Label>
+            <SliderBox onValueChange={onReturnDaysNumberChange} />
 
-            <Button message="Search" />
+            <Button message="Search" onPress={onSubmit} />
         </Container>
     );
 };

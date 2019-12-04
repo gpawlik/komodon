@@ -8,7 +8,7 @@ import * as api from './api';
 import { GET_DESTINATIONS } from './constants';
 import { getDestinationsSuccess, getDestinationsError } from './actions';
 
-const payload = [
+const res = [
     {
         placeId: 'barcelona_es',
         placeName: 'Barcelona',
@@ -52,11 +52,11 @@ export function* searchDestinations({ payload: { destination = '' } = {} }): Gen
         yield put(getDestinationsError());
         return;
     }
-    // const [res = {}] = yield call(handleApi(api.getDestinationsList), {
-    //     destination,
-    // });
+    const [res = {}] = yield call(handleApi(api.getDestinationsList), {
+        destination,
+    });
 
-    yield put(getDestinationsSuccess(payload));
+    yield put(getDestinationsSuccess(res));
 }
 
 function* watchSearchDestinations(): Generator<Effect, *, *> {

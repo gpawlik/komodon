@@ -27,20 +27,20 @@ export class CalendarBox extends React.PureComponent<Props> {
 
     onChange = dates => {
         const keys = Object.keys(dates);
-        const departureDate = moment(keys[0]).format('MMM, Do');
-        const returnDate = moment(keys[keys.length - 1]).format('MMM, Do');
-        const value = keys.length > 1 ? [departureDate, returnDate].join(' - ') : departureDate;
+        const from = keys[0];
+        const to = keys[keys.length - 1];
 
-        this.props.onValueChange(value);
+        this.props.onValueChange({ from, to });
     };
 
     render() {
-        const { value, onValueChange } = this.props;
+        const { value: { from = '', to } = {}, onValueChange } = this.props;
         const { isCalendarOpen } = this.state;
+        const message = to ? [from, to].join(' - ') : from;
 
         return (
             <Container>
-                <SelectedDates message={value} />
+                <SelectedDates message={message} />
 
                 {isCalendarOpen ? (
                     <CalendarDaySelector
