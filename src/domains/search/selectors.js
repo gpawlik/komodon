@@ -10,4 +10,6 @@ export const getDeparturePlace = createSelector([getCriteria], state => state.ge
 
 export const getDestinationPlace = createSelector([getCriteria], state => state.get('destinationPlace', ''));
 
-export const getDepartureDates = createSelector([getCriteria], state => state.get('departureDates', ''));
+export const getDepartureDates = createSelector([getCriteria], state => state.get('departureDates', {}));
+
+export const getReturnDates = createSelector([getCriteria], state => state.get('returnDates', {}));

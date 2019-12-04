@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { getDeparturePlace, getDestinationPlace, getDepartureDates } from '~/domains/search/selectors';
+import { getDeparturePlace, getDestinationPlace, getDepartureDates, getReturnDates } from '~/domains/search/selectors';
 import { searchFlights } from '~/domains/search/actions';
 
 import { Input } from '~/components/input';
@@ -20,7 +20,7 @@ export const SearchboxComponent = props => {
     const [departureDates, onDepartureDatesChange] = React.useState(props.departureDates);
     const [departureDaysOfWeek, onDepartureWeekdaysChange] = React.useState([]);
 
-    const [returnDates, onReturnDatesChange] = React.useState({});
+    const [returnDates, onReturnDatesChange] = React.useState(props.returnDates);
     const [returnDaysOfWeek, onReturnWeekdaysChange] = React.useState([]);
     const [daysRange, onReturnDaysNumberChange] = React.useState({});
 
@@ -66,14 +66,14 @@ export const SearchboxComponent = props => {
             <DestinationBox value={destinationPlace} onValueChange={onDestinationChange} />
 
             <Label>Departure Dates</Label>
-            <CalendarBox value={departureDates} onValueChange={onDepartureDatesChange} />
+            <CalendarBox value={departureDates} onValueChange={onDepartureDatesChange} maxDate={returnDates.from} />
 
             <Label>Departure Days of week</Label>
             <Label>{departureDaysOfWeek.join(',')}</Label>
             <DaysBox onValueChange={onDepartureWeekdaysChange} />
 
             <Label>Return Dates</Label>
-            <CalendarBox value={returnDates} onValueChange={onReturnDatesChange} />
+            <CalendarBox value={returnDates} onValueChange={onReturnDatesChange} minDate={departureDates.from} />
 
             <Label>Return Days of week</Label>
             <Label>{returnDaysOfWeek.join(',')}</Label>
@@ -92,6 +92,7 @@ export const mapStateToProps = (state: any): StateProps => ({
     departurePlace: getDeparturePlace(state),
     destinationPlace: getDestinationPlace(state),
     departureDates: getDepartureDates(state),
+    returnDates: getReturnDates(state),
 });
 
 const mapDispatchToProps = {

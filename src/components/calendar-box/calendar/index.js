@@ -84,16 +84,18 @@ export class CalendarDaySelector extends React.Component<Props, State> {
             onChangeCurrentDay,
             closeCalendar,
             timezone,
+            minDate,
+            maxDate,
             disableDaysBeforeSelectionPeriod = false,
         } = this.props;
         const { month, current, markedDates, lastMarkedDate } = this.state;
 
-        const minDate = moment.tz(timezone);
+        const today = moment.tz(timezone);
 
         return (
             <Calendar
-                //current={current}
-                minDate={lastMarkedDate || minDate.format(configDateFormat)}
+                minDate={lastMarkedDate || minDate || today.format(configDateFormat)}
+                maxDate={maxDate}
                 onDayPress={({ dateString }) => {
                     const pressedDay = moment.tz(dateString, timezone);
                     if (pressedDay.isBefore(minDate, 'day')) {

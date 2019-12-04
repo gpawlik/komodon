@@ -34,7 +34,7 @@ export class CalendarBox extends React.PureComponent<Props> {
     };
 
     render() {
-        const { value: { from = '', to } = {}, onValueChange } = this.props;
+        const { value: { from = '', to } = {}, onValueChange, minDate, maxDate } = this.props;
         const { isCalendarOpen } = this.state;
         const message = to ? [from, to].join(' - ') : from;
 
@@ -50,6 +50,8 @@ export class CalendarBox extends React.PureComponent<Props> {
                         onChange={this.onChange}
                         dayLimit={7}
                         timezone={timezone}
+                        minDate={minDate}
+                        maxDate={maxDate}
                     />
                 ) : null}
             </Container>
