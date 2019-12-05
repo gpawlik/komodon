@@ -11,10 +11,12 @@ export const Container = styled.View`
 `;
 
 export const Button = styled.TouchableOpacity`
-    background-color: ${selectors.chalk};
+    background-color: ${({ isSelected }) => (isSelected ? selectors.slate : selectors.chalk)};
     padding: 6px 10px;
     margin-horizontal: 3;
     border-radius: 3px;
 `;
 
-export const ButtonText = styled(TextRegular3)``;
+export const ButtonText = styled(TextRegular3)`
+    color: ${({ isSelected }) => (isSelected ? selectors.white : selectors.slate)};
+`;

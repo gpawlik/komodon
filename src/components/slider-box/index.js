@@ -31,6 +31,8 @@ export class SliderBox extends React.PureComponent {
                     labelPadding={8}
                     labelBorderRadius={10.0}
                     textFormat="%d days"
+                    labelStyle="bubble"
+                    rangeEnabled
                 />
             </Container>
         );

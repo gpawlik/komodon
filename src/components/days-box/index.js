@@ -10,13 +10,13 @@ const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'
 export class DaysBox extends React.PureComponent {
     state = {
         selected: {
-            monday: false,
-            tuesday: false,
-            wednesday: false,
-            thursday: false,
-            friday: false,
-            saturday: false,
-            sunday: false,
+            monday: this.props.value.includes(0),
+            tuesday: this.props.value.includes(1),
+            wednesday: this.props.value.includes(2),
+            thursday: this.props.value.includes(3),
+            friday: this.props.value.includes(4),
+            saturday: this.props.value.includes(5),
+            sunday: this.props.value.includes(6),
         },
         selectedAll: false,
     };

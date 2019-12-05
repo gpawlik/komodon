@@ -59,7 +59,10 @@ export const SearchboxComponent = props => {
                 <CalendarBox value={departureDates} onValueChange={onDepartureDatesChange} maxDate={returnDates.from} />
             ),
         ],
-        [R.equals('DEP_TIME_DAYS'), () => <DaysBox onValueChange={onDepartureWeekdaysChange} />],
+        [
+            R.equals('DEP_TIME_DAYS'),
+            () => <DaysBox value={departureDaysOfWeek} onValueChange={onDepartureWeekdaysChange} />,
+        ],
         [R.T, () => null],
     ]);
 
@@ -68,7 +71,7 @@ export const SearchboxComponent = props => {
             R.equals('RET_TIME_CAL'),
             () => <CalendarBox value={returnDates} onValueChange={onReturnDatesChange} minDate={departureDates.from} />,
         ],
-        [R.equals('RET_TIME_DAYS'), () => <DaysBox onValueChange={onReturnWeekdaysChange} />],
+        [R.equals('RET_TIME_DAYS'), () => <DaysBox value={returnDaysOfWeek} onValueChange={onReturnWeekdaysChange} />],
         [R.equals('RET_TIME_RANGE'), () => <SliderBox onValueChange={onReturnDaysNumberChange} />],
         [R.T, () => null],
     ]);
@@ -109,6 +112,7 @@ export const SearchboxComponent = props => {
                         { id: 'DEP_TIME_CAL', text: 'Dates' },
                         { id: 'DEP_TIME_DAYS', text: 'Days of  week' },
                     ]}
+                    selected={focusedDepTime}
                 />
                 {getDepTimeBox(focusedDepTime)}
             </ValueBox>
@@ -126,6 +130,7 @@ export const SearchboxComponent = props => {
                         { id: 'RET_TIME_DAYS', text: 'Days of week' },
                         { id: 'RET_TIME_RANGE', text: 'Number Days' },
                     ]}
+                    selected={focusedRetTime}
                 />
                 {getRetTimeBox(focusedRetTime)}
             </ValueBox>
