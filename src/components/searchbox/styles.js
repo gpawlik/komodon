@@ -9,7 +9,11 @@ export const Container = styled.View`
     padding: 10px 20px;
 `;
 
+export const LabelButton = styled.TouchableOpacity``;
+
 export const Label = styled(TextRegular3)`
     background-color: ${selectors.white};
     padding: 10px 20px;
 `;
+
+export const CriteriaBox = styled.View``;

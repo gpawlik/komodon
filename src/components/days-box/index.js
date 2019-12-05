@@ -53,7 +53,7 @@ export class DaysBox extends React.PureComponent {
     };
 
     render() {
-        const { selected, selectedAll } = this.state;
+        const { selected, selectedAll, isBoxVisible } = this.state;
         return (
             <Container>
                 {days.map((item, index) => (

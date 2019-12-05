@@ -8,6 +8,8 @@ import { selectors } from '~/theme/main';
 
 export const Container = styled.View``;
 
+export const DestinationContainer = styled.View``;
+
 export const Item = styled.TouchableOpacity`
     padding: 16px 20px;
     border-bottom-color: ${selectors.grey};
