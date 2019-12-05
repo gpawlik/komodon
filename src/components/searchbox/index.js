@@ -13,6 +13,7 @@ import { CalendarBox } from '~/components/calendar-box';
 import { DaysBox } from '~/components/days-box';
 import { SliderBox } from '~/components/slider-box';
 import { ButtonBox } from './components/button-box';
+import { ValueBox } from './components/value-box';
 import { Container, Label, LabelButton, CriteriaBox } from './styles';
 
 export const SearchboxComponent = props => {
@@ -84,56 +85,62 @@ export const SearchboxComponent = props => {
         [R.T, () => null],
     ]);
 
+    const handleFocus = value => {
+        onFocus(value === focusedField ? '' : value);
+    };
+
     return (
         <Container>
-            <LabelButton onPress={() => onFocus('DEP_PLACE')}>
-                <Label>From</Label>
-            </LabelButton>
-            {focusedField === 'DEP_PLACE' ? (
+            <ValueBox
+                label="From"
+                onPress={() => handleFocus('DEP_PLACE')}
+                showContent={focusedField === 'DEP_PLACE'}
+                value={1}
+            >
                 <DestinationBox value={departurePlace} onValueChange={onDepartureChange} />
-            ) : null}
+            </ValueBox>
 
-            <LabelButton onPress={() => onFocus('DES_PLACE')}>
-                <Label>To</Label>
-            </LabelButton>
-            {focusedField === 'DES_PLACE' ? (
+            <ValueBox
+                label="To"
+                onPress={() => handleFocus('DES_PLACE')}
+                showContent={focusedField === 'DES_PLACE'}
+                value={1}
+            >
                 <DestinationBox value={destinationPlace} onValueChange={onDestinationChange} />
-            ) : null}
+            </ValueBox>
 
-            <LabelButton onPress={() => onFocus('DEP_TIME')}>
-                <Label>Departure Time</Label>
-            </LabelButton>
+            <ValueBox
+                label="Departure Time"
+                onPress={() => handleFocus('DEP_TIME')}
+                showContent={focusedField === 'DEP_TIME'}
+                value={1}
+            >
+                <ButtonBox
+                    onChange={onFocusDepTime}
+                    options={[
+                        { id: 'DEP_TIME_CAL', text: 'Dates' },
+                        { id: 'DEP_TIME_DAYS', text: 'Days of  week' },
+                    ]}
+                />
+                {getDepTimeBox(focusedDepTime)}
+            </ValueBox>
 
-            {focusedField === 'DEP_TIME' ? (
-                <CriteriaBox>
-                    <ButtonBox
-                        onChange={onFocusDepTime}
-                        options={[
-                            { id: 'DEP_TIME_CAL', text: 'Dates' },
-                            { id: 'DEP_TIME_DAYS', text: 'Days of  week' },
-                        ]}
-                    />
-                    {getDepTimeBox(focusedDepTime)}
-                </CriteriaBox>
-            ) : null}
-
-            <LabelButton onPress={() => onFocus('RET_TIME')}>
-                <Label>Departure Time</Label>
-            </LabelButton>
-
-            {focusedField === 'RET_TIME' ? (
-                <CriteriaBox>
-                    <ButtonBox
-                        onChange={onFocusRetTime}
-                        options={[
-                            { id: 'RET_TIME_CAL', text: 'Dates' },
-                            { id: 'RET_TIME_DAYS', text: 'Days of week' },
-                            { id: 'RET_TIME_RANGE', text: 'Number Days' },
-                        ]}
-                    />
-                    {getRetTimeBox(focusedRetTime)}
-                </CriteriaBox>
-            ) : null}
+            <ValueBox
+                label="Return Time"
+                onPress={() => handleFocus('RET_TIME')}
+                showContent={focusedField === 'RET_TIME'}
+                value={1}
+            >
+                <ButtonBox
+                    onChange={onFocusRetTime}
+                    options={[
+                        { id: 'RET_TIME_CAL', text: 'Dates' },
+                        { id: 'RET_TIME_DAYS', text: 'Days of week' },
+                        { id: 'RET_TIME_RANGE', text: 'Number Days' },
+                    ]}
+                />
+                {getRetTimeBox(focusedRetTime)}
+            </ValueBox>
 
             <Button message="Search" onPress={onSubmit} />
         </Container>

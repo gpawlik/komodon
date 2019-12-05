@@ -19,7 +19,7 @@ export class ButtonBox extends React.Component<Props> {
         return (
             <Container>
                 {options.map(({ id, text }) => (
-                    <Button onPress={() => onChange(id)}>
+                    <Button onPress={() => onChange(id)} key={id}>
                         <ButtonText>{text}</ButtonText>
                     </Button>
                 ))}
