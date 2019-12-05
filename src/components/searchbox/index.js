@@ -31,37 +31,25 @@ export const SearchboxComponent = props => {
     const [focusedDepTime, onFocusDepTime] = React.useState('DEP_TIME_CAL');
     const [focusedRetTime, onFocusRetTime] = React.useState('RET_TIME_CAL');
 
+    const departureCriteria = focusedDepTime === 'DEP_TIME_CAL' ? { departureDates } : { departureDaysOfWeek };
+    const returnCriteria = R.cond([
+        [R.equals('RET_TIME_CAL'), R.always({ returnDates })],
+        [R.equals('RET_TIME_DAYS'), R.always({ returnDaysOfWeek })],
+        [R.equals('RET_TIME_RANGE'), R.always({ daysRange })],
+        [R.T, R.always({})],
+    ])(focusedRetTime);
+
     const onSubmit = () => {
         const payload = {
             departurePlace,
             destinationPlace,
             roundTrip: true,
-            departureDates,
-            returnDates,
-            daysRange,
-            departureDaysOfWeek,
-            returnDaysOfWeek,
-            filter: {
-                // departureTime: {
-                //     from: '00:00',
-                //     to: '23:59',
-                // },
-                // arrivalTime: {
-                //     from: '00:00',
-                //     to: '23:59',
-                // },
-                // returnDepartureTime: {
-                //     from: '00:00',
-                //     to: '23:59',
-                // },
-                // returnArrivalTime: {
-                //     from: '00:00',
-                //     to: '23:59',
-                // },
-                // stops: 0,
-            },
+            filter: {},
+            ...departureCriteria,
+            ...returnCriteria,
         };
-        props.searchFlights(payload);
+        console.log({ payload });
+        //props.searchFlights(payload);
     };
 
     const getDepTimeBox = R.cond([
@@ -95,7 +83,7 @@ export const SearchboxComponent = props => {
                 label="From"
                 onPress={() => handleFocus('DEP_PLACE')}
                 showContent={focusedField === 'DEP_PLACE'}
-                value={1}
+                value={departurePlace}
             >
                 <DestinationBox value={departurePlace} onValueChange={onDepartureChange} />
             </ValueBox>
@@ -104,7 +92,7 @@ export const SearchboxComponent = props => {
                 label="To"
                 onPress={() => handleFocus('DES_PLACE')}
                 showContent={focusedField === 'DES_PLACE'}
-                value={1}
+                value={destinationPlace}
             >
                 <DestinationBox value={destinationPlace} onValueChange={onDestinationChange} />
             </ValueBox>
