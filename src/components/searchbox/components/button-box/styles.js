@@ -7,6 +7,7 @@ import { selectors } from '~/theme/main';
 
 export const Container = styled.View`
     flex-direction: row;
+    margin: 10px 14px 0;
 `;
 
 export const Button = styled.TouchableOpacity`

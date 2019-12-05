@@ -6,6 +6,7 @@ import { selectors } from '~/theme/main';
 
 export const Container = styled.View`
     background-color: ${selectors.white};
+    margin: 14px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
