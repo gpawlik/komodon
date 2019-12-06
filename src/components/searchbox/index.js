@@ -16,7 +16,17 @@ import { ButtonBox } from './components/button-box';
 import { ValueBox } from './components/value-box';
 import { RoundTripBox } from './components/round-trip';
 import { getDescriptiveName } from './utils';
-import { Container, Label, LabelButton, CriteriaBox, VerticalBox, Flyout, ConfirmBox, CriteriaText } from './styles';
+import {
+    Container,
+    Label,
+    LabelButton,
+    CriteriaBox,
+    VerticalBox,
+    Flyout,
+    ConfirmBox,
+    CriteriaText,
+    SwitchButton,
+} from './styles';
 
 export const SearchboxComponent = props => {
     const [departurePlace, onDepartureChange] = React.useState(props.departurePlace);
@@ -129,9 +139,14 @@ export const SearchboxComponent = props => {
         onFocus(value === focusedField ? '' : value);
     };
 
+    const handlePlaceSwitch = () => {
+        onDepartureChange(destinationPlace);
+        onDestinationChange(departurePlace);
+    };
+
     return (
         <Container>
-            <RoundTripBox onChange={onRoundTripSelect} isRoundTrip={roundTrip} />
+            <RoundTripBox onChange={handlePlaceSwitch} isRoundTrip={roundTrip} />
             <VerticalBox>
                 <ValueBox
                     label="From"
@@ -148,6 +163,7 @@ export const SearchboxComponent = props => {
                     value={destinationPlace.placeName}
                     onConfirm={() => handleFocus('')}
                 ></ValueBox>
+                <SwitchButton onPress={handlePlaceSwitch}></SwitchButton>
             </VerticalBox>
 
             {focusedField === 'DEP_PLACE' || focusedField === 'DES_PLACE' ? (

@@ -16,6 +16,17 @@ export const VerticalBox = styled.View`
 
 export const LabelButton = styled.TouchableOpacity``;
 
+export const SwitchButton = styled.TouchableOpacity`
+    position: absolute;
+    top: 22;
+    left: 50%;
+    width: 20;
+    height: 20;
+    border-radius: 10;
+    margin-left: -10;
+    background-color: ${selectors.slate};
+`;
+
 export const Label = styled(TextRegular3)`
     background-color: ${selectors.white};
     padding: 10px 20px;
