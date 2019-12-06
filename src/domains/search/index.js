@@ -9,8 +9,14 @@ import { setSearchCriteria, resetSearchCriteria } from './actions';
 type State = ImmutableMap<string, *>;
 
 const initialCriteria = ImmutableMap({
-    departurePlace: 'barcelona_es',
-    destinationPlace: 'madrid_es',
+    departurePlace: {
+        placeId: 'barcelona_es',
+        placeName: 'Barcelona',
+    },
+    destinationPlace: {
+        placeId: 'madrid_es',
+        placeName: 'Madrid',
+    },
     departureDates: {},
     returnDates: {},
 });

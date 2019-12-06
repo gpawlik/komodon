@@ -15,7 +15,7 @@ import { SliderBox } from '~/components/slider-box';
 import { ButtonBox } from './components/button-box';
 import { ValueBox } from './components/value-box';
 import { RoundTripBox } from './components/round-trip';
-import { Container, Label, LabelButton, CriteriaBox, VerticalBox, Flyout, ButtonBoxx } from './styles';
+import { Container, Label, LabelButton, CriteriaBox, VerticalBox, Flyout, ConfirmBox } from './styles';
 
 export const SearchboxComponent = props => {
     const [departurePlace, onDepartureChange] = React.useState(props.departurePlace);
@@ -29,7 +29,7 @@ export const SearchboxComponent = props => {
     const [daysRange, onReturnDaysNumberChange] = React.useState({});
 
     const [roundTrip, onRoundTripSelect] = React.useState(true);
-    const [focusedField, onFocus] = React.useState('');
+    const [focusedField, onFocus] = React.useState('DEP_PLACE');
     const [focusedDepTime, onFocusDepTime] = React.useState('DEP_TIME_CAL');
     const [focusedRetTime, onFocusRetTime] = React.useState('RET_TIME_CAL');
 
@@ -43,8 +43,8 @@ export const SearchboxComponent = props => {
 
     const onSubmit = () => {
         const payload = {
-            departurePlace,
-            destinationPlace,
+            departurePlace: departurePlace.placeId,
+            destinationPlace: destinationPlace.placeId,
             roundTrip,
             filter: {},
             ...departureCriteria,
@@ -90,22 +90,33 @@ export const SearchboxComponent = props => {
                     label="From"
                     onPress={() => handleFocus('DEP_PLACE')}
                     showContent={focusedField === 'DEP_PLACE'}
-                    value={departurePlace}
+                    value={departurePlace.placeName}
                     onConfirm={() => handleFocus('')}
-                >
-                    <DestinationBox value={departurePlace} onValueChange={onDepartureChange} />
-                </ValueBox>
+                ></ValueBox>
 
                 <ValueBox
                     label="To"
                     onPress={() => handleFocus('DES_PLACE')}
                     showContent={focusedField === 'DES_PLACE'}
-                    value={destinationPlace}
+                    value={destinationPlace.placeName}
                     onConfirm={() => handleFocus('')}
-                >
-                    <DestinationBox value={destinationPlace} onValueChange={onDestinationChange} />
-                </ValueBox>
+                ></ValueBox>
             </VerticalBox>
+
+            {focusedField === 'DEP_PLACE' || focusedField === 'DES_PLACE' ? (
+                <Flyout>
+                    {focusedField === 'DEP_PLACE' && (
+                        <DestinationBox value={departurePlace} onValueChange={onDepartureChange} />
+                    )}
+                    {focusedField === 'DES_PLACE' && (
+                        <DestinationBox value={destinationPlace} onValueChange={onDestinationChange} />
+                    )}
+
+                    <ConfirmBox>
+                        <Button message="Select this" onPress={() => handleFocus('')}></Button>
+                    </ConfirmBox>
+                </Flyout>
+            ) : null}
 
             <VerticalBox>
                 <ValueBox
@@ -156,9 +167,9 @@ export const SearchboxComponent = props => {
                         </React.Fragment>
                     )}
 
-                    <ButtonBoxx>
+                    <ConfirmBox>
                         <Button message="Select this" onPress={() => handleFocus('')}></Button>
-                    </ButtonBoxx>
+                    </ConfirmBox>
                 </Flyout>
             ) : null}
 

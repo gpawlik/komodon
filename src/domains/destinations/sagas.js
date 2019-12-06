@@ -52,9 +52,9 @@ export function* searchDestinations({ payload: { destination = '' } = {} }): Gen
         yield put(getDestinationsError());
         return;
     }
-    const [res = {}] = yield call(handleApi(api.getDestinationsList), {
-        destination,
-    });
+    // const [res = {}] = yield call(handleApi(api.getDestinationsList), {
+    //     destination,
+    // });
 
     yield put(getDestinationsSuccess(res));
 }

@@ -6,9 +6,9 @@ const getState = state => state.search || ImmutableMap();
 
 export const getCriteria = createSelector([getState], state => state.get('criteria', List()));
 
-export const getDeparturePlace = createSelector([getCriteria], state => state.get('departurePlace', ''));
+export const getDeparturePlace = createSelector([getCriteria], state => state.get('departurePlace', {}));
 
-export const getDestinationPlace = createSelector([getCriteria], state => state.get('destinationPlace', ''));
+export const getDestinationPlace = createSelector([getCriteria], state => state.get('destinationPlace', {}));
 
 export const getDepartureDates = createSelector([getCriteria], state => state.get('departureDates', {}));
 

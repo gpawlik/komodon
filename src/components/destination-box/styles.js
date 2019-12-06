@@ -10,6 +10,10 @@ export const Container = styled.View``;
 
 export const DestinationContainer = styled.View``;
 
+export const InputBox = styled.View`
+    padding: 6px 20px;
+`;
+
 export const Item = styled.TouchableOpacity`
     padding: 16px 20px;
     border-bottom-color: ${selectors.grey};

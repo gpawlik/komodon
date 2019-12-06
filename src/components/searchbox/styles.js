@@ -31,7 +31,7 @@ export const Flyout = styled.View`
     z-index: 9;
 `;
 
-export const ButtonBoxx = styled.View`
+export const ConfirmBox = styled.View`
     padding: 16px 20px;
     background-color: #fff;
     border-top-width: 0.3;
