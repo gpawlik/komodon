@@ -15,7 +15,8 @@ import { SliderBox } from '~/components/slider-box';
 import { ButtonBox } from './components/button-box';
 import { ValueBox } from './components/value-box';
 import { RoundTripBox } from './components/round-trip';
-import { Container, Label, LabelButton, CriteriaBox, VerticalBox, Flyout, ConfirmBox } from './styles';
+import { getDescriptiveName } from './utils';
+import { Container, Label, LabelButton, CriteriaBox, VerticalBox, Flyout, ConfirmBox, CriteriaText } from './styles';
 
 export const SearchboxComponent = props => {
     const [departurePlace, onDepartureChange] = React.useState(props.departurePlace);
@@ -29,9 +30,12 @@ export const SearchboxComponent = props => {
     const [daysRange, onReturnDaysNumberChange] = React.useState({});
 
     const [roundTrip, onRoundTripSelect] = React.useState(true);
-    const [focusedField, onFocus] = React.useState('DEP_PLACE');
+    const [focusedField, onFocus] = React.useState('DEP_TIME');
     const [focusedDepTime, onFocusDepTime] = React.useState('DEP_TIME_CAL');
     const [focusedRetTime, onFocusRetTime] = React.useState('RET_TIME_CAL');
+
+    const [depDescriptiveName, onDepDescriptiveName] = React.useState('');
+    const [retDescriptiveName, onRetDescriptiveName] = React.useState('');
 
     const departureCriteria = focusedDepTime === 'DEP_TIME_CAL' ? { departureDates } : { departureDaysOfWeek };
     const returnCriteria = R.cond([
@@ -40,6 +44,36 @@ export const SearchboxComponent = props => {
         [R.equals('RET_TIME_RANGE'), R.always({ daysRange })],
         [R.T, R.always({})],
     ])(focusedRetTime);
+
+    const handleDepartureDatesChange = value => {
+        const name = getDescriptiveName({ type: 'DEP_TIME_CAL', value });
+        onDepDescriptiveName(name);
+        onDepartureDatesChange(value);
+    };
+
+    const handleDepartureWeekdaysChange = value => {
+        const name = getDescriptiveName({ type: 'DEP_TIME_DAYS', value });
+        onDepDescriptiveName(name);
+        onDepartureWeekdaysChange(value);
+    };
+
+    const handleReturnDatesChange = value => {
+        const name = getDescriptiveName({ type: 'RET_TIME_CAL', value });
+        onRetDescriptiveName(name);
+        onReturnDatesChange(value);
+    };
+
+    const handleReturnWeekdaysChange = value => {
+        const name = getDescriptiveName({ type: 'RET_TIME_DAYS', value });
+        onRetDescriptiveName(name);
+        onReturnWeekdaysChange(value);
+    };
+
+    const handleReturnDaysNumberChange = value => {
+        const name = getDescriptiveName({ type: 'RET_TIME_RANGE', value });
+        onRetDescriptiveName(name);
+        onReturnDaysNumberChange(value);
+    };
 
     const onSubmit = () => {
         const payload = {
@@ -58,12 +92,16 @@ export const SearchboxComponent = props => {
         [
             R.equals('DEP_TIME_CAL'),
             () => (
-                <CalendarBox value={departureDates} onValueChange={onDepartureDatesChange} maxDate={returnDates.from} />
+                <CalendarBox
+                    value={departureDates}
+                    onValueChange={handleDepartureDatesChange}
+                    maxDate={returnDates.from}
+                />
             ),
         ],
         [
             R.equals('DEP_TIME_DAYS'),
-            () => <DaysBox value={departureDaysOfWeek} onValueChange={onDepartureWeekdaysChange} />,
+            () => <DaysBox value={departureDaysOfWeek} onValueChange={handleDepartureWeekdaysChange} />,
         ],
         [R.T, () => null],
     ]);
@@ -71,10 +109,19 @@ export const SearchboxComponent = props => {
     const getRetTimeBox = R.cond([
         [
             R.equals('RET_TIME_CAL'),
-            () => <CalendarBox value={returnDates} onValueChange={onReturnDatesChange} minDate={departureDates.from} />,
+            () => (
+                <CalendarBox
+                    value={returnDates}
+                    onValueChange={handleReturnDatesChange}
+                    minDate={departureDates.from}
+                />
+            ),
         ],
-        [R.equals('RET_TIME_DAYS'), () => <DaysBox value={returnDaysOfWeek} onValueChange={onReturnWeekdaysChange} />],
-        [R.equals('RET_TIME_RANGE'), () => <SliderBox onValueChange={onReturnDaysNumberChange} />],
+        [
+            R.equals('RET_TIME_DAYS'),
+            () => <DaysBox value={returnDaysOfWeek} onValueChange={handleReturnWeekdaysChange} />,
+        ],
+        [R.equals('RET_TIME_RANGE'), () => <SliderBox onValueChange={handleReturnDaysNumberChange} />],
         [R.T, () => null],
     ]);
 
@@ -124,7 +171,7 @@ export const SearchboxComponent = props => {
                     onPress={() => handleFocus('DEP_TIME')}
                     showContent={focusedField === 'DEP_TIME'}
                     onConfirm={() => handleFocus('')}
-                    value={1}
+                    value={depDescriptiveName}
                 ></ValueBox>
 
                 {roundTrip ? (
@@ -132,7 +179,7 @@ export const SearchboxComponent = props => {
                         label="Return Time"
                         onPress={() => handleFocus('RET_TIME')}
                         showContent={focusedField === 'RET_TIME'}
-                        value={1}
+                        value={retDescriptiveName}
                     ></ValueBox>
                 ) : null}
             </VerticalBox>
@@ -141,6 +188,7 @@ export const SearchboxComponent = props => {
                 <Flyout>
                     {focusedField === 'DEP_TIME' && (
                         <React.Fragment>
+                            <CriteriaText>{depDescriptiveName}</CriteriaText>
                             <ButtonBox
                                 onChange={onFocusDepTime}
                                 options={[
@@ -154,6 +202,7 @@ export const SearchboxComponent = props => {
                     )}
                     {focusedField === 'RET_TIME' && roundTrip && (
                         <React.Fragment>
+                            <CriteriaText>{retDescriptiveName}</CriteriaText>
                             <ButtonBox
                                 onChange={onFocusRetTime}
                                 options={[

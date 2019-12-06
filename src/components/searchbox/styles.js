@@ -1,7 +1,7 @@
 // @flow
 import styled from 'styled-components';
 
-import { TextRegular3 } from '~/components/text';
+import { TextRegular3, TextRegular4 } from '~/components/text';
 import { selectors } from '~/theme/main';
 
 export const Container = styled.View`
@@ -29,6 +29,10 @@ export const Flyout = styled.View`
     right: 0;
     bottom: 0;
     z-index: 9;
+`;
+
+export const CriteriaText = styled(TextRegular4)`
+    padding: 10px 20px;
 `;
 
 export const ConfirmBox = styled.View`
