@@ -14,6 +14,7 @@ import { DaysBox } from '~/components/days-box';
 import { SliderBox } from '~/components/slider-box';
 import { ButtonBox } from './components/button-box';
 import { ValueBox } from './components/value-box';
+import { RoundTripBox } from './components/round-trip';
 import { Container, Label, LabelButton, CriteriaBox, VerticalBox, Flyout, ButtonBoxx } from './styles';
 
 export const SearchboxComponent = props => {
@@ -27,7 +28,8 @@ export const SearchboxComponent = props => {
     const [returnDaysOfWeek, onReturnWeekdaysChange] = React.useState([]);
     const [daysRange, onReturnDaysNumberChange] = React.useState({});
 
-    const [focusedField, onFocus] = React.useState('DEP_TIME');
+    const [roundTrip, onRoundTripSelect] = React.useState(true);
+    const [focusedField, onFocus] = React.useState('');
     const [focusedDepTime, onFocusDepTime] = React.useState('DEP_TIME_CAL');
     const [focusedRetTime, onFocusRetTime] = React.useState('RET_TIME_CAL');
 
@@ -43,7 +45,7 @@ export const SearchboxComponent = props => {
         const payload = {
             departurePlace,
             destinationPlace,
-            roundTrip: true,
+            roundTrip,
             filter: {},
             ...departureCriteria,
             ...returnCriteria,
@@ -82,6 +84,7 @@ export const SearchboxComponent = props => {
 
     return (
         <Container>
+            <RoundTripBox onChange={onRoundTripSelect} isRoundTrip={roundTrip} />
             <VerticalBox>
                 <ValueBox
                     label="From"
@@ -113,12 +116,14 @@ export const SearchboxComponent = props => {
                     value={1}
                 ></ValueBox>
 
-                <ValueBox
-                    label="Return Time"
-                    onPress={() => handleFocus('RET_TIME')}
-                    showContent={focusedField === 'RET_TIME'}
-                    value={1}
-                ></ValueBox>
+                {roundTrip ? (
+                    <ValueBox
+                        label="Return Time"
+                        onPress={() => handleFocus('RET_TIME')}
+                        showContent={focusedField === 'RET_TIME'}
+                        value={1}
+                    ></ValueBox>
+                ) : null}
             </VerticalBox>
 
             {focusedField === 'DEP_TIME' || focusedField === 'RET_TIME' ? (
@@ -136,7 +141,7 @@ export const SearchboxComponent = props => {
                             {getDepTimeBox(focusedDepTime)}
                         </React.Fragment>
                     )}
-                    {focusedField === 'RET_TIME' && (
+                    {focusedField === 'RET_TIME' && roundTrip && (
                         <React.Fragment>
                             <ButtonBox
                                 onChange={onFocusRetTime}
