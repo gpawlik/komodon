@@ -18,5 +18,6 @@ export const ScrollContent = styled.ScrollView.attrs(({ isFullWidth }) => ({
     contentContainerStyle: {
         alignItems: 'stretch',
         paddingHorizontal: isFullWidth ? 0 : parseInt(selectors.ss6, 10),
+        flexGrow: 1,
     },
 }))``;

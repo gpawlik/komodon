@@ -3,9 +3,10 @@ import * as React from 'react';
 import { Linking } from 'react-native';
 
 import { generalIcons } from '~/constants/icons/general';
+import { Button } from '~/components/button';
 import { SVGIcon } from '~/icons';
 
-import { Container, ValueButton, Value, Label, Flyout } from './styles';
+import { Container, ValueButton, Value, Label } from './styles';
 
 type Props = {};
 
@@ -21,7 +22,7 @@ export class ValueBox extends React.Component<Props> {
     };
 
     render() {
-        const { children, label, value, onPress, showContent } = this.props;
+        const { children, label, value, onPress } = this.props;
 
         return (
             <React.Fragment>
@@ -35,8 +36,6 @@ export class ValueBox extends React.Component<Props> {
                     <Label>{label}</Label>
                     <Value>{value}</Value>
                 </Container>
-
-                {showContent ? <Flyout top={this.state.top}>{children}</Flyout> : null}
             </React.Fragment>
         );
     }

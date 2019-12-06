@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import moment, { type Moment } from 'moment-timezone';
-import { Calendar } from 'react-native-calendars';
+import { Calendar, CalendarList } from 'react-native-calendars';
 
 import { convertRangeToMarked } from '../utils';
 
@@ -64,7 +64,7 @@ export class CalendarDaySelector extends React.Component<Props, State> {
         const today = moment.tz(timezone);
 
         return (
-            <Calendar
+            <CalendarList
                 minDate={lastMarkedDate || minDate || today.format(configDateFormat)}
                 maxDate={maxDate}
                 onDayPress={({ dateString }) => {
@@ -78,6 +78,13 @@ export class CalendarDaySelector extends React.Component<Props, State> {
                 monthFormat={'MMMM'}
                 markedDates={markedDates}
                 markingType={'period'}
+                // Max amount of months allowed to scroll to the past. Default = 50
+                pastScrollRange={0}
+                // Max amount of months allowed to scroll to the future. Default = 50
+                futureScrollRange={6}
+                // Enable or disable scrolling of calendar list
+                scrollEnabled={true}
+                style={{ flexGrow: 1 }}
             />
         );
     }

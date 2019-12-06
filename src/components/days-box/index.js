@@ -58,7 +58,7 @@ export class DaysBox extends React.PureComponent {
             <Container>
                 {days.map((item, index) => (
                     <DayItem isSelected={selected[item]} onPress={() => this.onChange(item)} key={index}>
-                        <DayText>{item.slice(0, 3)}</DayText>
+                        <DayText>{item}</DayText>
                     </DayItem>
                 ))}
                 <DayItem isSelected={selectedAll} onPress={() => this.onChangeAll()}>

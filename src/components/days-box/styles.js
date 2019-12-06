@@ -15,10 +15,10 @@ export const Container = styled.View`
 export const DayItem = styled.TouchableOpacity`
     background-color: ${({ isSelected }) => (isSelected ? selectors.slate : selectors.grey)};
     padding: ${selectors.ss2};
-    margin: ${selectors.ss2};
-    width: 80;
-    height: 80;
-    border-radius: 12;
+    margin: 8px;
+    width: 120;
+    height: 120;
+    border-radius: 60;
     align-items: center;
     justify-content: center;
 `;

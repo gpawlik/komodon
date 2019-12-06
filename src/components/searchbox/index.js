@@ -14,7 +14,7 @@ import { DaysBox } from '~/components/days-box';
 import { SliderBox } from '~/components/slider-box';
 import { ButtonBox } from './components/button-box';
 import { ValueBox } from './components/value-box';
-import { Container, Label, LabelButton, CriteriaBox } from './styles';
+import { Container, Label, LabelButton, CriteriaBox, VerticalBox, Flyout, ButtonBoxx } from './styles';
 
 export const SearchboxComponent = props => {
     const [departurePlace, onDepartureChange] = React.useState(props.departurePlace);
@@ -27,7 +27,7 @@ export const SearchboxComponent = props => {
     const [returnDaysOfWeek, onReturnWeekdaysChange] = React.useState([]);
     const [daysRange, onReturnDaysNumberChange] = React.useState({});
 
-    const [focusedField, onFocus] = React.useState('DEP_PLACE');
+    const [focusedField, onFocus] = React.useState('DEP_TIME');
     const [focusedDepTime, onFocusDepTime] = React.useState('DEP_TIME_CAL');
     const [focusedRetTime, onFocusRetTime] = React.useState('RET_TIME_CAL');
 
@@ -82,58 +82,80 @@ export const SearchboxComponent = props => {
 
     return (
         <Container>
-            <ValueBox
-                label="From"
-                onPress={() => handleFocus('DEP_PLACE')}
-                showContent={focusedField === 'DEP_PLACE'}
-                value={departurePlace}
-            >
-                <DestinationBox value={departurePlace} onValueChange={onDepartureChange} />
-            </ValueBox>
+            <VerticalBox>
+                <ValueBox
+                    label="From"
+                    onPress={() => handleFocus('DEP_PLACE')}
+                    showContent={focusedField === 'DEP_PLACE'}
+                    value={departurePlace}
+                    onConfirm={() => handleFocus('')}
+                >
+                    <DestinationBox value={departurePlace} onValueChange={onDepartureChange} />
+                </ValueBox>
 
-            <ValueBox
-                label="To"
-                onPress={() => handleFocus('DES_PLACE')}
-                showContent={focusedField === 'DES_PLACE'}
-                value={destinationPlace}
-            >
-                <DestinationBox value={destinationPlace} onValueChange={onDestinationChange} />
-            </ValueBox>
+                <ValueBox
+                    label="To"
+                    onPress={() => handleFocus('DES_PLACE')}
+                    showContent={focusedField === 'DES_PLACE'}
+                    value={destinationPlace}
+                    onConfirm={() => handleFocus('')}
+                >
+                    <DestinationBox value={destinationPlace} onValueChange={onDestinationChange} />
+                </ValueBox>
+            </VerticalBox>
 
-            <ValueBox
-                label="Departure Time"
-                onPress={() => handleFocus('DEP_TIME')}
-                showContent={focusedField === 'DEP_TIME'}
-                value={1}
-            >
-                <ButtonBox
-                    onChange={onFocusDepTime}
-                    options={[
-                        { id: 'DEP_TIME_CAL', text: 'Dates' },
-                        { id: 'DEP_TIME_DAYS', text: 'Days of  week' },
-                    ]}
-                    selected={focusedDepTime}
-                />
-                {getDepTimeBox(focusedDepTime)}
-            </ValueBox>
+            <VerticalBox>
+                <ValueBox
+                    label="Departure Time"
+                    onPress={() => handleFocus('DEP_TIME')}
+                    showContent={focusedField === 'DEP_TIME'}
+                    onConfirm={() => handleFocus('')}
+                    value={1}
+                ></ValueBox>
 
-            <ValueBox
-                label="Return Time"
-                onPress={() => handleFocus('RET_TIME')}
-                showContent={focusedField === 'RET_TIME'}
-                value={1}
-            >
-                <ButtonBox
-                    onChange={onFocusRetTime}
-                    options={[
-                        { id: 'RET_TIME_CAL', text: 'Dates' },
-                        { id: 'RET_TIME_DAYS', text: 'Days of week' },
-                        { id: 'RET_TIME_RANGE', text: 'Number Days' },
-                    ]}
-                    selected={focusedRetTime}
-                />
-                {getRetTimeBox(focusedRetTime)}
-            </ValueBox>
+                <ValueBox
+                    label="Return Time"
+                    onPress={() => handleFocus('RET_TIME')}
+                    showContent={focusedField === 'RET_TIME'}
+                    value={1}
+                ></ValueBox>
+            </VerticalBox>
+
+            {focusedField === 'DEP_TIME' || focusedField === 'RET_TIME' ? (
+                <Flyout>
+                    {focusedField === 'DEP_TIME' && (
+                        <React.Fragment>
+                            <ButtonBox
+                                onChange={onFocusDepTime}
+                                options={[
+                                    { id: 'DEP_TIME_CAL', text: 'Dates' },
+                                    { id: 'DEP_TIME_DAYS', text: 'Days of  week' },
+                                ]}
+                                selected={focusedDepTime}
+                            />
+                            {getDepTimeBox(focusedDepTime)}
+                        </React.Fragment>
+                    )}
+                    {focusedField === 'RET_TIME' && (
+                        <React.Fragment>
+                            <ButtonBox
+                                onChange={onFocusRetTime}
+                                options={[
+                                    { id: 'RET_TIME_CAL', text: 'Dates' },
+                                    { id: 'RET_TIME_DAYS', text: 'Days of week' },
+                                    { id: 'RET_TIME_RANGE', text: 'Number Days' },
+                                ]}
+                                selected={focusedRetTime}
+                            />
+                            {getRetTimeBox(focusedRetTime)}
+                        </React.Fragment>
+                    )}
+
+                    <ButtonBoxx>
+                        <Button message="Select this" onPress={() => handleFocus('')}></Button>
+                    </ButtonBoxx>
+                </Flyout>
+            ) : null}
 
             <Button message="Search" onPress={onSubmit} />
         </Container>
