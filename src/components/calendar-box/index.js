@@ -8,6 +8,7 @@ import { SVGIcon } from '~/icons';
 import { Input } from '~/components/input';
 
 import { CalendarDaySelector } from './calendar';
+import { convertMarkedToRange } from './utils';
 import { Container, SelectedDates } from './styles';
 
 type Props = {|
@@ -26,16 +27,14 @@ export class CalendarBox extends React.PureComponent<Props> {
     };
 
     onChange = dates => {
-        const keys = Object.keys(dates);
-        const from = keys[0];
-        const to = keys[keys.length - 1];
-
-        this.props.onValueChange({ from, to });
+        const range = convertMarkedToRange(dates);
+        this.props.onValueChange(range);
     };
 
     render() {
-        const { value: { from = '', to } = {}, onValueChange, minDate, maxDate } = this.props;
+        const { value, onValueChange, minDate, maxDate } = this.props;
         const { isCalendarOpen } = this.state;
+        const { from = '', to } = value;
         const message = to ? [from, to].join(' - ') : from;
 
         return (
@@ -47,6 +46,7 @@ export class CalendarBox extends React.PureComponent<Props> {
                         currentDay={currentTime}
                         onChangeCurrentDay={() => console.log('change current day')}
                         onClickInactiveDay={() => console.log('click inactive day')}
+                        value={value}
                         onChange={this.onChange}
                         dayLimit={7}
                         timezone={timezone}

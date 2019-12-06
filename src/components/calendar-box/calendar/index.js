@@ -1,8 +1,9 @@
 // @flow
 import * as React from 'react';
 import moment, { type Moment } from 'moment-timezone';
-import { extendMoment } from 'moment-range';
 import { Calendar } from 'react-native-calendars';
+
+import { convertRangeToMarked } from '../utils';
 
 type Props = {
     calendar: Array<string>,
@@ -13,55 +14,25 @@ type Props = {
     selectableDates?: Array<string>,
     timezone: string,
     closeCalendar: () => void,
-    disableDaysBeforeSelectionPeriod?: boolean,
 };
 
 type State = { month: number, current: string };
 
 const configDateFormat = 'YYYY-MM-DD';
-const momentRange = extendMoment(moment);
-
-const makeRange = (start, end) => {
-    if (!end) {
-        return {
-            [start]: { color: '#00cec9', textColor: 'white', selected: true, startingDay: true, endingDay: true },
-        };
-    }
-    const startMoment = moment(start);
-    const endMoment = moment(end);
-
-    const range = momentRange
-        .range(startMoment, endMoment)
-        .snapTo('day')
-        .by('days');
-    const arr = Array.from(range).map(date => moment(date).format(configDateFormat));
-
-    return arr.reduce(
-        (acc, item, idx) => ({
-            ...acc,
-            [item]: {
-                color: '#00cec9',
-                textColor: 'white',
-                selected: true,
-                startingDay: idx === 0,
-                endingDay: idx === arr.length - 1,
-            },
-        }),
-        {}
-    );
-};
 
 export class CalendarDaySelector extends React.Component<Props, State> {
     state = {
         month: this.props.currentDay.month(),
         current: this.props.currentDay.format(configDateFormat),
-        markedDates: {},
+        markedDates: convertRangeToMarked(this.props.value),
         lastMarkedDate: null,
         hasFirstClick: false,
     };
 
     onChangeCurrentDay = value => {
-        const newValues = !this.state.hasFirstClick ? makeRange(value) : makeRange(this.state.lastMarkedDate, value);
+        const newValues = !this.state.hasFirstClick
+            ? convertRangeToMarked({ from: value })
+            : convertRangeToMarked({ from: this.state.lastMarkedDate, to: value });
 
         this.setState(
             state => {
