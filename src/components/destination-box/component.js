@@ -32,6 +32,7 @@ export class DestinationBoxComponent extends React.PureComponent {
                                 this.onSelect({
                                     placeId: item.get('placeId'),
                                     placeName: item.get('placeName'),
+                                    placeCode: item.get('placeCode'),
                                 })
                             }
                         >

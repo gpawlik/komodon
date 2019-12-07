@@ -40,7 +40,7 @@ export const SearchboxComponent = props => {
     const [daysRange, onReturnDaysNumberChange] = React.useState({});
 
     const [roundTrip, onRoundTripSelect] = React.useState(true);
-    const [focusedField, onFocus] = React.useState('DEP_TIME');
+    const [focusedField, onFocus] = React.useState('');
     const [focusedDepTime, onFocusDepTime] = React.useState('DEP_TIME_CAL');
     const [focusedRetTime, onFocusRetTime] = React.useState('RET_TIME_CAL');
 
@@ -146,24 +146,30 @@ export const SearchboxComponent = props => {
 
     return (
         <Container>
-            <RoundTripBox onChange={handlePlaceSwitch} isRoundTrip={roundTrip} />
+            <RoundTripBox onChange={onRoundTripSelect} isRoundTrip={roundTrip} />
             <VerticalBox>
                 <ValueBox
                     label="From"
                     onPress={() => handleFocus('DEP_PLACE')}
                     showContent={focusedField === 'DEP_PLACE'}
                     value={departurePlace.placeName}
+                    mainValue={departurePlace.placeCode}
                     onConfirm={() => handleFocus('')}
+                    isLarge
                 ></ValueBox>
+
+                <SwitchButton onPress={handlePlaceSwitch}></SwitchButton>
 
                 <ValueBox
                     label="To"
                     onPress={() => handleFocus('DES_PLACE')}
                     showContent={focusedField === 'DES_PLACE'}
                     value={destinationPlace.placeName}
+                    mainValue={destinationPlace.placeCode}
                     onConfirm={() => handleFocus('')}
+                    alignRight
+                    isLarge
                 ></ValueBox>
-                <SwitchButton onPress={handlePlaceSwitch}></SwitchButton>
             </VerticalBox>
 
             {focusedField === 'DEP_PLACE' || focusedField === 'DES_PLACE' ? (

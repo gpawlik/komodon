@@ -26,7 +26,7 @@ class Backdrop extends React.Component<Props, State> {
         BackHandler.removeEventListener('hardwareBackPress', this.hideDrawer);
     }
 
-    componentWillReceiveProps = (nextProps: Props) => {
+    UNSAFE_componentWillReceiveProps = (nextProps: Props) => {
         const { opacity } = this.state;
 
         if (this.props.isVisible !== nextProps.isVisible) {

@@ -12,10 +12,12 @@ const initialCriteria = ImmutableMap({
     departurePlace: {
         placeId: 'barcelona_es',
         placeName: 'Barcelona',
+        placeCode: 'BCN',
     },
     destinationPlace: {
         placeId: 'madrid_es',
         placeName: 'Madrid',
+        placeCode: 'MAD',
     },
     departureDates: {},
     returnDates: {},
