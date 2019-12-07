@@ -46,7 +46,19 @@ export const FiltersModalComponent = props => {
 
             <Section>
                 <SectionTitle message={`Take of from ${props.departurePlace.placeCode}`} />
-                <SliderBox onValueChange={() => {}} />
+                <SliderBox
+                    onValueChange={value => console.log(value)}
+                    min={0}
+                    max={24}
+                    step={1}
+                    initialLowLevel={6}
+                    initialHighLevel={20}
+                    textFormat="%d:00"
+                    thumbBorderColor="#33495b"
+                    thumbColor="#fff"
+                    thumbRadius={14}
+                    thumbBorderWidth={10}
+                />
             </Section>
         </Container>
     );

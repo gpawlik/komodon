@@ -6,18 +6,33 @@ import { Container } from './styles';
 
 export class SliderBox extends React.PureComponent {
     render() {
+        const {
+            min = 1,
+            max = 30,
+            step = 1,
+            initialLowLevel = 5,
+            initialHighLevel = 7,
+            textFormat = '%d days',
+            thumbColor = '#fff',
+            thumbRadius = 12,
+            thumbBorderWidth = 2,
+            thumbBorderColor = '#aaa',
+        } = this.props;
         return (
             <Container>
                 <RangeSlider
                     style={{ height: 80 }}
                     gravity={'center'}
-                    min={1}
-                    max={30}
-                    step={1}
-                    initialLowValue={5}
-                    initialHighValue={7}
+                    min={min}
+                    max={max}
+                    step={step}
+                    initialLowValue={initialLowLevel}
+                    initialHighValue={initialHighLevel}
                     lineWidth={6}
-                    thumbRadius={12}
+                    thumbRadius={thumbRadius}
+                    thumbColor={thumbColor}
+                    thumbBorderWidth={thumbBorderWidth}
+                    thumbBorderColor={thumbBorderColor}
                     selectionColor="#33495b"
                     blankColor="#f4f5f6"
                     onValueChanged={(from, to) => {
@@ -28,7 +43,7 @@ export class SliderBox extends React.PureComponent {
                     labelTextColor="#fff"
                     labelPadding={8}
                     labelBorderRadius={10.0}
-                    textFormat="%d days"
+                    textFormat={textFormat}
                     labelStyle="bubble"
                     rangeEnabled
                 />
