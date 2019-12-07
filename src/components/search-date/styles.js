@@ -1,7 +1,6 @@
 // @flow
 import styled from 'styled-components';
 
-import { TextRegular4 } from '~/components/text';
 import { selectors } from '~/theme/main';
 
 export const Container = styled.View`
@@ -18,8 +17,4 @@ export const ConfirmBox = styled.View`
     bottom: 100px;
     left: 0;
     right: 0;
-`;
-
-export const CriteriaText = styled(TextRegular4)`
-    padding: 10px 20px;
 `;

@@ -9,7 +9,7 @@ export const Container = styled.View`
 `;
 
 export const ButtonBox = styled.TouchableOpacity`
-    width: 50%;
+    width: ${({ isSingle }) => (isSingle ? '100%' : '50%')};
     padding: 10px 20px;
     background-color: ${({ isSelected }) => (isSelected ? '#fdcb6e' : '#fff')};
 `;

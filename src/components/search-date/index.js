@@ -10,6 +10,8 @@ import {
     getDepartureDaysOfWeek,
     getReturnDaysOfWeek,
     getDaysRange,
+    getDepartureText,
+    getReturnText,
 } from '~/domains/search/selectors';
 import { setSearchCriteria } from '~/domains/search/actions';
 
@@ -25,7 +27,7 @@ import { SliderBox } from '~/components/slider-box';
 import { ButtonBox } from './components/button-box';
 import { getDescriptiveName } from './utils';
 
-import { Container, ConfirmBox, CriteriaText } from './styles';
+import { Container, ConfirmBox } from './styles';
 
 export const SearchDateModalComponent = props => {
     const [departureDates, onDepartureDatesChange] = React.useState(props.departureDates);
@@ -38,12 +40,12 @@ export const SearchDateModalComponent = props => {
     const [focusedDepTime, onFocusDepTime] = React.useState('DEP_TIME_CAL');
     const [focusedRetTime, onFocusRetTime] = React.useState('RET_TIME_CAL');
 
-    const [departureText, onDepDescriptiveName] = React.useState('');
-    const [returnText, onRetDescriptiveName] = React.useState('');
-
-    const roundTrip = true;
+    const [departureText, onDepDescriptiveName] = React.useState(props.departureText);
+    const [returnText, onRetDescriptiveName] = React.useState(props.returnText);
 
     const [focusedField, onFocus] = React.useState(props.navigation.getParam('focused'));
+
+    const roundTrip = props.navigation.getParam('roundTrip');
 
     const handleDepartureDatesChange = value => {
         const name = getDescriptiveName({ type: 'DEP_TIME_CAL', value });
@@ -136,6 +138,7 @@ export const SearchDateModalComponent = props => {
                 label2="Return dates"
                 text2={returnText || 'Select dates'}
                 selectedIndex={focusedField}
+                roundTrip={roundTrip}
                 onChange={onFocus}
             />
 
@@ -180,6 +183,8 @@ export const mapStateToProps = (state: any): StateProps => ({
     departureDaysOfWeek: getDepartureDaysOfWeek(state),
     returnDaysOfWeek: getReturnDaysOfWeek(state),
     daysRange: getDaysRange(state),
+    departureText: getDepartureText(state),
+    returnText: getReturnText(state),
 });
 
 const mapDispatchToProps = {

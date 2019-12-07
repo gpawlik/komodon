@@ -86,6 +86,7 @@ export const SearchboxComponent = props => {
                     onPress={() => {
                         props.navigate('SearchDateModal', {
                             focused: 0,
+                            roundTrip,
                         });
                     }}
                     showContent={focusedField === 'DEP_TIME'}
