@@ -18,7 +18,7 @@ const MainStack = createStackNavigator(
     {
         initialRouteName: 'Home',
         headerMode: 'none',
-    }
+    },
 );
 
 const RootStack = createStackNavigator(
@@ -39,9 +39,7 @@ const RootStack = createStackNavigator(
     {
         mode: 'modal',
         headerMode: 'none',
-    }
+    },
 );
 
-const App = createAppContainer(RootStack);
-
-export default App;
+export default createAppContainer(RootStack);
