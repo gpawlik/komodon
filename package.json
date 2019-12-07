@@ -41,6 +41,7 @@
     "eslint": "^6.5.1",
     "eslint-config-react-app": "^5.0.2",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "extract-react-intl-messages": "^2.3.5",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.56.0",

@@ -6,15 +6,31 @@ import * as routes from '~/constants/routes';
 
 import { Home } from '~/screens/home';
 import { About } from '~/screens/about';
+import { SearchPlaceModal } from '~/components/search-destination';
 
-const MainNavigator = createStackNavigator(
+const MainStack = createStackNavigator(
     {
         Home: { screen: Home },
         [routes.about]: { screen: About },
     },
-    { headerMode: 'none' }
+    { initialRouteName: 'Home', headerMode: 'none' }
 );
 
-const App = createAppContainer(MainNavigator);
+const RootStack = createStackNavigator(
+    {
+        Main: {
+            screen: MainStack,
+        },
+        SearchPlaceModal: {
+            screen: SearchPlaceModal,
+        },
+    },
+    {
+        mode: 'modal',
+        headerMode: 'none',
+    }
+);
+
+const App = createAppContainer(RootStack);
 
 export default App;

@@ -1,12 +1,7 @@
 // @flow
 import * as React from 'react';
-import { Linking } from 'react-native';
 
-import { generalIcons } from '~/constants/icons/general';
-import { Button } from '~/components/button';
-import { SVGIcon } from '~/icons';
-
-import { Container, ValueButton, Value, Label, Highlight } from './styles';
+import { Container, Value, Label, Highlight } from './styles';
 
 type Props = {};
 
@@ -22,7 +17,7 @@ export class ValueBox extends React.Component<Props> {
     // };
 
     render() {
-        const { children, label, value, mainValue, onPress, alignRight, isLarge } = this.props;
+        const { label, value, mainValue, onPress, alignRight, isLarge } = this.props;
 
         return (
             <React.Fragment>

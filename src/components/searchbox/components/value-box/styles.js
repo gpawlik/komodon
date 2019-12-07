@@ -3,8 +3,6 @@ import styled from 'styled-components';
 
 import { TextMedium1, TextRegular2, TextMedium7 } from '~/components/text';
 
-import { selectors } from '~/theme/main';
-
 export const Container = styled.TouchableOpacity`
     border-radius: 3px;
     border-width: 1px;

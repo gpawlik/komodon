@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import { getDeparturePlace, getDestinationPlace, getDepartureDates, getReturnDates } from '~/domains/search/selectors';
 import { searchFlights } from '~/domains/search/actions';
 
-import { Input } from '~/components/input';
+import { generalIcons } from '~/constants/icons/general';
+import { Header } from '~/components/header';
 import { Button } from '~/components/button';
-import { DestinationBox } from '~/components/destination-box';
 import { CalendarBox } from '~/components/calendar-box';
 import { DaysBox } from '~/components/days-box';
 import { SliderBox } from '~/components/slider-box';
@@ -16,22 +16,9 @@ import { ButtonBox } from './components/button-box';
 import { ValueBox } from './components/value-box';
 import { RoundTripBox } from './components/round-trip';
 import { getDescriptiveName } from './utils';
-import {
-    Container,
-    Label,
-    LabelButton,
-    CriteriaBox,
-    VerticalBox,
-    Flyout,
-    ConfirmBox,
-    CriteriaText,
-    SwitchButton,
-} from './styles';
+import { Container, VerticalBox, Flyout, ConfirmBox, CriteriaText, SwitchButton } from './styles';
 
 export const SearchboxComponent = props => {
-    const [departurePlace, onDepartureChange] = React.useState(props.departurePlace);
-    const [destinationPlace, onDestinationChange] = React.useState(props.destinationPlace);
-
     const [departureDates, onDepartureDatesChange] = React.useState(props.departureDates);
     const [departureDaysOfWeek, onDepartureWeekdaysChange] = React.useState([]);
 
@@ -87,8 +74,8 @@ export const SearchboxComponent = props => {
 
     const onSubmit = () => {
         const payload = {
-            departurePlace: departurePlace.placeId,
-            destinationPlace: destinationPlace.placeId,
+            departurePlace: props.departurePlace.placeId,
+            destinationPlace: props.destinationPlace.placeId,
             roundTrip,
             filter: {},
             ...departureCriteria,
@@ -140,8 +127,8 @@ export const SearchboxComponent = props => {
     };
 
     const handlePlaceSwitch = () => {
-        onDepartureChange(destinationPlace);
-        onDestinationChange(departurePlace);
+        onDepartureChange(props.destinationPlace);
+        onDestinationChange(props.departurePlace);
     };
 
     return (
@@ -150,42 +137,37 @@ export const SearchboxComponent = props => {
             <VerticalBox>
                 <ValueBox
                     label="From"
-                    onPress={() => handleFocus('DEP_PLACE')}
+                    onPress={() => {
+                        props.navigate('SearchPlaceModal', {
+                            focused: 0,
+                            otherParam: 'First Details',
+                        });
+                    }}
                     showContent={focusedField === 'DEP_PLACE'}
-                    value={departurePlace.placeName}
-                    mainValue={departurePlace.placeCode}
+                    value={props.departurePlace.placeName}
+                    mainValue={props.departurePlace.placeCode}
                     onConfirm={() => handleFocus('')}
                     isLarge
-                ></ValueBox>
+                />
 
-                <SwitchButton onPress={handlePlaceSwitch}></SwitchButton>
+                <SwitchButton onPress={handlePlaceSwitch} />
 
                 <ValueBox
                     label="To"
-                    onPress={() => handleFocus('DES_PLACE')}
+                    onPress={() => {
+                        props.navigate('SearchPlaceModal', {
+                            focused: 1,
+                            otherParam: 'First Details',
+                        });
+                    }}
                     showContent={focusedField === 'DES_PLACE'}
-                    value={destinationPlace.placeName}
-                    mainValue={destinationPlace.placeCode}
+                    value={props.destinationPlace.placeName}
+                    mainValue={props.destinationPlace.placeCode}
                     onConfirm={() => handleFocus('')}
                     alignRight
                     isLarge
-                ></ValueBox>
+                />
             </VerticalBox>
-
-            {focusedField === 'DEP_PLACE' || focusedField === 'DES_PLACE' ? (
-                <Flyout>
-                    {focusedField === 'DEP_PLACE' && (
-                        <DestinationBox value={departurePlace} onValueChange={onDepartureChange} />
-                    )}
-                    {focusedField === 'DES_PLACE' && (
-                        <DestinationBox value={destinationPlace} onValueChange={onDestinationChange} />
-                    )}
-
-                    <ConfirmBox>
-                        <Button message="Select this" onPress={() => handleFocus('')}></Button>
-                    </ConfirmBox>
-                </Flyout>
-            ) : null}
 
             <VerticalBox>
                 <ValueBox
@@ -194,7 +176,7 @@ export const SearchboxComponent = props => {
                     showContent={focusedField === 'DEP_TIME'}
                     onConfirm={() => handleFocus('')}
                     value={depDescriptiveName}
-                ></ValueBox>
+                />
 
                 {roundTrip ? (
                     <ValueBox
@@ -202,12 +184,13 @@ export const SearchboxComponent = props => {
                         onPress={() => handleFocus('RET_TIME')}
                         showContent={focusedField === 'RET_TIME'}
                         value={retDescriptiveName}
-                    ></ValueBox>
+                    />
                 ) : null}
             </VerticalBox>
 
             {focusedField === 'DEP_TIME' || focusedField === 'RET_TIME' ? (
                 <Flyout>
+                    <Header backIcon={generalIcons.CLOSE} backAction={() => handleFocus('')} />
                     {focusedField === 'DEP_TIME' && (
                         <React.Fragment>
                             <CriteriaText>{depDescriptiveName}</CriteriaText>
@@ -239,7 +222,7 @@ export const SearchboxComponent = props => {
                     )}
 
                     <ConfirmBox>
-                        <Button message="Select this" onPress={() => handleFocus('')}></Button>
+                        <Button message="Select this" onPress={() => handleFocus('')} />
                     </ConfirmBox>
                 </Flyout>
             ) : null}

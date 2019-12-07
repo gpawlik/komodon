@@ -1,10 +1,7 @@
 // @flow
-import { handleActions } from 'redux-actions';
 import { Map as ImmutableMap } from 'immutable';
 
-import { handleReduce } from '~/utils/handle-reduce';
-
-import { setSearchCriteria, resetSearchCriteria } from './actions';
+import { SET_SEARCH_CRITERIA, RESET_SEARCH_CRITERIA } from './constants';
 
 type State = ImmutableMap<string, *>;
 
@@ -27,9 +24,16 @@ export const initialState: State = ImmutableMap({
     criteria: initialCriteria,
 });
 
-const actionHandlers = new Map([
-    [setSearchCriteria, handleReduce((state, { payload: { type, value } }) => state.setIn(['criteria', type], value))],
-    [resetSearchCriteria, handleReduce(state => state.set('criteria', initialCriteria))],
-]);
-
-export const searchReducer = handleActions(actionHandlers, initialState);
+export const searchReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case SET_SEARCH_CRITERIA:
+            const {
+                payload: { type, value },
+            } = action;
+            return state.setIn(['criteria', type], value);
+        case RESET_SEARCH_CRITERIA:
+            return state.set('criteria', initialCriteria);
+        default:
+            return state;
+    }
+};

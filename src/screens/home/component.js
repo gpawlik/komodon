@@ -9,13 +9,10 @@ import { Container, Content } from '~/components/screen/styles';
 
 import type { Props } from './types';
 
-type State = {};
-
 export class HomeComponent extends React.PureComponent<Props, void> {
     onMenuPress = () => this.props.toggleNavigation({ isVisible: true });
 
     render() {
-        console.log({ props: this.props });
         return (
             <Container testID="screen.home">
                 <NavigationMenu navigate={this.props.navigation.navigate} />
@@ -27,7 +24,7 @@ export class HomeComponent extends React.PureComponent<Props, void> {
                     hasLogo
                 />
                 <Content isFullWidth>
-                    <Searchbox />
+                    <Searchbox navigate={this.props.navigation.navigate} />
                 </Content>
             </Container>
         );
