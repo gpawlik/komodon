@@ -32,11 +32,12 @@ export const SearchPlaceModalComponent = props => {
             <Header backIcon={generalIcons.CLOSE} backAction={closeModal} />
             <SectionBox
                 label1="Departure city"
-                text1="Select city"
+                text1={departurePlace.placeName || 'Select city'}
                 label2="Destination city"
-                text2="Select city"
+                text2={destinationPlace.placeName || 'Select city'}
                 selectedIndex={focusedField}
                 onChange={onFocus}
+                roundTrip
             />
             {focusedField === 0 && <DestinationBox value={departurePlace} onValueChange={onDepartureChange} />}
             {focusedField === 1 && <DestinationBox value={destinationPlace} onValueChange={onDestinationChange} />}
