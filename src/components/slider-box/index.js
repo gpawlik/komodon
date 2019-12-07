@@ -2,8 +2,6 @@
 import * as React from 'react';
 import RangeSlider from 'rn-range-slider';
 
-import { selectors } from '~/theme/main';
-
 import { Container } from './styles';
 
 export class SliderBox extends React.PureComponent {

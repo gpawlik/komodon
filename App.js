@@ -8,10 +8,11 @@ import { Home } from '~/screens/home';
 import { About } from '~/screens/about';
 import { SearchPlaceModal } from '~/components/search-destination';
 import { SearchDateModal } from '~/components/search-date';
+import { FiltersModal } from '~/components/filters';
 
 const MainStack = createStackNavigator(
     {
-        Home: { screen: Home },
+        Home: { screen: FiltersModal },
         [routes.about]: { screen: About },
     },
     {
@@ -30,6 +31,9 @@ const RootStack = createStackNavigator(
         },
         SearchDateModal: {
             screen: SearchDateModal,
+        },
+        FiltersModal: {
+            screen: FiltersModal,
         },
     },
     {

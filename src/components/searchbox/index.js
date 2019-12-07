@@ -27,7 +27,6 @@ export const SearchboxComponent = props => {
     const onSubmit = () => {
         const payload = {
             roundTrip,
-            filter: {},
             ...props.criteria,
         };
         console.log({ payload });
@@ -44,14 +43,20 @@ export const SearchboxComponent = props => {
 
     return (
         <Container>
-            <RoundTripBox onChange={onRoundTripSelect} isRoundTrip={roundTrip} />
+            <RoundTripBox
+                onChange={() => {
+                    props.navigate('FiltersModal', {
+                        focused: 0,
+                    });
+                }}
+                isRoundTrip={roundTrip}
+            />
             <VerticalBox>
                 <ValueBox
                     label="From"
                     onPress={() => {
                         props.navigate('SearchPlaceModal', {
                             focused: 0,
-                            otherParam: 'First Details',
                         });
                     }}
                     showContent={focusedField === 'DEP_PLACE'}
@@ -68,7 +73,6 @@ export const SearchboxComponent = props => {
                     onPress={() => {
                         props.navigate('SearchPlaceModal', {
                             focused: 1,
-                            otherParam: 'First Details',
                         });
                     }}
                     showContent={focusedField === 'DES_PLACE'}

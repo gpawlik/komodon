@@ -20,3 +20,5 @@ export const getDaysRange = createSelector([getState], state => state.daysRange 
 export const getDepartureText = createSelector([getState], state => state.departureText || '');
 
 export const getReturnText = createSelector([getState], state => state.returnText || '');
+
+export const getFilters = createSelector([getState], state => state.filters || {});
