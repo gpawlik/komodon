@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 
-import { ExternalLink } from '~/components/external-link';
 import { Screen } from '~/components/screen';
 
 import { messages } from '~/domains/about/intl';
@@ -95,8 +94,6 @@ export class About extends React.PureComponent<Props> {
                         your subscriptions.
                     </ContentText>
                 </ContentBox>
-
-                <ExternalLink text="Visit us on Facebook" url="http://facebook.com" />
             </Screen>
         );
     }
