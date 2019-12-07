@@ -21,8 +21,7 @@ export const SearchPlaceModalComponent = props => {
     const [focusedField, onFocus] = React.useState(props.navigation.getParam('focused'));
 
     const onSubmit = () => {
-        props.setSearchCriteria({ type: 'departurePlace', value: departurePlace });
-        props.setSearchCriteria({ type: 'destinationPlace', value: destinationPlace });
+        props.setSearchCriteria({ departurePlace, destinationPlace });
         closeModal();
     };
 

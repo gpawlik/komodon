@@ -1,15 +1,12 @@
 // @flow
-import { Map as ImmutableMap, List } from 'immutable';
 import { createSelector } from 'reselect';
 
-const getState = state => state.search || ImmutableMap();
+const getState = state => state.search || {};
 
-export const getCriteria = createSelector([getState], state => state.get('criteria', List()));
+export const getDeparturePlace = createSelector([getState], state => state.departurePlace || {});
 
-export const getDeparturePlace = createSelector([getCriteria], state => state.get('departurePlace', {}));
+export const getDestinationPlace = createSelector([getState], state => state.destinationPlace || {});
 
-export const getDestinationPlace = createSelector([getCriteria], state => state.get('destinationPlace', {}));
+export const getDepartureDates = createSelector([getState], state => state.departureDates || {});
 
-export const getDepartureDates = createSelector([getCriteria], state => state.get('departureDates', {}));
-
-export const getReturnDates = createSelector([getCriteria], state => state.get('returnDates', {}));
+export const getReturnDates = createSelector([getState], state => state.returnDates || {});

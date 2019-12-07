@@ -5,7 +5,7 @@ import { SET_SEARCH_CRITERIA, RESET_SEARCH_CRITERIA } from './constants';
 
 type State = ImmutableMap<string, *>;
 
-const initialCriteria = ImmutableMap({
+const initialCriteria = {
     departurePlace: {
         placeId: 'barcelona_es',
         placeName: 'Barcelona',
@@ -18,21 +18,17 @@ const initialCriteria = ImmutableMap({
     },
     departureDates: {},
     returnDates: {},
-});
+};
 
-export const initialState: State = ImmutableMap({
-    criteria: initialCriteria,
-});
+export const initialState: State = initialCriteria;
 
 export const searchReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_SEARCH_CRITERIA:
-            const {
-                payload: { type, value },
-            } = action;
-            return state.setIn(['criteria', type], value);
+            const { payload } = action;
+            return { ...state, ...payload };
         case RESET_SEARCH_CRITERIA:
-            return state.set('criteria', initialCriteria);
+            return initialCriteria;
         default:
             return state;
     }

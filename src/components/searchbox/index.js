@@ -4,7 +4,7 @@ import * as R from 'ramda';
 import { connect } from 'react-redux';
 
 import { getDeparturePlace, getDestinationPlace, getDepartureDates, getReturnDates } from '~/domains/search/selectors';
-import { searchFlights } from '~/domains/search/actions';
+import { searchFlights, setSearchCriteria } from '~/domains/search/actions';
 
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
@@ -127,8 +127,7 @@ export const SearchboxComponent = props => {
     };
 
     const handlePlaceSwitch = () => {
-        onDepartureChange(props.destinationPlace);
-        onDestinationChange(props.departurePlace);
+        props.setSearchCriteria({ departurePlace: props.destinationPlace, destinationPlace: props.departurePlace });
     };
 
     return (
@@ -241,6 +240,7 @@ export const mapStateToProps = (state: any): StateProps => ({
 
 const mapDispatchToProps = {
     searchFlights,
+    setSearchCriteria,
 };
 
 export const Searchbox = connect(mapStateToProps, mapDispatchToProps)(SearchboxComponent);
