@@ -2,8 +2,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { getDeparturePlace, getDestinationPlace, getDepartureDates, getReturnDates } from '~/domains/search/selectors';
-import { searchFlights, setSearchCriteria } from '~/domains/search/actions';
+import { getDeparturePlace, getDestinationPlace } from '~/domains/search/selectors';
+import { setSearchCriteria } from '~/domains/search/actions';
 
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
@@ -51,12 +51,9 @@ export const SearchPlaceModalComponent = props => {
 export const mapStateToProps = (state: any): StateProps => ({
     departurePlace: getDeparturePlace(state),
     destinationPlace: getDestinationPlace(state),
-    departureDates: getDepartureDates(state),
-    returnDates: getReturnDates(state),
 });
 
 const mapDispatchToProps = {
-    searchFlights,
     setSearchCriteria,
 };
 

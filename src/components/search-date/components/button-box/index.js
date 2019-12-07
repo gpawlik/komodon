@@ -1,9 +1,5 @@
 // @flow
 import * as React from 'react';
-import { Linking } from 'react-native';
-
-import { generalIcons } from '~/constants/icons/general';
-import { SVGIcon } from '~/icons';
 
 import { Container, Button, ButtonText } from './styles';
 

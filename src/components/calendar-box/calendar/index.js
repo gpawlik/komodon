@@ -47,19 +47,8 @@ export class CalendarDaySelector extends React.Component<Props, State> {
     };
 
     render() {
-        const {
-            dayLimit,
-            currentDay,
-            selectableDates,
-            onClickInactiveDay,
-            onChangeCurrentDay,
-            closeCalendar,
-            timezone,
-            minDate,
-            maxDate,
-            disableDaysBeforeSelectionPeriod = false,
-        } = this.props;
-        const { month, current, markedDates, lastMarkedDate } = this.state;
+        const { timezone, minDate, maxDate } = this.props;
+        const { markedDates, lastMarkedDate } = this.state;
 
         const today = moment.tz(timezone);
 
@@ -84,7 +73,7 @@ export class CalendarDaySelector extends React.Component<Props, State> {
                 futureScrollRange={6}
                 // Enable or disable scrolling of calendar list
                 scrollEnabled={true}
-                style={{ flexGrow: 1 }}
+                style={{ flexGrow: 0 }}
             />
         );
     }
