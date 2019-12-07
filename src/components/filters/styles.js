@@ -5,9 +5,8 @@ import { TextMedium3 } from '~/components/text';
 
 import { selectors } from '~/theme/main';
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
     background-color: ${selectors.white};
-    flex-grow: 1;
 `;
 
 export const Section = styled.View`

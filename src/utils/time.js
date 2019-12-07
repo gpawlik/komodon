@@ -21,3 +21,5 @@ export const getTimeBoundaries = (slot: number) => {
 
     return [now, now + numberOfDays * DAY];
 };
+
+export const formatHours = value => (value < 10 ? `0${value}:00` : `${value}:00`);

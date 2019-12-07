@@ -2,9 +2,15 @@
 import * as React from 'react';
 import RangeSlider from 'rn-range-slider';
 
-import { Container } from './styles';
+import { formatHours } from '~/utils/time';
+
+import { Container, ValueBox, ValueText } from './styles';
 
 export class SliderBox extends React.PureComponent {
+    state = {
+        from: this.props.initialLowLevel,
+        to: this.props.initialHighLevel,
+    };
     render() {
         const {
             min = 1,
@@ -36,6 +42,7 @@ export class SliderBox extends React.PureComponent {
                     selectionColor="#33495b"
                     blankColor="#f4f5f6"
                     onValueChanged={(from, to) => {
+                        this.setState({ from, to });
                         this.props.onValueChange({ from, to });
                     }}
                     labelBackgroundColor="#33495b"
@@ -47,6 +54,10 @@ export class SliderBox extends React.PureComponent {
                     labelStyle="bubble"
                     rangeEnabled
                 />
+                <ValueBox>
+                    <ValueText message={formatHours(this.state.from)} />
+                    <ValueText message={formatHours(this.state.to)} />
+                </ValueBox>
             </Container>
         );
     }
