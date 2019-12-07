@@ -28,7 +28,25 @@ const sliderProps = {
 };
 
 export const FiltersModalComponent = props => {
-    const [stopsFilter, onStopsFilter] = React.useState('ANY');
+    const [stops, onChangeStops] = React.useState(props.filters.stops);
+    const [departureTime, onChangeDepartureTime] = React.useState(props.filters.departureTime || {});
+    const [arrivalTime, onChangeArrivalTime] = React.useState(props.filters.arrivalTime || {});
+    const [returnDepartureTime, onChangeReturnDepartureTime] = React.useState(props.filters.returnDepartureTime || {});
+    const [returnArrivalTime, onChangeReturnArrivalTime] = React.useState(props.filters.returnArrivalTime || {});
+
+    const onSubmit = () => {
+        props.setSearchCriteria({
+            filters: {
+                stops,
+                departureTime,
+                arrivalTime,
+                returnDepartureTime,
+                returnArrivalTime,
+            },
+        });
+        props.navigation.goBack();
+    };
+
     return (
         <View style={{ width: '100%' }}>
             <Container>
@@ -37,51 +55,62 @@ export const FiltersModalComponent = props => {
                     <SectionTitle>Stops</SectionTitle>
                     <CheckboxCell
                         title="Any"
-                        value={stopsFilter === 'ANY'}
-                        onPress={() => onStopsFilter('ANY')}
+                        value={stops === undefined}
+                        onPress={() => onChangeStops(undefined)}
                         hasKeyline
                     />
-                    <CheckboxCell
-                        title="Direct"
-                        value={stopsFilter === 'DIRECT'}
-                        onPress={() => onStopsFilter('DIRECT')}
-                        hasKeyline
-                    />
+                    <CheckboxCell title="Direct" value={stops === 0} onPress={() => onChangeStops(0)} hasKeyline />
                     <CheckboxCell
                         title="1 stop or direct"
-                        value={stopsFilter === '1_STOP'}
-                        onPress={() => onStopsFilter('1_STOP')}
+                        value={stops === 1}
+                        onPress={() => onChangeStops(1)}
                         hasKeyline
                     />
-                    <CheckboxCell
-                        title="2 stops or less"
-                        value={stopsFilter === '2_STOPS'}
-                        onPress={() => onStopsFilter('2_STOPS')}
-                    />
+                    <CheckboxCell title="2 stops or less" value={stops === 2} onPress={() => onChangeStops(2)} />
                 </Section>
 
                 <Section>
                     <SectionTitle message={`Take-off from ${props.departurePlace.placeCode}`} />
-                    <SliderBox onValueChange={value => console.log(value)} {...sliderProps} />
+                    <SliderBox
+                        initialLowLevel={departureTime.from}
+                        initialHighLevel={departureTime.to}
+                        onValueChange={onChangeDepartureTime}
+                        {...sliderProps}
+                    />
                 </Section>
 
                 <Section>
                     <SectionTitle message={`Arrival to ${props.destinationPlace.placeCode}`} />
-                    <SliderBox onValueChange={value => console.log(value)} {...sliderProps} />
+                    <SliderBox
+                        initialLowLevel={arrivalTime.from}
+                        initialHighLevel={arrivalTime.to}
+                        onValueChange={onChangeArrivalTime}
+                        {...sliderProps}
+                    />
                 </Section>
 
                 <Section>
                     <SectionTitle message={`Take-off from ${props.destinationPlace.placeCode}`} />
-                    <SliderBox onValueChange={value => console.log(value)} {...sliderProps} />
+                    <SliderBox
+                        initialLowLevel={returnDepartureTime.from}
+                        initialHighLevel={returnDepartureTime.to}
+                        onValueChange={onChangeReturnDepartureTime}
+                        {...sliderProps}
+                    />
                 </Section>
 
                 <Section>
                     <SectionTitle message={`Arrival to ${props.departurePlace.placeCode}`} />
-                    <SliderBox onValueChange={value => console.log(value)} {...sliderProps} />
+                    <SliderBox
+                        initialLowLevel={returnArrivalTime.from}
+                        initialHighLevel={returnArrivalTime.to}
+                        onValueChange={onChangeReturnArrivalTime}
+                        {...sliderProps}
+                    />
                 </Section>
             </Container>
 
-            <ConfirmBox text="Apply filters" onPress={() => {}} />
+            <ConfirmBox text="Apply filters" onPress={onSubmit} />
         </View>
     );
 };

@@ -12,7 +12,7 @@ import { FiltersModal } from '~/components/filters';
 
 const MainStack = createStackNavigator(
     {
-        Home: { screen: FiltersModal },
+        Home: { screen: Home },
         [routes.about]: { screen: About },
     },
     {
