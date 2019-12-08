@@ -11,6 +11,7 @@ export const Container = styled.View`
     flex-direction: row;
     border-bottom-width: 1;
     border-bottom-color: ${selectors.chalk};
+    background-color: #fff;
 `;
 
 export const SideBox = styled.View`
