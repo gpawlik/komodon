@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { Input } from '~/components/input';
 
-import { Container, DestinationContainer, Item, ItemText, InputBox } from './styles';
+import { Container, DestinationContainer, Item, InputBox, NameBox, NameText, FullNameText, CodeText } from './styles';
 
 export class DestinationBoxComponent extends React.PureComponent {
     onChange = (value: string) => {
@@ -16,7 +16,7 @@ export class DestinationBoxComponent extends React.PureComponent {
     };
 
     render() {
-        const { destinations, value, onValueChange } = this.props;
+        const { destinations, value } = this.props;
 
         return (
             <Container>
@@ -36,7 +36,11 @@ export class DestinationBoxComponent extends React.PureComponent {
                                 })
                             }
                         >
-                            <ItemText>{item.get('placeName')}</ItemText>
+                            <NameBox>
+                                <NameText>{item.get('placeName')}</NameText>
+                                <FullNameText>{`${item.get('placeName')}, ${item.get('countryName')}`}</FullNameText>
+                            </NameBox>
+                            <CodeText>{item.get('placeCode')}</CodeText>
                         </Item>
                     ))}
                 </DestinationContainer>
