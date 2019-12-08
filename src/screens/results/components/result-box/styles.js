@@ -1,7 +1,7 @@
 // @flow
 import styled from 'styled-components';
 
-import { TextRegular1, TextRegular2, TextMedium2, TextMedium3, TextMedium5 } from '~/components/text';
+import { TextRegular1, TextMedium2, TextMedium3, TextMedium5 } from '~/components/text';
 
 export const Container = styled.View`
     padding: 6px 8px;
@@ -39,6 +39,8 @@ export const LogoText = styled(TextMedium2)`
     color: #fff;
 `;
 
+export const DateText = styled(TextRegular1)``;
+
 export const FlightBox = styled.View`
     flex-direction: row;
     flex: 1;
@@ -66,8 +68,6 @@ export const DurationBox = styled.View`
 export const DurationText = styled(TextRegular1)`
     color: #333;
 `;
-
-export const DateText = styled(TextRegular2)``;
 
 export const PriceBox = styled.View`
     width: 100;
