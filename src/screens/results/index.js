@@ -19,10 +19,9 @@ export class ResultsScreen extends React.PureComponent {
                 <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => this.props.navigation.goBack()} />
                 <Content>
                     <Text>Hello rsults</Text>
-                    <ResultBox />
-                    <ResultBox />
-                    <ResultBox />
-                    <ResultBox />
+                    {resultsByPrice.map(({ id, ...rest }) => {
+                        return <ResultBox key={id} {...rest} />;
+                    })}
                 </Content>
             </Container>
         );

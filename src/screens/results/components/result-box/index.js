@@ -19,55 +19,43 @@ import {
     PriceText,
 } from './styles';
 
-export const ResultBox = ({ text, onPress, price, currency }) => {
+export const ResultBox = ({ price, routes = [], deepLink = '' }) => {
     return (
         <Container>
             <DetailsBox>
-                <RouteBox>
-                    <LogoBox>
-                        <LogoPlaceholder>
-                            <LogoText>VY</LogoText>
-                        </LogoPlaceholder>
-                        <DateText>01/12</DateText>
-                    </LogoBox>
-                    <FlightBox>
-                        <FlightSegment alignRight>
-                            <TimeText>14:40</TimeText>
-                            <PlaceText>FAO</PlaceText>
-                        </FlightSegment>
-                        <DurationBox>
-                            <DurationText>8h 15m</DurationText>
-                        </DurationBox>
-                        <FlightSegment>
-                            <TimeText>22:25</TimeText>
-                            <PlaceText>BCN</PlaceText>
-                        </FlightSegment>
-                    </FlightBox>
-                </RouteBox>
-                <RouteBox isLast>
-                    <LogoBox>
-                        <LogoPlaceholder>
-                            <LogoText>VY</LogoText>
-                        </LogoPlaceholder>
-                        <DateText>09/12</DateText>
-                    </LogoBox>
-                    <FlightBox>
-                        <FlightSegment alignRight>
-                            <TimeText>11:05</TimeText>
-                            <PlaceText>BCN</PlaceText>
-                        </FlightSegment>
-                        <DurationBox>
-                            <DurationText>11h</DurationText>
-                        </DurationBox>
-                        <FlightSegment>
-                            <TimeText>22:05</TimeText>
-                            <PlaceText>FAO</PlaceText>
-                        </FlightSegment>
-                    </FlightBox>
-                </RouteBox>
+                {routes.map(
+                    ({ airlines = [], departureTime, arrivalTime, departureIata, returnIata, duration }, index) => {
+                        // TODO: Handle this on the backend
+                        const departureDate = (deepLink.split('departure=')[1] || '').slice(0, 5).replace('-', '/');
+                        const returnDate = (deepLink.split('return=')[1] || '').slice(0, 5).replace('-', '/');
+                        return (
+                            <RouteBox key={index} isLast={index % 2 === 1}>
+                                <LogoBox>
+                                    <LogoPlaceholder>
+                                        <LogoText>{airlines[0]}</LogoText>
+                                    </LogoPlaceholder>
+                                    <DateText message={index === 0 ? departureDate : returnDate} />
+                                </LogoBox>
+                                <FlightBox>
+                                    <FlightSegment alignRight>
+                                        <TimeText>{departureTime}</TimeText>
+                                        <PlaceText>{departureIata}</PlaceText>
+                                    </FlightSegment>
+                                    <DurationBox>
+                                        <DurationText>{duration}</DurationText>
+                                    </DurationBox>
+                                    <FlightSegment>
+                                        <TimeText>{arrivalTime}</TimeText>
+                                        <PlaceText>{returnIata}</PlaceText>
+                                    </FlightSegment>
+                                </FlightBox>
+                            </RouteBox>
+                        );
+                    },
+                )}
             </DetailsBox>
             <PriceBox>
-                <PriceText>€102</PriceText>
+                <PriceText message={`€${price}`} />
             </PriceBox>
         </Container>
     );
