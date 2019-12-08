@@ -29,7 +29,8 @@ export const SearchboxComponent = props => {
             ...props.criteria,
         };
 
-        props.searchFlights(payload);
+        //props.searchFlights(payload);
+        props.navigate('Results');
     };
 
     const handlePlaceSwitch = () => {
@@ -38,14 +39,7 @@ export const SearchboxComponent = props => {
 
     return (
         <Container>
-            <RoundTripBox
-                onChange={() => {
-                    props.navigate('FiltersModal', {
-                        focused: 0,
-                    });
-                }}
-                isRoundTrip={roundTrip}
-            />
+            <RoundTripBox onChange={onRoundTripSelect} isRoundTrip={roundTrip} />
             <VerticalBox>
                 <ValueBox
                     label="From"

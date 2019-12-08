@@ -9,7 +9,7 @@ import { getResultsByPrice, getResultsByDuration } from '~/domains/results/selec
 
 import { SortBox } from './components/sort-box';
 import { ResultBox } from './components/result-box';
-import { Container, Content } from './styles';
+import { Container, Content, FiltersBox, FiltersButton, FiltersText } from './styles';
 
 export class ResultsScreen extends React.PureComponent {
     state = {
@@ -26,12 +26,23 @@ export class ResultsScreen extends React.PureComponent {
         return (
             <Container>
                 <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => this.props.navigation.goBack()} />
-                <Content>
+                <Content style={{ width: '100%' }}>
                     <SortBox onPress={this.handleType} value={type} />
+
                     {list.map(({ id, ...rest }) => {
                         return <ResultBox key={id} {...rest} />;
                     })}
                 </Content>
+
+                <FiltersBox>
+                    <FiltersButton
+                        onPress={() => {
+                            this.props.navigation.navigate('FiltersModal');
+                        }}
+                    >
+                        <FiltersText>Filters</FiltersText>
+                    </FiltersButton>
+                </FiltersBox>
             </Container>
         );
     }
