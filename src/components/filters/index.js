@@ -13,6 +13,8 @@ import { CheckboxCell } from '~/components/cell';
 import { ConfirmBox } from '~/components/confirm-box';
 import { filterEmpty } from '~/utils';
 
+import { formatHours } from '~/utils/time';
+
 import { Container, Section, SectionTitle } from './styles';
 
 const sliderProps = {
@@ -26,6 +28,7 @@ const sliderProps = {
     thumbColor: '#fff',
     thumbRadius: 14,
     thumbBorderWidth: 10,
+    formatter: formatHours,
 };
 
 export const FiltersModalComponent = props => {

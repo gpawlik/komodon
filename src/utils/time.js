@@ -23,3 +23,5 @@ export const getTimeBoundaries = (slot: number) => {
 };
 
 export const formatHours = value => (value < 10 ? `0${value}:00` : `${value}:00`);
+
+export const formatDays = value => (value === 1 ? `${value} day` : `${value} days`);

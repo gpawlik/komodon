@@ -11,7 +11,7 @@ export const Container = styled.View`
 export const ButtonBox = styled.TouchableOpacity`
     width: ${({ isSingle }) => (isSingle ? '100%' : '50%')};
     padding: 10px 20px;
-    background-color: ${({ isSelected }) => (isSelected ? '#fdcb6e' : '#fff')};
+    background-color: ${({ isSelected }) => (isSelected ? selectors.slate : '#fff')};
 `;
 
 export const Label = styled(TextMedium2)`

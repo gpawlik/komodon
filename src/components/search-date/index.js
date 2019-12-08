@@ -17,13 +17,13 @@ import { setSearchCriteria } from '~/domains/search/actions';
 
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
-
 import { SectionBox } from '~/components/section-box';
 import { Button } from '~/components/button';
-
 import { CalendarBox } from '~/components/calendar-box';
 import { DaysBox } from '~/components/days-box';
 import { SliderBox } from '~/components/slider-box';
+import { formatDays } from '~/utils/time';
+
 import { ButtonBox } from './components/button-box';
 import { getDescriptiveName } from './utils';
 
@@ -125,7 +125,10 @@ export const SearchDateModalComponent = props => {
             R.equals('RET_TIME_DAYS'),
             () => <DaysBox value={returnDaysOfWeek} onValueChange={handleReturnWeekdaysChange} />,
         ],
-        [R.equals('RET_TIME_RANGE'), () => <SliderBox onValueChange={handleReturnDaysNumberChange} />],
+        [
+            R.equals('RET_TIME_RANGE'),
+            () => <SliderBox onValueChange={handleReturnDaysNumberChange} formatter={formatDays} />,
+        ],
         [R.T, () => null],
     ]);
 

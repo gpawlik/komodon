@@ -1,15 +1,14 @@
 // @flow
 import * as React from 'react';
+import * as R from 'ramda';
 import RangeSlider from 'rn-range-slider';
-
-import { formatHours } from '~/utils/time';
 
 import { Container, ValueBox, ValueText } from './styles';
 
 export class SliderBox extends React.PureComponent {
     state = {
-        from: this.props.initialLowLevel,
-        to: this.props.initialHighLevel,
+        from: this.props.initialLowLevel || 5,
+        to: this.props.initialHighLevel || 10,
     };
     render() {
         const {
@@ -17,12 +16,13 @@ export class SliderBox extends React.PureComponent {
             max = 30,
             step = 1,
             initialLowLevel = 5,
-            initialHighLevel = 7,
+            initialHighLevel = 10,
             textFormat = '%d days',
             thumbColor = '#fff',
             thumbRadius = 12,
             thumbBorderWidth = 2,
             thumbBorderColor = '#aaa',
+            formatter = R.identity,
         } = this.props;
         return (
             <Container>
@@ -55,8 +55,8 @@ export class SliderBox extends React.PureComponent {
                     rangeEnabled
                 />
                 <ValueBox>
-                    <ValueText message={formatHours(this.state.from)} />
-                    <ValueText message={formatHours(this.state.to)} />
+                    <ValueText message={formatter(this.state.from)} />
+                    <ValueText message={formatter(this.state.to)} />
                 </ValueBox>
             </Container>
         );
