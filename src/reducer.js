@@ -9,6 +9,7 @@ import { userReducer as user } from '~/domains/user';
 import { searchReducer as search } from '~/domains/search';
 import { resultsReducer as results } from '~/domains/results';
 import { destinationsReducer as destinations } from '~/domains/destinations';
+import { subscriptionsReducer as subscriptions } from '~/domains/subscriptions';
 
 export const reducer = combineReducers({
     alerts,
@@ -19,4 +20,5 @@ export const reducer = combineReducers({
     search,
     results,
     destinations,
+    subscriptions,
 });
