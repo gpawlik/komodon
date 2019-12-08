@@ -11,6 +11,7 @@ import { Header } from '~/components/header';
 import { SliderBox } from '~/components/slider-box';
 import { CheckboxCell } from '~/components/cell';
 import { ConfirmBox } from '~/components/confirm-box';
+import { filterEmpty } from '~/utils';
 
 import { Container, Section, SectionTitle } from './styles';
 
@@ -36,13 +37,13 @@ export const FiltersModalComponent = props => {
 
     const onSubmit = () => {
         props.setSearchCriteria({
-            filters: {
+            filters: filterEmpty({
                 stops,
                 departureTime,
                 arrivalTime,
                 returnDepartureTime,
                 returnArrivalTime,
-            },
+            }),
         });
         props.navigation.goBack();
     };

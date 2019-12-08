@@ -1,7 +1,8 @@
 // @flow
 import * as React from 'react';
+import { InteractionManager, Dimensions } from 'react-native';
 import moment, { type Moment } from 'moment-timezone';
-import { Calendar, CalendarList } from 'react-native-calendars';
+import { CalendarList } from 'react-native-calendars';
 
 import { convertRangeToMarked } from '../utils';
 
@@ -22,11 +23,11 @@ const configDateFormat = 'YYYY-MM-DD';
 
 export class CalendarDaySelector extends React.Component<Props, State> {
     state = {
-        month: this.props.currentDay.month(),
-        current: this.props.currentDay.format(configDateFormat),
         markedDates: convertRangeToMarked(this.props.value),
         lastMarkedDate: null,
         hasFirstClick: false,
+        // Fix for calendar not appearing on first load
+        width: Dimensions.get('screen').width,
     };
 
     onChangeCurrentDay = value => {
@@ -42,13 +43,13 @@ export class CalendarDaySelector extends React.Component<Props, State> {
                     lastMarkedDate: !state.hasFirstClick && value,
                 };
             },
-            () => this.props.onChange(newValues)
+            () => this.props.onChange(newValues),
         );
     };
 
     render() {
         const { timezone, minDate, maxDate } = this.props;
-        const { markedDates, lastMarkedDate } = this.state;
+        const { markedDates, lastMarkedDate, width } = this.state;
 
         const today = moment.tz(timezone);
 
@@ -70,10 +71,11 @@ export class CalendarDaySelector extends React.Component<Props, State> {
                 // Max amount of months allowed to scroll to the past. Default = 50
                 pastScrollRange={0}
                 // Max amount of months allowed to scroll to the future. Default = 50
-                futureScrollRange={6}
+                //futureScrollRange={undefined}
                 // Enable or disable scrolling of calendar list
-                scrollEnabled={true}
-                style={{ flexGrow: 0 }}
+                //showScrollIndicator
+                style={{ flexGrow: 1 }}
+                calendarWidth={width}
             />
         );
     }

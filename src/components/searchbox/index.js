@@ -30,7 +30,7 @@ export const SearchboxComponent = props => {
             ...props.criteria,
         };
         console.log({ payload });
-        //props.searchFlights(payload);
+        props.searchFlights(payload);
     };
 
     const handleFocus = value => {
@@ -59,10 +59,8 @@ export const SearchboxComponent = props => {
                             focused: 0,
                         });
                     }}
-                    showContent={focusedField === 'DEP_PLACE'}
                     value={props.departurePlace.placeName}
                     mainValue={props.departurePlace.placeCode}
-                    onConfirm={() => handleFocus('')}
                     isLarge
                 />
 
@@ -75,10 +73,8 @@ export const SearchboxComponent = props => {
                             focused: 1,
                         });
                     }}
-                    showContent={focusedField === 'DES_PLACE'}
                     value={props.destinationPlace.placeName}
                     mainValue={props.destinationPlace.placeCode}
-                    onConfirm={() => handleFocus('')}
                     alignRight
                     isLarge
                 />
@@ -93,8 +89,6 @@ export const SearchboxComponent = props => {
                             roundTrip,
                         });
                     }}
-                    showContent={focusedField === 'DEP_TIME'}
-                    onConfirm={() => handleFocus('')}
                     value={props.departureText || 'Select time'}
                 />
 
@@ -104,9 +98,9 @@ export const SearchboxComponent = props => {
                         onPress={() => {
                             props.navigate('SearchDateModal', {
                                 focused: 1,
+                                roundTrip,
                             });
                         }}
-                        showContent={focusedField === 'RET_TIME'}
                         value={props.returnText || 'Select time'}
                     />
                 ) : null}

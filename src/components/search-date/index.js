@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import * as R from 'ramda';
-import { View } from 'react-native';
+import { InteractionManager, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import {
@@ -130,7 +130,7 @@ export const SearchDateModalComponent = props => {
     ]);
 
     return (
-        <Container>
+        <Container onLayout={() => InteractionManager.runAfterInteractions(() => console.log('working?'))}>
             <Header backIcon={generalIcons.CLOSE} backAction={closeModal} />
             <SectionBox
                 label1="Departure dates"

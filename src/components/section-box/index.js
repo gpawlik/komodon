@@ -13,6 +13,7 @@ export class SectionBox extends React.PureComponent<Props> {
     };
 
     render() {
+        console.log({ props: this.props });
         const { label1, text1, label2, text2, selectedIndex, roundTrip } = this.props;
 
         return (

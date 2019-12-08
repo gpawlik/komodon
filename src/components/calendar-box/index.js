@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import moment from 'moment-timezone';
+//import { InteractionManager } from 'react-native';
 
 import { CalendarDaySelector } from './calendar';
 import { convertMarkedToRange } from './utils';
@@ -11,35 +11,32 @@ type Props = {|
     onValueChange: boolean => void,
 |};
 
-const currentTime = moment();
 const timezone = 'Europe/London';
 
 export class CalendarBox extends React.PureComponent<Props> {
-    state = {
-        isCalendarOpen: true,
-    };
-
     onChange = dates => {
         const range = convertMarkedToRange(dates);
         this.props.onValueChange(range);
     };
 
+    // componentDidMount() {
+    //     InteractionManager.runAfterInteractions(() => this.setState());
+    // }
+
     render() {
         const { value, minDate, maxDate } = this.props;
-        const { isCalendarOpen } = this.state;
+
+        console.log('CALENDARQ');
 
         return (
             <Container>
-                {isCalendarOpen ? (
-                    <CalendarDaySelector
-                        currentDay={currentTime}
-                        value={value}
-                        onChange={this.onChange}
-                        timezone={timezone}
-                        minDate={minDate}
-                        maxDate={maxDate}
-                    />
-                ) : null}
+                <CalendarDaySelector
+                    value={value}
+                    onChange={this.onChange}
+                    timezone={timezone}
+                    minDate={minDate}
+                    maxDate={maxDate}
+                />
             </Container>
         );
     }
