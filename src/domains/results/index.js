@@ -9,7 +9,7 @@ type State = ImmutableMap<string, *>;
 
 export const initialState: State = {
     results: result,
-    isLoading: true,
+    isLoading: false,
 };
 
 export const resultsReducer = (state = initialState, action) => {

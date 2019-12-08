@@ -6,7 +6,7 @@ export const getState = state => state.results || {};
 
 export const getResults = createSelector([getState], state => state.results || {});
 
-export const getIsLoading = createSelector([getState], state => state.isLoading || true);
+export const getIsLoading = createSelector([getState], state => !!state.isLoading);
 
 export const getItineraryResults = createSelector([getResults], results => results.itineraryResults || []);
 

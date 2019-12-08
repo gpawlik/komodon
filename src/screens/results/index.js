@@ -2,14 +2,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
+import { getResultsByPrice, getResultsByDuration, getIsLoading } from '~/domains/results/selectors';
+
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
-
-import { getResultsByPrice, getResultsByDuration, getIsLoading } from '~/domains/results/selectors';
+import { LoadingScreen } from '~/components/loading-screen';
 
 import { SortBox } from './components/sort-box';
 import { ResultBox } from './components/result-box';
-import { LoadingScreen } from './components/loading-screen';
 import { Container, Content, FiltersBox, FiltersButton, FiltersText } from './styles';
 
 export class ResultsScreen extends React.PureComponent {
