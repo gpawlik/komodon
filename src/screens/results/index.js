@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 
-import { getResultsByPrice, getResultsByDuration } from '~/domains/results/selectors';
+import { getResultsByPrice, getResultsByDuration, getIsLoading } from '~/domains/results/selectors';
 
 import { SortBox } from './components/sort-box';
 import { ResultBox } from './components/result-box';
+import { LoadingScreen } from './components/loading-screen';
 import { Container, Content, FiltersBox, FiltersButton, FiltersText } from './styles';
 
 export class ResultsScreen extends React.PureComponent {
@@ -19,9 +20,13 @@ export class ResultsScreen extends React.PureComponent {
     handleType = (type: number) => this.setState({ type });
 
     render() {
-        const { resultsByPrice, resultsByDuration } = this.props;
+        const { resultsByPrice, resultsByDuration, isLoading } = this.props;
         const { type } = this.state;
         const list = type === 0 ? resultsByPrice : resultsByDuration;
+
+        if (isLoading) {
+            return <LoadingScreen />;
+        }
 
         return (
             <Container>
@@ -51,6 +56,7 @@ export class ResultsScreen extends React.PureComponent {
 export const mapStateToProps = (state: any): StateProps => ({
     resultsByPrice: getResultsByPrice(state),
     resultsByDuration: getResultsByDuration(state),
+    isLoading: getIsLoading(state),
 });
 
 const mapDispatchToProps = {};

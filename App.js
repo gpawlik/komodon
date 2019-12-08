@@ -18,7 +18,7 @@ const MainStack = createStackNavigator(
         Results: { screen: Results },
     },
     {
-        initialRouteName: 'Home',
+        initialRouteName: 'Results',
         headerMode: 'none',
     },
 );

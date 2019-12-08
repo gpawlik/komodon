@@ -6,6 +6,8 @@ export const getState = state => state.results || {};
 
 export const getResults = createSelector([getState], state => state.results || {});
 
+export const getIsLoading = createSelector([getState], state => state.isLoading || true);
+
 export const getItineraryResults = createSelector([getResults], results => results.itineraryResults || []);
 
 export const getResultsById = createSelector([getItineraryResults], results => {
@@ -36,8 +38,8 @@ export const getResultsByPrice = createSelector([getResultsById], results => {
     return sortByPrice(Object.values(results));
 });
 
-export const getResultsByDuration = createSelector([getResultsById], results => {
-    return sortByDuration(Object.values(results));
+export const getResultsByDuration = createSelector([getResultsByPrice], results => {
+    return sortByDuration(results);
 });
 
 export const getPriceOfCheapest = createSelector([getResultsByPrice], results => {
