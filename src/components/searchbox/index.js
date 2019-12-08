@@ -22,19 +22,14 @@ import { Container, VerticalBox, SwitchButton } from './styles';
 
 export const SearchboxComponent = props => {
     const [roundTrip, onRoundTripSelect] = React.useState(true);
-    const [focusedField, onFocus] = React.useState('');
 
     const onSubmit = () => {
         const payload = {
             roundTrip,
             ...props.criteria,
         };
-        console.log({ payload });
-        props.searchFlights(payload);
-    };
 
-    const handleFocus = value => {
-        onFocus(value === focusedField ? '' : value);
+        props.searchFlights(payload);
     };
 
     const handlePlaceSwitch = () => {

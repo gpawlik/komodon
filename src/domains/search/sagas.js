@@ -10,9 +10,14 @@ import * as api from './api';
 import { SEARCH_FLIGHTS } from './constants';
 
 export function* searchFlights({ payload }): Generator<Effect, *, *> {
-    const { departureText, returnText, filters, ...rest } = payload;
-    const filtered = filterEmpty(rest);
-    const [result = {}] = yield call(handleApi(api.getFlightResults), { ...filtered, filters: {} });
+    const { departureText, returnText, departurePlace, destinationPlace, ...rest } = payload;
+    const formatted = {
+        ...rest,
+        departurePlace: departurePlace.placeId,
+        destinationPlace: destinationPlace.placeId,
+    };
+    const filtered = filterEmpty(formatted);
+    const [result = {}] = yield call(handleApi(api.getFlightResults), filtered);
 
     console.log({ result });
 }
