@@ -39,3 +39,11 @@ export const getResultsByPrice = createSelector([getResultsById], results => {
 export const getResultsByDuration = createSelector([getResultsById], results => {
     return sortByDuration(Object.values(results));
 });
+
+export const getPriceOfCheapest = createSelector([getResultsByPrice], results => {
+    return (results[0] || {}).price;
+});
+
+export const getPriceOfFastest = createSelector([getResultsByDuration], results => {
+    return (results[0] || {}).price;
+});

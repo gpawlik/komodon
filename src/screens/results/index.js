@@ -5,21 +5,30 @@ import { connect } from 'react-redux';
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 
-import { getResultsById, getResultsByPrice, getResultsByDuration } from '~/domains/results/selectors';
+import { getResultsByPrice, getResultsByDuration } from '~/domains/results/selectors';
 
+import { SortBox } from './components/sort-box';
 import { ResultBox } from './components/result-box';
-import { Container, Content, Text } from './styles';
+import { Container, Content } from './styles';
 
 export class ResultsScreen extends React.PureComponent {
+    state = {
+        type: 0,
+    };
+
+    handleType = (type: number) => this.setState({ type });
+
     render() {
-        const { results, resultsByPrice, resultsByDuration } = this.props;
-        console.log({ results, resultsByPrice, resultsByDuration });
+        const { resultsByPrice, resultsByDuration } = this.props;
+        const { type } = this.state;
+        const list = type === 0 ? resultsByPrice : resultsByDuration;
+
         return (
             <Container>
                 <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => this.props.navigation.goBack()} />
                 <Content>
-                    <Text>Hello rsults</Text>
-                    {resultsByDuration.map(({ id, ...rest }) => {
+                    <SortBox onPress={this.handleType} value={type} />
+                    {list.map(({ id, ...rest }) => {
                         return <ResultBox key={id} {...rest} />;
                     })}
                 </Content>
@@ -29,7 +38,6 @@ export class ResultsScreen extends React.PureComponent {
 }
 
 export const mapStateToProps = (state: any): StateProps => ({
-    results: getResultsById(state),
     resultsByPrice: getResultsByPrice(state),
     resultsByDuration: getResultsByDuration(state),
 });
