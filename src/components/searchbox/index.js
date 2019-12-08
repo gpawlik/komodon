@@ -13,8 +13,9 @@ import {
 } from '~/domains/search/selectors';
 import { searchFlights, setSearchCriteria } from '~/domains/search/actions';
 
+import { SVGIcon } from '~/icons';
+import { generalIcons } from '~/constants/icons/general';
 import { Button } from '~/components/button';
-
 import { ValueBox } from './components/value-box';
 import { RoundTripBox } from './components/round-trip';
 
@@ -53,7 +54,9 @@ export const SearchboxComponent = props => {
                     isLarge
                 />
 
-                <SwitchButton onPress={handlePlaceSwitch} />
+                <SwitchButton onPress={handlePlaceSwitch}>
+                    <SVGIcon type={generalIcons.SWAP} color="#eee" />
+                </SwitchButton>
 
                 <ValueBox
                     label="To"

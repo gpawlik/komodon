@@ -7,14 +7,16 @@ import { selectors } from '~/theme/main';
 
 export const Container = styled.View`
     flex-direction: row;
-    margin: 10px 14px 0;
+    margin-vertical: 10px;
+    border-radius: 6;
+    overflow: hidden;
 `;
 
 export const Button = styled.TouchableOpacity`
     background-color: ${({ isSelected }) => (isSelected ? selectors.slate : selectors.chalk)};
     padding: 6px 10px;
-    margin-horizontal: 3;
-    border-radius: 3px;
+    align-items: center;
+    flex: 1;
 `;
 
 export const ButtonText = styled(TextRegular3)`

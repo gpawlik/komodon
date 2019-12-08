@@ -11,6 +11,7 @@ import { Logo } from './logo';
 import { MultiChoiceOn } from './multi-choice-on';
 import { MultiChoiceOff } from './multi-choice-off';
 import { Pin } from './pin';
+import { Swap } from './swap';
 import { Tick } from './tick';
 
 import type { OuterProps } from './types';
@@ -25,6 +26,7 @@ export const map = {
     [generalIcons.MULTI_CHOICE_ON]: MultiChoiceOn,
     [generalIcons.MULTI_CHOICE_OFF]: MultiChoiceOff,
     [generalIcons.PIN]: Pin,
+    [generalIcons.SWAP]: Swap,
     [generalIcons.TICK]: Tick,
 };
 
