@@ -16,9 +16,9 @@ export const DayItem = styled.TouchableOpacity`
     background-color: ${({ isSelected }) => (isSelected ? selectors.slate : selectors.grey)};
     padding: ${selectors.ss2};
     margin: 8px;
-    width: 120;
-    height: 120;
-    border-radius: 60;
+    width: 100;
+    height: 100;
+    border-radius: 50;
     align-items: center;
     justify-content: center;
 `;

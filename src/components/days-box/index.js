@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import * as R from 'ramda';
-import { Text } from 'react-native';
 
 import { days } from '~/constants';
 
@@ -36,7 +35,7 @@ export class DaysBox extends React.PureComponent {
                 selected: newSelected,
                 selectedAll: Object.values(newSelected).every(item => item),
             },
-            () => this.onValueChange()
+            () => this.onValueChange(),
         );
     };
 
@@ -48,12 +47,12 @@ export class DaysBox extends React.PureComponent {
                 selectedAll: !selectedAll,
                 selected: days.reduce((acc, item) => ({ ...acc, [item]: !selectedAll }), {}),
             },
-            () => this.onValueChange()
+            () => this.onValueChange(),
         );
     };
 
     render() {
-        const { selected, selectedAll, isBoxVisible } = this.state;
+        const { selected, selectedAll } = this.state;
         return (
             <Container>
                 {days.map((item, index) => (

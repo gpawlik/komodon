@@ -24,6 +24,7 @@ export class SliderBox extends React.PureComponent {
             thumbBorderColor = '#aaa',
             formatter = R.identity,
         } = this.props;
+        console.log({ initialLowLevel, initialHighLevel });
         return (
             <Container>
                 <RangeSlider
@@ -53,10 +54,11 @@ export class SliderBox extends React.PureComponent {
                     textFormat={textFormat}
                     labelStyle="bubble"
                     rangeEnabled
+                    key={`${initialLowLevel}-${initialHighLevel}`}
                 />
                 <ValueBox>
-                    <ValueText message={formatter(this.state.from)} />
-                    <ValueText message={formatter(this.state.to)} />
+                    <ValueText message={formatter(initialLowLevel)} />
+                    <ValueText message={formatter(initialHighLevel)} />
                 </ValueBox>
             </Container>
         );
