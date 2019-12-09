@@ -1,13 +1,14 @@
 // @flow
 import * as React from 'react';
+import { Image } from 'react-native';
 
 import {
     Container,
     DetailsBox,
     RouteBox,
     LogoBox,
-    LogoPlaceholder,
-    LogoText,
+    // LogoPlaceholder,
+    // LogoText,
     FlightBox,
     FlightSegment,
     TimeText,
@@ -31,9 +32,15 @@ export const ResultBox = ({ price, routes = [], deepLink = '' }) => {
                         return (
                             <RouteBox key={index} isLast={index % 2 === 1}>
                                 <LogoBox>
-                                    <LogoPlaceholder>
+                                    {/* <LogoPlaceholder>
                                         <LogoText>{airlines[0]}</LogoText>
-                                    </LogoPlaceholder>
+                                    </LogoPlaceholder> */}
+                                    <Image
+                                        style={{ width: 30, height: 30 }}
+                                        source={{
+                                            uri: `https://content.r9cdn.net/rimg/provider-logos/airlines/v/${airlines[0]}.png`,
+                                        }}
+                                    />
                                     <DateText message={index === 0 ? departureDate : returnDate} />
                                 </LogoBox>
                                 <FlightBox>
