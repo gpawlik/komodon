@@ -1,7 +1,7 @@
 // @flow
 import styled from 'styled-components';
 
-import { TextRegular3, TextMedium3 } from '~/components/text';
+import { TextRegular3 } from '~/components/text';
 //import { selectors } from '~/theme/main';
 
 export const Container = styled.View``;
@@ -23,19 +23,3 @@ export const InputsContainer = styled.View`
 export const Link = styled.TouchableOpacity``;
 
 export const LinkText = styled(TextRegular3)``;
-
-export const Separator = styled.View`
-    height: 2;
-    background-color: #ddd;
-    align-items: center;
-    margin-bottom: 30;
-    margin-top: 15;
-`;
-
-export const SeparatorText = styled(TextMedium3)`
-    position: absolute;
-    top: -10;
-    background-color: #fff;
-    padding: 0 20px;
-    color: #ddd;
-`;
