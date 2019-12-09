@@ -1,8 +1,10 @@
 // @flow
-import * as R from 'ramda';
+
 import styled from 'styled-components';
 
-import { selectors } from '~/theme/main';
+import { TextRegular2 } from '~/components/text';
+
+//import { selectors } from '~/theme/main';
 
 export const StyledInput = styled.TextInput`
     border-color: #aaa;
@@ -12,4 +14,12 @@ export const StyledInput = styled.TextInput`
     font-size: 20;
     padding: 0 10px;
     color: #666;
+`;
+
+export const Container = styled.View`
+    margin-bottom: ${({ isLast }) => (isLast ? 0 : 10)};
+`;
+
+export const Label = styled(TextRegular2)`
+    margin-bottom: 6;
 `;

@@ -12,6 +12,10 @@ import type { Props } from './types';
 export class HomeComponent extends React.PureComponent<Props, void> {
     onMenuPress = () => this.props.toggleNavigation({ isVisible: true });
 
+    openLogin = () => {
+        this.props.navigation.navigate('Login');
+    };
+
     render() {
         return (
             <Container testID="screen.home">
@@ -20,7 +24,7 @@ export class HomeComponent extends React.PureComponent<Props, void> {
                     backIcon={generalIcons.MENU}
                     backAction={this.onMenuPress}
                     secondaryIcon={generalIcons.PIN}
-                    secondaryAction={this.handleToggleView}
+                    secondaryAction={this.openLogin}
                     hasLogo
                 />
                 <Content isFullWidth>
