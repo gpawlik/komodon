@@ -23,10 +23,12 @@ export const ButtonBox = styled.TouchableOpacity`
     background-color: ${({ color }) => color};
     border-radius: 6;
     padding: 14px 20px;
+    flex-direction: row;
 `;
 
 export const ButtonText = styled(TextMedium4)`
     color: #fff;
+    margin-left: 10;
 `;
 
 export const Text = styled(TextRegular3)``;

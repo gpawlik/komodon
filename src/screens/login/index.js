@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { getSubscriptions } from '~/domains/subscriptions/selectors';
 
+import { SVGIcon } from '~/icons';
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { InputBox } from '~/components/input';
@@ -35,9 +36,11 @@ export class LoginScreen extends React.PureComponent {
                         <Text>Sign in with your social account</Text>
                         <ButtonsContainer>
                             <ButtonBox color="#4285F4">
+                                <SVGIcon type={generalIcons.LOGO_GOOGLE} />
                                 <ButtonText>Continue with Google</ButtonText>
                             </ButtonBox>
                             <ButtonBox color="#4267b2" isLast>
+                                <SVGIcon type={generalIcons.LOGO_FACEBOOK} />
                                 <ButtonText>Continue with Facebook</ButtonText>
                             </ButtonBox>
                         </ButtonsContainer>

@@ -8,6 +8,8 @@ import { ExternalLink } from './external-link';
 import { Heart } from './heart';
 import { Menu } from './menu';
 import { Logo } from './logo';
+import { LogoFacebook } from './logo-facebook';
+import { LogoGoogle } from './logo-google';
 import { MultiChoiceOn } from './multi-choice-on';
 import { MultiChoiceOff } from './multi-choice-off';
 import { Pin } from './pin';
@@ -22,6 +24,8 @@ export const map = {
     [generalIcons.EXTERNAL_LINK]: ExternalLink,
     [generalIcons.HEART]: Heart,
     [generalIcons.LOGO]: Logo,
+    [generalIcons.LOGO_FACEBOOK]: LogoFacebook,
+    [generalIcons.LOGO_GOOGLE]: LogoGoogle,
     [generalIcons.MENU]: Menu,
     [generalIcons.MULTI_CHOICE_ON]: MultiChoiceOn,
     [generalIcons.MULTI_CHOICE_OFF]: MultiChoiceOff,
