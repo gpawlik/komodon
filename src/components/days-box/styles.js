@@ -1,7 +1,7 @@
 // @flow
 import styled from 'styled-components';
 
-import { TextRegular3 } from '~/components/text';
+import { TextRegular2 } from '~/components/text';
 import { selectors } from '~/theme/main';
 
 export const Container = styled.View`
@@ -19,14 +19,16 @@ export const Content = styled.View`
 export const DayItem = styled.TouchableOpacity`
     background-color: ${({ isSelected }) => (isSelected ? selectors.slate : selectors.grey)};
     padding: ${selectors.ss2};
-    margin: 8px;
-    width: 100;
-    height: 100;
-    border-radius: 50;
+    margin: 6px;
+    width: 110;
+    height: 110;
+    border-radius: 55;
     align-items: center;
     justify-content: center;
+    border-width: 5;
+    border-color: ${({ isSelected }) => (isSelected ? '#53718a' : '#bccbe0')};
 `;
 
-export const DayText = styled(TextRegular3)`
+export const DayText = styled(TextRegular2)`
     color: ${selectors.white};
 `;
