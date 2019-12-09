@@ -3,8 +3,9 @@ import * as React from 'react';
 import * as R from 'ramda';
 
 import { days } from '~/constants';
+import { QuickBox } from '~/components/quick-box';
 
-import { Container, DayItem, DayText } from './styles';
+import { Container, Content, DayItem, DayText } from './styles';
 
 export class DaysBox extends React.PureComponent {
     state = {
@@ -39,6 +40,16 @@ export class DaysBox extends React.PureComponent {
         );
     };
 
+    onChangeSome = (values: Array<number>) => {
+        this.setState(
+            {
+                selectedAll: false,
+                selected: days.reduce((acc, item) => ({ ...acc, [item]: values.includes(item) }), {}),
+            },
+            () => this.onValueChange(),
+        );
+    };
+
     onChangeAll = () => {
         const { selectedAll } = this.state;
 
@@ -63,6 +74,19 @@ export class DaysBox extends React.PureComponent {
                 <DayItem isSelected={selectedAll} onPress={() => this.onChangeAll()}>
                     <DayText>All</DayText>
                 </DayItem>
+
+                <Content>
+                    <QuickBox
+                        onPress={() => this.onChangeSome(['Friday', 'Saturday', 'Sunday'])}
+                        text="Weekend escape"
+                        description="Flights on Fridays, Saturdays and Sundays"
+                    />
+                    <QuickBox
+                        onPress={() => this.onChangeSome(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'])}
+                        text="Business trip"
+                        description="Flights during weekdays"
+                    />
+                </Content>
             </Container>
         );
     }

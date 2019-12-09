@@ -2,9 +2,10 @@
 import * as React from 'react';
 
 import { SliderBox } from '~/components/slider-box';
+import { QuickBox } from '~/components/quick-box';
 import { formatDays } from '~/utils/time';
 
-import { Container, Content, QuickBox, NameText, DescriptionText } from './styles';
+import { Container, Content } from './styles';
 
 export class DaysRangeBox extends React.PureComponent {
     state = {
@@ -29,25 +30,29 @@ export class DaysRangeBox extends React.PureComponent {
                     initialHighLevel={to}
                 />
                 <Content>
-                    <QuickBox onPress={() => this.onChange({ from: 2, to: 5 })}>
-                        <NameText>Few days break</NameText>
-                        <DescriptionText>Come back in 2-5 days</DescriptionText>
-                    </QuickBox>
+                    <QuickBox
+                        onPress={() => this.onChange({ from: 2, to: 5 })}
+                        text="Few days break"
+                        description="Come back in 2-5 days"
+                    />
 
-                    <QuickBox onPress={() => this.onChange({ from: 6, to: 10 })}>
-                        <NameText>One week escape</NameText>
-                        <DescriptionText>Come back in 6-10 days</DescriptionText>
-                    </QuickBox>
+                    <QuickBox
+                        onPress={() => this.onChange({ from: 6, to: 10 })}
+                        text="One week escape"
+                        description="Come back in 6-10 days"
+                    />
 
-                    <QuickBox onPress={() => this.onChange({ from: 11, to: 16 })}>
-                        <NameText>Well deserved holidays</NameText>
-                        <DescriptionText>Come back in 11-16 days</DescriptionText>
-                    </QuickBox>
+                    <QuickBox
+                        onPress={() => this.onChange({ from: 11, to: 16 })}
+                        text="Well deserved holidays"
+                        description="Come back in 11-16 days"
+                    />
 
-                    <QuickBox onPress={() => this.onChange({ from: 17, to: 30 })}>
-                        <NameText>Few weeks off</NameText>
-                        <DescriptionText>Come back in 17-30 days</DescriptionText>
-                    </QuickBox>
+                    <QuickBox
+                        onPress={() => this.onChange({ from: 17, to: 30 })}
+                        text="Few weeks off"
+                        description="Come back in 17-30 days"
+                    />
                 </Content>
             </Container>
         );
