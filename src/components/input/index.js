@@ -10,8 +10,8 @@ type Props = {|
 
 export class Input extends React.PureComponent<Props> {
     render() {
-        const { value, onValueChange } = this.props;
-        return <StyledInput onChangeText={onValueChange} value={value} />;
+        const { value, onValueChange, ...rest } = this.props;
+        return <StyledInput onChangeText={onValueChange} value={value} {...rest} />;
     }
 }
 

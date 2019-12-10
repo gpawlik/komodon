@@ -32,7 +32,9 @@ export class Tabs extends React.PureComponent {
     };
 
     page = ({ index }: { index: number }) => (
-        <ChildHolder width={this.state.width}>{this.props.children[index]}</ChildHolder>
+        <ChildHolder width={this.state.width} key={index}>
+            {this.props.children[index]}
+        </ChildHolder>
     );
 
     render() {

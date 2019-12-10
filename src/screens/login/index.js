@@ -37,7 +37,7 @@ export const LoginScreen = () => {
                         <SeparatorText>OR</SeparatorText>
                     </Separator>
 
-                    <StandardLogin changeTab={() => changeTab(0)} />
+                    <StandardLogin changeTab={() => changeTab(0)} isRegister />
                 </Content>
             </Tabs>
         </Container>
