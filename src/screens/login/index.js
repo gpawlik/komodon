@@ -13,12 +13,12 @@ import { StandardLogin } from './components/standard';
 
 import { Container, Content, Separator, SeparatorText } from './styles';
 
-export const LoginScreen = () => {
+export const LoginScreen = props => {
     const [currentTab, changeTab] = React.useState(0);
 
     return (
         <Container>
-            <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => this.props.navigation.goBack()} />
+            <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => props.navigation.goBack()} />
             <Tabs tabTitles={['Log in', 'Sign up']} currentTab={currentTab}>
                 <Content>
                     <SocialLogin title="Please log in with" />

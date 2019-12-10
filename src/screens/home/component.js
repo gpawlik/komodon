@@ -23,9 +23,8 @@ export class HomeComponent extends React.PureComponent<Props, void> {
                 <Header
                     backIcon={generalIcons.MENU}
                     backAction={this.onMenuPress}
-                    secondaryIcon={generalIcons.PIN}
+                    secondaryIcon={generalIcons.PROFILE}
                     secondaryAction={this.openLogin}
-                    hasLogo
                 />
                 <Content isFullWidth>
                     <Searchbox navigate={this.props.navigation.navigate} />

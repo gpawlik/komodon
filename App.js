@@ -22,7 +22,7 @@ const MainStack = createStackNavigator(
         Subscriptions: { screen: Subscriptions },
     },
     {
-        initialRouteName: 'Login',
+        initialRouteName: 'Home',
         headerMode: 'none',
     },
 );

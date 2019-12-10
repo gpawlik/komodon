@@ -13,6 +13,7 @@ import { LogoGoogle } from './logo-google';
 import { MultiChoiceOn } from './multi-choice-on';
 import { MultiChoiceOff } from './multi-choice-off';
 import { Pin } from './pin';
+import { Profile } from './profile';
 import { Swap } from './swap';
 import { Tick } from './tick';
 
@@ -30,6 +31,7 @@ export const map = {
     [generalIcons.MULTI_CHOICE_ON]: MultiChoiceOn,
     [generalIcons.MULTI_CHOICE_OFF]: MultiChoiceOff,
     [generalIcons.PIN]: Pin,
+    [generalIcons.PROFILE]: Profile,
     [generalIcons.SWAP]: Swap,
     [generalIcons.TICK]: Tick,
 };
