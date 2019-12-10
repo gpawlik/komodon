@@ -28,7 +28,7 @@ export const Separator = styled.View`
     height: 2;
     background-color: #ddd;
     align-items: center;
-    margin-bottom: 30;
+    margin-bottom: 15;
     margin-top: 15;
 `;
 

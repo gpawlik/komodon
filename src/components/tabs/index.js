@@ -14,12 +14,18 @@ export class Tabs extends React.PureComponent {
         currentIndex: 0,
     };
 
+    componentDidUpdate(prevProps, prevState) {
+        console.log(prevProps.currentTab, this.props.currentTab, prevState.currentIndex, this.state.currentIndex);
+        if (this.props.currentTab !== prevProps.currentTab) {
+            this.scrollTo(this.props.currentTab);
+        }
+    }
+
     onChangeTab = index => {
-        this.setState(
-            { currentIndex: index },
-            () => this.scrollView && this.scrollView.scrollTo({ x: index * this.state.width }),
-        );
+        this.setState({ currentIndex: index }, () => this.scrollTo(index));
     };
+
+    scrollTo = (index: number) => this.scrollView && this.scrollView.scrollTo({ x: index * this.state.width });
 
     refScrollView = (scrollView: ?View) => {
         this.scrollView = scrollView;

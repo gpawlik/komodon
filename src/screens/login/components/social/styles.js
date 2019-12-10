@@ -1,7 +1,7 @@
 // @flow
 import styled from 'styled-components';
 
-import { TextRegular2, TextRegular3, TextMedium4 } from '~/components/text';
+import { TextRegular2, TextMedium3, TextMedium4 } from '~/components/text';
 
 export const Section = styled.View`
     margin-bottom: 20;
@@ -39,4 +39,6 @@ export const Disclaimer = styled(TextRegular2)`
     color: #666;
 `;
 
-export const Text = styled(TextRegular3)``;
+export const Text = styled(TextMedium3)`
+    align-self: center;
+`;

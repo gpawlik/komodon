@@ -8,9 +8,10 @@ import { Section, ButtonsContainer, ButtonBox, IconBox, ButtonText, Text, Discla
 
 export class SocialLogin extends React.PureComponent {
     render() {
+        const { title } = this.props;
         return (
             <Section>
-                <Text>Sign in with your social account</Text>
+                <Text>{title}</Text>
                 <ButtonsContainer>
                     <ButtonBox color="#4285F4">
                         <IconBox>
