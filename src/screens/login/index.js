@@ -6,6 +6,7 @@ import { getSubscriptions } from '~/domains/subscriptions/selectors';
 
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
+import { Tabs } from '~/components/tabs';
 
 import { SocialLogin } from './components/social';
 import { StandardLogin } from './components/standard';
@@ -17,15 +18,27 @@ export class LoginScreen extends React.PureComponent {
         return (
             <Container>
                 <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => this.props.navigation.goBack()} />
-                <Content style={{ width: '100%' }}>
-                    <SocialLogin />
+                <Tabs tabTitles={['Login', 'Sign up']}>
+                    <Content>
+                        <SocialLogin />
 
-                    <Separator>
-                        <SeparatorText>OR</SeparatorText>
-                    </Separator>
+                        <Separator>
+                            <SeparatorText>OR</SeparatorText>
+                        </Separator>
 
-                    <StandardLogin />
-                </Content>
+                        <StandardLogin />
+                    </Content>
+
+                    <Content>
+                        <SocialLogin />
+
+                        <Separator>
+                            <SeparatorText>OR</SeparatorText>
+                        </Separator>
+
+                        <StandardLogin />
+                    </Content>
+                </Tabs>
             </Container>
         );
     }
