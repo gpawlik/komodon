@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 import { TextRegular2 } from '~/components/text';
 
-//import { selectors } from '~/theme/main';
+import { selectors } from '~/theme/main';
 
 export const StyledInput = styled.TextInput`
-    border-color: #aaa;
+    border-color: ${({ hasError }) => (hasError ? selectors.red : '#aaa')};
     border-width: 1;
     border-radius: 4;
     height: 50;
@@ -21,5 +21,10 @@ export const Container = styled.View`
 `;
 
 export const Label = styled(TextRegular2)`
+    color: ${({ hasError }) => (hasError ? selectors.red : selectors.slate)};
     margin-bottom: 6;
+`;
+
+export const ErrorLabel = styled(TextRegular2)`
+    color: ${selectors.red};
 `;
