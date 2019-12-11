@@ -52,11 +52,12 @@ export function* searchDestinations({ payload: { destination = '' } = {} }): Gen
         yield put(getDestinationsError());
         return;
     }
-    // const [res = {}] = yield call(handleApi(api.getDestinationsList), {
-    //     destination,
-    // });
-
-    yield put(getDestinationsSuccess(res));
+    const [res = {}] = yield call(handleApi(api.getDestinationsList), {
+        destination,
+    });
+    if (res && !res.message) {
+        yield put(getDestinationsSuccess(res));
+    }
 }
 
 function* watchSearchDestinations(): Generator<Effect, *, *> {

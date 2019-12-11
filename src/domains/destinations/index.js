@@ -16,6 +16,7 @@ export const destinationsReducer = (state: State = initialState, action: Destina
     switch (action.type) {
         case GET_DESTINATIONS_SUCCESS: {
             const { payload } = action;
+            console.log({ payload });
             return state.set('destinations', fromJS(payload));
         }
         case GET_DESTINATIONS_ERROR: {
