@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { getDeparturePlace, getDestinationPlace } from '~/domains/search/selectors';
 import { setSearchCriteria } from '~/domains/search/actions';
+import { resetDestinations } from '~/domains/destinations/actions';
 
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
@@ -27,6 +28,21 @@ export const SearchPlaceModalComponent = props => {
 
     const closeModal = () => props.navigation.goBack();
 
+    const onFocusTab = index => {
+        props.resetDestinations();
+        onFocus(index);
+    };
+
+    const handleDepartureChange = value => {
+        props.resetDestinations();
+        onDepartureChange(value);
+    };
+
+    const handleDestinationChange = value => {
+        props.resetDestinations();
+        onDestinationChange(value);
+    };
+
     return (
         <Container>
             <Header backIcon={generalIcons.CLOSE} backAction={closeModal} />
@@ -36,11 +52,11 @@ export const SearchPlaceModalComponent = props => {
                 label2="Destination city"
                 text2={destinationPlace.placeName || 'Select city'}
                 selectedIndex={focusedField}
-                onChange={onFocus}
+                onChange={onFocusTab}
                 roundTrip
             />
-            {focusedField === 0 && <DestinationBox value={departurePlace} onValueChange={onDepartureChange} />}
-            {focusedField === 1 && <DestinationBox value={destinationPlace} onValueChange={onDestinationChange} />}
+            {focusedField === 0 && <DestinationBox value={departurePlace} onValueChange={handleDepartureChange} />}
+            {focusedField === 1 && <DestinationBox value={destinationPlace} onValueChange={handleDestinationChange} />}
 
             <ConfirmBox>
                 <Button message="Select this" onPress={onSubmit} />
@@ -56,6 +72,7 @@ export const mapStateToProps = (state: any): StateProps => ({
 
 const mapDispatchToProps = {
     setSearchCriteria,
+    resetDestinations,
 };
 
 export const SearchPlaceModal = connect(mapStateToProps, mapDispatchToProps)(SearchPlaceModalComponent);
