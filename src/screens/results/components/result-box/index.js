@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { Image } from 'react-native';
+import { Image, Linking } from 'react-native';
 
 import {
     Container,
@@ -21,6 +21,8 @@ import {
 } from './styles';
 
 export const ResultBox = ({ price, routes = [], deepLink = '' }) => {
+    const openLink = () => Linking.openURL(deepLink).catch(err => console.log('An error occurred', err));
+
     return (
         <Container>
             <DetailsBox>
@@ -61,7 +63,7 @@ export const ResultBox = ({ price, routes = [], deepLink = '' }) => {
                     },
                 )}
             </DetailsBox>
-            <PriceBox>
+            <PriceBox onPress={openLink}>
                 <PriceText message={`€${price}`} />
             </PriceBox>
         </Container>

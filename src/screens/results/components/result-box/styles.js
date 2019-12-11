@@ -69,7 +69,7 @@ export const DurationText = styled(TextRegular1)`
     color: #333;
 `;
 
-export const PriceBox = styled.View`
+export const PriceBox = styled.TouchableOpacity`
     width: 100;
     align-items: center;
     justify-content: center;
