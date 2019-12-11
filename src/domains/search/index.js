@@ -10,11 +10,13 @@ const initialCriteria = {
         placeId: 'barcelona_es',
         placeName: 'Barcelona',
         placeCode: 'BCN',
+        countryName: 'Spain',
     },
     destinationPlace: {
         placeId: 'madrid_es',
         placeName: 'Madrid',
         placeCode: 'MAD',
+        countryName: 'Spain',
     },
     departureDates: {},
     returnDates: {},

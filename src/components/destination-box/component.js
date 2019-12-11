@@ -51,6 +51,7 @@ export class DestinationBoxComponent extends React.PureComponent {
                                     placeId: item.get('placeId'),
                                     placeName: item.get('placeName'),
                                     placeCode: item.get('placeCode'),
+                                    countryName: item.get('countryName'),
                                 })
                             }
                         >
@@ -75,6 +76,7 @@ export class DestinationBoxComponent extends React.PureComponent {
                                             placeId: item.get('placeId'),
                                             placeName: item.get('placeName'),
                                             placeCode: item.get('placeCode'),
+                                            countryName: item.get('countryName'),
                                         })
                                     }
                                 >
