@@ -1,10 +1,8 @@
 // @flow
-import { handleActions } from 'redux-actions';
+
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
-import { handleReduce } from '~/utils/handle-reduce';
-
-import { GET_DESTINATIONS, GET_DESTINATIONS_SUCCESS, GET_DESTINATIONS_ERROR } from './constants';
+import { GET_DESTINATIONS_SUCCESS, GET_DESTINATIONS_ERROR } from './constants';
 
 type State = ImmutableMap<string, *>;
 

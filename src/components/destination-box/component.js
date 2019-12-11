@@ -6,9 +6,13 @@ import { Input } from '~/components/input';
 import { Container, DestinationContainer, Item, InputBox, NameBox, NameText, FullNameText, CodeText } from './styles';
 
 export class DestinationBoxComponent extends React.PureComponent {
+    state = {
+        value: this.props.value.placeName || '',
+    };
+
     onChange = (value: string) => {
         this.props.getDestinations({ destination: value });
-        this.props.onValueChange(value);
+        this.setState({ value });
     };
 
     onSelect = (obj: Object) => {
@@ -16,12 +20,13 @@ export class DestinationBoxComponent extends React.PureComponent {
     };
 
     render() {
-        const { destinations, value } = this.props;
+        const { destinations } = this.props;
+        const { value } = this.state;
 
         return (
             <Container>
                 <InputBox>
-                    <Input value={value.placeName} onValueChange={this.onChange} />
+                    <Input value={value} onValueChange={this.onChange} />
                 </InputBox>
 
                 <DestinationContainer>
@@ -40,7 +45,7 @@ export class DestinationBoxComponent extends React.PureComponent {
                                 <NameText>{item.get('placeName')}</NameText>
                                 <FullNameText>{`${item.get('placeName')}, ${item.get('countryName')}`}</FullNameText>
                             </NameBox>
-                            <CodeText>{item.get('placeCode')}</CodeText>
+                            <CodeText>{item.get('placeCode', '').slice(0, 3)}</CodeText>
                         </Item>
                     ))}
                 </DestinationContainer>
