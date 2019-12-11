@@ -25,6 +25,9 @@ export const destinationsReducer = (state: State = initialState, action: Destina
         }
         case SET_SEARCH_CRITERIA: {
             const { payload } = action;
+            if (!payload.departurePlace && !payload.destinationPlace) {
+                return state;
+            }
             const currentlySaved = state.get('lastSearches');
             const filtered = currentlySaved.filter(
                 item =>

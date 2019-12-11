@@ -28,5 +28,5 @@ export const Highlight = styled(TextMedium7)`
 `;
 
 export const Value = styled(TextRegular2)`
-    color: #aaa;
+    color: ${({ isLight }) => (isLight ? '#aaa' : selectors.slate)};
 `;

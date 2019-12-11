@@ -7,7 +7,7 @@ type Props = {};
 
 export class ValueBox extends React.Component<Props> {
     render() {
-        const { label, value, mainValue, placeholder, onPress, alignRight, isLarge } = this.props;
+        const { label, value, valuePlaceholder, mainValue, placeholder, onPress, alignRight, isLarge } = this.props;
 
         return (
             <React.Fragment>
@@ -18,7 +18,7 @@ export class ValueBox extends React.Component<Props> {
                         <Highlight isLight={!mainValue}>{mainValue || placeholder}</Highlight>
                     ) : null}
 
-                    <Value>{value}</Value>
+                    {value ? <Value>{value}</Value> : <Value isLight>{valuePlaceholder}</Value>}
                 </Container>
             </React.Fragment>
         );

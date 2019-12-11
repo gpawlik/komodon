@@ -49,7 +49,8 @@ export const SearchboxComponent = props => {
                             focused: 0,
                         });
                     }}
-                    value={props.departurePlace.placeName || 'Select airport'}
+                    value={props.departurePlace.placeName}
+                    valuePlaceholder={'Select airport'}
                     mainValue={props.departurePlace.placeCode}
                     placeholder="From"
                     isLarge
@@ -66,7 +67,8 @@ export const SearchboxComponent = props => {
                             focused: 1,
                         });
                     }}
-                    value={props.destinationPlace.placeName || 'Select airport'}
+                    value={props.destinationPlace.placeName}
+                    valuePlaceholder={'Select airport'}
                     mainValue={props.destinationPlace.placeCode}
                     placeholder="To"
                     alignRight
@@ -83,7 +85,8 @@ export const SearchboxComponent = props => {
                             roundTrip,
                         });
                     }}
-                    value={props.departureText || 'Select time'}
+                    value={props.departureText}
+                    valuePlaceholder={'Select time'}
                 />
 
                 {roundTrip ? (
@@ -95,7 +98,8 @@ export const SearchboxComponent = props => {
                                 roundTrip,
                             });
                         }}
-                        value={props.returnText || 'Select time'}
+                        value={props.returnText}
+                        valuePlaceholder={'Select time'}
                     />
                 ) : null}
             </VerticalBox>
