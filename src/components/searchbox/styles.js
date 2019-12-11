@@ -18,7 +18,7 @@ export const LabelButton = styled.TouchableOpacity``;
 
 export const SwitchButton = styled.TouchableOpacity`
     width: 25;
-    height: 120;
+    height: 105;
     background-color: #eee;
     justify-content: center;
 `;

@@ -49,8 +49,9 @@ export const SearchboxComponent = props => {
                             focused: 0,
                         });
                     }}
-                    value={props.departurePlace.placeName}
+                    value={props.departurePlace.placeName || 'Select airport'}
                     mainValue={props.departurePlace.placeCode}
+                    placeholder="From"
                     isLarge
                 />
 
@@ -65,8 +66,9 @@ export const SearchboxComponent = props => {
                             focused: 1,
                         });
                     }}
-                    value={props.destinationPlace.placeName}
+                    value={props.destinationPlace.placeName || 'Select airport'}
                     mainValue={props.destinationPlace.placeCode}
+                    placeholder="To"
                     alignRight
                     isLarge
                 />
