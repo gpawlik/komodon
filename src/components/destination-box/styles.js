@@ -64,3 +64,14 @@ export const Disclaimer = styled(TextRegular2)`
     margin: 5px 20px;
     align-self: center;
 `;
+
+export const ConfirmBox = styled.View`
+    padding: 16px 20px;
+    background-color: #fff;
+    border-top-width: 0.3;
+    border-top-color: #aaa;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+`;

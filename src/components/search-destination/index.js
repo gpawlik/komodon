@@ -59,7 +59,14 @@ export const SearchPlaceModalComponent = props => {
             {focusedField === 1 && <DestinationBox value={destinationPlace} onValueChange={handleDestinationChange} />}
 
             <ConfirmBox>
-                <Button message="Select this" onPress={onSubmit} />
+                <Button
+                    message="Select this"
+                    onPress={onSubmit}
+                    isDisabled={
+                        (focusedField === 0 && !departurePlace.placeName) ||
+                        (focusedField === 1 && !destinationPlace.placeName)
+                    }
+                />
             </ConfirmBox>
         </Container>
     );

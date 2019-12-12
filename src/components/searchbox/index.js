@@ -25,10 +25,10 @@ export const SearchboxComponent = props => {
     const [roundTrip, onRoundTripSelect] = React.useState(true);
 
     const onSubmit = () => {
-        const payload = {
-            roundTrip,
-            ...props.criteria,
-        };
+        // const payload = {
+        //     roundTrip,
+        //     ...props.criteria,
+        // };
 
         //props.searchFlights(payload);
         props.navigate('Results');
@@ -100,6 +100,7 @@ export const SearchboxComponent = props => {
                         }}
                         value={props.returnText}
                         valuePlaceholder={'Select time'}
+                        alignRight
                     />
                 ) : null}
             </VerticalBox>

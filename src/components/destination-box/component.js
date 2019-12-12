@@ -2,6 +2,7 @@
 import * as React from 'react';
 
 import { Input } from '~/components/input';
+import { Button } from '~/components/button';
 
 import {
     Container,
@@ -16,6 +17,7 @@ import {
     LastSearchContainer,
     Title,
     Disclaimer,
+    ConfirmBox,
 } from './styles';
 
 export class DestinationBoxComponent extends React.PureComponent {
@@ -39,66 +41,74 @@ export class DestinationBoxComponent extends React.PureComponent {
         const { value } = this.state;
 
         return (
-            <Container>
-                <InputBox>
-                    <Input value={value} onValueChange={this.onChange} showReset={!!value} onReset={this.onReset} />
-                </InputBox>
+            <React.Fragment>
+                <Container>
+                    <InputBox>
+                        <Input value={value} onValueChange={this.onChange} showReset={!!value} onReset={this.onReset} />
+                    </InputBox>
 
-                <DestinationContainer>
-                    {destinations.map(item => (
-                        <Item
-                            key={item.get('placeId')}
-                            onPress={() =>
-                                this.onSelect({
-                                    placeId: item.get('placeId'),
-                                    placeName: item.get('placeName'),
-                                    placeCode: item.get('placeCode'),
-                                    countryName: item.get('countryName'),
-                                })
-                            }
-                        >
-                            <NameBox>
-                                <NameText>{item.get('placeName', '')}</NameText>
-                                <FullNameText>{`${item.get('placeName')}, ${item.get('countryName')}`}</FullNameText>
-                            </NameBox>
-                            <CodeText>{item.get('placeCode', '').slice(0, 3)}</CodeText>
-                        </Item>
-                    ))}
-                </DestinationContainer>
+                    <DestinationContainer>
+                        {destinations.map(item => (
+                            <Item
+                                key={item.get('placeId')}
+                                onPress={() =>
+                                    this.onSelect({
+                                        placeId: item.get('placeId'),
+                                        placeName: item.get('placeName'),
+                                        placeCode: item.get('placeCode'),
+                                        countryName: item.get('countryName'),
+                                    })
+                                }
+                            >
+                                <NameBox>
+                                    <NameText>{item.get('placeName', '')}</NameText>
+                                    <FullNameText>{`${item.get('placeName')}, ${item.get(
+                                        'countryName',
+                                    )}`}</FullNameText>
+                                </NameBox>
+                                <CodeText>{item.get('placeCode', '').slice(0, 3)}</CodeText>
+                            </Item>
+                        ))}
+                    </DestinationContainer>
 
-                {!destinations.size && lastSearches.size ? (
-                    <LastSearchContainer>
-                        <Title>Your popular destinations</Title>
-                        <LastSearchBox>
-                            {lastSearches.map(item => (
-                                <Item
-                                    key={item.get('placeId')}
-                                    onPress={() =>
-                                        this.onSelect({
-                                            placeId: item.get('placeId'),
-                                            placeName: item.get('placeName'),
-                                            placeCode: item.get('placeCode'),
-                                            countryName: item.get('countryName'),
-                                        })
-                                    }
-                                >
-                                    <NameBox>
-                                        <NameText>{item.get('placeName', '')}</NameText>
-                                        <FullNameText>{`${item.get('placeName')}, ${item.get(
-                                            'countryName',
-                                        )}`}</FullNameText>
-                                    </NameBox>
-                                    <CodeText>{item.get('placeCode', '').slice(0, 3)}</CodeText>
-                                </Item>
-                            ))}
-                        </LastSearchBox>
-                    </LastSearchContainer>
-                ) : null}
+                    {!destinations.size && lastSearches.size ? (
+                        <LastSearchContainer>
+                            <Title>Your popular destinations</Title>
+                            <LastSearchBox>
+                                {lastSearches.map(item => (
+                                    <Item
+                                        key={item.get('placeId')}
+                                        onPress={() =>
+                                            this.onSelect({
+                                                placeId: item.get('placeId'),
+                                                placeName: item.get('placeName'),
+                                                placeCode: item.get('placeCode'),
+                                                countryName: item.get('countryName'),
+                                            })
+                                        }
+                                    >
+                                        <NameBox>
+                                            <NameText>{item.get('placeName', '')}</NameText>
+                                            <FullNameText>{`${item.get('placeName')}, ${item.get(
+                                                'countryName',
+                                            )}`}</FullNameText>
+                                        </NameBox>
+                                        <CodeText>{item.get('placeCode', '').slice(0, 3)}</CodeText>
+                                    </Item>
+                                ))}
+                            </LastSearchBox>
+                        </LastSearchContainer>
+                    ) : null}
 
-                {!destinations.size && !lastSearches.size ? (
-                    <Disclaimer>Use the search box to find the airport</Disclaimer>
-                ) : null}
-            </Container>
+                    {!destinations.size && !lastSearches.size ? (
+                        <Disclaimer>Use the search box to find the airport</Disclaimer>
+                    ) : null}
+                </Container>
+
+                {/* <ConfirmBox>
+                    <Button message="Select this" onPress={this.props.onSubmit} isDisabled={!this.state.value} />
+                </ConfirmBox> */}
+            </React.Fragment>
         );
     }
 }
