@@ -4,6 +4,7 @@ import { generalIcons } from '~/constants/icons/general';
 
 import { ArrowLeft } from './arrow-left';
 import { Close } from './close';
+import { CloseCircle } from './close-circle';
 import { ExternalLink } from './external-link';
 import { Heart } from './heart';
 import { Menu } from './menu';
@@ -22,6 +23,7 @@ import type { OuterProps } from './types';
 export const map = {
     [generalIcons.ARROW_LEFT]: ArrowLeft,
     [generalIcons.CLOSE]: Close,
+    [generalIcons.CLOSE_CIRCLE]: CloseCircle,
     [generalIcons.EXTERNAL_LINK]: ExternalLink,
     [generalIcons.HEART]: Heart,
     [generalIcons.LOGO]: Logo,
