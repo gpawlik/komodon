@@ -20,6 +20,16 @@ export const Container = styled.View`
     margin-bottom: ${({ isLast }) => (isLast ? 0 : 10)};
 `;
 
+export const InputContainer = styled.View`
+    position: relative;
+`;
+
+export const ButtonContainer = styled.TouchableOpacity`
+    position: absolute;
+    right: 12;
+    top: 14;
+`;
+
 export const Label = styled(TextRegular2)`
     color: ${({ hasError }) => (hasError ? selectors.red : selectors.slate)};
     margin-bottom: 6;

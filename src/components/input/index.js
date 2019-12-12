@@ -1,7 +1,10 @@
 // @flow
 import * as React from 'react';
 
-import { StyledInput, Container, Label, ErrorLabel } from './styles';
+import { generalIcons } from '~/constants/icons/general';
+import { SVGIcon } from '~/icons';
+
+import { StyledInput, Container, InputContainer, ButtonContainer, Label, ErrorLabel } from './styles';
 
 type Props = {|
     value: string,
@@ -10,8 +13,17 @@ type Props = {|
 
 export class Input extends React.PureComponent<Props> {
     render() {
-        const { value, onValueChange, ...rest } = this.props;
-        return <StyledInput onChangeText={onValueChange} value={value} autoCorrect={false} {...rest} />;
+        const { value, onValueChange, showReset, onReset, ...rest } = this.props;
+        return (
+            <InputContainer>
+                <StyledInput onChangeText={onValueChange} value={value} autoCorrect={false} {...rest} />
+                {showReset ? (
+                    <ButtonContainer onPress={onReset}>
+                        <SVGIcon type={generalIcons.CLOSE_CIRCLE} height={22} width={22} colour="#ccc" />
+                    </ButtonContainer>
+                ) : null}
+            </InputContainer>
+        );
     }
 }
 

@@ -32,6 +32,8 @@ export class DestinationBoxComponent extends React.PureComponent {
         this.setState({ value: obj.placeName }, () => this.props.onValueChange(obj));
     };
 
+    onReset = () => this.setState({ value: '' });
+
     render() {
         const { destinations, lastSearches } = this.props;
         const { value } = this.state;
@@ -39,7 +41,7 @@ export class DestinationBoxComponent extends React.PureComponent {
         return (
             <Container>
                 <InputBox>
-                    <Input value={value} onValueChange={this.onChange} />
+                    <Input value={value} onValueChange={this.onChange} showReset={!!value} onReset={this.onReset} />
                 </InputBox>
 
                 <DestinationContainer>
