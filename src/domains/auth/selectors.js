@@ -4,7 +4,4 @@ import { createSelector } from 'reselect';
 
 const getAuthState = state => state.auth || Map();
 
-export const getIsLoggedIn = createSelector(
-    [getAuthState],
-    state => state.get('isLoggedIn', false)
-);
+export const getIsLoggedIn = createSelector([getAuthState], state => state.get('isLoggedIn', false));
