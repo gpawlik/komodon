@@ -10,8 +10,8 @@ import sagas from './sagas-registration';
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    whitelist: ['search', 'destinations'],
-    blacklist: ['results'],
+    whitelist: ['search'],
+    blacklist: ['results', 'destinations'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

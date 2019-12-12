@@ -2,7 +2,6 @@
 import * as React from 'react';
 
 import { Input } from '~/components/input';
-import { Button } from '~/components/button';
 
 import {
     Container,
@@ -17,7 +16,6 @@ import {
     LastSearchContainer,
     Title,
     Disclaimer,
-    ConfirmBox,
 } from './styles';
 
 export class DestinationBoxComponent extends React.PureComponent {
@@ -104,10 +102,6 @@ export class DestinationBoxComponent extends React.PureComponent {
                         <Disclaimer>Use the search box to find the airport</Disclaimer>
                     ) : null}
                 </Container>
-
-                {/* <ConfirmBox>
-                    <Button message="Select this" onPress={this.props.onSubmit} isDisabled={!this.state.value} />
-                </ConfirmBox> */}
             </React.Fragment>
         );
     }

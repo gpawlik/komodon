@@ -73,8 +73,8 @@ export const SearchPlaceModalComponent = props => {
 };
 
 export const mapStateToProps = (state: any): StateProps => ({
-    departurePlace: getDeparturePlace(state),
-    destinationPlace: getDestinationPlace(state),
+    departurePlace: {},
+    destinationPlace: {},
 });
 
 const mapDispatchToProps = {
