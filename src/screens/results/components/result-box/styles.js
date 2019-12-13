@@ -1,14 +1,17 @@
 // @flow
 import styled from 'styled-components';
 
-import { TextRegular1, TextMedium2, TextMedium3, TextMedium5 } from '~/components/text';
+import { TextRegular1, TextRegular2, TextMedium2, TextMedium3, TextMedium5 } from '~/components/text';
 
 export const Container = styled.View`
-    padding: 6px 8px;
     background-color: #fff;
     border-radius: 10;
     margin-vertical: 10;
+`;
+
+export const TopBox = styled.View`
     flex-direction: row;
+    padding: 6px 8px;
 `;
 
 export const DetailsBox = styled.View`
@@ -76,3 +79,13 @@ export const PriceBox = styled.TouchableOpacity`
 `;
 
 export const PriceText = styled(TextMedium5)``;
+
+export const InfoBox = styled.View`
+    padding: 8px 14px;
+    border-top-width: 1;
+    border-top-color: #ddd;
+`;
+
+export const AirlineText = styled(TextRegular2)`
+    color: #666;
+`;
