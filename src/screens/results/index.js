@@ -10,6 +10,7 @@ import { LoadingScreen } from '~/components/loading-screen';
 
 import { SortBox } from './components/sort-box';
 import { ResultBox } from './components/result-box';
+import { SubscriptionBox } from './components/subscription-box';
 import { Container, Content, FiltersBox, FiltersButton, FiltersText } from './styles';
 
 export class ResultsScreen extends React.PureComponent {
@@ -32,6 +33,8 @@ export class ResultsScreen extends React.PureComponent {
             <Container>
                 <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => this.props.navigation.goBack()} />
                 <Content style={{ width: '100%' }}>
+                    <SubscriptionBox />
+
                     <SortBox onPress={this.handleType} value={type} />
 
                     {list.map(({ id, ...rest }) => {
