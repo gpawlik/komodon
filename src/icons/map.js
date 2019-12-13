@@ -3,6 +3,7 @@ import * as React from 'react';
 import { generalIcons } from '~/constants/icons/general';
 
 import { ArrowLeft } from './arrow-left';
+import { Bell } from './bell';
 import { Close } from './close';
 import { CloseCircle } from './close-circle';
 import { ExternalLink } from './external-link';
@@ -22,6 +23,7 @@ import type { OuterProps } from './types';
 
 export const map = {
     [generalIcons.ARROW_LEFT]: ArrowLeft,
+    [generalIcons.BELL]: Bell,
     [generalIcons.CLOSE]: Close,
     [generalIcons.CLOSE_CIRCLE]: CloseCircle,
     [generalIcons.EXTERNAL_LINK]: ExternalLink,

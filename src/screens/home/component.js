@@ -23,7 +23,7 @@ export class HomeComponent extends React.PureComponent<Props, void> {
                 <Header
                     backIcon={generalIcons.MENU}
                     backAction={this.onMenuPress}
-                    secondaryIcon={generalIcons.PROFILE}
+                    secondaryIcon={generalIcons.BELL}
                     secondaryAction={this.openLogin}
                 />
                 <Content isFullWidth>
