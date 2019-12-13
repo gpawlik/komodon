@@ -3,6 +3,7 @@ import { createStore, applyMiddleware, compose as reduxCompose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
+import immutableTransform from 'redux-persist-transform-immutable';
 
 import { reducer as rootReducer } from './reducer';
 import sagas from './sagas-registration';
@@ -10,8 +11,9 @@ import sagas from './sagas-registration';
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    whitelist: ['search'],
-    blacklist: ['results', 'destinations'],
+    transforms: [immutableTransform()],
+    whitelist: ['search', 'destinations'],
+    blacklist: ['results'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
