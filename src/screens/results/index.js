@@ -7,6 +7,7 @@ import { getResultsByPrice, getResultsByDuration, getIsLoading } from '~/domains
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { LoadingScreen } from '~/components/loading-screen';
+import { ActionModal } from '~/components/action-modal';
 
 import { SortBox } from './components/sort-box';
 import { ResultBox } from './components/result-box';
@@ -33,6 +34,10 @@ export class ResultsScreen extends React.PureComponent {
             <Container>
                 <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => this.props.navigation.goBack()} />
                 <Content style={{ width: '100%' }}>
+                    <ActionModal>
+                        <SubscriptionBox />
+                    </ActionModal>
+
                     <SubscriptionBox />
 
                     <SortBox onPress={this.handleType} value={type} />
