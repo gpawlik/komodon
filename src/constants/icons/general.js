@@ -14,6 +14,8 @@ export const generalIcons = {
     MULTI_CHOICE_OFF: 'MULTI_CHOICE_OFF',
     PIN: 'PIN',
     PROFILE: 'PROFILE',
+    SINGLE_CHOICE_ON: 'SINGLE_CHOICE_ON',
+    SINGLE_CHOICE_OFF: 'SINGLE_CHOICE_OFF',
     SWAP: 'SWAP',
     TICK: 'TICK',
 };

@@ -4,6 +4,7 @@ import { type $npm$ReactIntl$MessageDescriptor } from 'react-intl';
 
 import { TextRegular2, TextMedium2, TextRegular3, TextMedium3 } from '~/components/text';
 import { Checkbox } from '~/components/checkbox';
+import { RadioButton } from '~/components/radio-button';
 
 import { Container, RowContainer } from './styles';
 
@@ -34,6 +35,13 @@ export const CheckboxCell = ({ title, value, hasKeyline, onPress }: ValueCellPro
     <RowContainer onPress={onPress} hasKeyline={hasKeyline}>
         <TextRegular3 message={title} />
         <Checkbox value={value} onValueChange={onPress} />
+    </RowContainer>
+);
+
+export const RadioCell = ({ title, value, hasKeyline, onPress }: ValueCellProps) => (
+    <RowContainer onPress={onPress} hasKeyline={hasKeyline}>
+        <TextRegular3 message={title} />
+        <RadioButton value={value} onValueChange={onPress} />
     </RowContainer>
 );
 

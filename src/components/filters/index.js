@@ -9,7 +9,7 @@ import { setSearchCriteria } from '~/domains/search/actions';
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { SliderBox } from '~/components/slider-box';
-import { CheckboxCell } from '~/components/cell';
+import { RadioCell } from '~/components/cell';
 import { ConfirmBox } from '~/components/confirm-box';
 import { filterEmpty } from '~/utils';
 
@@ -57,20 +57,20 @@ export const FiltersModalComponent = props => {
                 <Header backIcon={generalIcons.CLOSE} backAction={() => props.navigation.goBack()} />
                 <Section>
                     <SectionTitle>Stops</SectionTitle>
-                    <CheckboxCell
+                    <RadioCell
                         title="Any"
                         value={stops === undefined}
                         onPress={() => onChangeStops(undefined)}
                         hasKeyline
                     />
-                    <CheckboxCell title="Direct" value={stops === 0} onPress={() => onChangeStops(0)} hasKeyline />
-                    <CheckboxCell
+                    <RadioCell title="Direct" value={stops === 0} onPress={() => onChangeStops(0)} hasKeyline />
+                    <RadioCell
                         title="1 stop or direct"
                         value={stops === 1}
                         onPress={() => onChangeStops(1)}
                         hasKeyline
                     />
-                    <CheckboxCell title="2 stops or less" value={stops === 2} onPress={() => onChangeStops(2)} />
+                    <RadioCell title="2 stops or less" value={stops === 2} onPress={() => onChangeStops(2)} />
                 </Section>
 
                 <Section>

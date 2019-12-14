@@ -16,6 +16,8 @@ import { MultiChoiceOn } from './multi-choice-on';
 import { MultiChoiceOff } from './multi-choice-off';
 import { Pin } from './pin';
 import { Profile } from './profile';
+import { SingleChoiceOn } from './single-choice-on';
+import { SingleChoiceOff } from './single-choice-off';
 import { Swap } from './swap';
 import { Tick } from './tick';
 
@@ -36,6 +38,8 @@ export const map = {
     [generalIcons.MULTI_CHOICE_OFF]: MultiChoiceOff,
     [generalIcons.PIN]: Pin,
     [generalIcons.PROFILE]: Profile,
+    [generalIcons.SINGLE_CHOICE_ON]: SingleChoiceOn,
+    [generalIcons.SINGLE_CHOICE_OFF]: SingleChoiceOff,
     [generalIcons.SWAP]: Swap,
     [generalIcons.TICK]: Tick,
 };
