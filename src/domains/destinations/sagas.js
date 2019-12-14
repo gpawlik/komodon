@@ -1,5 +1,5 @@
 // @flow
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, throttle } from 'redux-saga/effects';
 import { type Effect } from 'redux-saga';
 
 import { handleApi } from '~/utils/api';
@@ -61,7 +61,7 @@ export function* searchDestinations({ payload: { destination = '' } = {} }): Gen
 }
 
 function* watchSearchDestinations(): Generator<Effect, *, *> {
-    yield takeLatest(GET_DESTINATIONS, searchDestinations);
+    yield throttle(600, GET_DESTINATIONS, searchDestinations);
 }
 
 export const destinationsSagas = [watchSearchDestinations];
