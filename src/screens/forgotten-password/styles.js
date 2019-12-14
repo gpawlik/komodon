@@ -1,8 +1,16 @@
 // @flow
 import styled from 'styled-components/native';
 
-import { selectors } from '~/theme/main';
+import { TextRegular2 } from '~/components/text';
 
-export const ContentBox = styled.View`
-    margin-bottom: ${selectors.ss8};
+export const Container = styled.View`
+    height: 100%;
+`;
+
+export const Content = styled.View`
+    margin: 20px;
+`;
+
+export const Title = styled(TextRegular2)`
+    margin-bottom: 20;
 `;
