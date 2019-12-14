@@ -12,9 +12,10 @@ import { Container, IconBox, TextBox, Text } from './styles';
 export const SubscriptionBoxComponent = ({
     departure: { placeCode: departureCode = '' } = {},
     destination: { placeCode: destinationCode = '' } = {},
+    onPress,
 }) => {
     return (
-        <Container onPress={() => {}}>
+        <Container onPress={onPress}>
             <IconBox>
                 <SVGIcon type={generalIcons.BELL} size={20} />
             </IconBox>

@@ -12,18 +12,22 @@ import { ActionModal } from '~/components/action-modal';
 import { SortBox } from './components/sort-box';
 import { ResultBox } from './components/result-box';
 import { SubscriptionBox } from './components/subscription-box';
+import { SubscriptionContent } from './components/subscription-content';
 import { Container, Content, FiltersBox, FiltersButton, FiltersText } from './styles';
 
 export class ResultsScreen extends React.PureComponent {
     state = {
         type: 0,
+        isModalOpen: false,
     };
 
     handleType = (type: number) => this.setState({ type });
 
+    openModal = () => this.setState({ isModalOpen: true });
+
     render() {
         const { resultsByPrice, resultsByDuration, isLoading } = this.props;
-        const { type } = this.state;
+        const { type, isModalOpen } = this.state;
         const list = type === 0 ? resultsByPrice : resultsByDuration;
 
         if (isLoading) {
@@ -34,11 +38,11 @@ export class ResultsScreen extends React.PureComponent {
             <Container>
                 <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => this.props.navigation.goBack()} />
                 <Content style={{ width: '100%' }}>
-                    <ActionModal>
-                        <SubscriptionBox />
+                    <ActionModal isModalOpen={isModalOpen}>
+                        <SubscriptionContent />
                     </ActionModal>
 
-                    <SubscriptionBox />
+                    <SubscriptionBox onPress={this.openModal} />
 
                     <SortBox onPress={this.handleType} value={type} />
 

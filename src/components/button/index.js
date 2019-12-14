@@ -11,11 +11,11 @@ type Props = {|
     onPress: () => void | Promise<*>,
 |};
 
-export const Button = ({ message, isDisabled, onPress, qaName }: Props) => {
+export const Button = ({ message, isDisabled, isStretched, onPress, qaName }: Props) => {
     const testProps = qaName ? { testID: `button.${qaName}` } : {};
 
     return (
-        <Container onPress={onPress} isDisabled={isDisabled} {...testProps}>
+        <Container onPress={onPress} isDisabled={isDisabled} isStretched={isStretched} {...testProps}>
             <Text message={message} isDisabled={isDisabled} />
         </Container>
     );

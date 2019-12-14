@@ -11,7 +11,17 @@ const getBackgroundColor = R.cond([
     [R.T, R.always(selectors.midnight)],
 ]);
 
-const getTextColor = R.cond([[R.prop('isDisabled'), R.always(selectors.midnight)], [R.T, R.always(selectors.white)]]);
+const getTextColor = R.cond([
+    [R.prop('isDisabled'), R.always(selectors.midnight)],
+    [R.T, R.always(selectors.white)],
+]);
+
+const getMinWidth = R.cond([
+    [R.prop('isStretched'), R.always('100%')],
+    [R.prop('isXSmall'), R.always('80px')],
+    [R.prop('isSmall'), R.always('128px')],
+    [R.T, R.always('272px')],
+]);
 
 export const Container = styled.TouchableOpacity`
     background-color: ${getBackgroundColor};
@@ -19,7 +29,7 @@ export const Container = styled.TouchableOpacity`
     margin: ${selectors.ss2};
     border-radius: ${selectors.br3};
     align-items: center;
-    min-width: 140;
+    min-width: ${getMinWidth};
 `;
 
 export const Text = styled(TextRegular3)`
