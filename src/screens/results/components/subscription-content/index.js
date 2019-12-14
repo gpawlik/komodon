@@ -22,7 +22,10 @@ import {
     MetaBox,
     MetaTitle,
     MetaText,
+    CloseBox,
 } from './styles';
+
+const hitSlop = { top: 15, bottom: 15, left: 15, right: 15 };
 
 export const SubscriptionContentComponent = ({
     departure: { placeCode: departureCode = '', placeName: departureName = '' } = {},
@@ -30,6 +33,7 @@ export const SubscriptionContentComponent = ({
     departureText,
     returnText,
     onPress,
+    onClose,
 }) => {
     return (
         <Container>
@@ -65,6 +69,9 @@ export const SubscriptionContentComponent = ({
             <ButtonBox>
                 <Button message="Create alert" isStretched />
             </ButtonBox>
+            <CloseBox onPress={onClose} hitSlop={hitSlop}>
+                <SVGIcon type={generalIcons.CLOSE} size={16} />
+            </CloseBox>
         </Container>
     );
 };

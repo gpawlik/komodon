@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { TextRegular2, TextMedium1, TextMedium2, TextMedium5 } from '~/components/text';
 //import { selectors } from '~/theme/main';
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled.View`
     padding: 14px 20px;
     align-items: center;
 `;
@@ -51,4 +51,10 @@ export const MetaTitle = styled(TextMedium1)`
 export const MetaText = styled(TextRegular2)`
     color: #999;
     text-align: ${({ isLeft }) => (isLeft ? 'right' : 'left')};
+`;
+
+export const CloseBox = styled.TouchableOpacity`
+    position: absolute;
+    top: 18;
+    right: 18;
 `;

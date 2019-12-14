@@ -25,6 +25,8 @@ export class ResultsScreen extends React.PureComponent {
 
     openModal = () => this.setState({ isModalOpen: true });
 
+    closeModal = () => this.setState({ isModalOpen: false });
+
     render() {
         const { resultsByPrice, resultsByDuration, isLoading } = this.props;
         const { type, isModalOpen } = this.state;
@@ -39,7 +41,7 @@ export class ResultsScreen extends React.PureComponent {
                 <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => this.props.navigation.goBack()} />
                 <Content style={{ width: '100%' }}>
                     <ActionModal isModalOpen={isModalOpen}>
-                        <SubscriptionContent />
+                        <SubscriptionContent onClose={this.closeModal} />
                     </ActionModal>
 
                     <SubscriptionBox onPress={this.openModal} />
