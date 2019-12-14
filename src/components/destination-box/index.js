@@ -5,6 +5,7 @@ import { getResults, getLastSearches } from '~/domains/destinations/selectors';
 import { getDestinations } from '~/domains/destinations/actions';
 
 import { DestinationBoxComponent } from './component';
+import type { StateProps, DispatchProps } from './types';
 
 export const mapStateToProps = (state: any): StateProps => ({
     destinations: getResults(state),

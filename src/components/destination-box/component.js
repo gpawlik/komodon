@@ -17,8 +17,9 @@ import {
     Title,
     Disclaimer,
 } from './styles';
+import type { Props, State } from './types';
 
-export class DestinationBoxComponent extends React.PureComponent {
+export class DestinationBoxComponent extends React.PureComponent<Props, State> {
     state = {
         value: this.props.value.placeName || '',
     };

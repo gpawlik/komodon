@@ -6,8 +6,9 @@ import { QuickBox } from '~/components/quick-box';
 import { formatDays } from '~/utils/time';
 
 import { Container, Content } from './styles';
+import type { Props, State } from './types';
 
-export class DaysRangeBox extends React.PureComponent {
+export class DaysRangeBox extends React.PureComponent<Props, State> {
     state = {
         from: 5,
         to: 10,
