@@ -1,15 +1,15 @@
 // @flow
 import * as React from 'react';
-//import { InteractionManager } from 'react-native';
 
 import { CalendarDaySelector } from './calendar';
 import { convertMarkedToRange } from './utils';
 import { Container } from './styles';
 
-type Props = {|
+type Props = $Exact<{
     value: string,
-    onValueChange: boolean => void,
-|};
+    minDate: string,
+    maxDate: string,
+}>;
 
 const timezone = 'Europe/London';
 
@@ -19,14 +19,8 @@ export class CalendarBox extends React.PureComponent<Props> {
         this.props.onValueChange(range);
     };
 
-    // componentDidMount() {
-    //     InteractionManager.runAfterInteractions(() => this.setState());
-    // }
-
     render() {
         const { value, minDate, maxDate } = this.props;
-
-        console.log('CALENDARQ');
 
         return (
             <Container>

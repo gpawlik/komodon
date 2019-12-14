@@ -1,5 +1,5 @@
 // @flow
-import moment, { type Moment } from 'moment-timezone';
+import moment from 'moment-timezone';
 import { extendMoment } from 'moment-range';
 
 const configDateFormat = 'YYYY-MM-DD';
@@ -31,7 +31,7 @@ export const convertRangeToMarked = ({ from, to }) => {
                 endingDay: idx === arr.length - 1,
             },
         }),
-        {}
+        {},
     );
 };
 

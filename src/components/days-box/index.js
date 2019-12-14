@@ -6,8 +6,9 @@ import { days } from '~/constants';
 import { QuickBox } from '~/components/quick-box';
 
 import { Container, Content, DayItem, DayText } from './styles';
+import type { Props, State } from './types';
 
-export class DaysBox extends React.PureComponent {
+export class DaysBox extends React.PureComponent<Props, State> {
     state = {
         selected: {
             Monday: this.props.value.includes(0),

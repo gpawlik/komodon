@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { InteractionManager, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import moment, { type Moment } from 'moment-timezone';
 import { CalendarList } from 'react-native-calendars';
 
@@ -68,12 +68,7 @@ export class CalendarDaySelector extends React.Component<Props, State> {
                 monthFormat={'MMMM'}
                 markedDates={markedDates}
                 markingType={'period'}
-                // Max amount of months allowed to scroll to the past. Default = 50
                 pastScrollRange={0}
-                // Max amount of months allowed to scroll to the future. Default = 50
-                //futureScrollRange={undefined}
-                // Enable or disable scrolling of calendar list
-                //showScrollIndicator
                 style={{ flexGrow: 1 }}
                 calendarWidth={width}
             />

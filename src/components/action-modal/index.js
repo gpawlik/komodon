@@ -5,7 +5,12 @@ import { OverlayModal } from '~/components/overlay-modal';
 
 import { Container, Box } from './styles';
 
-export const ActionModal = ({ children, isModalOpen }) => {
+type Props = $Exact<{
+    children: React.Node,
+    isModalOpen: boolean,
+}>;
+
+export const ActionModal = ({ children, isModalOpen }: Props) => {
     return (
         <OverlayModal isModalOpen={!!isModalOpen}>
             <Container>
