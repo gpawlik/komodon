@@ -18,6 +18,7 @@ import { Container, Content, FiltersBox, FiltersButton, FiltersText } from './st
 export class ResultsScreen extends React.PureComponent {
     state = {
         type: 0,
+        isSubscriptionVisible: true,
         isModalOpen: false,
     };
 
@@ -27,9 +28,11 @@ export class ResultsScreen extends React.PureComponent {
 
     closeModal = () => this.setState({ isModalOpen: false });
 
+    submitSubscription = () => this.setState({ isSubscriptionVisible: false, isModalOpen: false });
+
     render() {
         const { resultsByPrice, resultsByDuration, isLoading } = this.props;
-        const { type, isModalOpen } = this.state;
+        const { type, isModalOpen, isSubscriptionVisible } = this.state;
         const list = type === 0 ? resultsByPrice : resultsByDuration;
 
         if (isLoading) {
@@ -41,10 +44,10 @@ export class ResultsScreen extends React.PureComponent {
                 <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => this.props.navigation.goBack()} />
                 <Content style={{ width: '100%' }}>
                     <ActionModal isModalOpen={isModalOpen}>
-                        <SubscriptionContent onClose={this.closeModal} />
+                        <SubscriptionContent onClose={this.closeModal} onSubmit={this.submitSubscription} />
                     </ActionModal>
 
-                    <SubscriptionBox onPress={this.openModal} />
+                    {isSubscriptionVisible ? <SubscriptionBox onPress={this.openModal} /> : null}
 
                     <SortBox onPress={this.handleType} value={type} />
 

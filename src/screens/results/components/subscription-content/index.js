@@ -34,6 +34,7 @@ export const SubscriptionContentComponent = ({
     returnText,
     onPress,
     onClose,
+    onSubmit,
 }) => {
     return (
         <Container>
@@ -67,7 +68,7 @@ export const SubscriptionContentComponent = ({
                 </MetaBox>
             </Content>
             <ButtonBox>
-                <Button message="Create alert" isStretched />
+                <Button onPress={onSubmit} message="Create alert" isStretched />
             </ButtonBox>
             <CloseBox onPress={onClose} hitSlop={hitSlop}>
                 <SVGIcon type={generalIcons.CLOSE} size={16} />
