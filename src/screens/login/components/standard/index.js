@@ -46,7 +46,7 @@ export class StandardLogin extends React.PureComponent {
     };
 
     render() {
-        const { isRegister } = this.props;
+        const { isRegister, onForgot } = this.props;
         const {
             email,
             password1,
@@ -90,7 +90,7 @@ export class StandardLogin extends React.PureComponent {
                         />
                     ) : null}
                     {!isRegister ? (
-                        <Link>
+                        <Link onPress={onForgot}>
                             <LinkText isMarked>Forgot password?</LinkText>
                         </Link>
                     ) : null}

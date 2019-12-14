@@ -27,7 +27,10 @@ export const LoginScreen = props => {
                         <SeparatorText>OR</SeparatorText>
                     </Separator>
 
-                    <StandardLogin changeTab={() => changeTab(1)} />
+                    <StandardLogin
+                        changeTab={() => changeTab(1)}
+                        onForgot={() => props.navigation.navigate('ForgottenPassword')}
+                    />
                 </Content>
 
                 <Content>

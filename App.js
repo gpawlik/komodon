@@ -8,6 +8,7 @@ import { Home } from '~/screens/home';
 import { About } from '~/screens/about';
 import { Results } from '~/screens/results';
 import { Login } from '~/screens/login';
+import { ForgottenPassword } from '~/screens/forgotten-password';
 import { Subscriptions } from '~/screens/subscriptions';
 import { SearchPlaceModal } from '~/components/search-destination';
 import { SearchDateModal } from '~/components/search-date';
@@ -19,10 +20,11 @@ const MainStack = createStackNavigator(
         [routes.about]: { screen: About },
         Results: { screen: Results },
         Login: { screen: Login },
+        ForgottenPassword: { screen: ForgottenPassword },
         Subscriptions: { screen: Subscriptions },
     },
     {
-        initialRouteName: 'Results',
+        initialRouteName: 'Home',
         headerMode: 'none',
     },
 );
