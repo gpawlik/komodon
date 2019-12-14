@@ -4,15 +4,11 @@ import * as React from 'react';
 import { Screen } from '~/components/screen';
 import { InputBox } from '~/components/input';
 import { ConfirmBox } from '~/components/confirm-box';
+import { emailIsValid } from '~/utils/';
 
 import { Container, Content, Title } from './styles';
 
 type Props = {};
-
-// TODO: move to utils
-function emailIsValid(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
 
 export class ForgottenPassword extends React.PureComponent<Props> {
     state = {

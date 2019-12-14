@@ -4,11 +4,9 @@ import * as React from 'react';
 import { InputBox } from '~/components/input';
 import { Button } from '~/components/button';
 
-import { Section, InputsContainer, Link, LinkText } from './styles';
+import { emailIsValid } from '~/utils/';
 
-function emailIsValid(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
+import { Section, InputsContainer, Link, LinkText } from './styles';
 
 export class StandardLogin extends React.PureComponent {
     state = {
