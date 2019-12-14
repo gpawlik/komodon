@@ -7,12 +7,13 @@ import { Container } from './styles';
 type Props = $Exact<{
     text: string,
     onPress: () => {},
+    isDisabled?: boolean,
 }>;
 
-export const ConfirmBox = ({ text, onPress }: Props) => {
+export const ConfirmBox = ({ text, onPress, isDisabled }: Props) => {
     return (
         <Container>
-            <Button message={text} onPress={onPress} />
+            <Button message={text} onPress={onPress} isDisabled={isDisabled} />
         </Container>
     );
 };
