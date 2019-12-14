@@ -43,7 +43,7 @@ export class ResultsScreen extends React.PureComponent {
             <Container>
                 <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => this.props.navigation.goBack()} />
                 <Content style={{ width: '100%' }}>
-                    <ActionModal isModalOpen={isModalOpen}>
+                    <ActionModal animationType="fade" isModalOpen={isModalOpen}>
                         <SubscriptionContent onClose={this.closeModal} onSubmit={this.submitSubscription} />
                     </ActionModal>
 

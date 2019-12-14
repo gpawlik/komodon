@@ -7,12 +7,13 @@ import { Container, Box } from './styles';
 
 type Props = $Exact<{
     children: React.Node,
+    animationType?: string,
     isModalOpen: boolean,
 }>;
 
-export const ActionModal = ({ children, isModalOpen }: Props) => {
+export const ActionModal = ({ children, animationType, isModalOpen }: Props) => {
     return (
-        <OverlayModal isModalOpen={!!isModalOpen}>
+        <OverlayModal animationType={animationType} isModalOpen={!!isModalOpen}>
             <Container>
                 <Box>{children}</Box>
             </Container>
