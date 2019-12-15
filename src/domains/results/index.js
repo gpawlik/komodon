@@ -11,7 +11,13 @@ type ResultsState = {
 };
 
 export const initialState: ResultsState = {
-    results: result,
+    results: {
+        id: 'f24bf4c1-cf38-4607-a108-5f83edf48cfa',
+        currency: 'EUR',
+        departure: 'Barcelona',
+        destination: 'Madrid',
+        itineraryResults: [],
+    },
     isLoading: false,
 };
 

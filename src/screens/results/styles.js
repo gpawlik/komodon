@@ -28,3 +28,16 @@ export const FiltersButton = styled.TouchableOpacity`
 export const FiltersText = styled(TextRegular3)`
     color: ${selectors.white};
 `;
+
+// TODO: figure out positioning
+export const EmptyContainer = styled.View`
+    height: 100%;
+    position: relative;
+    margin-bottom: -120;
+`;
+
+export const EmptyBox = styled.View`
+    padding: 20px;
+`;
+
+export const EmptyText = styled(TextRegular3)``;
