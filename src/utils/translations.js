@@ -1,5 +1,5 @@
 // @flow
-import { addLocaleData } from 'react-intl';
+//import { addLocaleData } from 'react-intl';
 //import es from 'react-intl/locale-data/es';
 
 import { DEFAULT_LOCALE } from '~/domains/translations/constants';

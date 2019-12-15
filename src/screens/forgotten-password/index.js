@@ -10,7 +10,13 @@ import { Container, Content, Title } from './styles';
 
 type Props = {};
 
-export class ForgottenPassword extends React.PureComponent<Props> {
+type State = {
+    email: string,
+    hasAttemptedSubmit: boolean,
+    isValidEmail: boolean,
+};
+
+export class ForgottenPassword extends React.PureComponent<Props, State> {
     state = {
         email: '',
         hasAttemptedSubmit: false,
@@ -21,7 +27,7 @@ export class ForgottenPassword extends React.PureComponent<Props> {
         this.setState({ hasAttemptedSubmit: true });
     };
 
-    onChangeEmail = value => {
+    onChangeEmail = (value: string) => {
         this.setState({ email: value, isValidEmail: emailIsValid(value) });
     };
 

@@ -13,7 +13,9 @@ import { StandardLogin } from './components/standard';
 
 import { Container, Content, Separator, SeparatorText } from './styles';
 
-export const LoginScreen = props => {
+type Props = {};
+
+export const LoginScreen = (props: Props) => {
     const [currentTab, changeTab] = React.useState(0);
 
     return (
