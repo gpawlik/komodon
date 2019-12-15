@@ -9,3 +9,5 @@ import { provider } from '~/provider';
 const AppComponent = () => provider(App, store, persistor);
 
 AppRegistry.registerComponent(appName, AppComponent);
+
+console.disableYellowBox = true;

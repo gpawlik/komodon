@@ -57,6 +57,7 @@ export const SubscriptionContentComponent = ({
     onClose,
     onSubmit,
 }: Props) => {
+    // TODO: add place icon in between
     return (
         <Container>
             <IconBox>
@@ -71,6 +72,7 @@ export const SubscriptionContentComponent = ({
                         <CodeText>{departureCode}</CodeText>
                         <CityText>{departureName}</CityText>
                     </Segment>
+
                     <Segment>
                         <CodeText>{destinationCode}</CodeText>
                         <CityText>{destinationName}</CityText>

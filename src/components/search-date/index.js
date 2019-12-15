@@ -43,7 +43,10 @@ export const SearchDateModalComponent = props => {
     const [departureText, onDepDescriptiveName] = React.useState(props.departureText);
     const [returnText, onRetDescriptiveName] = React.useState(props.returnText);
 
-    const [focusedField, onFocus] = React.useState(props.navigation.getParam('focused'));
+    const [isDepartureModified, onDepartureModify] = React.useState(false);
+    const [isReturnModified, onReturnModify] = React.useState(false);
+
+    const [focusedField, onFocusTab] = React.useState(props.navigation.getParam('focused'));
 
     const roundTrip = props.navigation.getParam('roundTrip');
 
@@ -51,30 +54,35 @@ export const SearchDateModalComponent = props => {
         const name = getDescriptiveName({ type: 'DEP_TIME_CAL', value });
         onDepDescriptiveName(name);
         onDepartureDatesChange(value);
+        onDepartureModify(true);
     };
 
     const handleDepartureWeekdaysChange = value => {
         const name = getDescriptiveName({ type: 'DEP_TIME_DAYS', value });
         onDepDescriptiveName(name);
         onDepartureWeekdaysChange(value);
+        onDepartureModify(true);
     };
 
     const handleReturnDatesChange = value => {
         const name = getDescriptiveName({ type: 'RET_TIME_CAL', value });
         onRetDescriptiveName(name);
         onReturnDatesChange(value);
+        onReturnModify(true);
     };
 
     const handleReturnWeekdaysChange = value => {
         const name = getDescriptiveName({ type: 'RET_TIME_DAYS', value });
         onRetDescriptiveName(name);
         onReturnWeekdaysChange(value);
+        onReturnModify(true);
     };
 
     const handleReturnDaysNumberChange = value => {
         const name = getDescriptiveName({ type: 'RET_TIME_RANGE', value });
         onRetDescriptiveName(name);
         onReturnDaysNumberChange(value);
+        onReturnModify(true);
     };
 
     const closeModal = () => props.navigation.goBack();
@@ -87,9 +95,29 @@ export const SearchDateModalComponent = props => {
         [R.T, R.always({})],
     ])(focusedRetTime);
 
-    const onSubmit = () => {
-        props.setSearchCriteria({ ...departureCriteria, ...returnCriteria, departureText, returnText });
-        closeModal();
+    // const onSubmit = () => {
+    //     props.setSearchCriteria({ ...departureCriteria, ...returnCriteria, departureText, returnText });
+    //     closeModal();
+    // };
+
+    const onSubmitDeparture = () => {
+        props.setSearchCriteria({ ...departureCriteria, departureText });
+        console.log({ returnText });
+        if (returnText !== '') {
+            closeModal();
+        } else {
+            onFocusTab(1);
+        }
+    };
+
+    const onSubmitReturn = () => {
+        props.setSearchCriteria({ ...returnCriteria, returnText });
+        console.log({ departureText });
+        if (departureText !== '') {
+            closeModal();
+        } else {
+            onFocusTab(0);
+        }
     };
 
     const getDepTimeBox = R.cond([
@@ -129,6 +157,9 @@ export const SearchDateModalComponent = props => {
         [R.T, () => null],
     ]);
 
+    const isDepartureSelection = focusedField === 0;
+    const isReturnSelection = focusedField === 1 && roundTrip;
+
     return (
         <Container>
             <Header backIcon={generalIcons.CLOSE} backAction={closeModal} />
@@ -139,10 +170,10 @@ export const SearchDateModalComponent = props => {
                 text2={returnText || 'Select dates'}
                 selectedIndex={focusedField}
                 roundTrip={roundTrip}
-                onChange={onFocus}
+                onChange={onFocusTab}
             />
 
-            {focusedField === 0 && (
+            {isDepartureSelection ? (
                 <View style={{ height: '100%' }}>
                     <ButtonBox
                         onChange={onFocusDepTime}
@@ -154,8 +185,8 @@ export const SearchDateModalComponent = props => {
                     />
                     {getDepTimeBox(focusedDepTime)}
                 </View>
-            )}
-            {focusedField === 1 && roundTrip && (
+            ) : null}
+            {isReturnSelection ? (
                 <View style={{ height: '100%' }}>
                     <ButtonBox
                         onChange={onFocusRetTime}
@@ -168,10 +199,22 @@ export const SearchDateModalComponent = props => {
                     />
                     {getRetTimeBox(focusedRetTime)}
                 </View>
-            )}
+            ) : null}
 
             <ConfirmBox>
-                <Button message="Select this" onPress={onSubmit} />
+                {isDepartureSelection ? (
+                    <Button
+                        message="Select departure time"
+                        onPress={onSubmitDeparture}
+                        isDisabled={!isDepartureModified || departureText === ''}
+                    />
+                ) : (
+                    <Button
+                        message="Select return time"
+                        onPress={onSubmitReturn}
+                        isDisabled={!isReturnModified || returnText === ''}
+                    />
+                )}
             </ConfirmBox>
         </Container>
     );
