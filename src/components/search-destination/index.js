@@ -24,19 +24,22 @@ export const SearchPlaceModalComponent = props => {
     const isDeparture = focusedField === 0;
     const isDestination = focusedField === 1;
 
-    // const onSubmit = () => {
-    //     props.setSearchCriteria({ departurePlace, destinationPlace });
-    //     closeModal();
-    // };
-
     const onSubmitDeparture = () => {
         props.setSearchCriteria({ departurePlace });
-        closeModal();
+        if (destinationPlace && destinationPlace.placeId) {
+            closeModal();
+        } else {
+            onFocusTab(1);
+        }
     };
 
     const onSubmitDestination = () => {
         props.setSearchCriteria({ destinationPlace });
-        closeModal();
+        if (departurePlace && departurePlace.placeId) {
+            closeModal();
+        } else {
+            onFocusTab(0);
+        }
     };
 
     const closeModal = () => props.navigation.goBack();
