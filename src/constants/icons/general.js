@@ -1,6 +1,7 @@
 // @flow
 export const generalIcons = {
     ARROW_LEFT: 'ARROW_LEFT',
+    BANKNOTE: 'BANKNOTE',
     BELL: 'BELL',
     CLOSE: 'CLOSE',
     CLOSE_CIRCLE: 'CLOSE_CIRCLE',

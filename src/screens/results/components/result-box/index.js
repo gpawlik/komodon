@@ -3,6 +3,8 @@ import * as React from 'react';
 import * as R from 'ramda';
 import { Image, Linking } from 'react-native';
 
+import { SVGIcon } from '~/icons';
+import { generalIcons } from '~/constants/icons/general';
 import { airlines as airlineCodes } from '~/constants/airlines';
 
 import {
@@ -24,6 +26,7 @@ import {
     PriceText,
     InfoBox,
     AirlineText,
+    TagText,
 } from './styles';
 
 type Props = {
@@ -32,7 +35,7 @@ type Props = {
     deepLink: string,
 };
 
-export const ResultBox = ({ price, routes = [], deepLink = '' }: Props) => {
+export const ResultBox = ({ price, routes = [], deepLink = '', priceLevel }: Props) => {
     const openLink = () => Linking.openURL(deepLink).catch(err => console.log('An error occurred', err));
     const airlineList = routes.map(({ airlines = [] }) =>
         airlines.map(iata => (airlineCodes[iata] || iata).slice(0, 15)),
@@ -86,6 +89,7 @@ export const ResultBox = ({ price, routes = [], deepLink = '' }: Props) => {
             </TopBox>
             <InfoBox>
                 <AirlineText>{uniqueAirlines.join(' + ')}</AirlineText>
+                {priceLevel === 'CHEAP' ? <SVGIcon type={generalIcons.BANKNOTE} colour="#ccc" /> : null}
             </InfoBox>
         </Container>
     );

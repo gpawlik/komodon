@@ -1,6 +1,8 @@
 // @flow
 import styled from 'styled-components';
 
+import { selectors } from '~/theme/main';
+
 import { TextRegular1, TextRegular2, TextMedium2, TextMedium3, TextMedium5 } from '~/components/text';
 
 export const Container = styled.View`
@@ -84,8 +86,14 @@ export const InfoBox = styled.View`
     padding: 8px 14px;
     border-top-width: 1;
     border-top-color: #ddd;
+    flex-direction: row;
+    justify-content: space-between;
 `;
 
 export const AirlineText = styled(TextRegular2)`
     color: #666;
+`;
+
+export const TagText = styled(TextRegular2)`
+    color: ${selectors.green};
 `;
