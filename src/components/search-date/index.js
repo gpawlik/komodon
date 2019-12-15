@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import * as R from 'ramda';
-import { View } from 'react-native';
 import { connect } from 'react-redux';
 
 import {
@@ -26,7 +25,7 @@ import { DaysRangeBox } from '~/components/days-range-box';
 import { ButtonBox } from './components/button-box';
 import { getDescriptiveName } from './utils';
 
-import { Container, ConfirmBox } from './styles';
+import { Container, SelectionBox, ConfirmBox } from './styles';
 
 export const SearchDateModalComponent = props => {
     const [departureDates, onDepartureDatesChange] = React.useState(props.departureDates);
@@ -168,7 +167,7 @@ export const SearchDateModalComponent = props => {
             />
 
             {isDepartureSelection ? (
-                <View style={{ height: '100%' }}>
+                <SelectionBox>
                     <ButtonBox
                         onChange={onFocusDepTime}
                         options={[
@@ -178,10 +177,10 @@ export const SearchDateModalComponent = props => {
                         selected={focusedDepTime}
                     />
                     {getDepTimeBox(focusedDepTime)}
-                </View>
+                </SelectionBox>
             ) : null}
             {isReturnSelection ? (
-                <View style={{ height: '100%' }}>
+                <SelectionBox>
                     <ButtonBox
                         onChange={onFocusRetTime}
                         options={[
@@ -192,7 +191,7 @@ export const SearchDateModalComponent = props => {
                         selected={focusedRetTime}
                     />
                     {getRetTimeBox(focusedRetTime)}
-                </View>
+                </SelectionBox>
             ) : null}
 
             <ConfirmBox>

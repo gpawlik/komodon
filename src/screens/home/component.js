@@ -18,7 +18,7 @@ export class HomeComponent extends React.PureComponent<Props, void> {
 
     render() {
         return (
-            <Container testID="screen.home">
+            <Container>
                 <NavigationMenu navigate={this.props.navigation.navigate} />
                 <Header
                     backIcon={generalIcons.MENU}

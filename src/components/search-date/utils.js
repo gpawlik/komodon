@@ -5,7 +5,6 @@ import moment from 'moment-timezone';
 import { days } from '~/constants';
 
 export const getDescriptiveName = ({ type, value }) => {
-    console.log({ value });
     switch (type) {
         case 'DEP_TIME_CAL':
         case 'RET_TIME_CAL':
@@ -24,7 +23,7 @@ export const getDescriptiveName = ({ type, value }) => {
                         value
                             .sort()
                             .map(index => days[index].slice(0, 2))
-                            .join(', ')
+                            .join(', '),
                     ),
                 ],
             ])(value.length);

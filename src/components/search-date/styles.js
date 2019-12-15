@@ -8,6 +8,10 @@ export const Container = styled.View`
     flex-grow: 1;
 `;
 
+export const SelectionBox = styled.View`
+    height: 100%;
+`;
+
 export const ConfirmBox = styled.View`
     padding: 16px 20px;
     background-color: #fff;
