@@ -11,12 +11,10 @@ type Props = $Exact<{
     isModalOpen: boolean,
 }>;
 
-export const ActionModal = ({ children, animationType, isModalOpen }: Props) => {
-    return (
-        <OverlayModal animationType={animationType} isModalOpen={!!isModalOpen}>
-            <Container>
-                <Box>{children}</Box>
-            </Container>
-        </OverlayModal>
-    );
-};
+export const ActionModal = React.memo(({ children, animationType, isModalOpen }: Props) => (
+    <OverlayModal animationType={animationType} isModalOpen={!!isModalOpen}>
+        <Container>
+            <Box>{children}</Box>
+        </Container>
+    </OverlayModal>
+));

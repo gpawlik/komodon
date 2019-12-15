@@ -2,10 +2,10 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { type Effect } from 'redux-saga';
 
-import { handleApi } from '~/utils/api';
+//import { handleApi } from '~/utils/api';
 import { filterEmpty } from '~/utils';
 
-import * as api from './api';
+//import * as api from './api';
 import { receiveResults } from '~/domains/results/actions';
 import { result } from '~/domains/results/mock';
 import { SEARCH_FLIGHTS } from './constants';

@@ -1,10 +1,11 @@
 // @flow
-import { Map as ImmutableMap } from 'immutable';
-
 import { GET_SUBSCRIPTIONS, RECEIVE_SUBSCRIPTIONS } from './constants';
 import { result } from '~/domains/subscriptions/mock';
 
-type State = ImmutableMap<string, *>;
+type State = {
+    results: Array<*>,
+    isLoading: boolean,
+};
 
 export const initialState: State = {
     results: result,

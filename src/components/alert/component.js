@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Container, Text } from './styles';
 import type { Props } from './types';
 
-export const AlertComponent = ({ text, type }: Props) => {
+export const AlertComponent = React.memo(({ text, type }: Props) => {
     if (!text) {
         return null;
     }
@@ -14,4 +14,4 @@ export const AlertComponent = ({ text, type }: Props) => {
             <Text>{text}</Text>
         </Container>
     );
-};
+});

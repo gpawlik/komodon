@@ -5,10 +5,15 @@ import { extendMoment } from 'moment-range';
 const configDateFormat = 'YYYY-MM-DD';
 const momentRange = extendMoment(moment);
 
-export const convertRangeToMarked = ({ from, to }) => {
+type Props = {
+    from: string,
+    to?: string,
+};
+
+export const convertRangeToMarked = ({ from, to }: Props) => {
     if (!to) {
         return {
-            [from]: { color: '#00cec9', textColor: 'white', selected: true, startingDay: true, endingDay: true },
+            [from]: { color: '#00cec9', textColor: '#fff', selected: true, startingDay: true, endingDay: true },
         };
     }
     const startMoment = moment(from);

@@ -7,16 +7,11 @@ import { Container, Text } from './styles';
 type Props = {|
     message: $npm$ReactIntl$MessageDescriptor,
     isDisabled?: boolean,
-    qaName?: string,
     onPress: () => void | Promise<*>,
 |};
 
-export const Button = ({ message, isDisabled, isStretched, onPress, qaName }: Props) => {
-    const testProps = qaName ? { testID: `button.${qaName}` } : {};
-
-    return (
-        <Container onPress={onPress} isDisabled={isDisabled} isStretched={isStretched} {...testProps}>
-            <Text message={message} isDisabled={isDisabled} />
-        </Container>
-    );
-};
+export const Button = React.memo(({ message, isDisabled, isStretched, onPress }: Props) => (
+    <Container onPress={onPress} isDisabled={isDisabled} isStretched={isStretched}>
+        <Text message={message} isDisabled={isDisabled} />
+    </Container>
+));
