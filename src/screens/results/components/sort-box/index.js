@@ -6,7 +6,19 @@ import { getPriceOfCheapest, getPriceOfFastest } from '~/domains/results/selecto
 
 import { Container, ButtonBox, TitleText, PriceText } from './styles';
 
-export const SortBoxComponent = ({ value, onPress, priceOfCheapest, priceOfFastest }) => {
+type StateProps = {
+    priceOfCheapest: number,
+    priceOfFastest: number,
+};
+
+type OwnProps = {
+    value: number,
+    onPress: () => void,
+};
+
+type Props = { ...StateProps, ...OwnProps };
+
+export const SortBoxComponent = ({ value, onPress, priceOfCheapest, priceOfFastest }: Props) => {
     const isFirstSelected = value === 0;
     const isSecondSelected = value === 1;
     return (

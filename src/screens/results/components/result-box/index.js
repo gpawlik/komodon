@@ -26,7 +26,13 @@ import {
     AirlineText,
 } from './styles';
 
-export const ResultBox = ({ price, routes = [], deepLink = '' }) => {
+type Props = {
+    price: number,
+    routes: Array<*>,
+    deepLink: string,
+};
+
+export const ResultBox = ({ price, routes = [], deepLink = '' }: Props) => {
     const openLink = () => Linking.openURL(deepLink).catch(err => console.log('An error occurred', err));
     const airlineList = routes.map(({ airlines = [] }) =>
         airlines.map(iata => (airlineCodes[iata] || iata).slice(0, 15)),

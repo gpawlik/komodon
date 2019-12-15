@@ -9,11 +9,26 @@ import { generalIcons } from '~/constants/icons/general';
 
 import { Container, IconBox, TextBox, Text } from './styles';
 
+type StateProps = {
+    departure: {
+        placeCode: string,
+    },
+    destination: {
+        placeCode: string,
+    },
+};
+
+type OwnProps = {
+    onPress: () => void,
+};
+
+type Props = { ...StateProps, ...OwnProps };
+
 export const SubscriptionBoxComponent = ({
     departure: { placeCode: departureCode = '' } = {},
     destination: { placeCode: destinationCode = '' } = {},
     onPress,
-}) => {
+}: Props) => {
     return (
         <Container onPress={onPress}>
             <IconBox>

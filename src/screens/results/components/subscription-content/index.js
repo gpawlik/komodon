@@ -25,6 +25,27 @@ import {
     CloseBox,
 } from './styles';
 
+type StateProps = {
+    departure: {
+        placeCode: string,
+        placeName: string,
+    },
+    destination: {
+        placeCode: string,
+        placeName: string,
+    },
+    departureText: string,
+    returnText: string,
+};
+
+type OwnProps = {
+    onPress: () => void,
+    onClose: () => void,
+    onSubmit: () => void,
+};
+
+type Props = { ...StateProps, ...OwnProps };
+
 const hitSlop = { top: 15, bottom: 15, left: 15, right: 15 };
 
 export const SubscriptionContentComponent = ({
@@ -35,7 +56,7 @@ export const SubscriptionContentComponent = ({
     onPress,
     onClose,
     onSubmit,
-}) => {
+}: Props) => {
     return (
         <Container>
             <IconBox>
