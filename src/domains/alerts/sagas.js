@@ -20,7 +20,7 @@ export function* updateNetworkAlert({ payload: { type } = {} }: ConnectionDataPa
                 id: alertTypes.DEVICE_OFFLINE,
                 message: 'Your device is currently offline.',
                 type: alertCategories.ERROR,
-            })
+            }),
         );
     }
 }

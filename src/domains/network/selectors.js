@@ -6,12 +6,6 @@ import { connectionTypes } from './constants';
 
 const getNetworkState = state => state.network || Map();
 
-export const getConnectionType = createSelector(
-    [getNetworkState],
-    state => state.get('type', connectionTypes.UNKNOWN)
-);
+export const getConnectionType = createSelector([getNetworkState], state => state.get('type', connectionTypes.UNKNOWN));
 
-export const getIsOnline = createSelector(
-    [getNetworkState],
-    state => state.get('type') !== connectionTypes.NONE
-);
+export const getIsOnline = createSelector([getNetworkState], state => state.get('type') !== connectionTypes.NONE);

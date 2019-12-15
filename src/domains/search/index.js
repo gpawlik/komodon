@@ -1,23 +1,17 @@
 // @flow
-import { Map as ImmutableMap } from 'immutable';
-
 import { SET_SEARCH_CRITERIA, RESET_SEARCH_CRITERIA } from './constants';
+import { type CitySearch } from './types';
 
-type State = ImmutableMap<string, *>;
+type State = {
+    departurePlace: CitySearch,
+    destinationPlace: CitySearch,
+    departureDates: Object,
+    returnDates: Object,
+};
 
 const initialCriteria = {
-    departurePlace: {
-        placeId: 'barcelona_es',
-        placeName: 'Barcelona',
-        placeCode: 'BCN',
-        countryName: 'Spain',
-    },
-    destinationPlace: {
-        // placeId: 'madrid_es',
-        // placeName: 'Madrid',
-        // placeCode: 'MAD',
-        // countryName: 'Spain',
-    },
+    departurePlace: {},
+    destinationPlace: {},
     departureDates: {},
     returnDates: {},
 };
