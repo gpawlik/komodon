@@ -8,7 +8,23 @@ import { emailIsValid } from '~/utils/';
 
 import { Section, InputsContainer, Link, LinkText } from './styles';
 
-export class StandardLogin extends React.PureComponent {
+type Props = {
+    isRegister?: boolean,
+    onForgot: () => void,
+    changeTab: () => void,
+};
+
+type State = {
+    isValidEmail: boolean,
+    isValidPassword: boolean,
+    isMatchingPassword: boolean,
+    hasAttemptedSubmit: boolean,
+    email: string,
+    password1: string,
+    password2: string,
+};
+
+export class StandardLogin extends React.PureComponent<Props, State> {
     state = {
         isValidEmail: true,
         isValidPassword: true,
@@ -44,7 +60,7 @@ export class StandardLogin extends React.PureComponent {
     };
 
     render() {
-        const { isRegister, onForgot } = this.props;
+        const { isRegister, onForgot, changeTab } = this.props;
         const {
             email,
             password1,
@@ -94,7 +110,7 @@ export class StandardLogin extends React.PureComponent {
                     ) : null}
                 </InputsContainer>
                 <Button message="Sign in" onPress={this.onSubmit} isDisabled={!canAttemptLogin} />
-                <Link isSeparate onPress={this.props.changeTab}>
+                <Link isSeparate onPress={changeTab}>
                     <LinkText>{linkTextA}</LinkText>
                     <LinkText isMarked>{linkTextB}</LinkText>
                 </Link>

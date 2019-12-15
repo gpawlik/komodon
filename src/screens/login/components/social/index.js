@@ -6,7 +6,11 @@ import { generalIcons } from '~/constants/icons/general';
 
 import { Section, ButtonsContainer, ButtonBox, IconBox, ButtonText, Text, Disclaimer } from './styles';
 
-export class SocialLogin extends React.PureComponent {
+type Props = {
+    title: string,
+};
+
+export class SocialLogin extends React.PureComponent<Props> {
     render() {
         const { title } = this.props;
         return (
