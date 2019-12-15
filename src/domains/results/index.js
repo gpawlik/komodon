@@ -3,8 +3,10 @@ import { SEARCH_FLIGHTS } from '~/domains/search/constants';
 import { RECEIVE_RESULTS } from './constants';
 import { result } from '~/domains/results/mock';
 
+import type { Results } from './types';
+
 type ResultsState = {
-    results: Array<*>,
+    results: Results,
     isLoading: boolean,
 };
 
