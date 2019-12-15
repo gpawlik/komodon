@@ -21,7 +21,6 @@ import { SectionBox } from '~/components/section-box';
 import { Button } from '~/components/button';
 import { CalendarBox } from '~/components/calendar-box';
 import { DaysBox } from '~/components/days-box';
-
 import { DaysRangeBox } from '~/components/days-range-box';
 
 import { ButtonBox } from './components/button-box';
@@ -95,14 +94,9 @@ export const SearchDateModalComponent = props => {
         [R.T, R.always({})],
     ])(focusedRetTime);
 
-    // const onSubmit = () => {
-    //     props.setSearchCriteria({ ...departureCriteria, ...returnCriteria, departureText, returnText });
-    //     closeModal();
-    // };
-
     const onSubmitDeparture = () => {
         props.setSearchCriteria({ ...departureCriteria, departureText });
-        console.log({ returnText });
+
         if (returnText !== '') {
             closeModal();
         } else {
@@ -112,7 +106,7 @@ export const SearchDateModalComponent = props => {
 
     const onSubmitReturn = () => {
         props.setSearchCriteria({ ...returnCriteria, returnText });
-        console.log({ departureText });
+
         if (departureText !== '') {
             closeModal();
         } else {

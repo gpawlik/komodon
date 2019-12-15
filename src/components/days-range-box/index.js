@@ -29,6 +29,7 @@ export class DaysRangeBox extends React.PureComponent<Props, State> {
                     formatter={formatDays}
                     initialLowLevel={from}
                     initialHighLevel={to}
+                    key={`${from}-${to}`}
                 />
                 <Content>
                     <QuickBox

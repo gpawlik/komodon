@@ -10,6 +10,7 @@ export class SliderBox extends React.PureComponent {
         from: this.props.initialLowLevel || 5,
         to: this.props.initialHighLevel || 10,
     };
+
     render() {
         const {
             min = 1,
@@ -24,12 +25,12 @@ export class SliderBox extends React.PureComponent {
             thumbBorderColor = '#aaa',
             formatter = R.identity,
         } = this.props;
-        console.log({ initialLowLevel, initialHighLevel });
+
         return (
             <Container>
                 <RangeSlider
                     style={{ height: 80 }}
-                    gravity={'center'}
+                    gravity="center"
                     min={min}
                     max={max}
                     step={step}
@@ -43,8 +44,7 @@ export class SliderBox extends React.PureComponent {
                     selectionColor="#33495b"
                     blankColor="#f4f5f6"
                     onValueChanged={(from, to) => {
-                        this.setState({ from, to });
-                        this.props.onValueChange({ from, to });
+                        this.setState({ from, to }, () => this.props.onValueChange({ from, to }));
                     }}
                     labelBackgroundColor="#33495b"
                     labelBorderWidth={0}
@@ -54,11 +54,10 @@ export class SliderBox extends React.PureComponent {
                     textFormat={textFormat}
                     labelStyle="bubble"
                     rangeEnabled
-                    key={`${initialLowLevel}-${initialHighLevel}`}
                 />
                 <ValueBox>
-                    <ValueText message={formatter(initialLowLevel)} />
-                    <ValueText message={formatter(initialHighLevel)} />
+                    <ValueText message={formatter(this.state.from)} />
+                    <ValueText message={formatter(this.state.to)} />
                 </ValueBox>
             </Container>
         );
