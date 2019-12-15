@@ -10,6 +10,7 @@ import {
     getReturnDates,
     getDepartureText,
     getReturnText,
+    getValidatedCriteria,
 } from '~/domains/search/selectors';
 import { searchFlights, setSearchCriteria } from '~/domains/search/actions';
 
@@ -23,6 +24,7 @@ import { Container, VerticalBox, SwitchButton } from './styles';
 
 export const SearchboxComponent = props => {
     const [roundTrip, onRoundTripSelect] = React.useState(true);
+    const [hasAttemptedSubmit, onAttemptSubmit] = React.useState(false);
 
     const onSubmit = () => {
         // const payload = {
@@ -31,12 +33,22 @@ export const SearchboxComponent = props => {
         // };
 
         //props.searchFlights(payload);
-        props.navigate('Results');
+        onAttemptSubmit(true);
+        const isValid = Object.values(props.validatedCriteria).findIndex(item => item === false) < 0;
+        console.log({ hm: Object.values(props.validatedCriteria) });
+        if (isValid) {
+            props.navigate('Results');
+        }
     };
 
     const handlePlaceSwitch = () => {
         props.setSearchCriteria({ departurePlace: props.destinationPlace, destinationPlace: props.departurePlace });
     };
+
+    const isDeparturePlaceValid = !hasAttemptedSubmit || props.validatedCriteria.departurePlace;
+    const isDestinationPlaceValid = !hasAttemptedSubmit || props.validatedCriteria.destinationPlace;
+    const isDepartureDateValid = !hasAttemptedSubmit || props.validatedCriteria.departureDate;
+    const isReturnDateValid = !hasAttemptedSubmit || props.validatedCriteria.returnDate;
 
     return (
         <Container>
@@ -53,6 +65,7 @@ export const SearchboxComponent = props => {
                     valuePlaceholder={'Select airport'}
                     mainValue={props.departurePlace.placeCode}
                     placeholder="From"
+                    isValid={isDeparturePlaceValid}
                     isLarge
                 />
 
@@ -71,6 +84,7 @@ export const SearchboxComponent = props => {
                     valuePlaceholder={'Select airport'}
                     mainValue={props.destinationPlace.placeCode}
                     placeholder="To"
+                    isValid={isDestinationPlaceValid}
                     alignRight
                     isLarge
                 />
@@ -87,6 +101,7 @@ export const SearchboxComponent = props => {
                     }}
                     value={props.departureText}
                     valuePlaceholder={'Select time'}
+                    isValid={isDepartureDateValid}
                 />
 
                 {roundTrip ? (
@@ -100,6 +115,7 @@ export const SearchboxComponent = props => {
                         }}
                         value={props.returnText}
                         valuePlaceholder={'Select time'}
+                        isValid={isReturnDateValid}
                         alignRight
                     />
                 ) : null}
@@ -118,6 +134,7 @@ export const mapStateToProps = (state: any): StateProps => ({
     criteria: getCriteria(state),
     departureText: getDepartureText(state),
     returnText: getReturnText(state),
+    validatedCriteria: getValidatedCriteria(state),
 });
 
 const mapDispatchToProps = {

@@ -22,3 +22,13 @@ export const getDepartureText = createSelector([getState], state => state.depart
 export const getReturnText = createSelector([getState], state => state.returnText || '');
 
 export const getFilters = createSelector([getState], state => state.filters || {});
+
+export const getValidatedCriteria = createSelector(
+    [getDeparturePlace, getDestinationPlace, getDepartureText, getReturnText],
+    (departurePlace, destinationPlace, departureText, returnText) => ({
+        departurePlace: !!departurePlace.placeId,
+        destinationPlace: !!destinationPlace.placeId,
+        departureDate: !!departureText,
+        returnDate: !!returnText,
+    }),
+);
