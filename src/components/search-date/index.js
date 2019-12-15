@@ -97,7 +97,7 @@ export const SearchDateModalComponent = props => {
     const onSubmitDeparture = () => {
         props.setSearchCriteria({ ...departureCriteria, departureText });
 
-        if (returnText !== '') {
+        if (returnText !== '' || !roundTrip) {
             closeModal();
         } else {
             onFocusTab(1);
