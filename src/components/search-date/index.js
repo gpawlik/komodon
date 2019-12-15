@@ -135,11 +135,7 @@ export const SearchDateModalComponent = props => {
         [
             R.equals('RET_TIME_CAL'),
             () => (
-                <CalendarBox
-                    value={returnDates}
-                    onValueChange={handleReturnDatesChange}
-                    minDate={departureDates.from}
-                />
+                <CalendarBox value={returnDates} onValueChange={handleReturnDatesChange} minDate={departureDates.to} />
             ),
         ],
         [
