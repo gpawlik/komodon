@@ -11,7 +11,7 @@ import { result } from '~/domains/results/mock';
 import { SEARCH_FLIGHTS } from './constants';
 
 export function* searchFlights({ payload }): Generator<Effect, *, *> {
-    const { departureText, returnText, departurePlace, destinationPlace, ...rest } = payload;
+    const { departureText, returnText, departurePlace = {}, destinationPlace = {}, ...rest } = payload;
     const formatted = {
         ...rest,
         departurePlace: departurePlace.placeId,

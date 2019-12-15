@@ -10,7 +10,4 @@ const mapDispatchToProps: DispatchProps = {
     toggleNavigation,
 };
 
-export const Home = connect(
-    null,
-    mapDispatchToProps
-)(HomeComponent);
+export const Home = connect(null, mapDispatchToProps)(HomeComponent);

@@ -47,54 +47,64 @@ export class DestinationBoxComponent extends React.PureComponent<Props, State> {
                     </InputBox>
 
                     <DestinationContainer>
-                        {destinations.map(item => (
-                            <Item
-                                key={item.get('placeId')}
-                                onPress={() =>
-                                    this.onSelect({
-                                        placeId: item.get('placeId'),
-                                        placeName: item.get('placeName'),
-                                        placeCode: item.get('placeCode'),
-                                        countryName: item.get('countryName'),
-                                    })
-                                }
-                            >
-                                <NameBox>
-                                    <NameText>{item.get('placeName', '')}</NameText>
-                                    <FullNameText>{`${item.get('placeName')}, ${item.get(
-                                        'countryName',
-                                    )}`}</FullNameText>
-                                </NameBox>
-                                <CodeText>{item.get('placeCode', '').slice(0, 3)}</CodeText>
-                            </Item>
-                        ))}
+                        {destinations.map(item => {
+                            if (!item || typeof item.get !== 'function') {
+                                return null;
+                            }
+                            return (
+                                <Item
+                                    key={item.get('placeId')}
+                                    onPress={() =>
+                                        this.onSelect({
+                                            placeId: item.get('placeId'),
+                                            placeName: item.get('placeName'),
+                                            placeCode: item.get('placeCode'),
+                                            countryName: item.get('countryName'),
+                                        })
+                                    }
+                                >
+                                    <NameBox>
+                                        <NameText>{item.get('placeName', '')}</NameText>
+                                        <FullNameText>{`${item.get('placeName')}, ${item.get(
+                                            'countryName',
+                                        )}`}</FullNameText>
+                                    </NameBox>
+                                    <CodeText>{item.get('placeCode', '').slice(0, 3)}</CodeText>
+                                </Item>
+                            );
+                        })}
                     </DestinationContainer>
 
                     {!destinations.size && lastSearches.size ? (
                         <LastSearchContainer>
                             <Title>Your popular destinations</Title>
                             <LastSearchBox>
-                                {lastSearches.map(item => (
-                                    <Item
-                                        key={item.get('placeId')}
-                                        onPress={() =>
-                                            this.onSelect({
-                                                placeId: item.get('placeId'),
-                                                placeName: item.get('placeName'),
-                                                placeCode: item.get('placeCode'),
-                                                countryName: item.get('countryName'),
-                                            })
-                                        }
-                                    >
-                                        <NameBox>
-                                            <NameText>{item.get('placeName', '')}</NameText>
-                                            <FullNameText>{`${item.get('placeName')}, ${item.get(
-                                                'countryName',
-                                            )}`}</FullNameText>
-                                        </NameBox>
-                                        <CodeText>{item.get('placeCode', '').slice(0, 3)}</CodeText>
-                                    </Item>
-                                ))}
+                                {lastSearches.map(item => {
+                                    if (!item || typeof item.get !== 'function') {
+                                        return null;
+                                    }
+                                    return (
+                                        <Item
+                                            key={item.get('placeId')}
+                                            onPress={() =>
+                                                this.onSelect({
+                                                    placeId: item.get('placeId'),
+                                                    placeName: item.get('placeName'),
+                                                    placeCode: item.get('placeCode'),
+                                                    countryName: item.get('countryName'),
+                                                })
+                                            }
+                                        >
+                                            <NameBox>
+                                                <NameText>{item.get('placeName', '')}</NameText>
+                                                <FullNameText>{`${item.get('placeName')}, ${item.get(
+                                                    'countryName',
+                                                )}`}</FullNameText>
+                                            </NameBox>
+                                            <CodeText>{item.get('placeCode', '').slice(0, 3)}</CodeText>
+                                        </Item>
+                                    );
+                                })}
                             </LastSearchBox>
                         </LastSearchContainer>
                     ) : null}

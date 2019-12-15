@@ -25,19 +25,20 @@ export const destinationsReducer = (state: State = initialState, action: Destina
         }
         case SET_SEARCH_CRITERIA: {
             const { payload } = action;
-            if (!payload.departurePlace && !payload.destinationPlace) {
-                return state;
-            }
             const currentlySaved = state.get('lastSearches');
-            const filtered = currentlySaved.filter(
-                item =>
-                    item.getIn(['placeId']) !== payload.departurePlace.placeId &&
-                    item.getIn(['placeId']) !== payload.destinationPlace.placeId,
-            );
-            return state.set(
-                'lastSearches',
-                filtered.push(fromJS(payload.departurePlace)).push(fromJS(payload.destinationPlace)),
-            );
+
+            if (payload.departurePlace) {
+                const filtered = currentlySaved.filter(
+                    item => item && item.getIn && item.getIn(['placeId']) !== payload.departurePlace.placeId,
+                );
+                return state.set('lastSearches', filtered.push(fromJS(payload.departurePlace)));
+            } else if (payload.destinationPlace) {
+                const filtered = currentlySaved.filter(
+                    item => item && item.getIn && item.getIn(['placeId']) !== payload.destinationPlace.placeId,
+                );
+                return state.set('lastSearches', filtered.push(fromJS(payload.destinationPlace)));
+            }
+            return state;
         }
         default:
             return state;

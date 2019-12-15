@@ -21,8 +21,21 @@ export const SearchPlaceModalComponent = props => {
 
     const [focusedField, onFocus] = React.useState(props.navigation.getParam('focused'));
 
-    const onSubmit = () => {
-        props.setSearchCriteria({ departurePlace, destinationPlace });
+    const isDeparture = focusedField === 0;
+    const isDestination = focusedField === 1;
+
+    // const onSubmit = () => {
+    //     props.setSearchCriteria({ departurePlace, destinationPlace });
+    //     closeModal();
+    // };
+
+    const onSubmitDeparture = () => {
+        props.setSearchCriteria({ departurePlace });
+        closeModal();
+    };
+
+    const onSubmitDestination = () => {
+        props.setSearchCriteria({ destinationPlace });
         closeModal();
     };
 
@@ -43,6 +56,8 @@ export const SearchPlaceModalComponent = props => {
         onDestinationChange(value);
     };
 
+    console.log({ destinationPlace });
+
     return (
         <Container>
             <Header backIcon={generalIcons.CLOSE} backAction={closeModal} />
@@ -55,26 +70,31 @@ export const SearchPlaceModalComponent = props => {
                 onChange={onFocusTab}
                 roundTrip
             />
-            {focusedField === 0 && <DestinationBox value={departurePlace} onValueChange={handleDepartureChange} />}
-            {focusedField === 1 && <DestinationBox value={destinationPlace} onValueChange={handleDestinationChange} />}
+            {isDeparture ? <DestinationBox value={departurePlace} onValueChange={handleDepartureChange} /> : null}
+            {isDestination ? <DestinationBox value={destinationPlace} onValueChange={handleDestinationChange} /> : null}
 
             <ConfirmBox>
-                <Button
-                    message="Select this"
-                    onPress={onSubmit}
-                    isDisabled={
-                        (focusedField === 0 && !departurePlace.placeName) ||
-                        (focusedField === 1 && !destinationPlace.placeName)
-                    }
-                />
+                {isDeparture ? (
+                    <Button
+                        message="Select departure"
+                        onPress={onSubmitDeparture}
+                        isDisabled={!departurePlace.placeName}
+                    />
+                ) : (
+                    <Button
+                        message="Select destination"
+                        onPress={onSubmitDestination}
+                        isDisabled={!destinationPlace.placeName}
+                    />
+                )}
             </ConfirmBox>
         </Container>
     );
 };
 
 export const mapStateToProps = (state: any): StateProps => ({
-    departurePlace: {},
-    destinationPlace: {},
+    departurePlace: getDeparturePlace(state),
+    destinationPlace: getDestinationPlace(state),
 });
 
 const mapDispatchToProps = {
