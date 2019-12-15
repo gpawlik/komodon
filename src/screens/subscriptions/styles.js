@@ -2,7 +2,6 @@
 import styled from 'styled-components';
 
 import { TextRegular3 } from '~/components/text';
-import { selectors } from '~/theme/main';
 
 export const Container = styled.View``;
 
