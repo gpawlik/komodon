@@ -3,7 +3,6 @@ import * as React from 'react';
 
 import { Screen } from '~/components/screen';
 
-import { messages } from '~/domains/about/intl';
 import { generalIcons } from '~/constants/icons/general';
 import { SVGIcon } from '~/icons';
 
@@ -14,7 +13,7 @@ type Props = {};
 export class About extends React.PureComponent<Props> {
     render() {
         return (
-            <Screen title={messages.title} qaName="about" hasContentScroll>
+            <Screen title="About" qaName="about" hasContentScroll>
                 <HeaderBox>
                     <SVGIcon type={generalIcons.LOGO} size={120} />
                 </HeaderBox>

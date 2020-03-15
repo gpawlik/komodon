@@ -2,15 +2,12 @@
 import * as React from 'react';
 import { Animated, Easing } from 'react-native';
 import type { LayoutEvent } from 'react-native/Libraries/Types/CoreEventTypes';
-import type { $npm$ReactIntl$MessageDescriptor } from 'react-intl';
 import styled from 'styled-components';
 
 import { selectors } from '~/theme/main';
 import { OverlayModal } from '~/components/overlay-modal';
 import { Button } from '~/components/button';
 import { TextMedium3 } from '~/components/text';
-
-import { messages } from '~/i18n/intl';
 
 const ModalContentWrapper = styled.View`
     flex: 1;
@@ -36,7 +33,7 @@ type Props = {
     onSave?: () => void,
     onCancel?: () => void,
     children: React.Node,
-    title?: string | $npm$ReactIntl$MessageDescriptor,
+    title?: string | string,
     onClose: () => void,
 };
 
@@ -71,7 +68,7 @@ export class PickerModal extends React.PureComponent<Props, State> {
             {
                 modalContentHeight: height,
             },
-            this.animate
+            this.animate,
         );
     };
 
@@ -112,7 +109,7 @@ export class PickerModal extends React.PureComponent<Props, State> {
                     <ModalContent style={transform}>
                         {title ? <Title>{title}</Title> : null}
                         {children}
-                        <Button onPress={this.onSave} message={messages.save} />
+                        <Button onPress={this.onSave} message="Save" />
                     </ModalContent>
                 </ModalContentWrapper>
             </OverlayModal>

@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import { type $npm$ReactIntl$MessageDescriptor } from 'react-intl';
 
 import { PickerModal } from './modal';
 import { Picker } from './picker';
@@ -13,7 +12,7 @@ export type Props = {
     onValueChange: (string | number, number) => void,
     options: Array<OptionType>,
     isModalVisible: boolean,
-    title: string | $npm$ReactIntl$MessageDescriptor,
+    title: string | string,
     onClose: () => void,
 };
 

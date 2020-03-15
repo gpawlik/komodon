@@ -1,11 +1,10 @@
 // @flow
 import * as React from 'react';
-import type { $npm$ReactIntl$MessageDescriptor } from 'react-intl';
 
 import { Container, Title } from './styles';
 
 type Props = {|
-    title?: $npm$ReactIntl$MessageDescriptor,
+    title?: string,
     children?: React.Node,
 |};
 

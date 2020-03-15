@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import type { $npm$ReactIntl$MessageDescriptor } from 'react-intl';
 
 import { Header } from '~/components/header';
 
@@ -8,7 +7,7 @@ import { Container, Content, ScrollContent } from './styles';
 
 type Props = {|
     children: React.Node,
-    title: $npm$ReactIntl$MessageDescriptor,
+    title: string,
     backIcon?: string,
     hideHeader?: boolean,
     isFullWidth?: boolean,

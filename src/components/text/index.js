@@ -2,14 +2,11 @@
 import * as React from 'react';
 import * as R from 'ramda';
 import styled, { css } from 'styled-components';
-import { FormattedMessage, type $npm$ReactIntl$MessageDescriptor } from 'react-intl';
-
-import { isIntlDescriptor } from '~/utils/intl';
 import { selectors } from '~/theme/main';
 
 type Props = {|
-    message: $npm$ReactIntl$MessageDescriptor | string,
-    children: $npm$ReactIntl$MessageDescriptor | string,
+    message: string | string,
+    children: string | string,
     style: Object,
 |};
 
@@ -25,18 +22,6 @@ export const TextDefault = ({ message, children, style, ...rest }: Props) => {
             <TextBasic style={style} {...rest}>
                 {foo}
             </TextBasic>
-        );
-    }
-
-    if (isIntlDescriptor(foo)) {
-        return (
-            <FormattedMessage {...foo}>
-                {(m: string) => (
-                    <TextBasic style={style} {...rest}>
-                        {m}
-                    </TextBasic>
-                )}
-            </FormattedMessage>
         );
     }
 

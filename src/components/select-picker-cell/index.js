@@ -1,13 +1,12 @@
 // @flow
 import * as React from 'react';
 import * as R from 'ramda';
-import type { $npm$ReactIntl$MessageDescriptor } from 'react-intl';
 
 import { SelectionCell } from '~/components/cell';
 import { SelectPickerModal } from '~/components/select-picker-modal';
 
 type Props = {
-    title: $npm$ReactIntl$MessageDescriptor,
+    title: string,
     options: Array<{ value: string | number, label: string }>,
     onValueChange: (string | number) => void,
     defaultValue: string | number,
@@ -19,10 +18,7 @@ type State = {
 };
 
 const getLabelFromValue = (options, value) => {
-    return R.compose(
-        R.prop('label'),
-        R.find(R.propEq('value', value))
-    )(options);
+    return R.compose(R.prop('label'), R.find(R.propEq('value', value)))(options);
 };
 
 export class SelectPickerCell extends React.Component<Props, State> {

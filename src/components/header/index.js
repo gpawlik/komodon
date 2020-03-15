@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import type { $npm$ReactIntl$MessageDescriptor } from 'react-intl';
 
 import { generalIcons } from '~/constants/icons/general';
 import { SVGIcon } from '~/icons';
@@ -11,7 +10,7 @@ import { BackButton } from './back-button';
 import { Container, SideBox, IconContainer } from './styles';
 
 type Props = {|
-    title?: $npm$ReactIntl$MessageDescriptor,
+    title?: string,
     hasLogo?: boolean,
     backIcon?: string,
     secondaryIcon?: string,

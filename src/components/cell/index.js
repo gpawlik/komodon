@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import { type $npm$ReactIntl$MessageDescriptor } from 'react-intl';
 
 import { TextRegular2, TextMedium2, TextRegular3, TextMedium3 } from '~/components/text';
 import { Checkbox } from '~/components/checkbox';
@@ -9,8 +8,8 @@ import { RadioButton } from '~/components/radio-button';
 import { Container, RowContainer } from './styles';
 
 type TextProps = {
-    title: $npm$ReactIntl$MessageDescriptor | string,
-    description?: $npm$ReactIntl$MessageDescriptor | string,
+    title: string | string,
+    description?: string | string,
 };
 
 type CellProps = TextProps & {

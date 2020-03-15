@@ -1,18 +1,17 @@
 // @flow
 import * as routes from '~/constants/routes';
-import { messages } from './intl';
 
 export const MENU_WIDTH = 272;
 
 export const menuItems = [
     {
         id: 'user-profile',
-        message: messages.userProfile,
+        message: 'User Profile',
         route: routes.userInfo,
     },
     {
         id: 'about',
-        message: messages.about,
+        message: 'About',
         route: routes.about,
     },
 ];
