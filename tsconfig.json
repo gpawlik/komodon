@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+      "allowSyntheticDefaultImports": true,
+      "jsx": "react-native",
+      "lib": ["dom", "esnext"],
+      "moduleResolution": "node",
+      "types": ["jest", "node"],
+      "noEmit": true,
+      "skipLibCheck": true,
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "baseUrl": "./",
+        "paths": {
+          "~/*": ["./src/*"]
+        }, 
+    },
+    "exclude": [
+      "node_modules",
+      "node_modules/*",
+      "babel.config.js",
+      "metro.config.js",
+      "jest.config.js"
+    ]
+  }
+  
