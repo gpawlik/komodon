@@ -5,7 +5,7 @@ import { Container } from './styles';
 
 interface Props {
     text: string;
-    onPress: () => {};
+    onPress: () => void | Promise<any>;
     isDisabled?: boolean;
 }
 

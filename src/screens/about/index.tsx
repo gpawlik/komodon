@@ -12,7 +12,7 @@ interface Props {}
 export class About extends React.PureComponent<Props> {
     render() {
         return (
-            <Screen title="About" qaName="about" hasContentScroll>
+            <Screen title="About" hasContentScroll>
                 <HeaderBox>
                     <SVGIcon type={generalIcons.LOGO} size={120} />
                 </HeaderBox>

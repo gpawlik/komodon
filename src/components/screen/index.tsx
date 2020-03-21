@@ -11,7 +11,7 @@ interface Props {
     hideHeader?: boolean;
     isFullWidth?: boolean;
     hasContentScroll?: boolean;
-    backAction?: () => Promise<any>;
+    backAction?: () => Promise<any> | void;
 }
 
 export const Screen = ({ children, title, backIcon, backAction, hideHeader, isFullWidth, hasContentScroll }: Props) => {

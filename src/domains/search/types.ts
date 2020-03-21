@@ -1,6 +1,6 @@
 export interface CitySearch {
-    placeId: string;
-    placeName: string;
-    placeCode: string;
-    countryName: string;
+    placeId?: string;
+    placeName?: string;
+    placeCode?: string;
+    countryName?: string;
 }

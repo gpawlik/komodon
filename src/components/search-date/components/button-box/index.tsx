@@ -1,11 +1,11 @@
-// @flow
 import * as React from 'react';
 
 import { Container, Button, ButtonText } from './styles';
 
 interface Props {
-    text: string;
-    url: string;
+    onChange: (arg0: string) => void;
+    options: Array<{ id: string; text: string }>;
+    selected: string;
 }
 
 export class ButtonBox extends React.Component<Props> {

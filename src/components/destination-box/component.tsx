@@ -28,7 +28,7 @@ export class DestinationBoxComponent extends React.PureComponent<Props, State> {
         this.setState({ value });
     };
 
-    onSelect = (obj: Object) => {
+    onSelect = (obj: any) => {
         this.setState({ value: obj.placeName }, () => this.props.onValueChange(obj));
     };
 

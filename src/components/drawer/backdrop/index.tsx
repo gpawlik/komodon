@@ -7,7 +7,7 @@ import { Container } from './styles';
 
 interface Props {
     isVisible: boolean;
-    onHide: () => void;
+    onHide: () => boolean;
 }
 
 interface State {
@@ -49,7 +49,7 @@ class Backdrop extends React.Component<Props, State> {
     render() {
         const { isVisible, onHide } = this.props;
         const { opacity, isAnimating } = this.state;
-        const AnimatedContainer = Animated.createAnimatedComponent(Container);
+        const AnimatedContainer: any = Animated.createAnimatedComponent(Container);
 
         return isVisible || (!isVisible && isAnimating) ? (
             <TouchableWithoutFeedback onPress={onHide}>

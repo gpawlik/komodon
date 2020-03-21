@@ -1,15 +1,10 @@
-// @flow
 import * as React from 'react';
-import { Linking } from 'react-native';
-
-import { generalIcons } from '~/constants/icons/general';
-import { SVGIcon } from '~/icons';
 
 import { Container, Button, ButtonText } from './styles';
 
 interface Props {
-    text: string;
-    url: string;
+    onChange: (arg0: boolean) => void;
+    isRoundTrip: boolean;
 }
 
 export class RoundTripBox extends React.Component<Props> {

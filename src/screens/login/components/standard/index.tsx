@@ -9,7 +9,7 @@ import { Section, InputsContainer, Link, LinkText } from './styles';
 
 interface Props {
     isRegister?: boolean;
-    onForgot: () => void;
+    onForgot?: () => void;
     changeTab: () => void;
 }
 

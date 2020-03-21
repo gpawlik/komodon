@@ -9,7 +9,7 @@ interface Props {
     isModalOpen: boolean;
     children: React.ReactNode;
     onRequestClose?: () => void;
-    animationType?: 'slide' | 'fade' | 'none'; // none is default
+    animationType?: 'none' | 'slide' | 'fade'; // none is default
 }
 
 export const ModalContainer = styled.View`

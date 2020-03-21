@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import * as R from 'ramda';
 import { Image, Linking } from 'react-native';
@@ -13,8 +12,6 @@ import {
     DetailsBox,
     RouteBox,
     LogoBox,
-    // LogoPlaceholder,
-    // LogoText,
     FlightBox,
     FlightSegment,
     TimeText,
@@ -26,11 +23,11 @@ import {
     PriceText,
     InfoBox,
     AirlineText,
-    TagText,
 } from './styles';
 
 interface Props {
     price: number;
+    priceLevel: string;
     routes: Array<any>;
     deepLink: string;
 }

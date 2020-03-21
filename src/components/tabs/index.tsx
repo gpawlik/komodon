@@ -5,7 +5,12 @@ import { TabBar } from './components/tab-bar';
 
 import { Container, ChildHolder } from './styles';
 
-export class Tabs extends React.PureComponent {
+interface Props {
+    tabTitles: Array<string>;
+    currentTab: number;
+}
+
+export class Tabs extends React.PureComponent<Props> {
     scrollView = null;
 
     state = {
@@ -26,7 +31,7 @@ export class Tabs extends React.PureComponent {
 
     scrollTo = (index: number) => this.scrollView && this.scrollView.scrollTo({ x: index * this.state.width });
 
-    refScrollView = (scrollView: ?View) => {
+    refScrollView = (scrollView: any) => {
         this.scrollView = scrollView;
     };
 
@@ -35,6 +40,8 @@ export class Tabs extends React.PureComponent {
             {this.props.children[index]}
         </ChildHolder>
     );
+
+    onLayout = () => {};
 
     render() {
         const { children, tabTitles } = this.props;

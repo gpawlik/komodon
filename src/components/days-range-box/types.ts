@@ -1,5 +1,5 @@
 export interface Props {
-    onChange: () => {};
+    onChange: (arg0: { from: number; to: number }) => void;
 }
 
 export interface State {

@@ -24,15 +24,14 @@ import {
     CloseBox,
 } from './styles';
 
+interface Place {
+    placeCode: string;
+    placeName: string;
+}
+
 interface StateProps {
-    departure: {
-        placeCode: string;
-        placeName: string;
-    };
-    destination: {
-        placeCode: string;
-        placeName: string;
-    };
+    departure: Place;
+    destination: Place;
     departureText: string;
     returnText: string;
 }
@@ -48,14 +47,16 @@ type Props = StateProps & OwnProps;
 const hitSlop = { top: 15, bottom: 15, left: 15, right: 15 };
 
 export const SubscriptionContentComponent = ({
-    departure: { placeCode: departureCode = '', placeName: departureName = '' } = {},
-    destination: { placeCode: destinationCode = '', placeName: destinationName = '' } = {},
+    departure,
+    destination,
     departureText,
     returnText,
-    onPress,
     onClose,
     onSubmit,
 }: Props) => {
+    const { placeCode: departureCode = '', placeName: departureName = '' } = departure || {};
+    const { placeCode: destinationCode = '', placeName: destinationName = '' } = destination || {};
+
     // TODO: add place icon in between
     return (
         <Container>

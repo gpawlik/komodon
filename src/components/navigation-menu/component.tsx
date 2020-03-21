@@ -1,13 +1,10 @@
 import * as React from 'react';
 
-import * as routes from '~/constants/routes';
 import { Drawer } from '~/components/drawer';
 
 import { menuItems, MENU_WIDTH } from './constants';
 import { MenuItem } from './components/item';
 import { Props } from './types';
-
-//import { navigate } from '~/navigation';
 
 export class NavigationMenuComponent extends React.Component<Props> {
     onHide = () => this.props.toggleNavigation({ isVisible: false });

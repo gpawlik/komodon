@@ -8,6 +8,7 @@ import { IconContainer } from '../styles';
 interface Props {
     backIcon?: string;
     backAction?: () => Promise<any> | void;
+    navigation: any;
 }
 
 export class BackButtonComponent extends React.PureComponent<Props> {

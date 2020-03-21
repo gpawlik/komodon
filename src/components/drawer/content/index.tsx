@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Animated } from 'react-native';
-import AnimatedValue from 'react-native/Libraries/Animated/src/nodes/AnimatedValue';
 
 import animate from './animation';
 import { Container } from './styles';
@@ -16,10 +15,9 @@ interface State {
     isAnimating: boolean;
 }
 
-const AnimatedContainer = Animated.createAnimatedComponent(Container);
+const AnimatedContainer: any = Animated.createAnimatedComponent(Container);
 
 class DrawerContent extends React.Component<Props, State> {
-    animatedValue: AnimatedValue;
     animatedValue = new Animated.Value(-this.props.width);
 
     state = {
@@ -45,7 +43,6 @@ class DrawerContent extends React.Component<Props, State> {
                     transform: [{ translateX: animatedValue }],
                     width,
                 }}
-                testID="side-drawer"
             >
                 {children}
             </AnimatedContainer>

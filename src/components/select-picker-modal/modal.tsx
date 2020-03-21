@@ -47,6 +47,7 @@ export class PickerModal extends React.PureComponent<Props, State> {
     };
 
     animate(callback?: () => void) {
+        // @ts-ignore
         const currentAnimatedValue = this.animatedValue.__getValue();
 
         const toValue = currentAnimatedValue === 0 ? this.state.modalContentHeight : 0;
@@ -99,6 +100,7 @@ export class PickerModal extends React.PureComponent<Props, State> {
 
         const transform = {
             transform: [{ translateY: this.animatedValue }],
+            // @ts-ignore
             opacity: this.animatedValue.__getValue() || this.state.modalContentHeight ? 1 : 0,
         };
 

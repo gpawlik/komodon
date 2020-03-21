@@ -1,7 +1,13 @@
-// @flow
 import * as React from 'react';
 
 import { Container, ButtonBox, Text } from './styles';
+
+interface Props {
+    onChange: (arg0: number) => void;
+    tabItems: Array<string>;
+    selectedIndex: number;
+    width: number;
+}
 
 export class TabBar extends React.PureComponent<Props> {
     onChange = index => {

@@ -1,9 +1,18 @@
-// @flow
 import * as React from 'react';
 
 import { Container, Value, Label, Highlight } from './styles';
 
-interface Props {}
+interface Props {
+    label: string;
+    value: string;
+    valuePlaceholder: string;
+    mainValue?: string;
+    placeholder?: string;
+    isValid: boolean;
+    onPress: () => void;
+    alignRight?: boolean;
+    isLarge?: boolean;
+}
 
 export class ValueBox extends React.Component<Props> {
     render() {

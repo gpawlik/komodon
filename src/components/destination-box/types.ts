@@ -1,13 +1,24 @@
+import { List } from 'immutable';
+
 export interface StateProps {
-    destinations: Array<any>;
-    lastSearches: Array<any>;
+    destinations: List<any>;
+    lastSearches: List<any>;
 }
 
 export interface DispatchProps {
-    getDestinations: () => {};
+    getDestinations: (arg0: { destination: string }) => {};
 }
 
-export type Props = StateProps & DispatchProps;
+interface Value {
+    placeName: string;
+}
+
+interface OwnProps {
+    value: Value;
+    onValueChange: (arg0: any) => void;
+}
+
+export type Props = StateProps & DispatchProps & OwnProps;
 
 export interface State {
     value: string;

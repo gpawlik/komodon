@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 
 import { TextRegular2 } from '~/components/text';

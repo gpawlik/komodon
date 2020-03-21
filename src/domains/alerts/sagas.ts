@@ -7,7 +7,8 @@ import { getAlertId } from './selectors';
 import { setAlert, resetAlerts } from './actions';
 import { alertTypes, alertCategories } from './constants';
 
-export function* updateNetworkAlert({ payload: { type } = {} }: ConnectionDataPayload) {
+export function* updateNetworkAlert({ payload }: ConnectionDataPayload) {
+    const { type } = payload || {};
     const currentAlertId = yield select(getAlertId);
 
     if (currentAlertId === alertTypes.DEVICE_OFFLINE && type !== 'none') {

@@ -5,7 +5,14 @@ import { getIconComponent } from './map';
 
 import { Props } from './types';
 
-export const SVGIcon = ({ type, colour = selectors.slate, stroke, size = 24, width, height }: Props): React.Node => {
+export const SVGIcon = ({
+    type,
+    colour = selectors.slate,
+    stroke,
+    size = 24,
+    width,
+    height,
+}: Props): React.ReactElement => {
     const iconProps = {
         colour,
         fill: colour,

@@ -4,7 +4,27 @@ import RangeSlider from 'rn-range-slider';
 
 import { Container, ValueBox, ValueText } from './styles';
 
-export class SliderBox extends React.PureComponent {
+interface Props {
+    min?: number;
+    max?: number;
+    step?: number;
+    initialLowLevel?: number;
+    initialHighLevel?: number;
+    textFormat?: string;
+    thumbColor?: string;
+    thumbRadius?: number;
+    thumbBorderWidth?: number;
+    thumbBorderColor?: string;
+    formatter: any;
+    onValueChange: any;
+}
+
+interface State {
+    from: number;
+    to: number;
+}
+
+export class SliderBox extends React.PureComponent<Props, State> {
     state = {
         from: this.props.initialLowLevel || 5,
         to: this.props.initialHighLevel || 10,

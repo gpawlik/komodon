@@ -1,5 +1,6 @@
 export interface StateProps {
     subscriptions: Array<any>;
+    isLoading: boolean;
 }
 
 interface OwnProps {

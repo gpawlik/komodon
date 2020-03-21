@@ -1,4 +1,3 @@
-// @flow
 import * as R from 'ramda';
 import styled from 'styled-components';
 

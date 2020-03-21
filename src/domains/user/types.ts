@@ -5,5 +5,7 @@ export interface Action {
 }
 
 export interface ChangeActivePayload {
-    value: boolean;
+    payload: {
+        value: boolean;
+    };
 }

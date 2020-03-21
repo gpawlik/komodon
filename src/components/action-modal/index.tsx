@@ -6,7 +6,7 @@ import { Container, Box } from './styles';
 
 interface Props {
     children: React.ReactNode;
-    animationType?: string;
+    animationType?: 'none' | 'slide' | 'fade';
     isModalOpen: boolean;
 }
 

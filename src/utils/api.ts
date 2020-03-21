@@ -5,7 +5,7 @@ const bodyFromResponse = function*(result) {
     return body.length ? JSON.parse(body) : {};
 };
 
-function* handleResult(result: string, parseJson: boolean): Generator<*, *, *> {
+function* handleResult(result: string, parseJson: boolean) {
     let body, error;
 
     if (parseJson) {

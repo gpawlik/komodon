@@ -10,7 +10,7 @@ export const initialState: State = ImmutableMap({
     lastSearches: ImmutableList(),
 });
 
-export const destinationsReducer = (state: State = initialState, action: DestinationsAction) => {
+export const destinationsReducer = (state: State = initialState, action) => {
     switch (action.type) {
         case GET_DESTINATIONS_SUCCESS: {
             const { payload } = action;

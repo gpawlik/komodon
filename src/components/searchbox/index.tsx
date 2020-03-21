@@ -69,7 +69,7 @@ export const SearchboxComponent = props => {
                 />
 
                 <SwitchButton onPress={handlePlaceSwitch}>
-                    <SVGIcon type={generalIcons.SWAP} color="#eee" />
+                    <SVGIcon type={generalIcons.SWAP} colour="#eee" />
                 </SwitchButton>
 
                 <ValueBox
@@ -125,7 +125,7 @@ export const SearchboxComponent = props => {
     );
 };
 
-export const mapStateToProps = (state: any): StateProps => ({
+export const mapStateToProps = (state: any) => ({
     departurePlace: getDeparturePlace(state),
     destinationPlace: getDestinationPlace(state),
     departureDates: getDepartureDates(state),

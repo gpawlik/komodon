@@ -5,7 +5,7 @@ export interface Route {
     returnIata: string;
     duration: string;
     numStops: number;
-    stops: Array<number>;
+    stops: Array<string>;
     airlines: Array<string>;
 }
 

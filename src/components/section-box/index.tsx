@@ -2,17 +2,22 @@ import * as React from 'react';
 
 import { Container, ButtonBox, Label, Text } from './styles';
 
-export class SectionBox extends React.PureComponent<Props> {
-    // state = {
-    //     selectedIndex: this.props.isSelected,
-    // };
+interface Props {
+    label1: string;
+    text1: string;
+    label2: string;
+    text2: string;
+    selectedIndex: number;
+    roundTrip: boolean;
+    onChange: (arg0: string) => void;
+}
 
+export class SectionBox extends React.PureComponent<Props> {
     onChange = index => {
         this.props.onChange(index);
     };
 
     render() {
-        console.log({ props: this.props });
         const { label1, text1, label2, text2, selectedIndex, roundTrip } = this.props;
 
         return (

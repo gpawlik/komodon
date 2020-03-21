@@ -45,7 +45,7 @@ import { getDestinationsSuccess, getDestinationsError } from './actions';
 //     },
 // ];
 
-export function* searchDestinations({ payload: { destination = '' } = {} }) {
+export function* searchDestinations({ payload: { destination = '' } = {} }: any) {
     if (destination.length < 2) {
         yield put(getDestinationsError());
         return;

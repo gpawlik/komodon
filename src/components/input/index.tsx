@@ -7,7 +7,16 @@ import { StyledInput, Container, InputContainer, ButtonContainer, Label, ErrorLa
 
 interface Props {
     value: string;
-    onValueChange: (arg0: boolean) => void;
+    label?: string;
+    autoCompleteType?: string;
+    textContentType?: string;
+    keyboardType?: string;
+    error?: string;
+    hasError?: boolean;
+    secureTextEntry?: boolean;
+    showReset?: boolean;
+    onReset?: () => void;
+    onValueChange: (arg0: string) => void;
 }
 
 export class Input extends React.PureComponent<Props> {

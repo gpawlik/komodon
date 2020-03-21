@@ -1,4 +1,3 @@
-// @flow
 import styled from 'styled-components';
 
 import { TextMedium2, TextRegular2 } from '~/components/text';

@@ -3,13 +3,15 @@ import { CitySearch } from '~/domains/search/types';
 export interface StateProps {
     departurePlace: CitySearch;
     destinationPlace: CitySearch;
-    filters: Array<any>;
+    filters: any;
 }
 
 export interface DispatchProps {
-    setSearchCriteria: () => void;
+    setSearchCriteria: (arg0: any) => void;
 }
 
-interface OwnProps {}
+interface OwnProps {
+    navigation: any;
+}
 
 export type Props = StateProps & DispatchProps & OwnProps;

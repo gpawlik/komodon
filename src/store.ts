@@ -21,7 +21,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const debug = process.env['NO_DEBUG'] !== '1';
 // See https://github.com/jhen0409/react-native-debugger/issues/29#issuecomment-262941722
-const compose = (debug && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || reduxCompose;
+const compose = (debug && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || reduxCompose;
 
 const store = createStore(persistedReducer, compose(applyMiddleware(sagaMiddleware)));
 const persistor = persistStore(store);

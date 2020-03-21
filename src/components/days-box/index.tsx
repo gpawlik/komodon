@@ -27,7 +27,7 @@ export class DaysBox extends React.PureComponent<Props, State> {
         this.props.onValueChange(indexes);
     };
 
-    onChange = (value: number) => {
+    onChange = (value: string) => {
         const { selected } = this.state;
         const newSelected = { ...selected, [value]: !selected[value] };
 
@@ -40,7 +40,7 @@ export class DaysBox extends React.PureComponent<Props, State> {
         );
     };
 
-    onChangeSome = (values: Array<number>) => {
+    onChangeSome = (values: Array<string>) => {
         this.setState(
             {
                 selectedAll: false,

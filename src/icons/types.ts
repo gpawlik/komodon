@@ -3,6 +3,8 @@ export interface Props {
     stroke?: string;
     size?: number;
     type: string;
+    width?: number;
+    height?: number;
 }
 
 export interface OuterProps {

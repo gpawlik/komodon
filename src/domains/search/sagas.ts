@@ -8,7 +8,7 @@ import { receiveResults } from '~/domains/results/actions';
 import { result } from '~/domains/results/mock';
 import { SEARCH_FLIGHTS } from './constants';
 
-export function* searchFlights({ payload }) {
+export function* searchFlights({ payload }: any) {
     const { departureText, returnText, departurePlace = {}, destinationPlace = {}, ...rest } = payload;
     const formatted = {
         ...rest,

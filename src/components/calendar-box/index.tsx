@@ -4,10 +4,16 @@ import { CalendarDaySelector } from './calendar';
 import { convertMarkedToRange } from './utils';
 import { Container } from './styles';
 
+interface Value {
+    from: string;
+    to: string;
+}
+
 interface Props {
-    value: string;
-    minDate: string;
-    maxDate: string;
+    minDate?: string;
+    maxDate?: string;
+    onValueChange: (arg0: Value) => void;
+    value: Value;
 }
 
 const timezone = 'Europe/London';

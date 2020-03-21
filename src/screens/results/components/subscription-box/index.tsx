@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
 
@@ -24,11 +23,9 @@ interface OwnProps {
 
 type Props = StateProps & OwnProps;
 
-export const SubscriptionBoxComponent = ({
-    departure: { placeCode: departureCode = '' } = {},
-    destination: { placeCode: destinationCode = '' } = {},
-    onPress,
-}: Props) => {
+export const SubscriptionBoxComponent = ({ departure, destination, onPress }: Props) => {
+    const { placeCode: departureCode = '' } = departure || {};
+    const { placeCode: destinationCode = '' } = destination || {};
     return (
         <Container onPress={onPress}>
             <IconBox>

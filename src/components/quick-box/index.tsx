@@ -2,7 +2,13 @@ import * as React from 'react';
 
 import { Container, NameText, DescriptionText } from './styles';
 
-export class QuickBox extends React.PureComponent {
+interface Props {
+    onPress: () => void;
+    text: string;
+    description: string;
+}
+
+export class QuickBox extends React.PureComponent<Props> {
     render() {
         const { onPress, text, description } = this.props;
 

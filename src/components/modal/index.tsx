@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { navigate } from '~/navigation';
 import { Screen } from '~/components/screen';
 import { generalIcons } from '~/constants/icons/general';
 
@@ -11,7 +10,7 @@ interface Props {
 }
 
 export class Modal extends React.PureComponent<Props> {
-    handleBack = () => navigate.dismissModal();
+    handleBack = () => {};
 
     render() {
         const { children, title, isFullWidth } = this.props;

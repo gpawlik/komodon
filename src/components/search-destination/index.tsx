@@ -94,7 +94,7 @@ export const SearchPlaceModalComponent = props => {
     );
 };
 
-export const mapStateToProps = (state: any): StateProps => ({
+export const mapStateToProps = (state: any) => ({
     departurePlace: getDeparturePlace(state),
     destinationPlace: getDestinationPlace(state),
 });

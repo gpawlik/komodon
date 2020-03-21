@@ -12,7 +12,7 @@ interface StateProps {
 
 interface OwnProps {
     value: number;
-    onPress: () => void;
+    onPress: (arg0: number) => void;
 }
 
 type Props = StateProps & OwnProps;

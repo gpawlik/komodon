@@ -5,20 +5,30 @@ import { CalendarList } from 'react-native-calendars';
 
 import { convertRangeToMarked } from '../utils';
 
+interface Value {
+    from: string;
+    to: string;
+}
+
 interface Props {
-    calendar: Array<string>;
-    currentDay: Moment;
-    onChangeCurrentDay: DayChange;
+    calendar?: Array<string>;
+    currentDay?: Moment;
+    onChange: (arg0: Value) => void;
     onClickInactiveDay?: () => void;
-    dayLimit: number;
+    dayLimit?: number;
     selectableDates?: Array<string>;
     timezone: string;
-    closeCalendar: () => void;
+    closeCalendar?: () => void;
+    minDate: string;
+    maxDate: string;
+    value: Value;
 }
 
 interface State {
-    month: number;
-    current: string;
+    markedDates: any;
+    hasFirstClick: boolean;
+    lastMarkedDate: string;
+    width: number;
 }
 
 const configDateFormat = 'YYYY-MM-DD';

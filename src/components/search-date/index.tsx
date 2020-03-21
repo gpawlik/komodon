@@ -75,7 +75,7 @@ export const SearchDateModalComponent = props => {
         onReturnModify(true);
     };
 
-    const handleReturnDaysNumberChange = value => {
+    const handleReturnDaysNumberChange = (value: any) => {
         const name = getDescriptiveName({ type: 'RET_TIME_RANGE', value });
         onRetDescriptiveName(name);
         onReturnDaysNumberChange(value);
@@ -208,7 +208,7 @@ export const SearchDateModalComponent = props => {
     );
 };
 
-export const mapStateToProps = (state: any): StateProps => ({
+export const mapStateToProps = (state: any) => ({
     departureDates: getDepartureDates(state),
     returnDates: getReturnDates(state),
     departureDaysOfWeek: getDepartureDaysOfWeek(state),
