@@ -1,7 +1,9 @@
 import * as React from 'react';
 
 import { Input } from '~/components/input';
+import { QuickBox } from '~/components/quick-box';
 
+import { searchOptions } from '~/domains/destinations/constants';
 import {
     Container,
     DestinationContainer,
@@ -15,6 +17,7 @@ import {
     LastSearchContainer,
     Title,
     Disclaimer,
+    QuickBoxContainer,
 } from './styles';
 import { Props, State } from './types';
 
@@ -35,7 +38,7 @@ export class DestinationBoxComponent extends React.PureComponent<Props, State> {
     onReset = () => this.setState({ value: '' });
 
     render() {
-        const { destinations, lastSearches } = this.props;
+        const { destinations, lastSearches, isDestination } = this.props;
         const { value } = this.state;
 
         return (
@@ -110,6 +113,23 @@ export class DestinationBoxComponent extends React.PureComponent<Props, State> {
 
                     {!destinations.size && !lastSearches.size ? (
                         <Disclaimer>Use the search box to find the airport</Disclaimer>
+                    ) : null}
+
+                    {!destinations.size && isDestination ? (
+                        <QuickBoxContainer>
+                            <QuickBox
+                                text="Can't decide where?"
+                                description="Click here to search Anywhere"
+                                onPress={() =>
+                                    this.onSelect({
+                                        placeId: searchOptions.EVERYWHERE,
+                                        placeName: searchOptions.EVERYWHERE,
+                                        placeCode: searchOptions.EVERYWHERE_ID,
+                                        countryName: '',
+                                    })
+                                }
+                            />
+                        </QuickBoxContainer>
                     ) : null}
                 </Container>
             </React.Fragment>

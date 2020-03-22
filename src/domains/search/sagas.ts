@@ -1,11 +1,11 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-//import { handleApi } from '~/utils/api';
+import { handleApi } from '~/utils/api';
 import { filterEmpty } from '~/utils';
 
-//import * as api from './api';
+import * as api from './api';
 import { receiveResults } from '~/domains/results/actions';
-import { result } from '~/domains/results/mock';
+//import { result } from '~/domains/results/mock';
 import { SEARCH_FLIGHTS } from './constants';
 
 export function* searchFlights({ payload }: any) {
@@ -16,7 +16,7 @@ export function* searchFlights({ payload }: any) {
         destinationPlace: destinationPlace.placeId,
     };
     const filtered = filterEmpty(formatted);
-    //const [result = {}] = yield call(handleApi(api.getFlightResults), filtered);
+    const [result = {}] = yield call(handleApi(api.getFlightResults), filtered);
 
     yield put(receiveResults(result));
 }

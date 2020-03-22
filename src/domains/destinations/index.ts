@@ -1,6 +1,6 @@
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
-import { GET_DESTINATIONS_SUCCESS, GET_DESTINATIONS_ERROR, RESET_DESTINATIONS } from './constants';
+import { GET_DESTINATIONS_SUCCESS, GET_DESTINATIONS_ERROR, RESET_DESTINATIONS, searchOptions } from './constants';
 import { SET_SEARCH_CRITERIA } from '~/domains/search/constants';
 
 type State = ImmutableMap<string, any>;
@@ -24,6 +24,15 @@ export const destinationsReducer = (state: State = initialState, action) => {
         case SET_SEARCH_CRITERIA: {
             const { payload } = action;
             const currentlySaved = state.get('lastSearches');
+
+            // Don't include "Everywhere" option in "Last searches"
+            if (
+                [payload?.departurePlace?.placeId, payload?.destinationPlace?.placeId].includes(
+                    searchOptions.EVERYWHERE,
+                )
+            ) {
+                return state;
+            }
 
             if (payload.departurePlace) {
                 const filtered = currentlySaved.filter(
