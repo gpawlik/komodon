@@ -26,17 +26,17 @@ export const SearchboxComponent = props => {
     const [hasAttemptedSubmit, onAttemptSubmit] = React.useState(false);
 
     const onSubmit = () => {
-        // const payload = {
-        //     roundTrip,
-        //     ...props.criteria,
-        // };
+        const payload = {
+            roundTrip,
+            ...props.criteria,
+        };
 
-        //props.searchFlights(payload);
         onAttemptSubmit(true);
         const isValid = Object.values(props.validatedCriteria).findIndex(item => item === false) < 0;
         console.log({ hm: Object.values(props.validatedCriteria) });
         if (isValid) {
-            props.navigate('Results');
+            //props.navigate('Results');
+            props.searchFlights(payload);
         }
     };
 

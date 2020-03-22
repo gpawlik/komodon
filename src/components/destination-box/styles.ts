@@ -74,3 +74,7 @@ export const ConfirmBox = styled.View`
     left: 0;
     right: 0;
 `;
+
+export const QuickBoxContainer = styled.View`
+    padding: 12px 20px;
+`;

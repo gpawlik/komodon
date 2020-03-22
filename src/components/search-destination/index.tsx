@@ -58,8 +58,6 @@ export const SearchPlaceModalComponent = props => {
         onDestinationChange(value);
     };
 
-    console.log({ destinationPlace });
-
     return (
         <Container>
             <Header backIcon={generalIcons.CLOSE} backAction={closeModal} />
@@ -73,7 +71,9 @@ export const SearchPlaceModalComponent = props => {
                 roundTrip
             />
             {isDeparture ? <DestinationBox value={departurePlace} onValueChange={handleDepartureChange} /> : null}
-            {isDestination ? <DestinationBox value={destinationPlace} onValueChange={handleDestinationChange} /> : null}
+            {isDestination ? (
+                <DestinationBox value={destinationPlace} onValueChange={handleDestinationChange} isDestination />
+            ) : null}
 
             <ConfirmBox>
                 {isDeparture ? (
