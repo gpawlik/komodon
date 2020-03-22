@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { searchOptions } from '~/domains/destinations/constants';
 
 export const getState = state => state.search || {};
 
@@ -30,4 +31,9 @@ export const getValidatedCriteria = createSelector(
         departureDate: !!departureText,
         returnDate: !!returnText,
     }),
+);
+
+export const getIsFlexibleSearch = createSelector(
+    [getDestinationPlace],
+    destination => destination.placeId === searchOptions.EVERYWHERE || false,
 );

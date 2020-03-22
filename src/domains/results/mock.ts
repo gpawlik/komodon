@@ -450,3 +450,77 @@ export const result = {
         },
     ],
 };
+
+export const destinationResult = {
+    currency: 'EUR',
+    departure: 'Barcelona',
+    destination: 'Everywhere',
+    destinationResults: [
+        {
+            price: 50,
+            destination: {
+                placeId: 'BUD',
+                placeName: 'Budapest',
+                countryId: 'HU',
+                countryName: 'Hungary',
+                subPlaces: [],
+            },
+            stops: 0,
+        },
+        {
+            price: 71,
+            destination: {
+                placeId: 'BRU',
+                placeName: 'Brussels',
+                countryId: 'BE',
+                countryName: 'Belgium',
+                subPlaces: [],
+            },
+            stops: 2,
+        },
+        {
+            price: 82,
+            destination: {
+                placeId: 'BER',
+                placeName: 'Berlin',
+                countryId: 'DE',
+                countryName: 'Germany',
+                subPlaces: [],
+            },
+            stops: 2,
+        },
+        {
+            price: 87,
+            destination: {
+                placeId: 'LON',
+                placeName: 'London',
+                countryId: 'GB',
+                countryName: 'United Kingdom',
+                subPlaces: [],
+            },
+            stops: 2,
+        },
+        {
+            price: 94,
+            destination: {
+                placeId: 'FRA',
+                placeName: 'Frankfurt',
+                countryId: 'DE',
+                countryName: 'Germany',
+                subPlaces: [],
+            },
+            stops: 2,
+        },
+        {
+            price: 97,
+            destination: {
+                placeId: 'AGP',
+                placeName: 'Málaga',
+                countryId: 'ES',
+                countryName: 'Spain',
+                subPlaces: [],
+            },
+            stops: 0,
+        },
+    ],
+};

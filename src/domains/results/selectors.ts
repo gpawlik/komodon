@@ -9,6 +9,13 @@ export const getIsLoading = createSelector([getState], state => !!state.isLoadin
 
 export const getItineraryResults = createSelector([getResults], results => results.itineraryResults || []);
 
+export const getResultsFlexible = createSelector([getResults], results => results.destinationResults || []);
+
+export const getHasResults = createSelector(
+    [getItineraryResults, getResultsFlexible],
+    (itineraryResults, destinationResults) => !!itineraryResults.length || !!destinationResults.length,
+);
+
 export const getResultsById = createSelector([getItineraryResults], results => {
     const map = results.reduce((acc, item) => {
         acc[item.flightPrices.cheapest.id] = {

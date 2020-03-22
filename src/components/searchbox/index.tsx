@@ -35,7 +35,7 @@ export const SearchboxComponent = props => {
         const isValid = Object.values(props.validatedCriteria).findIndex(item => item === false) < 0;
         console.log({ hm: Object.values(props.validatedCriteria) });
         if (isValid) {
-            //props.navigate('Results');
+            props.navigate('Results');
             props.searchFlights(payload);
         }
     };

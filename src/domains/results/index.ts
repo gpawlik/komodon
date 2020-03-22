@@ -1,6 +1,5 @@
 import { SEARCH_FLIGHTS } from '~/domains/search/constants';
 import { RECEIVE_RESULTS } from './constants';
-import { result } from '~/domains/results/mock';
 
 import { Results } from './types';
 
@@ -10,14 +9,12 @@ interface ResultsState {
 }
 
 export const initialState: ResultsState = {
-    // results: {
-    //     id: 'f24bf4c1-cf38-4607-a108-5f83edf48cfa',
-    //     currency: 'EUR',
-    //     departure: 'Barcelona',
-    //     destination: 'Madrid',
-    //     itineraryResults: [],
-    // },
-    results: result,
+    results: {
+        id: '',
+        currency: 'EUR',
+        departure: '',
+        destination: '',
+    },
     isLoading: false,
 };
 
