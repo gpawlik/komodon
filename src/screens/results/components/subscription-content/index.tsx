@@ -6,6 +6,7 @@ import { getDeparturePlace, getDestinationPlace, getDepartureText, getReturnText
 import { SVGIcon } from '~/icons';
 import { generalIcons } from '~/constants/icons/general';
 import { Button } from '~/components/button';
+import { ReduxState } from '~/types';
 
 import {
     Container,
@@ -100,7 +101,7 @@ export const SubscriptionContentComponent = ({
     );
 };
 
-export const mapStateToProps = (state: any): StateProps => ({
+export const mapStateToProps = (state: ReduxState): StateProps => ({
     departure: getDeparturePlace(state),
     destination: getDestinationPlace(state),
     departureText: getDepartureText(state),

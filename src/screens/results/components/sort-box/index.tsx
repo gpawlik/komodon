@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { getPriceOfCheapest, getPriceOfFastest } from '~/domains/results/selectors';
+import { ReduxState } from '~/types';
 
 import { Container, ButtonBox, TitleText, PriceText } from './styles';
 
@@ -34,7 +35,7 @@ export const SortBoxComponent = ({ value, onPress, priceOfCheapest, priceOfFaste
     );
 };
 
-export const mapStateToProps = (state: any): StateProps => ({
+export const mapStateToProps = (state: ReduxState): StateProps => ({
     priceOfCheapest: getPriceOfCheapest(state),
     priceOfFastest: getPriceOfFastest(state),
 });

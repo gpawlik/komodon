@@ -20,6 +20,7 @@ import { Button } from '~/components/button';
 import { CalendarBox } from '~/components/calendar-box';
 import { DaysBox } from '~/components/days-box';
 import { DaysRangeBox } from '~/components/days-range-box';
+import { ReduxState } from '~/types';
 
 import { ButtonBox } from './components/button-box';
 import { getDescriptiveName } from './utils';
@@ -208,7 +209,7 @@ export const SearchDateModalComponent = props => {
     );
 };
 
-export const mapStateToProps = (state: any) => ({
+export const mapStateToProps = (state: ReduxState) => ({
     departureDates: getDepartureDates(state),
     returnDates: getReturnDates(state),
     departureDaysOfWeek: getDepartureDaysOfWeek(state),

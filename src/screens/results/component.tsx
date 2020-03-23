@@ -58,7 +58,7 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
                                 <SubscriptionContent onClose={this.closeModal} onSubmit={this.submitSubscription} />
                             </ActionModal>
 
-                            {isSubscriptionVisible ? <SubscriptionBox onPress={this.openModal} /> : null}
+                            {isSubscriptionVisible && !isFlexible ? <SubscriptionBox onPress={this.openModal} /> : null}
 
                             {!isFlexible ? <ResultsMain type={type} /> : <ResultsFlexible />}
                         </Content>
