@@ -25,7 +25,7 @@ const compose = (debug && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) 
 
 const store = createStore(persistedReducer, compose(applyMiddleware(sagaMiddleware)));
 const persistor = persistStore(store);
-//persistor.purge();
+persistor.purge();
 
 // Should it be here??
 sagaMiddleware.run(sagas);

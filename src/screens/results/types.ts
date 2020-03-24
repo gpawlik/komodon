@@ -1,7 +1,7 @@
 export interface StateProps {
-    resultsByPrice: Array<any>;
-    resultsByDuration: Array<any>;
     isLoading: boolean;
+    isFlexible: boolean;
+    hasResults: boolean;
 }
 
 interface OwnProps {

@@ -2,11 +2,12 @@ import { connect } from 'react-redux';
 
 import { toggleNavigation } from '~/domains/ui/actions';
 import { getIsNavigationVisible } from '~/domains/ui/selectors';
+import { ReduxState } from '~/types';
 
 import { NavigationMenuComponent } from './component';
 import { StateProps, DispatchProps } from './types';
 
-const mapStateToProps = (state: any): StateProps => ({
+const mapStateToProps = (state: ReduxState): StateProps => ({
     isNavigationVisible: getIsNavigationVisible(state),
 });
 

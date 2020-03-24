@@ -1,9 +1,10 @@
-import { call } from 'redux-saga/effects';
-import { searchOptions } from '~/domains/destinations/constants';
+import { call, select } from 'redux-saga/effects';
+
+import { getIsFlexibleSearch } from './selectors';
 
 export function* getFlightResults(payload) {
-    console.log({ payload });
-    const type = payload.destinationPlace === searchOptions.EVERYWHERE_ID ? '/flexible' : '';
+    const isFlexible = yield select(getIsFlexibleSearch);
+    const type = isFlexible ? '/flexible' : '';
 
     return yield call(fetch, `https://dqd3py3vkf.execute-api.eu-west-1.amazonaws.com/v3/flights${type}`, {
         method: 'PUT',

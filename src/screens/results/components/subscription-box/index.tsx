@@ -5,6 +5,7 @@ import { getDeparturePlace, getDestinationPlace } from '~/domains/search/selecto
 
 import { SVGIcon } from '~/icons';
 import { generalIcons } from '~/constants/icons/general';
+import { ReduxState } from '~/types';
 
 import { Container, IconBox, TextBox, Text } from './styles';
 
@@ -38,7 +39,7 @@ export const SubscriptionBoxComponent = ({ departure, destination, onPress }: Pr
     );
 };
 
-export const mapStateToProps = (state: any): StateProps => ({
+export const mapStateToProps = (state: ReduxState): StateProps => ({
     departure: getDeparturePlace(state),
     destination: getDestinationPlace(state),
 });

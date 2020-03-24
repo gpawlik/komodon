@@ -12,6 +12,7 @@ import {
     getValidatedCriteria,
 } from '~/domains/search/selectors';
 import { searchFlights, setSearchCriteria } from '~/domains/search/actions';
+import { ReduxState } from '~/types';
 
 import { SVGIcon } from '~/icons';
 import { generalIcons } from '~/constants/icons/general';
@@ -33,9 +34,9 @@ export const SearchboxComponent = props => {
 
         onAttemptSubmit(true);
         const isValid = Object.values(props.validatedCriteria).findIndex(item => item === false) < 0;
-        console.log({ hm: Object.values(props.validatedCriteria) });
+
         if (isValid) {
-            //props.navigate('Results');
+            props.navigate('Results');
             props.searchFlights(payload);
         }
     };
@@ -125,7 +126,7 @@ export const SearchboxComponent = props => {
     );
 };
 
-export const mapStateToProps = (state: any) => ({
+export const mapStateToProps = (state: ReduxState) => ({
     departurePlace: getDeparturePlace(state),
     destinationPlace: getDestinationPlace(state),
     departureDates: getDepartureDates(state),

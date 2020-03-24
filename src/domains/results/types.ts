@@ -35,10 +35,23 @@ export interface ItineraryResult {
     };
 }
 
+export interface DestinationResult {
+    price: number;
+    destination: {
+        placeId: string;
+        placeName: string;
+        countryId: string;
+        countryName: string;
+        subPlaces: Array<string>;
+    };
+    stops: number;
+}
+
 export interface Results {
     id: string;
     currency: string;
     departure: string;
     destination: string;
-    itineraryResults: Array<ItineraryResult>;
+    itineraryResults?: Array<ItineraryResult>;
+    destinationResults?: Array<DestinationResult>;
 }

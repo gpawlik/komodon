@@ -6,8 +6,8 @@ import { LoadingScreen } from '~/components/loading-screen';
 import { ActionModal } from '~/components/action-modal';
 import { ConfirmBox } from '~/components/confirm-box';
 
-import { SortBox } from './components/sort-box';
-import { ResultBox } from './components/result-box';
+import { ResultsMain } from './components/results-main';
+import { ResultsFlexible } from './components/results-flexible';
 import { SubscriptionBox } from './components/subscription-box';
 import { SubscriptionContent } from './components/subscription-content';
 import {
@@ -41,10 +41,8 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
     goBack = () => this.props.navigation.goBack();
 
     render() {
-        const { resultsByPrice, resultsByDuration, isLoading } = this.props;
+        const { isLoading, isFlexible, hasResults } = this.props;
         const { type, isModalOpen, isSubscriptionVisible } = this.state;
-        const list = type === 0 ? resultsByPrice : resultsByDuration;
-        const hasResults = !!resultsByPrice.length;
 
         if (isLoading) {
             return <LoadingScreen />;
@@ -60,24 +58,22 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
                                 <SubscriptionContent onClose={this.closeModal} onSubmit={this.submitSubscription} />
                             </ActionModal>
 
-                            {isSubscriptionVisible ? <SubscriptionBox onPress={this.openModal} /> : null}
+                            {isSubscriptionVisible && !isFlexible ? <SubscriptionBox onPress={this.openModal} /> : null}
 
-                            <SortBox onPress={this.handleType} value={type} />
-
-                            {list.map(({ id, ...rest }) => {
-                                return <ResultBox key={id} {...rest} />;
-                            })}
+                            {!isFlexible ? <ResultsMain type={type} /> : <ResultsFlexible />}
                         </Content>
 
-                        <FiltersBox>
-                            <FiltersButton
-                                onPress={() => {
-                                    this.props.navigation.navigate('FiltersModal');
-                                }}
-                            >
-                                <FiltersText>Filters</FiltersText>
-                            </FiltersButton>
-                        </FiltersBox>
+                        {!isFlexible ? (
+                            <FiltersBox>
+                                <FiltersButton
+                                    onPress={() => {
+                                        this.props.navigation.navigate('FiltersModal');
+                                    }}
+                                >
+                                    <FiltersText>Filters</FiltersText>
+                                </FiltersButton>
+                            </FiltersBox>
+                        ) : null}
                     </React.Fragment>
                 ) : (
                     <EmptyContainer>
