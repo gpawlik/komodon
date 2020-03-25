@@ -9,9 +9,9 @@ import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { SectionBox } from '~/components/section-box';
 import { Button } from '~/components/button';
-import { DestinationBox } from '~/components/destination-box';
 import { ReduxState } from '~/types';
 
+import { DestinationBox } from './components/destination-box';
 import { Container, ConfirmBox } from './styles';
 
 export const SearchPlaceModalComponent = props => {
@@ -70,9 +70,22 @@ export const SearchPlaceModalComponent = props => {
                 onChange={onFocusTab}
                 roundTrip
             />
-            {isDeparture ? <DestinationBox value={departurePlace} onValueChange={handleDepartureChange} /> : null}
+
+            {isDeparture ? (
+                <DestinationBox
+                    value={departurePlace}
+                    onValueChange={handleDepartureChange}
+                    exludePlaceId={destinationPlace.placeId}
+                />
+            ) : null}
+
             {isDestination ? (
-                <DestinationBox value={destinationPlace} onValueChange={handleDestinationChange} isDestination />
+                <DestinationBox
+                    value={destinationPlace}
+                    onValueChange={handleDestinationChange}
+                    exludePlaceId={departurePlace.placeId}
+                    isDestination
+                />
             ) : null}
 
             <ConfirmBox>

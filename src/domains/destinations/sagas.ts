@@ -50,11 +50,11 @@ export function* searchDestinations({ payload: { destination = '' } = {} }: any)
         yield put(getDestinationsError());
         return;
     }
-    console.log('here');
+
     const [res = {}] = yield call(handleApi(api.getDestinationsList), {
         destination,
     });
-    console.log({ res });
+
     if (res && !res.message) {
         yield put(getDestinationsSuccess(res));
     }

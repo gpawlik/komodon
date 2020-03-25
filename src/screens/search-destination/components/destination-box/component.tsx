@@ -37,9 +37,15 @@ export class DestinationBoxComponent extends React.PureComponent<Props, State> {
 
     onReset = () => this.setState({ value: '' });
 
+    isValidItem = item => {
+        return item && typeof item.get === 'function' && item.get('placeId') !== this.props.exludePlaceId;
+    };
+
     render() {
         const { destinations, lastSearches, isDestination } = this.props;
         const { value } = this.state;
+        const validDestinations = destinations.filter(this.isValidItem);
+        const validLastSearches = lastSearches.filter(this.isValidItem);
 
         return (
             <React.Fragment>
@@ -49,10 +55,7 @@ export class DestinationBoxComponent extends React.PureComponent<Props, State> {
                     </InputBox>
 
                     <DestinationContainer>
-                        {destinations.map(item => {
-                            if (!item || typeof item.get !== 'function') {
-                                return null;
-                            }
+                        {validDestinations.map(item => {
                             return (
                                 <Item
                                     key={item.get('placeId')}
@@ -77,14 +80,11 @@ export class DestinationBoxComponent extends React.PureComponent<Props, State> {
                         })}
                     </DestinationContainer>
 
-                    {!destinations.size && lastSearches.size ? (
+                    {!destinations.size && validLastSearches.size ? (
                         <LastSearchContainer>
                             <Title>Your popular destinations</Title>
                             <LastSearchBox>
-                                {lastSearches.map(item => {
-                                    if (!item || typeof item.get !== 'function') {
-                                        return null;
-                                    }
+                                {validLastSearches.map(item => {
                                     return (
                                         <Item
                                             key={item.get('placeId')}
@@ -111,7 +111,7 @@ export class DestinationBoxComponent extends React.PureComponent<Props, State> {
                         </LastSearchContainer>
                     ) : null}
 
-                    {!destinations.size && !lastSearches.size ? (
+                    {!destinations.size && !validLastSearches.size ? (
                         <Disclaimer>Use the search box to find the airport</Disclaimer>
                     ) : null}
 
