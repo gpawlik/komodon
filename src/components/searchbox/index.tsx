@@ -7,6 +7,7 @@ import {
     getDestinationPlace,
     getDepartureDates,
     getReturnDates,
+    getRoundTrip,
     getDepartureText,
     getReturnText,
     getValidatedCriteria,
@@ -23,22 +24,20 @@ import { RoundTripBox } from './components/round-trip';
 import { Container, VerticalBox, SwitchButton } from './styles';
 
 export const SearchboxComponent = props => {
-    const [roundTrip, onRoundTripSelect] = React.useState(true);
     const [hasAttemptedSubmit, onAttemptSubmit] = React.useState(false);
 
     const onSubmit = () => {
-        const payload = {
-            roundTrip,
-            ...props.criteria,
-        };
-
         onAttemptSubmit(true);
         const isValid = Object.values(props.validatedCriteria).findIndex(item => item === false) < 0;
 
         if (isValid) {
             props.navigate('Results');
-            props.searchFlights(payload);
+            props.searchFlights(props.criteria);
         }
+    };
+
+    const handleRoundTripSwitch = (value: boolean) => {
+        props.setSearchCriteria({ roundTrip: value });
     };
 
     const handlePlaceSwitch = () => {
@@ -52,7 +51,7 @@ export const SearchboxComponent = props => {
 
     return (
         <Container>
-            <RoundTripBox onChange={onRoundTripSelect} isRoundTrip={roundTrip} />
+            <RoundTripBox onChange={handleRoundTripSwitch} isRoundTrip={props.roundTrip} />
             <VerticalBox>
                 <ValueBox
                     label="From"
@@ -96,7 +95,7 @@ export const SearchboxComponent = props => {
                     onPress={() => {
                         props.navigate('SearchDateModal', {
                             focused: 0,
-                            roundTrip,
+                            roundTrip: props.roundTrip,
                         });
                     }}
                     value={props.departureText}
@@ -104,13 +103,13 @@ export const SearchboxComponent = props => {
                     isValid={isDepartureDateValid}
                 />
 
-                {roundTrip ? (
+                {props.roundTrip ? (
                     <ValueBox
                         label="Return Time"
                         onPress={() => {
                             props.navigate('SearchDateModal', {
                                 focused: 1,
-                                roundTrip,
+                                roundTrip: props.roundTrip,
                             });
                         }}
                         value={props.returnText}
@@ -131,6 +130,7 @@ export const mapStateToProps = (state: ReduxState) => ({
     destinationPlace: getDestinationPlace(state),
     departureDates: getDepartureDates(state),
     returnDates: getReturnDates(state),
+    roundTrip: getRoundTrip(state),
     criteria: getCriteria(state),
     departureText: getDepartureText(state),
     returnText: getReturnText(state),

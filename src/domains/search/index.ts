@@ -6,6 +6,7 @@ interface State {
     destinationPlace: CitySearch;
     departureDates: Object;
     returnDates: Object;
+    roundTrip: boolean;
 }
 
 const initialCriteria = {
@@ -13,6 +14,7 @@ const initialCriteria = {
     destinationPlace: {},
     departureDates: {},
     returnDates: {},
+    roundTrip: true,
 };
 
 export const initialState: State = initialCriteria;

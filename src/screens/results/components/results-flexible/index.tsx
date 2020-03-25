@@ -23,22 +23,19 @@ export const ResultsFlexibleComponent = ({ results, criteria, searchFlights, set
         searchFlights({ ...criteria, destinationPlace: item?.destination });
     };
 
-    return results.map(item => {
-        console.log({ item });
-        return (
-            <Container>
-                <TextBox>
-                    <CityName>{item.destination?.placeName}</CityName>
-                    <CountryName>{item.destination?.countryName}</CountryName>
-                </TextBox>
-                <ButtonBox>
-                    <Button onPress={() => onPress(item)}>
-                        <ButtonText>{`€${item.price}`}</ButtonText>
-                    </Button>
-                </ButtonBox>
-            </Container>
-        );
-    });
+    return results.map(item => (
+        <Container key={item?.destination?.placeId}>
+            <TextBox>
+                <CityName>{item.destination?.placeName}</CityName>
+                <CountryName>{item.destination?.countryName}</CountryName>
+            </TextBox>
+            <ButtonBox>
+                <Button onPress={() => onPress(item)}>
+                    <ButtonText>{`€${item.price}`}</ButtonText>
+                </Button>
+            </ButtonBox>
+        </Container>
+    ));
 };
 
 export const mapStateToProps = (state: ReduxState) => ({

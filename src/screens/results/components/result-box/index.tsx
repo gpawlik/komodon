@@ -44,7 +44,10 @@ export const ResultBox = ({ price, routes = [], deepLink = '', priceLevel }: Pro
             <TopBox>
                 <DetailsBox>
                     {routes.map(
-                        ({ airlines = [], departureTime, arrivalTime, departureIata, returnIata, duration }, index) => {
+                        (
+                            { airlines = [], departureTime, arrivalTime = '', departureIata, returnIata, duration },
+                            index,
+                        ) => {
                             // TODO: Handle this on the backend
                             const departureDate = (deepLink.split('departure=')[1] || '').slice(0, 5).replace('-', '/');
                             const returnDate = (deepLink.split('return=')[1] || '').slice(0, 5).replace('-', '/');
@@ -71,7 +74,7 @@ export const ResultBox = ({ price, routes = [], deepLink = '', priceLevel }: Pro
                                             <DurationText>{duration}</DurationText>
                                         </DurationBox>
                                         <FlightSegment>
-                                            <TimeText>{arrivalTime}</TimeText>
+                                            <TimeText>{arrivalTime.split(' ')[0]}</TimeText>
                                             <PlaceText>{returnIata}</PlaceText>
                                         </FlightSegment>
                                     </FlightBox>

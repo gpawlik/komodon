@@ -60,7 +60,11 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
 
                             {isSubscriptionVisible && !isFlexible ? <SubscriptionBox onPress={this.openModal} /> : null}
 
-                            {!isFlexible ? <ResultsMain type={type} /> : <ResultsFlexible />}
+                            {!isFlexible ? (
+                                <ResultsMain type={type} handleType={this.handleType} />
+                            ) : (
+                                <ResultsFlexible />
+                            )}
                         </Content>
 
                         {!isFlexible ? (

@@ -17,6 +17,8 @@ export const getReturnDaysOfWeek = createSelector([getState], state => state.ret
 
 export const getDaysRange = createSelector([getState], state => state.daysRange || {});
 
+export const getRoundTrip = createSelector([getState], state => !!state.roundTrip);
+
 export const getDepartureText = createSelector([getState], state => state.departureText || '');
 
 export const getReturnText = createSelector([getState], state => state.returnText || '');
