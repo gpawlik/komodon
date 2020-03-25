@@ -1,14 +1,11 @@
 import * as React from 'react';
-import * as R from 'ramda';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 import { selectors } from '~/theme/main';
 import { generalIcons } from '~/constants/icons/general';
 import { SVGIcon } from '~/icons';
 
-const Touch = styled.TouchableOpacity`
-    padding: ${selectors.ss2};
-`;
+import { Touch } from './styles';
 
 interface Props {
     value: boolean;
