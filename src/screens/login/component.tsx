@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import * as routes from '~/constants/routes';
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { Tabs } from '~/components/tabs';
@@ -26,7 +27,7 @@ export const LoginComponent = (props: Props) => {
 
                     <StandardLogin
                         changeTab={() => changeTab(1)}
-                        onForgot={() => props.navigation.navigate('ForgottenPassword')}
+                        onForgot={() => props.navigation.navigate(routes.forgottenPassword)}
                     />
                 </Content>
 

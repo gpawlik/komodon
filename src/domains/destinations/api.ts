@@ -1,7 +1,9 @@
 import { call } from 'redux-saga/effects';
 
+import { API_ENDPOINT } from '~/constants';
+
 export function* getDestinationsList({ destination = '' }) {
-    return yield call(fetch, `https://dqd3py3vkf.execute-api.eu-west-1.amazonaws.com/v3/places?query=${destination}`, {
+    return yield call(fetch, `${API_ENDPOINT}/places?query=${destination}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

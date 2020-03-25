@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import * as routes from '~/constants/routes';
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { NavigationMenu } from '~/components/navigation-menu';
@@ -12,7 +13,7 @@ export class HomeComponent extends React.PureComponent<Props, void> {
     onMenuPress = () => this.props.toggleNavigation({ isVisible: true });
 
     openLogin = () => {
-        this.props.navigation.navigate('Login');
+        this.props.navigation.navigate(routes.login);
     };
 
     render() {

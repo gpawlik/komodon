@@ -16,15 +16,15 @@ import { FiltersModal } from '~/components/filters';
 
 const MainStack = createStackNavigator(
     {
-        Home: { screen: Home },
+        [routes.home]: { screen: Home },
         [routes.about]: { screen: About },
-        Results: { screen: Results },
-        Login: { screen: Login },
-        ForgottenPassword: { screen: ForgottenPassword },
-        Subscriptions: { screen: Subscriptions },
+        [routes.results]: { screen: Results },
+        [routes.login]: { screen: Login },
+        [routes.forgottenPassword]: { screen: ForgottenPassword },
+        [routes.subscriptions]: { screen: Subscriptions },
     },
     {
-        initialRouteName: 'Home',
+        initialRouteName: routes.home,
         headerMode: 'none',
     },
 );
