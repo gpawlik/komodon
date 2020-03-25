@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
-import { Searchbox } from '~/components/searchbox';
 import { NavigationMenu } from '~/components/navigation-menu';
 import { Container, Content } from '~/components/screen/styles';
 
+import { Searchbox } from './components/searchbox';
 import { Props } from './types';
 
 export class HomeComponent extends React.PureComponent<Props, void> {

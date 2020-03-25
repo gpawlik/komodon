@@ -5,7 +5,7 @@ import { selectors } from '~/theme/main';
 import { TextRegular2, TextMedium2 } from '~/components/text';
 
 export const Container = styled.View`
-    background-color: #fff;
+    background-color: ${selectors.white};
     border-radius: 8;
     margin-vertical: 8;
     padding: 12px 14px;

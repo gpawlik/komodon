@@ -5,7 +5,7 @@ import { selectors } from '~/theme/main';
 import { TextRegular1, TextRegular2, TextMedium2, TextMedium3, TextMedium5 } from '~/components/text';
 
 export const Container = styled.View`
-    background-color: #fff;
+    background-color: ${selectors.white};
     border-radius: 10;
     margin-vertical: 10;
 `;
@@ -40,7 +40,7 @@ export const LogoPlaceholder = styled.View`
 `;
 
 export const LogoText = styled(TextMedium2)`
-    color: #fff;
+    color: ${selectors.white};
 `;
 
 export const DateText = styled(TextRegular1)``;

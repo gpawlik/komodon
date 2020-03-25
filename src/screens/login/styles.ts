@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { TextRegular3, TextMedium3 } from '~/components/text';
-//import { selectors } from '~/theme/main';
+import { selectors } from '~/theme/main';
 
 export const Container = styled.View``;
 
@@ -34,7 +34,7 @@ export const Separator = styled.View`
 export const SeparatorText = styled(TextMedium3)`
     position: absolute;
     top: -10;
-    background-color: #fff;
+    background-color: ${selectors.white};
     padding: 0 20px;
     color: #ddd;
 `;
