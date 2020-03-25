@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { selectors } from '~/theme/main';
 
 export const Container = styled.View`
     align-items: center;
@@ -7,7 +8,7 @@ export const Container = styled.View`
 `;
 
 export const Box = styled.View`
-    background-color: #fff;
+    background-color: ${selectors.white};
     border-radius: 6;
     margin-vertical: 20;
     max-width: 350;

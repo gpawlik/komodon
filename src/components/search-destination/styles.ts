@@ -9,7 +9,7 @@ export const Container = styled.View`
 
 export const ConfirmBox = styled.View`
     padding: 16px 20px;
-    background-color: #fff;
+    background-color: ${selectors.white};
     border-top-width: 0.3;
     border-top-color: #aaa;
     position: absolute;

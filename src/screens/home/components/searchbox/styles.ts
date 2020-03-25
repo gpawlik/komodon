@@ -28,7 +28,7 @@ export const Label = styled(TextRegular3)`
 `;
 
 export const Flyout = styled.View`
-    background-color: #fff;
+    background-color: ${selectors.white};
     position: absolute;
     top: 0
     left: 0;
@@ -43,7 +43,7 @@ export const CriteriaText = styled(TextRegular4)`
 
 export const ConfirmBox = styled.View`
     padding: 16px 20px;
-    background-color: #fff;
+    background-color: ${selectors.white};
     border-top-width: 0.3;
     border-top-color: #aaa;
     position: absolute;

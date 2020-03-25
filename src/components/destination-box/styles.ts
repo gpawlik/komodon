@@ -10,7 +10,7 @@ export const Container = styled.View`
 `;
 
 export const DestinationContainer = styled.View`
-    background-color: #fff;
+    background-color: ${selectors.white};
 `;
 
 export const InputBox = styled.View`
@@ -47,8 +47,7 @@ export const LastSearchContainer = styled.View`
 `;
 
 export const LastSearchBox = styled.View`
-    background-color: #fff;
-
+    background-color: ${selectors.white};
     border-radius: 8;
     overflow: hidden;
 `;
@@ -66,7 +65,7 @@ export const Disclaimer = styled(TextRegular2)`
 
 export const ConfirmBox = styled.View`
     padding: 16px 20px;
-    background-color: #fff;
+    background-color: ${selectors.white};
     border-top-width: 0.3;
     border-top-color: #aaa;
     position: absolute;

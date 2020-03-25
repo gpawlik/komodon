@@ -1,13 +1,5 @@
 import { SET_SEARCH_CRITERIA, RESET_SEARCH_CRITERIA } from './constants';
-import { CitySearch } from './types';
-
-interface State {
-    departurePlace: CitySearch;
-    destinationPlace: CitySearch;
-    departureDates: Object;
-    returnDates: Object;
-    roundTrip: boolean;
-}
+import { State } from './types';
 
 const initialCriteria = {
     departurePlace: {},

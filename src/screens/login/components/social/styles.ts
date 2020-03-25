@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { TextRegular2, TextMedium3, TextMedium4 } from '~/components/text';
+import { selectors } from '~/theme/main';
 
 export const Section = styled.View`
     margin-bottom: 20;
@@ -20,7 +21,7 @@ export const ButtonBox = styled.TouchableOpacity`
 `;
 
 export const IconBox = styled.View`
-    background-color: #fff;
+    background-color: ${selectors.white};
     width: 35;
     height: 35;
     border-radius: 4;
@@ -30,7 +31,7 @@ export const IconBox = styled.View`
 `;
 
 export const ButtonText = styled(TextMedium4)`
-    color: #fff;
+    color: ${selectors.white};
     margin-left: 10;
 `;
 

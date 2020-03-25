@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { searchOptions } from '~/domains/destinations/constants';
+import { ValidatedCriteria } from './types';
 
 export const getState = state => state.search || {};
 
@@ -27,7 +28,7 @@ export const getFilters = createSelector([getState], state => state.filters || {
 
 export const getValidatedCriteria = createSelector(
     [getDeparturePlace, getDestinationPlace, getDepartureText, getReturnText],
-    (departurePlace, destinationPlace, departureText, returnText) => ({
+    (departurePlace, destinationPlace, departureText, returnText): ValidatedCriteria => ({
         departurePlace: !!departurePlace.placeId,
         destinationPlace: !!destinationPlace.placeId,
         departureDate: !!departureText,
