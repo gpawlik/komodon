@@ -19,7 +19,6 @@ export class Tabs extends React.PureComponent<Props> {
     };
 
     componentDidUpdate(prevProps, prevState) {
-        console.log(prevProps.currentTab, this.props.currentTab, prevState.currentIndex, this.state.currentIndex);
         if (this.props.currentTab !== prevProps.currentTab) {
             this.scrollTo(this.props.currentTab);
         }

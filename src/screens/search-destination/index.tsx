@@ -70,9 +70,22 @@ export const SearchPlaceModalComponent = props => {
                 onChange={onFocusTab}
                 roundTrip
             />
-            {isDeparture ? <DestinationBox value={departurePlace} onValueChange={handleDepartureChange} /> : null}
+
+            {isDeparture ? (
+                <DestinationBox
+                    value={departurePlace}
+                    onValueChange={handleDepartureChange}
+                    exludePlaceId={destinationPlace.placeId}
+                />
+            ) : null}
+
             {isDestination ? (
-                <DestinationBox value={destinationPlace} onValueChange={handleDestinationChange} isDestination />
+                <DestinationBox
+                    value={destinationPlace}
+                    onValueChange={handleDestinationChange}
+                    exludePlaceId={departurePlace.placeId}
+                    isDestination
+                />
             ) : null}
 
             <ConfirmBox>

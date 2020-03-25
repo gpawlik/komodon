@@ -16,6 +16,7 @@ interface Value {
 interface OwnProps {
     value: Value;
     onValueChange: (arg0: any) => void;
+    exludePlaceId: string;
     isDestination?: boolean;
 }
 
