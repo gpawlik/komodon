@@ -9,9 +9,9 @@ import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { SectionBox } from '~/components/section-box';
 import { Button } from '~/components/button';
-import { DestinationBox } from '~/components/destination-box';
 import { ReduxState } from '~/types';
 
+import { DestinationBox } from './components/destination-box';
 import { Container, ConfirmBox } from './styles';
 
 export const SearchPlaceModalComponent = props => {

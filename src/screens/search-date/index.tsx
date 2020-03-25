@@ -17,11 +17,11 @@ import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { SectionBox } from '~/components/section-box';
 import { Button } from '~/components/button';
-import { CalendarBox } from '~/components/calendar-box';
-import { DaysBox } from '~/components/days-box';
-import { DaysRangeBox } from '~/components/days-range-box';
 import { ReduxState } from '~/types';
 
+import { CalendarBox } from './components/calendar-box';
+import { DaysBox } from './components/days-box';
+import { DaysRangeBox } from './components/days-range-box';
 import { ButtonBox } from './components/button-box';
 import { getDescriptiveName } from './utils';
 

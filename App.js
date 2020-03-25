@@ -10,9 +10,9 @@ import { Results } from '~/screens/results';
 import { Login } from '~/screens/login';
 import { ForgottenPassword } from '~/screens/forgotten-password';
 import { Subscriptions } from '~/screens/subscriptions';
-import { SearchPlaceModal } from '~/components/search-destination';
-import { SearchDateModal } from '~/components/search-date';
-import { FiltersModal } from '~/components/filters';
+import { SearchPlaceModal } from '~/screens/search-destination';
+import { SearchDateModal } from '~/screens/search-date';
+import { FiltersModal } from '~/screens/filters';
 
 const MainStack = createStackNavigator(
     {
