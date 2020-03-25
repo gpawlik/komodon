@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import * as routes from '~/constants/routes';
 import { SVGIcon } from '~/icons';
 import { generalIcons } from '~/constants/icons/general';
 import { Button } from '~/components/button';
@@ -24,7 +25,7 @@ export class SearchboxComponent extends React.Component<Props, State> {
         const isValid = Object.values(validatedCriteria).findIndex(item => item === false) < 0;
 
         if (isValid) {
-            navigate('Results');
+            navigate(routes.results);
             searchFlights(criteria);
         }
     };
