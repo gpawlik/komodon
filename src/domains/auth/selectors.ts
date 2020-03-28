@@ -1,6 +1,7 @@
-import { Map } from 'immutable';
 import { createSelector } from 'reselect';
 
-const getAuthState = state => state.auth || Map();
+const getAuthState = state => state.auth || {};
 
-export const getIsLoggedIn = createSelector([getAuthState], state => state.get('isLoggedIn', false));
+export const getIsLoggedIn = createSelector([getAuthState], state => state.isLoggedIn || false);
+
+export const getUsername = createSelector([getAuthState], state => state.username || '');

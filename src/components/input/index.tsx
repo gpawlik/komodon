@@ -11,6 +11,7 @@ interface Props {
     autoCompleteType?: string;
     textContentType?: string;
     keyboardType?: string;
+    autoCapitalize?: string;
     error?: string;
     hasError?: boolean;
     secureTextEntry?: boolean;

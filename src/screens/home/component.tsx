@@ -12,8 +12,10 @@ import { Props } from './types';
 export class HomeComponent extends React.PureComponent<Props, void> {
     onMenuPress = () => this.props.toggleNavigation({ isVisible: true });
 
-    openLogin = () => {
-        this.props.navigation.navigate(routes.login);
+    openProfile = () => {
+        const { isLoggedIn, navigation } = this.props;
+        const route = isLoggedIn ? routes.subscriptions : routes.login;
+        navigation.navigate(route);
     };
 
     render() {
@@ -24,7 +26,7 @@ export class HomeComponent extends React.PureComponent<Props, void> {
                     backIcon={generalIcons.MENU}
                     backAction={this.onMenuPress}
                     secondaryIcon={generalIcons.PROFILE}
-                    secondaryAction={this.openLogin}
+                    secondaryAction={this.openProfile}
                 />
                 <Content isFullWidth>
                     <Searchbox navigate={this.props.navigation.navigate} />

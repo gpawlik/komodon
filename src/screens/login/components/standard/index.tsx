@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { InputBox } from '~/components/input';
 import { Button } from '~/components/button';
+import { LoginPayload, SignupPayload } from '~/domains/auth/types';
 
 import { emailIsValid } from '~/utils/';
 
@@ -11,36 +12,67 @@ interface Props {
     isRegister?: boolean;
     onForgot?: () => void;
     changeTab: () => void;
+    onLogin?: (arg0: LoginPayload) => void;
+    onRegister?: (arg0: SignupPayload) => void;
+    goBack: () => void;
 }
 
 interface State {
+    isValidUsername: boolean;
     isValidEmail: boolean;
     isValidPassword: boolean;
     isMatchingPassword: boolean;
     hasAttemptedSubmit: boolean;
+    username: string;
     email: string;
-    password1: string;
+    password: string;
     password2: string;
 }
 
 export class StandardLogin extends React.PureComponent<Props, State> {
     state = {
+        isValidUsername: true,
         isValidEmail: true,
         isValidPassword: true,
         isMatchingPassword: true,
         hasAttemptedSubmit: false,
+        username: '',
         email: '',
-        password1: '',
+        password: '',
         password2: '',
     };
 
-    onSubmit = () => {
-        const { isValidEmail, isValidPassword, isMatchingPassword } = this.state;
+    onSubmitLogin = () => {
+        const { onLogin, goBack } = this.props;
+        const { isValidUsername, isValidPassword, username, password } = this.state;
+
         this.setState({ hasAttemptedSubmit: true });
 
-        if (isValidEmail && isValidPassword && isMatchingPassword) {
-            console.log('proceed');
+        if (isValidUsername && isValidPassword) {
+            onLogin({ username, password, successCb: goBack });
         }
+    };
+
+    onSubmitRegister = () => {
+        const { onRegister, goBack } = this.props;
+        const {
+            isValidUsername,
+            isValidEmail,
+            isValidPassword,
+            isMatchingPassword,
+            username,
+            email,
+            password,
+        } = this.state;
+        this.setState({ hasAttemptedSubmit: true });
+
+        if (isValidUsername && isValidEmail && isValidPassword && isMatchingPassword) {
+            onRegister({ username, email, password, successCb: goBack });
+        }
+    };
+
+    onChangeUsername = value => {
+        this.setState({ username: value, isValidUsername: !!value.length });
     };
 
     onChangeEmail = value => {
@@ -49,45 +81,61 @@ export class StandardLogin extends React.PureComponent<Props, State> {
 
     onChangePassword1 = value => {
         this.setState({
-            password1: value,
+            password: value,
             isValidPassword: value.length >= 6,
         });
     };
 
     onChangePassword2 = value => {
-        this.setState({ password2: value, isMatchingPassword: this.state.password1 !== value });
+        this.setState({ password2: value, isMatchingPassword: this.state.password === value });
     };
 
     render() {
         const { isRegister, onForgot, changeTab } = this.props;
         const {
+            username,
             email,
-            password1,
+            password,
             password2,
+            isValidUsername,
             isValidEmail,
             isValidPassword,
             isMatchingPassword,
             hasAttemptedSubmit,
         } = this.state;
+        const buttonText = isRegister ? 'Sign Up' : 'Sign In';
         const linkTextA = isRegister ? 'Already have an account?' : "Don't have an account?";
         const linkTextB = isRegister ? 'Log in!' : 'Sign Up Now!';
+        const submitFn = isRegister ? this.onSubmitRegister : this.onSubmitLogin;
 
-        const canAttemptLogin = email.trim() !== '' && password1.trim() !== '';
+        const canAttemptLogin = username.trim() !== '' && password.trim() !== '';
         return (
             <Section>
                 <InputsContainer>
                     <InputBox
-                        label="Email"
+                        label="Username"
                         autoCompleteType="off"
-                        textContentType="emailAddress"
-                        keyboardType="email-address"
-                        error="Please provide a valid e-mail"
-                        hasError={hasAttemptedSubmit && !isValidEmail}
-                        value={email}
-                        onValueChange={this.onChangeEmail}
+                        autoCapitalize="none"
+                        error="Please provide a valid username"
+                        hasError={hasAttemptedSubmit && !isValidUsername}
+                        value={username}
+                        onValueChange={this.onChangeUsername}
                     />
+                    {isRegister ? (
+                        <InputBox
+                            label="Email"
+                            autoCompleteType="off"
+                            textContentType="emailAddress"
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                            error="Please provide a valid e-mail"
+                            hasError={hasAttemptedSubmit && !isValidEmail}
+                            value={email}
+                            onValueChange={this.onChangeEmail}
+                        />
+                    ) : null}
                     <InputBox
-                        value={password1}
+                        value={password}
                         label="Password"
                         secureTextEntry
                         hasError={hasAttemptedSubmit && !isValidPassword}
@@ -98,6 +146,7 @@ export class StandardLogin extends React.PureComponent<Props, State> {
                             value={password2}
                             label="Repeat Password"
                             error="Passwords do not match"
+                            secureTextEntry
                             hasError={hasAttemptedSubmit && !isMatchingPassword}
                             onValueChange={this.onChangePassword2}
                         />
@@ -108,7 +157,7 @@ export class StandardLogin extends React.PureComponent<Props, State> {
                         </Link>
                     ) : null}
                 </InputsContainer>
-                <Button message="Sign in" onPress={this.onSubmit} isDisabled={!canAttemptLogin} />
+                <Button message={buttonText} onPress={submitFn} isDisabled={!canAttemptLogin} />
                 <Link isSeparate onPress={changeTab}>
                     <LinkText>{linkTextA}</LinkText>
                     <LinkText isMarked>{linkTextB}</LinkText>

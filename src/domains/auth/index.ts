@@ -1,12 +1,50 @@
-import { handleActions } from 'redux-actions';
-import { Map as ImmutableMap } from 'immutable';
+import { LOGIN_ATTEMPT, LOGIN_SUCCESS, LOGIN_ERROR } from './actions';
 
-type State = ImmutableMap<string, any>;
+interface State {
+    isLoggedIn: boolean;
+    hasError: boolean;
+    username: string;
+    email: string;
+    emailVerified: boolean;
+    idToken: string;
+}
 
-export const initialState: State = ImmutableMap({
+export const initialState: State = {
     isLoggedIn: false,
-});
+    hasError: false,
+    username: '',
+    email: '',
+    emailVerified: false,
+    idToken: '',
+};
 
-const actionHandlers = new Map([]);
+export const authReducer = (state: State = initialState, action) => {
+    switch (action.type) {
+        case LOGIN_ATTEMPT: {
+            return initialState;
+        }
 
-export const authReducer = handleActions(actionHandlers, initialState);
+        case LOGIN_SUCCESS: {
+            const { attributes, signInUserSession } = action.payload || {};
+            return {
+                ...state,
+                username: attributes?.name,
+                email: attributes?.email,
+                emailVerified: attributes?.email_verified,
+                idToken: signInUserSession?.idToken?.jwtToken,
+                isLoggedIn: true,
+                hasError: false,
+            };
+        }
+
+        case LOGIN_ERROR: {
+            return {
+                ...initialState,
+                hasError: true,
+            };
+        }
+
+        default:
+            return state;
+    }
+};
