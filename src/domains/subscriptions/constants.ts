@@ -1,2 +1,2 @@
-export const RECEIVE_SUBSCRIPTIONS: 'results/RECEIVE_SUBSCRIPTIONS' = 'results/RECEIVE_SUBSCRIPTIONS';
-export const GET_SUBSCRIPTIONS: 'results/GET_SUBSCRIPTIONS' = 'results/GET_SUBSCRIPTIONS';
+export const REQUEST_SUBSCRIPTIONS: 'subscriptions/REQUEST' = 'subscriptions/REQUEST';
+export const RECEIVE_SUBSCRIPTIONS: 'subscriptions/RECEIVE' = 'subscriptions/RECEIVE';

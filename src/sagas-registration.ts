@@ -7,9 +7,18 @@ import { alertsSagas } from '~/domains/alerts/sagas';
 import { networkSagas } from '~/domains/network/sagas';
 import { destinationsSagas } from '~/domains/destinations/sagas';
 import { searchSagas } from '~/domains/search/sagas';
+import { subscriptionSagas } from '~/domains/subscriptions/sagas';
 
 const forkSagas = R.compose(all, R.map(fork), R.flatten);
 
 export default function* root() {
-    yield forkSagas([authSagas, userSagas, alertsSagas, networkSagas, destinationsSagas, searchSagas]);
+    yield forkSagas([
+        authSagas,
+        userSagas,
+        alertsSagas,
+        networkSagas,
+        destinationsSagas,
+        searchSagas,
+        subscriptionSagas,
+    ]);
 }
