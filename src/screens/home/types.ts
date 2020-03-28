@@ -1,9 +1,14 @@
-interface OwnProps {
-    navigation: any;
+export interface StateProps {
+    isLoggedIn: boolean;
+    username: string;
 }
 
 export interface DispatchProps {
     toggleNavigation: ({ isVisible: boolean }) => void;
 }
 
-export type Props = OwnProps & DispatchProps;
+interface OwnProps {
+    navigation: any;
+}
+
+export type Props = StateProps & DispatchProps & OwnProps;

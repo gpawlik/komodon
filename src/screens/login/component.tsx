@@ -14,31 +14,40 @@ import { Props } from './types';
 export const LoginComponent = (props: Props) => {
     const [currentTab, changeTab] = React.useState(0);
 
+    const goBack = () => props.navigation.goBack();
+
     return (
         <Container>
             <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => props.navigation.goBack()} />
             <Tabs tabTitles={['Log in', 'Sign up']} currentTab={currentTab}>
                 <Content>
-                    <SocialLogin title="Please log in with" />
+                    {/* <SocialLogin title="Please log in with" />
 
                     <Separator>
                         <SeparatorText>OR</SeparatorText>
-                    </Separator>
+                    </Separator> */}
 
                     <StandardLogin
                         changeTab={() => changeTab(1)}
                         onForgot={() => props.navigation.navigate(routes.forgottenPassword)}
+                        onLogin={props.loginAttempt}
+                        goBack={goBack}
                     />
                 </Content>
 
                 <Content>
-                    <SocialLogin title="Please sign up with" />
+                    {/* <SocialLogin title="Please sign up with" />
 
                     <Separator>
                         <SeparatorText>OR</SeparatorText>
-                    </Separator>
+                    </Separator> */}
 
-                    <StandardLogin changeTab={() => changeTab(0)} isRegister />
+                    <StandardLogin
+                        changeTab={() => changeTab(0)}
+                        onRegister={props.signupAttempt}
+                        goBack={goBack}
+                        isRegister
+                    />
                 </Content>
             </Tabs>
         </Container>
