@@ -5,3 +5,5 @@ const getAuthState = state => state.auth || {};
 export const getIsLoggedIn = createSelector([getAuthState], state => state.isLoggedIn || false);
 
 export const getUsername = createSelector([getAuthState], state => state.username || '');
+
+export const getUserToken = createSelector([getAuthState], state => state.idToken || '');

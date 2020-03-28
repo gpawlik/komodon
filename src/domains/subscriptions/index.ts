@@ -1,4 +1,4 @@
-import { GET_SUBSCRIPTIONS, RECEIVE_SUBSCRIPTIONS } from './constants';
+import { REQUEST_SUBSCRIPTIONS, RECEIVE_SUBSCRIPTIONS } from './constants';
 import { result } from '~/domains/subscriptions/mock';
 
 interface State {
@@ -13,7 +13,7 @@ export const initialState: State = {
 
 export const subscriptionsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_SUBSCRIPTIONS:
+        case REQUEST_SUBSCRIPTIONS:
             return { ...state, isLoading: true };
         case RECEIVE_SUBSCRIPTIONS:
             const { payload } = action;
