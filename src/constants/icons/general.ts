@@ -18,4 +18,5 @@ export const generalIcons = {
     SINGLE_CHOICE_OFF: 'SINGLE_CHOICE_OFF',
     SWAP: 'SWAP',
     TICK: 'TICK',
+    TRASH: 'TRASH',
 };

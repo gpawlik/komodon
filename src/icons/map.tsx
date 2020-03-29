@@ -20,6 +20,7 @@ import { SingleChoiceOn } from './single-choice-on';
 import { SingleChoiceOff } from './single-choice-off';
 import { Swap } from './swap';
 import { Tick } from './tick';
+import { Trash } from './trash';
 
 import { OuterProps } from './types';
 
@@ -43,6 +44,7 @@ export const map = {
     [generalIcons.SINGLE_CHOICE_OFF]: SingleChoiceOff,
     [generalIcons.SWAP]: Swap,
     [generalIcons.TICK]: Tick,
+    [generalIcons.TRASH]: Trash,
 };
 
 export const getIconComponent = (type: string, props: OuterProps) => {
