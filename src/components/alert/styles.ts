@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import styled from 'styled-components';
 
-import { TextMedium3 } from '~/components/text';
+import { TextRegular3 } from '~/components/text';
 
 import { selectors } from '~/theme/main';
 
@@ -12,10 +12,10 @@ const getBackgroundColor = R.cond([
 
 export const Container = styled.TouchableOpacity`
     background-color: ${getBackgroundColor};
-    padding: ${selectors.ss3} ${selectors.ss5};
+    padding: ${selectors.ss5} ${selectors.ss8};
     align-items: center;
 `;
 
-export const Text = styled(TextMedium3)`
+export const Text = styled(TextRegular3)`
     color: ${selectors.white};
 `;

@@ -1,6 +1,7 @@
 import { Auth } from 'aws-amplify';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
+import { setAlert } from '~/domains/alerts/actions';
 import { LOGIN_ATTEMPT, loginSuccess, loginError, SIGNUP_ATTEMPT, signupSuccess, signupError } from './actions';
 import { LoginAction, SignupAction } from './types';
 
@@ -16,6 +17,7 @@ export function* loginSaga({ payload: { username, password, successCb } }: Login
     } catch (e) {
         console.log(e);
         yield put(loginError());
+        yield put(setAlert(e?.code));
     }
 }
 
@@ -35,6 +37,7 @@ export function* signupSaga({ payload: { username, email, password, successCb } 
     } catch (e) {
         console.log(e);
         yield put(signupError());
+        yield put(setAlert(e?.code));
     }
 }
 

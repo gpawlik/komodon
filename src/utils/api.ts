@@ -21,15 +21,22 @@ function* handleResult(result: any, parseJson: boolean) {
 
 function* refreshTokenEffect(fn, params) {
     const isLoggedIn = yield select(getIsLoggedIn);
-    if (isLoggedIn) {
-        // aws-amplify handles refreshing tokens itself
-        const session = yield call([Auth, 'currentSession']);
-        const token = session?.idToken?.jwtToken;
 
-        if (token) {
-            // If we got back a valid token - rerun the original request
-            yield put(refreshToken(token));
-            return yield call(fn, ...params);
+    if (isLoggedIn) {
+        try {
+            // aws-amplify handles refreshing tokens itself
+            const session = yield call([Auth, 'currentSession']);
+            const token = session?.idToken?.jwtToken;
+
+            console.log({ session, token });
+
+            if (token) {
+                // If we got back a valid token - rerun the original request
+                yield put(refreshToken(token));
+                return yield call(fn, ...params);
+            }
+        } catch (e) {
+            console.log(e);
         }
 
         yield put(logout());

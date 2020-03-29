@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TouchableOpacity, Text } from 'react-native';
 
 import * as routes from '~/constants/routes';
 import { generalIcons } from '~/constants/icons/general';
@@ -31,6 +32,9 @@ export class HomeComponent extends React.PureComponent<Props, void> {
                 <Content isFullWidth>
                     <Searchbox navigate={this.props.navigation.navigate} />
                 </Content>
+                <TouchableOpacity onPress={() => this.props.setAlert('DEVICE_OFFLINE')}>
+                    <Text>Test</Text>
+                </TouchableOpacity>
             </Container>
         );
     }
