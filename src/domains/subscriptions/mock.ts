@@ -1,1 +1,92 @@
-export const result = [];
+export const result = [
+    {
+        id: 'c29b4524-723f-4b76-9826-f5be28cb3bb7',
+        searchCriteria: {
+            configuration: { locale: 'en-US', currency: 'EUR' },
+            departurePlace: {
+                placeId: 'barcelona_es',
+                placeName: 'Barcelona',
+                placeCode: 'BCN',
+                cityId: 'BCN',
+                cityName: 'Barcelona',
+                countryId: 'ES',
+                type: 'CITY',
+                airports: 1,
+                subPlaces: [],
+            },
+            destinationPlace: {
+                placeId: 'DUB',
+                placeName: 'Dublin',
+                placeCode: 'DUB',
+                cityId: 'dublin_ie',
+                type: 'AIRPORT',
+                subPlaces: [],
+            },
+            roundTrip: true,
+            departureDates: { from: '2020-04-15', to: '2020-04-30' },
+            returnDates: { from: '2020-04-15', to: '2020-04-30' },
+            daysRange: { from: 5, to: 10 },
+            departureDaysOfWeek: [2, 3, 5],
+            returnDaysOfWeek: [2, 3, 5],
+            searchFilter: {
+                departureTime: { from: '10:00', to: '14:59' },
+                arrivalTime: { from: '10:00', to: '14:59' },
+                returnDepartureTime: { from: '10:00', to: '14:59' },
+                returnArrivalTime: { from: '10:00', to: '14:59' },
+                stops: 0,
+            },
+            onePerCity: false,
+            sort: 'quality',
+        },
+        url:
+            'https://komodon.com/results.html?language\u003den-US\u0026departurePlace\u003dbarcelona_es\u0026destinationPlace\u003dDUB\u0026roundTrip\u003dtrue\u0026departureDates.from\u003d2020-04-15\u0026departureDates.to\u003d2020-04-30\u0026returnDates.from\u003d2020-04-15\u0026returnDates.to\u003d2020-04-30\u0026daysRange.from\u003d5\u0026daysRange.to\u003d10\u0026departureDaysOfWeek\u003d2,3,5\u0026returnDaysOfWeek\u003d2,3,5\u0026numStops\u003d0\u0026departureTime\u003d10-14_10-14\u0026returnTime\u003d10-14_10-14',
+        description:
+            'With departure between Wednesday 15 April and Thursday 30 AprilTuesday, Wednesday or Friday, and return between Wednesday 15 April and Thursday 30 April, and return Tuesday, Wednesday or Friday, and stay between 5 and 10 days.\u003cbr\u003eFilters:\u003cbr\u003e - Stops: Direct flights.\u003cbr\u003e - Departure time: Between 10:00h and 14:59h\u003cbr\u003e - Arrival time: Between 10:00h and 14:59h\u003cbr\u003e - Return departure time: Between 10:00h and 14:59h\u003cbr\u003e - Return arrival time: Between 10:00h and 14:59h',
+        creationDate: '2020-03-28',
+    },
+    {
+        id: 'ecfb4d1e-8cfc-4082-9793-390f166e8bb4',
+        searchCriteria: {
+            configuration: { locale: 'en-US', currency: 'EUR' },
+            departurePlace: {
+                placeId: 'barcelona_es',
+                placeName: 'Barcelona',
+                placeCode: 'BCN',
+                cityId: 'BCN',
+                cityName: 'Barcelona',
+                countryId: 'ES',
+                type: 'CITY',
+                airports: 1,
+                subPlaces: [],
+            },
+            destinationPlace: {
+                placeId: 'OPO',
+                placeName: 'Porto',
+                placeCode: 'OPO',
+                cityId: 'porto_pt',
+                type: 'AIRPORT',
+                subPlaces: [],
+            },
+            roundTrip: true,
+            departureDates: { from: '2020-04-18', to: '2020-04-20' },
+            returnDates: { from: '2020-04-25', to: '2020-04-29' },
+            daysRange: { from: 7, to: 10 },
+            departureDaysOfWeek: [2],
+            returnDaysOfWeek: [2, 3, 5],
+            searchFilter: {
+                departureTime: { from: '10:00', to: '14:59' },
+                arrivalTime: { from: '10:00', to: '14:59' },
+                returnDepartureTime: { from: '10:00', to: '14:59' },
+                returnArrivalTime: { from: '10:00', to: '14:59' },
+                stops: 0,
+            },
+            onePerCity: false,
+            sort: 'quality',
+        },
+        url:
+            'https://komodon.com/results.html?language\u003den-US\u0026departurePlace\u003dbarcelona_es\u0026destinationPlace\u003dOPO\u0026roundTrip\u003dtrue\u0026departureDates.from\u003d2020-04-18\u0026departureDates.to\u003d2020-04-20\u0026returnDates.from\u003d2020-04-25\u0026returnDates.to\u003d2020-04-29\u0026daysRange.from\u003d7\u0026daysRange.to\u003d10\u0026departureDaysOfWeek\u003d2\u0026returnDaysOfWeek\u003d2,3,5\u0026numStops\u003d0\u0026departureTime\u003d10-14_10-14\u0026returnTime\u003d10-14_10-14',
+        description:
+            'With departure between Saturday 18 April and Monday 20 April or Tuesday, and return between Saturday 25 April and Wednesday 29 April, and return Tuesday, Wednesday or Friday, and stay between 7 and 10 days.\u003cbr\u003eFilters:\u003cbr\u003e - Stops: Direct flights.\u003cbr\u003e - Departure time: Between 10:00h and 14:59h\u003cbr\u003e - Arrival time: Between 10:00h and 14:59h\u003cbr\u003e - Return departure time: Between 10:00h and 14:59h\u003cbr\u003e - Return arrival time: Between 10:00h and 14:59h',
+        creationDate: '2020-03-28',
+    },
+];

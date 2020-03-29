@@ -3,8 +3,9 @@ import * as React from 'react';
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { LoadingScreen } from '~/components/loading-screen';
+import { SubscriptionItem } from '~/components/subscription-item';
 
-import { Container, Content, ItemBox, ItemText } from './styles';
+import { Container, Content, ItemBox, IconBox, Icon } from './styles';
 import { Props, State } from './types';
 
 export class SubscriptionsComponent extends React.PureComponent<Props, State> {
@@ -12,10 +13,14 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
         type: 0,
     };
 
+    componentDidMount() {
+        this.props.requestSubscriptions();
+    }
+
     handleType = (type: number) => this.setState({ type });
 
     render() {
-        const { subscriptions, isLoading } = this.props;
+        const { subscriptions = [], isLoading, deleteSubscription } = this.props;
 
         if (isLoading) {
             return <LoadingScreen />;
@@ -25,9 +30,19 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
             <Container>
                 <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => this.props.navigation.goBack()} />
                 <Content style={{ width: '100%' }}>
-                    {subscriptions.map(({ title }, index) => (
+                    {subscriptions.map(({ id, searchCriteria }, index) => (
                         <ItemBox key={index}>
-                            <ItemText>{title}</ItemText>
+                            <SubscriptionItem
+                                departureCode={searchCriteria?.departurePlace?.placeCode}
+                                departureName={searchCriteria?.departurePlace?.placeName}
+                                destinationCode={searchCriteria?.destinationPlace?.placeCode}
+                                destinationName={searchCriteria?.destinationPlace?.placeName}
+                                departureText="Departure text"
+                                returnText="Return text"
+                            />
+                            <IconBox onPress={() => deleteSubscription(id)}>
+                                <Icon type={generalIcons.TRASH} />
+                            </IconBox>
                         </ItemBox>
                     ))}
                 </Content>

@@ -1,5 +1,9 @@
+import * as R from 'ramda';
 import { createSelector } from 'reselect';
+
 import { searchOptions } from '~/domains/destinations/constants';
+import { formatHourRange } from '~/utils/time';
+
 import { ValidatedCriteria } from './types';
 
 export const getState = state => state.search || {};
@@ -39,4 +43,40 @@ export const getValidatedCriteria = createSelector(
 export const getIsFlexibleSearch = createSelector(
     [getDestinationPlace],
     destination => destination.placeId === searchOptions.EVERYWHERE || false,
+);
+
+const notEmpty = R.compose(R.not, R.isEmpty);
+
+export const getSubscriptionCriteria = createSelector(
+    [getState],
+    ({
+        departurePlace,
+        destinationPlace,
+        roundTrip,
+        departureDates,
+        returnDates,
+        departureDaysOfWeek,
+        returnDaysOfWeek,
+        daysRange,
+        filters = {},
+    }) => {
+        return R.pickBy(notEmpty, {
+            departurePlace: departurePlace.placeId,
+            destinationPlace: destinationPlace.placeId,
+            roundTrip,
+            locale: 'en-US',
+            departureDates,
+            returnDates,
+            departureDaysOfWeek,
+            returnDaysOfWeek,
+            daysRange,
+            filter: {
+                departureTime: formatHourRange(filters.departureTime),
+                arrivalTime: formatHourRange(filters.arrivalTime),
+                returnDepartureTime: formatHourRange(filters.returnDepartureTime),
+                returnArrivalTime: formatHourRange(filters.returnArrivalTime),
+                stops: filters.stops,
+            },
+        });
+    },
 );

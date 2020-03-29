@@ -21,6 +21,15 @@ export const getTimeBoundaries = (slot: number): Array<number> => {
     return [now, now + numberOfDays * DAY];
 };
 
-export const formatHours = (value: number): string => (value < 10 ? `0${value}:00` : `${value}:00`);
+export const formatHours = (value: number): string => {
+    if (value >= 24) return '23:59';
+    if (value <= 0) return '00:00';
+    return value < 10 ? `0${value}:00` : `${value}:00`;
+};
 
 export const formatDays = (value: number): string => (value === 1 ? `${value} day` : `${value} days`);
+
+export const formatHourRange = ({ from, to }: { from: number; to: number } = { from: 0, to: 24 }) => ({
+    from: formatHours(from),
+    to: formatHours(to),
+});
