@@ -1,4 +1,4 @@
-import { LOGIN_ATTEMPT, LOGIN_SUCCESS, LOGIN_ERROR } from './actions';
+import { LOGIN_ATTEMPT, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_ATTEMPT, REFRESH_TOKEN } from './actions';
 
 interface State {
     isLoggedIn: boolean;
@@ -39,8 +39,19 @@ export const authReducer = (state: State = initialState, action) => {
 
         case LOGIN_ERROR: {
             return {
-                ...initialState,
+                ...state,
                 hasError: true,
+            };
+        }
+
+        case LOGOUT_ATTEMPT: {
+            return initialState;
+        }
+
+        case REFRESH_TOKEN: {
+            return {
+                ...state,
+                idToken: action.payload,
             };
         }
 

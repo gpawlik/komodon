@@ -17,6 +17,21 @@ export const loginError = () => ({
     type: LOGIN_ERROR,
 });
 
+export const LOGOUT_ATTEMPT = 'auth/LOGOUT_ATTEMPT';
+export const logout = () => ({
+    type: LOGOUT_ATTEMPT,
+});
+
+export const LOGOUT_SUCCESS: 'auth/LOGOUT_SUCCESS' = 'auth/LOGOUT_SUCCESS';
+export const logoutSuccess = () => ({
+    type: LOGOUT_SUCCESS,
+});
+
+export const LOGOUT_ERROR: 'auth/LOGOUT_ERROR' = 'auth/LOGOUT_ERROR';
+export const logoutError = () => ({
+    type: LOGOUT_ERROR,
+});
+
 export const SIGNUP_ATTEMPT = 'auth/SIGNUP_ATTEMPT';
 export const signupAttempt = (payload: LoginPayload) => ({
     type: SIGNUP_ATTEMPT,
@@ -32,4 +47,10 @@ export const signupSuccess = (payload: LoginSuccessPayload) => ({
 export const SIGNUP_ERROR: 'auth/SIGNUP_ERROR' = 'auth/SIGNUP_ERROR';
 export const signupError = () => ({
     type: SIGNUP_ERROR,
+});
+
+export const REFRESH_TOKEN = 'auth/REFRESH_TOKEN';
+export const refreshToken = (payload: string) => ({
+    type: REFRESH_TOKEN,
+    payload,
 });
