@@ -2,11 +2,13 @@ import * as R from 'ramda';
 import styled from 'styled-components';
 
 import { TextRegular3 } from '~/components/text';
+import { alertCategories } from '~/domains/alerts/constants';
 
 import { selectors } from '~/theme/main';
 
 const getBackgroundColor = R.cond([
-    [R.propEq('type', 'WARNING'), R.always(selectors.orange)],
+    [R.propEq('type', alertCategories.SUCCESS), R.always(selectors.green)],
+    [R.propEq('type', alertCategories.WARNING), R.always(selectors.orange)],
     [R.T, R.always(selectors.red)],
 ]);
 

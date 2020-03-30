@@ -5,4 +5,8 @@ export interface DispatchProps {
     sendNewCredentails: typeof sendNewCredentails;
 }
 
-export type Props = DispatchProps;
+interface OwnProps {
+    navigation: any;
+}
+
+export type Props = DispatchProps & OwnProps;

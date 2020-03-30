@@ -2,6 +2,7 @@ import { Auth } from 'aws-amplify';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import { setAlert } from '~/domains/alerts/actions';
+import { alertTypes } from '~/domains/alerts/constants';
 import {
     LOGIN_ATTEMPT,
     loginSuccess,
@@ -53,28 +54,25 @@ export function* signupSaga({ payload: { username, email, password, successCb } 
 export function* sendForgottenPasswordSaga({ payload: { username = '', successCb } }: ForgottenPasswordAction) {
     try {
         const result = yield call([Auth, 'forgotPassword'], username);
+        const email = result?.CodeDeliveryDetails?.Destination;
 
-        //yield put(signupSuccess(result));
-        console.log({ result, successCb, email: result?.CodeDeliveryDetails });
-        yield call(successCb, username);
+        yield call(successCb, { username, email });
     } catch (e) {
         console.log(e);
-        //yield put(signupError());
         yield put(setAlert(e?.code));
     }
 }
 
-export function* sendNewCredentialsSaga({ payload: { username, code, password } }: NewCredentialsAction) {
+export function* sendNewCredentialsSaga({ payload: { username, code, password, successCb } }: NewCredentialsAction) {
     try {
-        const result = yield call([Auth, 'forgotPasswordSubmit'], username, code, password);
+        yield call([Auth, 'forgotPasswordSubmit'], username, code, password);
 
-        //yield put(signupSuccess(result));
-        console.log({ result });
-        // yield call(successCb);
+        yield call(successCb);
+        yield put(setAlert(alertTypes.FORGOT_PASSWORD_SUCCESS));
     } catch (e) {
         console.log(e);
         //yield put(signupError());
-        yield put(setAlert(e?.code));
+        yield put(setAlert(e?.code || e?.__type));
     }
 }
 

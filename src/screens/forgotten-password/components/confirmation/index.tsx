@@ -8,6 +8,7 @@ import { ConfirmBox } from '~/components/confirm-box';
 import { Container, Content, Title } from '../../styles';
 
 interface Props {
+    email: string;
     onSubmit: any;
 }
 
@@ -56,6 +57,7 @@ export class ForgottenPasswordConfirmation extends React.PureComponent<Props, St
     };
 
     render() {
+        const { email } = this.props;
         const {
             code,
             password,
@@ -66,44 +68,45 @@ export class ForgottenPasswordConfirmation extends React.PureComponent<Props, St
             isMatchingPassword,
         } = this.state;
         const canAttemptSubmit = code.trim() !== '';
+        const title = email ? `The code has just been sent to ${email}` : 'The code has just been sent to your email';
 
         return (
             <Screen title="Forgotten password confirmation">
                 <Container>
                     <Content>
-                        <Title>Code has been sent!</Title>
+                        <Title>{title}</Title>
+
+                        <InputBox
+                            label="Code"
+                            autoCompleteType="off"
+                            autoCapitalize="none"
+                            error="Please provide a valid code"
+                            hasError={hasAttemptedSubmit && !isValidCode}
+                            value={code}
+                            onValueChange={this.onChangeCode}
+                        />
+
+                        <InputBox
+                            value={password}
+                            label="Password"
+                            secureTextEntry
+                            hasError={hasAttemptedSubmit && !isValidPassword}
+                            onValueChange={this.onChangePassword1}
+                            blurOnSubmit={false}
+                            onSubmitEditing={() => Keyboard.dismiss()}
+                        />
+
+                        <InputBox
+                            value={password2}
+                            label="Repeat Password"
+                            error="Passwords do not match"
+                            secureTextEntry
+                            hasError={hasAttemptedSubmit && !isMatchingPassword}
+                            onValueChange={this.onChangePassword2}
+                            blurOnSubmit={false}
+                            onSubmitEditing={() => Keyboard.dismiss()}
+                        />
                     </Content>
-
-                    <InputBox
-                        label="Code"
-                        autoCompleteType="off"
-                        autoCapitalize="none"
-                        error="Please provide a valid code"
-                        hasError={hasAttemptedSubmit && !isValidCode}
-                        value={code}
-                        onValueChange={this.onChangeCode}
-                    />
-
-                    <InputBox
-                        value={password}
-                        label="Password"
-                        secureTextEntry
-                        hasError={hasAttemptedSubmit && !isValidPassword}
-                        onValueChange={this.onChangePassword1}
-                        blurOnSubmit={false}
-                        onSubmitEditing={() => Keyboard.dismiss()}
-                    />
-
-                    <InputBox
-                        value={password2}
-                        label="Repeat Password"
-                        error="Passwords do not match"
-                        secureTextEntry
-                        hasError={hasAttemptedSubmit && !isMatchingPassword}
-                        onValueChange={this.onChangePassword2}
-                        blurOnSubmit={false}
-                        onSubmitEditing={() => Keyboard.dismiss()}
-                    />
 
                     <ConfirmBox text="Confirm" isDisabled={!canAttemptSubmit} onPress={this.onSubmit} />
                 </Container>

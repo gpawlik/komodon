@@ -41,9 +41,14 @@ export interface SignupAction {
     payload: SignupPayload;
 }
 
+export interface ForgottenPasswordSuccessPayload {
+    username: string;
+    email: string;
+}
+
 export interface ForgottenPasswordPayload {
     username: string;
-    successCb: (arg0: string) => void;
+    successCb: (arg0: ForgottenPasswordSuccessPayload) => void;
 }
 
 export interface ForgottenPasswordAction {
@@ -54,6 +59,7 @@ export interface NewCredentialsPayload {
     username: string;
     code: string;
     password: string;
+    successCb: () => void;
 }
 
 export interface NewCredentialsAction {
