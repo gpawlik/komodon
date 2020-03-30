@@ -7,7 +7,7 @@ import { getAlertId } from './selectors';
 import { setAlert, resetAlerts, SET_ALERT } from './actions';
 import { alertTypes } from './constants';
 
-export function* setAlertSaga({ payload: { id } }) {
+export function* setAlertSaga({ payload: { id } = { id: '' } }) {
     yield delay(5000);
     yield put(resetAlerts(id));
 }

@@ -40,3 +40,22 @@ export interface SignupPayload {
 export interface SignupAction {
     payload: SignupPayload;
 }
+
+export interface ForgottenPasswordPayload {
+    username: string;
+    successCb: (arg0: string) => void;
+}
+
+export interface ForgottenPasswordAction {
+    payload: ForgottenPasswordPayload;
+}
+
+export interface NewCredentialsPayload {
+    username: string;
+    code: string;
+    password: string;
+}
+
+export interface NewCredentialsAction {
+    payload: NewCredentialsPayload;
+}

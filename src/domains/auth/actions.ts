@@ -1,4 +1,4 @@
-import { LoginPayload, LoginSuccessPayload } from './types';
+import { LoginPayload, LoginSuccessPayload, ForgottenPasswordPayload, NewCredentialsPayload } from './types';
 
 export const LOGIN_ATTEMPT = 'auth/LOGIN_ATTEMPT';
 export const loginAttempt = (payload: LoginPayload) => ({
@@ -47,6 +47,18 @@ export const signupSuccess = (payload: LoginSuccessPayload) => ({
 export const SIGNUP_ERROR: 'auth/SIGNUP_ERROR' = 'auth/SIGNUP_ERROR';
 export const signupError = () => ({
     type: SIGNUP_ERROR,
+});
+
+export const SEND_FORGOTTEN_PASSWORD = 'auth/SEND_FORGOTTEN_PASSWORD';
+export const sendForgottenPassword = (payload: ForgottenPasswordPayload) => ({
+    type: SEND_FORGOTTEN_PASSWORD,
+    payload,
+});
+
+export const SEND_NEW_CREDENTIALS = 'auth/SEND_NEW_CREDENTIALS';
+export const sendNewCredentails = (payload: NewCredentialsPayload) => ({
+    type: SEND_NEW_CREDENTIALS,
+    payload,
 });
 
 export const REFRESH_TOKEN = 'auth/REFRESH_TOKEN';

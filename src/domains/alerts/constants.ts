@@ -3,6 +3,7 @@ export const alertTypes = {
     LOGIN_NOT_EXISTS: 'UserNotFoundException',
     LOGIN_INCORRECT: 'NotAuthorizedException',
     REGISTER_USER_EXISTS: 'UsernameExistsException',
+    FORGOT_PASSWORD_CODE_MISMATCH: 'CodeMismatchException',
     GENERAL: 'GENERAL',
 };
 
@@ -29,8 +30,12 @@ export const alerts = {
         message: 'User already exists',
         type: alertCategories.ERROR,
     },
+    [alertTypes.FORGOT_PASSWORD_CODE_MISMATCH]: {
+        message: 'Invalid verification code provided, please try again',
+        type: alertCategories.ERROR,
+    },
     [alertTypes.GENERAL]: {
-        message: 'Something went wrong. Please try again later',
+        message: 'Something went wrong, please try again',
         type: alertCategories.ERROR,
     },
 };

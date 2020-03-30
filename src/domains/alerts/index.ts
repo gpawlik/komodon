@@ -1,5 +1,5 @@
 import { SET_ALERT, RESET_ALERTS } from './actions';
-import { alerts, alertTypes } from './constants';
+import { alerts, alertTypes, alertCategories } from './constants';
 import { State } from './types';
 
 export const initialState: State = {
@@ -10,12 +10,13 @@ export const alertsReducer = (state: State = initialState, action) => {
     switch (action.type) {
         case SET_ALERT: {
             const alertId = action.payload || alertTypes.GENERAL;
+            const alert = alerts[alertId] || alerts.GENERAL;
             return {
                 ...state,
                 alert: {
                     id: alertId,
-                    message: alerts[alertId]?.message || '',
-                    type: alerts[alertId]?.type || '',
+                    message: alert?.message,
+                    type: alert?.type,
                 },
             };
         }

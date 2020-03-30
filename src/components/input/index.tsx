@@ -16,8 +16,10 @@ interface Props {
     hasError?: boolean;
     secureTextEntry?: boolean;
     showReset?: boolean;
+    blurOnSubmit?: boolean;
     onReset?: () => void;
     onValueChange: (arg0: string) => void;
+    onSubmitEditing?: () => void;
 }
 
 export class Input extends React.PureComponent<Props> {
