@@ -1,59 +1,13 @@
-import * as React from 'react';
+import { connect } from 'react-redux';
 
-import { Screen } from '~/components/screen';
-import { InputBox } from '~/components/input';
-import { ConfirmBox } from '~/components/confirm-box';
-import { emailIsValid } from '~/utils/';
+import { sendForgottenPassword, sendNewCredentails } from '~/domains/auth/actions';
 
-import { Container, Content, Title } from './styles';
+import { ForgottenPasswordComponent } from './component';
+import { DispatchProps } from './types';
 
-interface Props {}
+const mapDispatchToProps: DispatchProps = {
+    sendForgottenPassword,
+    sendNewCredentails,
+};
 
-interface State {
-    email: string;
-    hasAttemptedSubmit: boolean;
-    isValidEmail: boolean;
-}
-
-export class ForgottenPassword extends React.PureComponent<Props, State> {
-    state = {
-        email: '',
-        hasAttemptedSubmit: false,
-        isValidEmail: true,
-    };
-
-    onSubmit = () => {
-        this.setState({ hasAttemptedSubmit: true });
-    };
-
-    onChangeEmail = (value: string) => {
-        this.setState({ email: value, isValidEmail: emailIsValid(value) });
-    };
-
-    render() {
-        const { email, hasAttemptedSubmit, isValidEmail } = this.state;
-        const canAttemptSubmit = email.trim() !== '';
-
-        return (
-            <Screen title="Forgotten password">
-                <Container>
-                    <Content>
-                        <Title>Enter your email and we'll send you a link with more instructions.</Title>
-                        <InputBox
-                            label="Email"
-                            autoCompleteType="off"
-                            textContentType="emailAddress"
-                            keyboardType="email-address"
-                            error="Please provide a valid e-mail"
-                            hasError={hasAttemptedSubmit && !isValidEmail}
-                            value={email}
-                            onValueChange={this.onChangeEmail}
-                        />
-                    </Content>
-
-                    <ConfirmBox text="Send email" isDisabled={!canAttemptSubmit} onPress={this.onSubmit} />
-                </Container>
-            </Screen>
-        );
-    }
-}
+export const ForgottenPassword = connect(null, mapDispatchToProps)(ForgottenPasswordComponent);

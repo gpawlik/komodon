@@ -1,19 +1,31 @@
-import { handleActions } from 'redux-actions';
-import { Map as ImmutableMap } from 'immutable';
+import { SET_ALERT, RESET_ALERTS } from './actions';
+import { alerts, alertTypes, alertCategories } from './constants';
+import { State } from './types';
 
-import { handleReduce } from '~/utils/handle-reduce';
+export const initialState: State = {
+    alert: undefined,
+};
 
-import { setAlert, resetAlerts } from './actions';
+export const alertsReducer = (state: State = initialState, action) => {
+    switch (action.type) {
+        case SET_ALERT: {
+            const alertId = action.payload || alertTypes.GENERAL;
+            const alert = alerts[alertId] || alerts.GENERAL;
+            return {
+                ...state,
+                alert: {
+                    id: alertId,
+                    message: alert?.message,
+                    type: alert?.type,
+                },
+            };
+        }
 
-type State = ImmutableMap<string, any>;
+        case RESET_ALERTS: {
+            return action.payload === state.alert?.id ? initialState : state;
+        }
 
-export const initialState: State = ImmutableMap({
-    alert: ImmutableMap(),
-});
-
-const actionHandlers = new Map([
-    [setAlert, handleReduce((state, { payload }) => state.set('alert', ImmutableMap(payload)))],
-    [resetAlerts, handleReduce(state => state.set('alert', ImmutableMap()))],
-]);
-
-export const alertsReducer = handleActions(actionHandlers, initialState);
+        default:
+            return state;
+    }
+};
