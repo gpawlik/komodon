@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { TextRegular3 } from '~/components/text';
 
@@ -22,13 +22,17 @@ const getMinWidth = R.cond([
     [R.T, R.always('272px')],
 ]);
 
-export const Container = styled.TouchableOpacity`
-    background-color: ${getBackgroundColor};
+export const buttonStyle = css`
     padding: ${selectors.ss5} ${selectors.ss5};
     margin: ${selectors.ss2};
     border-radius: ${selectors.br3};
     align-items: center;
     min-width: ${getMinWidth};
+`;
+
+export const Container = styled.TouchableOpacity`
+    background-color: ${getBackgroundColor};
+    ${buttonStyle}
 `;
 
 export const Text = styled(TextRegular3)`

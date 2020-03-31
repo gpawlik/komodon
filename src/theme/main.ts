@@ -10,6 +10,7 @@ const colors = {
     orange: 'rgb(250, 130, 49)',
     yellow: 'rgb(247, 183, 49)',
     green: 'rgb(32, 191, 107)',
+    blue: 'rgb(41, 128, 185)',
     turquoise: 'rgb(15, 185, 177)',
     grey: 'rgb(165, 177, 194)',
 };

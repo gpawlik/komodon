@@ -5,12 +5,13 @@ import { Screen } from '~/components/screen';
 import { InputBox } from '~/components/input';
 import { ConfirmBox } from '~/components/confirm-box';
 
-import { Container, Content, Title } from '../../styles';
+import { Container, Content, Title, InputContainer, Link, LinkText } from '../../styles';
 
 interface Props {
     email: string;
     isSubmitting: boolean;
     onSubmit: any;
+    onResendCode: () => void;
 }
 
 export interface State {
@@ -58,7 +59,7 @@ export class ForgottenPasswordConfirmation extends React.PureComponent<Props, St
     };
 
     render() {
-        const { email, isSubmitting } = this.props;
+        const { email, isSubmitting, onResendCode } = this.props;
         const {
             code,
             password,
@@ -76,37 +77,43 @@ export class ForgottenPasswordConfirmation extends React.PureComponent<Props, St
                 <Container>
                     <Content>
                         <Title>{title}</Title>
+                        <Link onPress={onResendCode}>
+                            <LinkText>Didn't get the code?</LinkText>
+                            <LinkText isMarked>Re-send it</LinkText>
+                        </Link>
 
-                        <InputBox
-                            label="Code"
-                            autoCompleteType="off"
-                            autoCapitalize="none"
-                            error="Please provide a valid code"
-                            hasError={hasAttemptedSubmit && !isValidCode}
-                            value={code}
-                            onValueChange={this.onChangeCode}
-                        />
+                        <InputContainer>
+                            <InputBox
+                                label="Code"
+                                autoCompleteType="off"
+                                autoCapitalize="none"
+                                error="Please provide a valid code"
+                                hasError={hasAttemptedSubmit && !isValidCode}
+                                value={code}
+                                onValueChange={this.onChangeCode}
+                            />
 
-                        <InputBox
-                            value={password}
-                            label="Password"
-                            secureTextEntry
-                            hasError={hasAttemptedSubmit && !isValidPassword}
-                            onValueChange={this.onChangePassword1}
-                            blurOnSubmit={false}
-                            onSubmitEditing={() => Keyboard.dismiss()}
-                        />
+                            <InputBox
+                                value={password}
+                                label="Password"
+                                secureTextEntry
+                                hasError={hasAttemptedSubmit && !isValidPassword}
+                                onValueChange={this.onChangePassword1}
+                                blurOnSubmit={false}
+                                onSubmitEditing={() => Keyboard.dismiss()}
+                            />
 
-                        <InputBox
-                            value={password2}
-                            label="Repeat Password"
-                            error="Passwords do not match"
-                            secureTextEntry
-                            hasError={hasAttemptedSubmit && !isMatchingPassword}
-                            onValueChange={this.onChangePassword2}
-                            blurOnSubmit={false}
-                            onSubmitEditing={() => Keyboard.dismiss()}
-                        />
+                            <InputBox
+                                value={password2}
+                                label="Repeat Password"
+                                error="Passwords do not match"
+                                secureTextEntry
+                                hasError={hasAttemptedSubmit && !isMatchingPassword}
+                                onValueChange={this.onChangePassword2}
+                                blurOnSubmit={false}
+                                onSubmitEditing={() => Keyboard.dismiss()}
+                            />
+                        </InputContainer>
                     </Content>
 
                     <ConfirmBox
