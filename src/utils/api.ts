@@ -28,8 +28,6 @@ function* refreshTokenEffect(fn, params) {
             const session = yield call([Auth, 'currentSession']);
             const token = session?.idToken?.jwtToken;
 
-            console.log({ session, token });
-
             if (token) {
                 // If we got back a valid token - rerun the original request
                 yield put(refreshToken(token));

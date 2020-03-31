@@ -51,7 +51,9 @@ export function* signupSaga({ payload: { username, email, password, successCb } 
     }
 }
 
-export function* sendForgottenPasswordSaga({ payload: { username = '', successCb } }: ForgottenPasswordAction) {
+export function* sendForgottenPasswordSaga({
+    payload: { username = '', successCb, failureCb },
+}: ForgottenPasswordAction) {
     try {
         const result = yield call([Auth, 'forgotPassword'], username);
         const email = result?.CodeDeliveryDetails?.Destination;
@@ -59,11 +61,14 @@ export function* sendForgottenPasswordSaga({ payload: { username = '', successCb
         yield call(successCb, { username, email });
     } catch (e) {
         console.log(e);
+        yield call(failureCb);
         yield put(setAlert(e?.code));
     }
 }
 
-export function* sendNewCredentialsSaga({ payload: { username, code, password, successCb } }: NewCredentialsAction) {
+export function* sendNewCredentialsSaga({
+    payload: { username, code, password, successCb, failureCb },
+}: NewCredentialsAction) {
     try {
         yield call([Auth, 'forgotPasswordSubmit'], username, code, password);
 
@@ -71,7 +76,7 @@ export function* sendNewCredentialsSaga({ payload: { username, code, password, s
         yield put(setAlert(alertTypes.FORGOT_PASSWORD_SUCCESS));
     } catch (e) {
         console.log(e);
-        //yield put(signupError());
+        yield call(failureCb);
         yield put(setAlert(e?.code || e?.__type));
     }
 }

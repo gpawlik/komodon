@@ -34,3 +34,9 @@ export const Container = styled.TouchableOpacity`
 export const Text = styled(TextRegular3)`
     color: ${getTextColor};
 `;
+
+export const Spinner = styled.ActivityIndicator`
+    position: absolute;
+    top: 13;
+    right: 16;
+`;

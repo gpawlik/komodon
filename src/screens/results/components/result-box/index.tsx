@@ -33,7 +33,7 @@ interface Props {
 }
 
 export const ResultBox = ({ price, routes = [], deepLink = '', priceLevel }: Props) => {
-    const openLink = () => Linking.openURL(deepLink).catch(err => console.log('An error occurred', err));
+    const openLink = () => Linking.openURL(deepLink).catch(e => console.log('An error occurred', e));
     const airlineList = routes.map(({ airlines = [] }) =>
         airlines.map(iata => (airlineCodes[iata] || iata).slice(0, 15)),
     );
