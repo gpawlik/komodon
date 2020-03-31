@@ -2,6 +2,7 @@ export interface LoginPayload {
     username: string;
     password: string;
     successCb: () => void;
+    failureCb: () => void;
 }
 
 export interface LoginAction {
@@ -35,6 +36,7 @@ export interface SignupPayload {
     email: string;
     password: string;
     successCb: () => void;
+    failureCb: () => void;
 }
 
 export interface SignupAction {

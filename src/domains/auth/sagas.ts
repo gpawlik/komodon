@@ -12,10 +12,11 @@ import {
     signupError,
     SEND_FORGOTTEN_PASSWORD,
     SEND_NEW_CREDENTIALS,
+    LOGOUT_ATTEMPT,
 } from './actions';
 import { LoginAction, SignupAction, ForgottenPasswordAction, NewCredentialsAction } from './types';
 
-export function* loginSaga({ payload: { username, password, successCb } }: LoginAction) {
+export function* loginSaga({ payload: { username, password, successCb, failureCb } }: LoginAction) {
     try {
         const result = yield call([Auth, 'signIn'], {
             username,
@@ -26,12 +27,13 @@ export function* loginSaga({ payload: { username, password, successCb } }: Login
         yield call(successCb);
     } catch (e) {
         console.log(e);
+        yield call(failureCb);
         yield put(loginError());
         yield put(setAlert(e?.code));
     }
 }
 
-export function* signupSaga({ payload: { username, email, password, successCb } }: SignupAction) {
+export function* signupSaga({ payload: { username, email, password, successCb, failureCb } }: SignupAction) {
     try {
         const result = yield call([Auth, 'signUp'], {
             username,
@@ -46,6 +48,7 @@ export function* signupSaga({ payload: { username, email, password, successCb } 
         yield call(successCb);
     } catch (e) {
         console.log(e);
+        yield call(failureCb);
         yield put(signupError());
         yield put(setAlert(e?.code));
     }
@@ -81,6 +84,15 @@ export function* sendNewCredentialsSaga({
     }
 }
 
+export function* logoutSaga() {
+    try {
+        yield call([Auth, 'signOut']);
+    } catch (e) {
+        console.log(e);
+        yield put(setAlert(e?.code));
+    }
+}
+
 function* watchLogin() {
     // @ts-ignore
     yield takeLatest(LOGIN_ATTEMPT, loginSaga);
@@ -101,4 +113,9 @@ function* watchSendNewCredentials() {
     yield takeLatest(SEND_NEW_CREDENTIALS, sendNewCredentialsSaga);
 }
 
-export const authSagas = [watchLogin, watchSignup, watchSendForgottenPassword, watchSendNewCredentials];
+function* watchLogout() {
+    // @ts-ignore
+    yield takeLatest(LOGOUT_ATTEMPT, logoutSaga);
+}
+
+export const authSagas = [watchLogin, watchSignup, watchSendForgottenPassword, watchSendNewCredentials, watchLogout];
