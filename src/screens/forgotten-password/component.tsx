@@ -53,6 +53,12 @@ export class ForgottenPasswordComponent extends React.Component<Props, State> {
         });
     };
 
+    handleResendCode = () => {
+        const { username } = this.state;
+        this.setState({ isSubmitting: true });
+        this.props.sendForgottenPassword({ username, successCb: this.onMainSuccess, failureCb: () => {} });
+    };
+
     render() {
         const { isCodeSent, email, isSubmitting } = this.state;
 
@@ -63,6 +69,7 @@ export class ForgottenPasswordComponent extends React.Component<Props, State> {
                 email={email}
                 isSubmitting={isSubmitting}
                 onSubmit={this.handleConfirmationSubmit}
+                onResendCode={this.handleResendCode}
             />
         );
     }

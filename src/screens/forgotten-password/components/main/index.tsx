@@ -4,7 +4,7 @@ import { Screen } from '~/components/screen';
 import { InputBox } from '~/components/input';
 import { ConfirmBox } from '~/components/confirm-box';
 
-import { Container, Content, Title } from '../../styles';
+import { Container, Content, Title, InputContainer } from '../../styles';
 
 interface Props {
     onSubmit: (arg0: string) => void;
@@ -43,15 +43,17 @@ export class ForgottenPasswordMain extends React.PureComponent<Props, State> {
                 <Container>
                     <Content>
                         <Title>Enter your username and we'll send you a link with the confirmation code.</Title>
-                        <InputBox
-                            label="Username"
-                            autoCompleteType="off"
-                            autoCapitalize="none"
-                            error="Please provide a valid username"
-                            hasError={hasAttemptedSubmit && !isValid}
-                            value={username}
-                            onValueChange={this.onChangeValue}
-                        />
+                        <InputContainer>
+                            <InputBox
+                                label="Username"
+                                autoCompleteType="off"
+                                autoCapitalize="none"
+                                error="Please provide a valid username"
+                                hasError={hasAttemptedSubmit && !isValid}
+                                value={username}
+                                onValueChange={this.onChangeValue}
+                            />
+                        </InputContainer>
                     </Content>
 
                     <ConfirmBox
