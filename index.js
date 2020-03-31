@@ -1,4 +1,3 @@
-// @flow
 import { AppRegistry } from 'react-native';
 import Amplify from 'aws-amplify';
 

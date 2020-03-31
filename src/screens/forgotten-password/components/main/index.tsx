@@ -8,6 +8,7 @@ import { Container, Content, Title } from '../../styles';
 
 interface Props {
     onSubmit: (arg0: string) => void;
+    isSubmitting: boolean;
 }
 
 export interface State {
@@ -34,6 +35,7 @@ export class ForgottenPasswordMain extends React.PureComponent<Props, State> {
     };
 
     render() {
+        const { isSubmitting } = this.props;
         const { username, hasAttemptedSubmit, isValid } = this.state;
 
         return (
@@ -52,7 +54,12 @@ export class ForgottenPasswordMain extends React.PureComponent<Props, State> {
                         />
                     </Content>
 
-                    <ConfirmBox text="Send email" isDisabled={!isValid} onPress={this.onSubmit} />
+                    <ConfirmBox
+                        text="Submit"
+                        isDisabled={!isValid}
+                        onPress={this.onSubmit}
+                        isSubmitting={isSubmitting}
+                    />
                 </Container>
             </Screen>
         );

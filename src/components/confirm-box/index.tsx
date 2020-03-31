@@ -7,12 +7,11 @@ interface Props {
     text: string;
     onPress: () => void | Promise<any>;
     isDisabled?: boolean;
+    isSubmitting?: boolean;
 }
 
-export const ConfirmBox = ({ text, onPress, isDisabled }: Props) => {
-    return (
-        <Container>
-            <Button message={text} onPress={onPress} isDisabled={isDisabled} />
-        </Container>
-    );
-};
+export const ConfirmBox = ({ text, onPress, isDisabled, isSubmitting }: Props) => (
+    <Container>
+        <Button message={text} onPress={onPress} isDisabled={isDisabled} isSubmitting={isSubmitting} />
+    </Container>
+);

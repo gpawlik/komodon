@@ -27,6 +27,7 @@ interface State {
     email: string;
     password: string;
     password2: string;
+    isSubmitting: boolean;
 }
 
 export class StandardLogin extends React.PureComponent<Props, State> {
@@ -40,21 +41,32 @@ export class StandardLogin extends React.PureComponent<Props, State> {
         email: '',
         password: '',
         password2: '',
+        isSubmitting: false,
+    };
+
+    onSuccess = () => {
+        const { goBack } = this.props;
+        this.setState({ isSubmitting: false }, goBack);
+    };
+
+    onFailure = () => {
+        this.setState({ isSubmitting: false });
     };
 
     onSubmitLogin = () => {
-        const { onLogin, goBack } = this.props;
+        const { onLogin } = this.props;
         const { isValidUsername, isValidPassword, username, password } = this.state;
 
         this.setState({ hasAttemptedSubmit: true });
 
         if (isValidUsername && isValidPassword) {
-            onLogin({ username, password, successCb: goBack });
+            this.setState({ isSubmitting: true });
+            onLogin({ username, password, successCb: this.onSuccess, failureCb: this.onFailure });
         }
     };
 
     onSubmitRegister = () => {
-        const { onRegister, goBack } = this.props;
+        const { onRegister } = this.props;
         const {
             isValidUsername,
             isValidEmail,
@@ -67,7 +79,8 @@ export class StandardLogin extends React.PureComponent<Props, State> {
         this.setState({ hasAttemptedSubmit: true });
 
         if (isValidUsername && isValidEmail && isValidPassword && isMatchingPassword) {
-            onRegister({ username, email, password, successCb: goBack });
+            this.setState({ isSubmitting: true });
+            onRegister({ username, email, password, successCb: this.onSuccess, failureCb: this.onFailure });
         }
     };
 
@@ -102,6 +115,7 @@ export class StandardLogin extends React.PureComponent<Props, State> {
             isValidPassword,
             isMatchingPassword,
             hasAttemptedSubmit,
+            isSubmitting,
         } = this.state;
         const buttonText = isRegister ? 'Sign Up' : 'Sign In';
         const linkTextA = isRegister ? 'Already have an account?' : "Don't have an account?";
@@ -157,7 +171,12 @@ export class StandardLogin extends React.PureComponent<Props, State> {
                         </Link>
                     ) : null}
                 </InputsContainer>
-                <Button message={buttonText} onPress={submitFn} isDisabled={!canAttemptLogin} />
+                <Button
+                    message={buttonText}
+                    onPress={submitFn}
+                    isDisabled={!canAttemptLogin}
+                    isSubmitting={isSubmitting}
+                />
                 <Link isSeparate onPress={changeTab}>
                     <LinkText>{linkTextA}</LinkText>
                     <LinkText isMarked>{linkTextB}</LinkText>

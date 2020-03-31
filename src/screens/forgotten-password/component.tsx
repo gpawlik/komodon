@@ -10,6 +10,7 @@ interface State {
     username: string;
     email: string;
     isCodeSent: boolean;
+    isSubmitting: boolean;
 }
 
 export class ForgottenPasswordComponent extends React.Component<Props, State> {
@@ -17,30 +18,52 @@ export class ForgottenPasswordComponent extends React.Component<Props, State> {
         username: '',
         email: '',
         isCodeSent: false,
+        isSubmitting: false,
     };
 
     onMainSuccess = ({ username, email }: ForgottenPasswordSuccessPayload) => {
-        this.setState({ isCodeSent: true, username, email });
+        this.setState({ isCodeSent: true, username, email, isSubmitting: false });
+    };
+
+    onConfirmationSuccess = () => {
+        const { navigation } = this.props;
+
+        this.setState({ isSubmitting: false }, navigation.goBack);
+    };
+
+    onFailure = () => {
+        this.setState({ isSubmitting: false });
     };
 
     handleMainSubmit = (username: string) => {
-        this.props.sendForgottenPassword({ username, successCb: this.onMainSuccess });
+        this.setState({ isSubmitting: true });
+        this.props.sendForgottenPassword({ username, successCb: this.onMainSuccess, failureCb: this.onFailure });
     };
 
     handleConfirmationSubmit = (code: string, password: string) => {
-        const { navigation } = this.props;
         const { username } = this.state;
-        this.props.sendNewCredentails({ username, code, password, successCb: navigation.goBack });
+
+        this.setState({ isSubmitting: true });
+        this.props.sendNewCredentails({
+            username,
+            code,
+            password,
+            successCb: this.onConfirmationSuccess,
+            failureCb: this.onFailure,
+        });
     };
 
     render() {
-        console.log({ p: this.props });
-        const { isCodeSent, email } = this.state;
+        const { isCodeSent, email, isSubmitting } = this.state;
 
         return !isCodeSent ? (
-            <ForgottenPasswordMain onSubmit={this.handleMainSubmit} />
+            <ForgottenPasswordMain isSubmitting={isSubmitting} onSubmit={this.handleMainSubmit} />
         ) : (
-            <ForgottenPasswordConfirmation email={email} onSubmit={this.handleConfirmationSubmit} />
+            <ForgottenPasswordConfirmation
+                email={email}
+                isSubmitting={isSubmitting}
+                onSubmit={this.handleConfirmationSubmit}
+            />
         );
     }
 }

@@ -1,5 +1,5 @@
 import { SET_ALERT, RESET_ALERTS } from './actions';
-import { alerts, alertTypes, alertCategories } from './constants';
+import { alerts, alertTypes } from './constants';
 import { State } from './types';
 
 export const initialState: State = {

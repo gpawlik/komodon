@@ -12,10 +12,11 @@ import {
     signupError,
     SEND_FORGOTTEN_PASSWORD,
     SEND_NEW_CREDENTIALS,
+    LOGOUT_ATTEMPT,
 } from './actions';
 import { LoginAction, SignupAction, ForgottenPasswordAction, NewCredentialsAction } from './types';
 
-export function* loginSaga({ payload: { username, password, successCb } }: LoginAction) {
+export function* loginSaga({ payload: { username, password, successCb, failureCb } }: LoginAction) {
     try {
         const result = yield call([Auth, 'signIn'], {
             username,
@@ -26,12 +27,13 @@ export function* loginSaga({ payload: { username, password, successCb } }: Login
         yield call(successCb);
     } catch (e) {
         console.log(e);
+        yield call(failureCb);
         yield put(loginError());
         yield put(setAlert(e?.code));
     }
 }
 
-export function* signupSaga({ payload: { username, email, password, successCb } }: SignupAction) {
+export function* signupSaga({ payload: { username, email, password, successCb, failureCb } }: SignupAction) {
     try {
         const result = yield call([Auth, 'signUp'], {
             username,
@@ -46,12 +48,15 @@ export function* signupSaga({ payload: { username, email, password, successCb } 
         yield call(successCb);
     } catch (e) {
         console.log(e);
+        yield call(failureCb);
         yield put(signupError());
         yield put(setAlert(e?.code));
     }
 }
 
-export function* sendForgottenPasswordSaga({ payload: { username = '', successCb } }: ForgottenPasswordAction) {
+export function* sendForgottenPasswordSaga({
+    payload: { username = '', successCb, failureCb },
+}: ForgottenPasswordAction) {
     try {
         const result = yield call([Auth, 'forgotPassword'], username);
         const email = result?.CodeDeliveryDetails?.Destination;
@@ -59,11 +64,14 @@ export function* sendForgottenPasswordSaga({ payload: { username = '', successCb
         yield call(successCb, { username, email });
     } catch (e) {
         console.log(e);
+        yield call(failureCb);
         yield put(setAlert(e?.code));
     }
 }
 
-export function* sendNewCredentialsSaga({ payload: { username, code, password, successCb } }: NewCredentialsAction) {
+export function* sendNewCredentialsSaga({
+    payload: { username, code, password, successCb, failureCb },
+}: NewCredentialsAction) {
     try {
         yield call([Auth, 'forgotPasswordSubmit'], username, code, password);
 
@@ -71,8 +79,17 @@ export function* sendNewCredentialsSaga({ payload: { username, code, password, s
         yield put(setAlert(alertTypes.FORGOT_PASSWORD_SUCCESS));
     } catch (e) {
         console.log(e);
-        //yield put(signupError());
+        yield call(failureCb);
         yield put(setAlert(e?.code || e?.__type));
+    }
+}
+
+export function* logoutSaga() {
+    try {
+        yield call([Auth, 'signOut']);
+    } catch (e) {
+        console.log(e);
+        yield put(setAlert(e?.code));
     }
 }
 
@@ -96,4 +113,9 @@ function* watchSendNewCredentials() {
     yield takeLatest(SEND_NEW_CREDENTIALS, sendNewCredentialsSaga);
 }
 
-export const authSagas = [watchLogin, watchSignup, watchSendForgottenPassword, watchSendNewCredentials];
+function* watchLogout() {
+    // @ts-ignore
+    yield takeLatest(LOGOUT_ATTEMPT, logoutSaga);
+}
+
+export const authSagas = [watchLogin, watchSignup, watchSendForgottenPassword, watchSendNewCredentials, watchLogout];

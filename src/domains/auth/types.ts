@@ -2,6 +2,7 @@ export interface LoginPayload {
     username: string;
     password: string;
     successCb: () => void;
+    failureCb: () => void;
 }
 
 export interface LoginAction {
@@ -35,6 +36,7 @@ export interface SignupPayload {
     email: string;
     password: string;
     successCb: () => void;
+    failureCb: () => void;
 }
 
 export interface SignupAction {
@@ -49,6 +51,7 @@ export interface ForgottenPasswordSuccessPayload {
 export interface ForgottenPasswordPayload {
     username: string;
     successCb: (arg0: ForgottenPasswordSuccessPayload) => void;
+    failureCb: () => void;
 }
 
 export interface ForgottenPasswordAction {
@@ -60,6 +63,7 @@ export interface NewCredentialsPayload {
     code: string;
     password: string;
     successCb: () => void;
+    failureCb: () => void;
 }
 
 export interface NewCredentialsAction {

@@ -5,8 +5,7 @@ import { Container } from './styles';
 
 interface Props {
     message: string;
-    route: string;
-    qaName?: string;
+    route?: string;
     onPress: (arg0: string) => void;
 }
 
@@ -14,11 +13,10 @@ export class MenuItem extends React.PureComponent<Props> {
     onPress = () => this.props.onPress(this.props.route);
 
     render() {
-        const { message, qaName } = this.props;
-        const testProps = qaName ? { testID: `menu-button.${qaName}` } : {};
+        const { message } = this.props;
 
         return (
-            <Container onPress={this.onPress} {...testProps}>
+            <Container onPress={this.onPress}>
                 <TextRegular2 message={message} />
             </Container>
         );

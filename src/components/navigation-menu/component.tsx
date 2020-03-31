@@ -14,14 +14,20 @@ export class NavigationMenuComponent extends React.Component<Props> {
         this.onHide();
     };
 
+    onLogout = () => {
+        this.props.logout();
+        this.onHide();
+    };
+
     render() {
-        const { isNavigationVisible } = this.props;
+        const { isNavigationVisible, isLoggedIn } = this.props;
 
         return (
             <Drawer width={MENU_WIDTH} isVisible={isNavigationVisible} onHide={this.onHide}>
                 {menuItems.map(({ id, message, route }) => (
-                    <MenuItem key={id} message={message} route={route} qaName={id} onPress={this.onPress} />
+                    <MenuItem key={id} message={message} route={route} onPress={this.onPress} />
                 ))}
+                {isLoggedIn ? <MenuItem key="logout" message="Logout" onPress={this.onLogout} /> : null}
             </Drawer>
         );
     }
