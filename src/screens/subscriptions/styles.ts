@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 import { TextRegular3 } from '~/components/text';
 import { selectors } from '~/theme/main';
-import { SVGIcon } from '~/icons';
 
 export const Container = styled.View``;
 
@@ -19,14 +18,3 @@ export const ItemBox = styled.TouchableOpacity`
 `;
 
 export const ItemText = styled(TextRegular3)``;
-
-export const IconBox = styled.TouchableOpacity`
-    position: absolute;
-    top: 10;
-    right: 10;
-`;
-
-export const Icon = styled(SVGIcon).attrs({
-    colour: selectors.red,
-    size: 20,
-})``;

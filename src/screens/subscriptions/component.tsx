@@ -5,7 +5,7 @@ import { Header } from '~/components/header';
 import { LoadingScreen } from '~/components/loading-screen';
 import { SubscriptionItem } from '~/components/subscription-item';
 
-import { Container, Content, ItemBox, IconBox, Icon } from './styles';
+import { Container, Content, ItemBox } from './styles';
 import { Props, State } from './types';
 
 export class SubscriptionsComponent extends React.PureComponent<Props, State> {
@@ -39,6 +39,8 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
                                     navigation.navigate('SubscriptionModal', {
                                         departurePlace,
                                         destinationPlace,
+                                        deleteSubscription,
+                                        id,
                                     });
                                 }}
                             >
@@ -50,9 +52,6 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
                                     departureText="Departure text"
                                     returnText="Return text"
                                 />
-                                <IconBox onPress={() => deleteSubscription(id)}>
-                                    <Icon type={generalIcons.TRASH} />
-                                </IconBox>
                             </ItemBox>
                         );
                     })}
