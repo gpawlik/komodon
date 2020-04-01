@@ -20,7 +20,7 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
     handleType = (type: number) => this.setState({ type });
 
     render() {
-        const { subscriptions = [], isLoading, deleteSubscription } = this.props;
+        const { subscriptions = [], isLoading, deleteSubscription, navigation } = this.props;
 
         if (isLoading) {
             return <LoadingScreen />;
@@ -28,23 +28,34 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
 
         return (
             <Container>
-                <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => this.props.navigation.goBack()} />
+                <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => navigation.goBack()} />
                 <Content style={{ width: '100%' }}>
-                    {subscriptions.map(({ id, searchCriteria }, index) => (
-                        <ItemBox key={index}>
-                            <SubscriptionItem
-                                departureCode={searchCriteria?.departurePlace?.placeCode}
-                                departureName={searchCriteria?.departurePlace?.placeName}
-                                destinationCode={searchCriteria?.destinationPlace?.placeCode}
-                                destinationName={searchCriteria?.destinationPlace?.placeName}
-                                departureText="Departure text"
-                                returnText="Return text"
-                            />
-                            <IconBox onPress={() => deleteSubscription(id)}>
-                                <Icon type={generalIcons.TRASH} />
-                            </IconBox>
-                        </ItemBox>
-                    ))}
+                    {subscriptions.map(({ id, searchCriteria }, index) => {
+                        const { departurePlace, destinationPlace } = searchCriteria || {};
+                        return (
+                            <ItemBox
+                                key={index}
+                                onPress={() => {
+                                    navigation.navigate('SubscriptionModal', {
+                                        departurePlace,
+                                        destinationPlace,
+                                    });
+                                }}
+                            >
+                                <SubscriptionItem
+                                    departureCode={departurePlace?.placeCode}
+                                    departureName={departurePlace?.placeName}
+                                    destinationCode={destinationPlace?.placeCode}
+                                    destinationName={destinationPlace?.placeName}
+                                    departureText="Departure text"
+                                    returnText="Return text"
+                                />
+                                <IconBox onPress={() => deleteSubscription(id)}>
+                                    <Icon type={generalIcons.TRASH} />
+                                </IconBox>
+                            </ItemBox>
+                        );
+                    })}
                 </Content>
             </Container>
         );
