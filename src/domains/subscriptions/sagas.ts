@@ -15,11 +15,11 @@ import {
     deleteSubscriptionError,
 } from './actions';
 import { CreateSubscriptionAction, DeleteSubscriptionAction } from './types';
-//import { result } from './mock';
+import { results } from './mock';
 
 export function* requestSubscriptionsSaga() {
     try {
-        const [results] = yield call(handleApi(api.getSubscriptions));
+        //const [results] = yield call(handleApi(api.getSubscriptions));
 
         if (results && Array.isArray(results)) {
             yield put(receiveSubscriptionsSuccess(results));

@@ -49,3 +49,22 @@ export const DELETE_SUBSCRIPTION_ERROR: 'subscriptions/DELETE_ERROR' = 'subscrip
 export const deleteSubscriptionError = () => ({
     type: DELETE_SUBSCRIPTION_ERROR,
 });
+
+export const REQUEST_SUBSCRIPTION_HISTORY: 'subscriptions/REQUEST_SUBSCRIPTION_HISTORY' =
+    'subscriptions/REQUEST_SUBSCRIPTION_HISTORY';
+export const requestSubscriptionHistory = () => ({
+    type: REQUEST_SUBSCRIPTION_HISTORY,
+});
+
+export const REQUEST_SUBSCRIPTION_HISTORY_SUCCESS: 'subscriptions/REQUEST_SUBSCRIPTION_HISTORY_SUCCESS' =
+    'subscriptions/REQUEST_SUBSCRIPTION_HISTORY_SUCCESS';
+export const requestSubscriptionHistorySuccess = (payload: string) => ({
+    type: REQUEST_SUBSCRIPTION_HISTORY_SUCCESS,
+    payload,
+});
+
+export const REQUEST_SUBSCRIPTION_HISTORY_ERROR: 'subscriptions/REQUEST_SUBSCRIPTION_HISTORY_ERROR' =
+    'subscriptions/REQUEST_SUBSCRIPTION_HISTORY_ERROR';
+export const requestSubscriptionHistoryError = () => ({
+    type: REQUEST_SUBSCRIPTION_HISTORY_ERROR,
+});

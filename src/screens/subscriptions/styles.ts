@@ -11,7 +11,7 @@ export const Content = styled.ScrollView`
     padding: 10px 20px;
 `;
 
-export const ItemBox = styled.View`
+export const ItemBox = styled.TouchableOpacity`
     background-color: ${selectors.white};
     border-radius: 8px;
     margin-vertical: ${selectors.ss4};

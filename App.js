@@ -10,6 +10,7 @@ import { Results } from '~/screens/results';
 import { Login } from '~/screens/login';
 import { ForgottenPassword } from '~/screens/forgotten-password';
 import { Subscriptions } from '~/screens/subscriptions';
+import { SubscriptionModal } from '~/screens/subscriptions/components/details';
 import { SearchPlaceModal } from '~/screens/search-destination';
 import { SearchDateModal } from '~/screens/search-date';
 import { FiltersModal } from '~/screens/filters';
@@ -42,6 +43,9 @@ const RootStack = createStackNavigator(
         },
         FiltersModal: {
             screen: FiltersModal,
+        },
+        SubscriptionModal: {
+            screen: SubscriptionModal,
         },
     },
     {

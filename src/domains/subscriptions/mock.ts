@@ -1,4 +1,4 @@
-export const result = [
+export const results = [
     {
         id: 'c29b4524-723f-4b76-9826-f5be28cb3bb7',
         searchCriteria: {
