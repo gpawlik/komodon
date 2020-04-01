@@ -29,7 +29,10 @@ export interface CreateSubscriptionAction {
 }
 
 export interface DeleteSubscriptionAction {
-    payload: string;
+    payload: {
+        id: string;
+        successCb: () => void;
+    };
 }
 
 export interface SubscriptionResult {

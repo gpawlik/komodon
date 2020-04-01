@@ -7,7 +7,7 @@ import { Header } from '~/components/header';
 import { LoadingScreen } from '~/components/loading-screen';
 import { SubscriptionItem } from '~/components/subscription-item';
 
-import { Container, Content } from './styles';
+import { Container, Content, IconBox, Icon } from './styles';
 import { Props, State } from './types';
 
 export class SubscriptionDetailsComponent extends React.PureComponent<Props, State> {
@@ -22,9 +22,11 @@ export class SubscriptionDetailsComponent extends React.PureComponent<Props, Sta
     handleType = (type: number) => this.setState({ type });
 
     render() {
-        const { isLoading, deleteSubscription, navigation } = this.props;
+        const { isLoading, navigation } = this.props;
         const departurePlace = navigation?.state?.params?.departurePlace;
         const destinationPlace = navigation?.state?.params?.destinationPlace;
+        const deleteSubscription = navigation?.state?.params?.deleteSubscription;
+        const id = navigation?.state?.params?.id;
 
         if (isLoading) {
             return <LoadingScreen />;
@@ -32,7 +34,7 @@ export class SubscriptionDetailsComponent extends React.PureComponent<Props, Sta
 
         return (
             <Container>
-                <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => navigation.goBack()} />
+                <Header backIcon={generalIcons.ARROW_LEFT} backAction={navigation.goBack} />
                 <Content style={{ width: '100%' }}>
                     <SubscriptionItem
                         departureCode={departurePlace?.placeCode}
@@ -42,6 +44,9 @@ export class SubscriptionDetailsComponent extends React.PureComponent<Props, Sta
                         departureText="Departure text"
                         returnText="Return text"
                     />
+                    <IconBox onPress={() => deleteSubscription({ id, successCb: navigation.goBack })}>
+                        <Icon type={generalIcons.TRASH} />
+                    </IconBox>
                     <LineChart
                         data={{
                             labels: ['January', 'February', 'March', 'April', 'May', 'June'],

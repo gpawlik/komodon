@@ -1,4 +1,6 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { Alert } from 'react-native';
+import { call, put, take, takeLatest } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga';
 
 import { handleApi } from '~/utils/api';
 
@@ -15,11 +17,11 @@ import {
     deleteSubscriptionError,
 } from './actions';
 import { CreateSubscriptionAction, DeleteSubscriptionAction } from './types';
-import { results } from './mock';
+//import { results } from './mock';
 
 export function* requestSubscriptionsSaga() {
     try {
-        //const [results] = yield call(handleApi(api.getSubscriptions));
+        const [results] = yield call(handleApi(api.getSubscriptions));
 
         if (results && Array.isArray(results)) {
             yield put(receiveSubscriptionsSuccess(results));
@@ -45,14 +47,37 @@ export function* createSubscriptionSaga({ payload }: CreateSubscriptionAction) {
     }
 }
 
-export function* deleteSubscriptionSaga({ payload: id }: DeleteSubscriptionAction) {
+const confirmDeleteAlertChannel = () =>
+    eventChannel(emitter => {
+        Alert.alert(
+            'Delete subscription',
+            'Are you sure you want to delete this subscription?',
+            [
+                { text: 'Cancel', onPress: () => emitter(false) },
+                { text: 'Ok', onPress: () => emitter(true) },
+            ],
+            { cancelable: false },
+        );
+
+        return () => {};
+    });
+
+export function* deleteSubscriptionSaga({ payload: { id, successCb } }: DeleteSubscriptionAction) {
     try {
+        const channel = yield call(confirmDeleteAlertChannel);
+        const canProceed = yield take(channel);
+
+        if (!canProceed) {
+            return;
+        }
+
         const [result] = yield call(handleApi(api.deleteSubscription), id);
 
         if (result?.message === 'Unauthorized') {
             yield put(deleteSubscriptionError());
         } else if (result) {
             yield put(deleteSubscriptionSuccess(id));
+            yield call(successCb);
         }
     } catch (e) {
         console.log(e);
