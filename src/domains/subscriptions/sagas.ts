@@ -9,6 +9,9 @@ import {
     REQUEST_SUBSCRIPTIONS,
     receiveSubscriptionsSuccess,
     receiveSubscriptionsError,
+    REQUEST_SUBSCRIPTION_HISTORY,
+    requestSubscriptionHistorySuccess,
+    requestSubscriptionHistoryError,
     CREATE_SUBSCRIPTION_ATTEMPT,
     createSubscriptionSuccess,
     createSubscriptionError,
@@ -16,7 +19,7 @@ import {
     deleteSubscriptionSuccess,
     deleteSubscriptionError,
 } from './actions';
-import { CreateSubscriptionAction, DeleteSubscriptionAction } from './types';
+import { GetSubscriptionHistoryAction, CreateSubscriptionAction, DeleteSubscriptionAction } from './types';
 //import { results } from './mock';
 
 export function* requestSubscriptionsSaga() {
@@ -31,6 +34,21 @@ export function* requestSubscriptionsSaga() {
     } catch (e) {
         console.log(e);
         yield put(receiveSubscriptionsError());
+    }
+}
+
+export function* requestSubscriptionHistorySaga({ payload: { id } }: GetSubscriptionHistoryAction) {
+    try {
+        const [results] = yield call(handleApi(api.getSubscriptionHistory), id);
+
+        if (results && Array.isArray(results)) {
+            yield put(requestSubscriptionHistorySuccess({ id, result: {} }));
+        } else {
+            yield put(requestSubscriptionHistoryError());
+        }
+    } catch (e) {
+        console.log(e);
+        yield put(requestSubscriptionHistoryError());
     }
 }
 
@@ -90,6 +108,11 @@ function* watchRequestSubscriptions() {
     yield takeLatest(REQUEST_SUBSCRIPTIONS, requestSubscriptionsSaga);
 }
 
+function* watchRequestSubscriptionHistory() {
+    // @ts-ignore
+    yield takeLatest(REQUEST_SUBSCRIPTION_HISTORY, requestSubscriptionHistorySaga);
+}
+
 function* watchCreateSubscription() {
     // @ts-ignore
     yield takeLatest(CREATE_SUBSCRIPTION_ATTEMPT, createSubscriptionSaga);
@@ -100,4 +123,9 @@ function* watchDeleteSubscription() {
     yield takeLatest(DELETE_SUBSCRIPTION_ATTEMPT, deleteSubscriptionSaga);
 }
 
-export const subscriptionSagas = [watchCreateSubscription, watchRequestSubscriptions, watchDeleteSubscription];
+export const subscriptionSagas = [
+    watchCreateSubscription,
+    watchRequestSubscriptionHistory,
+    watchRequestSubscriptions,
+    watchDeleteSubscription,
+];

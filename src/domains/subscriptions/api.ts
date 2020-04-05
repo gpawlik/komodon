@@ -15,6 +15,18 @@ export function* getSubscriptions() {
     });
 }
 
+export function* getSubscriptionHistory(id) {
+    const token = yield select(getUserToken);
+
+    return yield call(fetch, `${API_ENDPOINT}/subscription/${id}/price`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            authorization: token,
+        },
+    });
+}
+
 export function* createSubscription(payload) {
     const token = yield select(getUserToken);
 

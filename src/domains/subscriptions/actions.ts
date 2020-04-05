@@ -1,4 +1,9 @@
-import { SubscriptionPayload, SubscriptionResults } from './types';
+import {
+    SubscriptionPayload,
+    SubscriptionResults,
+    GetSubscriptionHistoryPayload,
+    GetSubscriptionHistorySuccessPayload,
+} from './types';
 
 export const REQUEST_SUBSCRIPTIONS: 'subscriptions/REQUEST' = 'subscriptions/REQUEST';
 export const requestSubscriptions = () => ({
@@ -52,13 +57,14 @@ export const deleteSubscriptionError = () => ({
 
 export const REQUEST_SUBSCRIPTION_HISTORY: 'subscriptions/REQUEST_SUBSCRIPTION_HISTORY' =
     'subscriptions/REQUEST_SUBSCRIPTION_HISTORY';
-export const requestSubscriptionHistory = () => ({
+export const requestSubscriptionHistory = (payload: GetSubscriptionHistoryPayload) => ({
     type: REQUEST_SUBSCRIPTION_HISTORY,
+    payload,
 });
 
 export const REQUEST_SUBSCRIPTION_HISTORY_SUCCESS: 'subscriptions/REQUEST_SUBSCRIPTION_HISTORY_SUCCESS' =
     'subscriptions/REQUEST_SUBSCRIPTION_HISTORY_SUCCESS';
-export const requestSubscriptionHistorySuccess = (payload: string) => ({
+export const requestSubscriptionHistorySuccess = (payload: GetSubscriptionHistorySuccessPayload) => ({
     type: REQUEST_SUBSCRIPTION_HISTORY_SUCCESS,
     payload,
 });

@@ -35,6 +35,14 @@ export interface DeleteSubscriptionAction {
     };
 }
 
+export interface GetSubscriptionHistoryPayload {
+    id: string;
+}
+
+export interface GetSubscriptionHistoryAction {
+    payload: GetSubscriptionHistoryPayload;
+}
+
 export interface SubscriptionResult {
     id: string;
     searchCriteria: {
@@ -80,3 +88,12 @@ export interface SubscriptionResult {
 }
 
 export type SubscriptionResults = Array<SubscriptionResult>;
+
+interface HistoryResult {}
+
+export type HistoryResults = Record<string, HistoryResult>;
+
+export interface GetSubscriptionHistorySuccessPayload {
+    id: string;
+    result: HistoryResult;
+}

@@ -16,7 +16,9 @@ export class SubscriptionDetailsComponent extends React.PureComponent<Props, Sta
     };
 
     componentDidMount() {
-        this.props.requestSubscriptionHistory();
+        const { navigation } = this.props;
+        const id = navigation?.state?.params?.id;
+        this.props.requestSubscriptionHistory({ id });
     }
 
     handleType = (type: number) => this.setState({ type });
