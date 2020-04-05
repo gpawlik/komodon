@@ -5,11 +5,14 @@ const configDateFormat = 'YYYY-MM-DD';
 const momentRange = extendMoment(moment);
 
 interface Props {
-    from: string;
+    from?: string;
     to?: string;
 }
 
 export const convertRangeToMarked = ({ from, to }: Props) => {
+    if (!from) {
+        return {};
+    }
     if (!to) {
         return {
             [from]: { color: '#00cec9', textColor: '#fff', selected: true, startingDay: true, endingDay: true },

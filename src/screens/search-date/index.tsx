@@ -16,6 +16,7 @@ import { setSearchCriteria } from '~/domains/search/actions';
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { SectionBox } from '~/components/section-box';
+import { DateCriteriaBox } from '~/components/date-criteria-box';
 import { Button } from '~/components/button';
 import { ReduxState } from '~/types';
 
@@ -85,16 +86,8 @@ export const SearchDateModalComponent = props => {
 
     const closeModal = () => props.navigation.goBack();
 
-    const departureCriteria = focusedDepTime === 'DEP_TIME_CAL' ? { departureDates } : { departureDaysOfWeek };
-    const returnCriteria = R.cond([
-        [R.equals('RET_TIME_CAL'), R.always({ returnDates })],
-        [R.equals('RET_TIME_DAYS'), R.always({ returnDaysOfWeek })],
-        [R.equals('RET_TIME_RANGE'), R.always({ daysRange })],
-        [R.T, R.always({})],
-    ])(focusedRetTime);
-
     const onSubmitDeparture = () => {
-        props.setSearchCriteria({ ...departureCriteria, departureText });
+        props.setSearchCriteria({ departureDates, departureDaysOfWeek, departureText });
 
         if (returnText !== '' || !roundTrip) {
             closeModal();
@@ -104,7 +97,7 @@ export const SearchDateModalComponent = props => {
     };
 
     const onSubmitReturn = () => {
-        props.setSearchCriteria({ ...returnCriteria, returnText });
+        props.setSearchCriteria({ returnDates, returnDaysOfWeek, daysRange, returnText });
 
         if (departureText !== '') {
             closeModal();
@@ -126,7 +119,13 @@ export const SearchDateModalComponent = props => {
         ],
         [
             R.equals('DEP_TIME_DAYS'),
-            () => <DaysBox value={departureDaysOfWeek} onValueChange={handleDepartureWeekdaysChange} />,
+            () => (
+                <DaysBox
+                    key={departureDaysOfWeek.join()} // Force re-render when reset
+                    value={departureDaysOfWeek}
+                    onValueChange={handleDepartureWeekdaysChange}
+                />
+            ),
         ],
         [R.T, () => null],
     ]);
@@ -140,7 +139,13 @@ export const SearchDateModalComponent = props => {
         ],
         [
             R.equals('RET_TIME_DAYS'),
-            () => <DaysBox value={returnDaysOfWeek} onValueChange={handleReturnWeekdaysChange} />,
+            () => (
+                <DaysBox
+                    key={returnDaysOfWeek.join()} // Force re-render when reset
+                    value={returnDaysOfWeek}
+                    onValueChange={handleReturnWeekdaysChange}
+                />
+            ),
         ],
         [R.equals('RET_TIME_RANGE'), () => <DaysRangeBox onChange={handleReturnDaysNumberChange} />],
         [R.T, () => null],
@@ -163,43 +168,63 @@ export const SearchDateModalComponent = props => {
             />
 
             {isDepartureSelection ? (
-                <SelectionBox>
-                    <ButtonBox
-                        onChange={onFocusDepTime}
-                        options={[
-                            { id: 'DEP_TIME_CAL', text: 'Dates' },
-                            { id: 'DEP_TIME_DAYS', text: 'Days of  week' },
-                        ]}
-                        selected={focusedDepTime}
+                <>
+                    <DateCriteriaBox
+                        onPress={() => {}}
+                        exactDates={departureDates}
+                        daysOfWeek={departureDaysOfWeek}
+                        onExactDatesChange={() => handleDepartureDatesChange({})}
+                        onDaysOfWeekChange={() => handleDepartureWeekdaysChange([])}
                     />
-                    {getDepTimeBox(focusedDepTime)}
-                </SelectionBox>
+                    <SelectionBox>
+                        <ButtonBox
+                            onChange={onFocusDepTime}
+                            options={[
+                                { id: 'DEP_TIME_CAL', text: 'Dates' },
+                                { id: 'DEP_TIME_DAYS', text: 'Days of  week' },
+                            ]}
+                            selected={focusedDepTime}
+                        />
+                        {getDepTimeBox(focusedDepTime)}
+                    </SelectionBox>
+                </>
             ) : null}
             {isReturnSelection ? (
-                <SelectionBox>
-                    <ButtonBox
-                        onChange={onFocusRetTime}
-                        options={[
-                            { id: 'RET_TIME_CAL', text: 'Dates' },
-                            { id: 'RET_TIME_DAYS', text: 'Days of week' },
-                            { id: 'RET_TIME_RANGE', text: 'Number Days' },
-                        ]}
-                        selected={focusedRetTime}
+                <>
+                    <DateCriteriaBox
+                        onPress={() => {}}
+                        exactDates={returnDates}
+                        daysOfWeek={returnDaysOfWeek}
+                        daysRange={daysRange}
+                        onExactDatesChange={() => handleReturnDatesChange({})}
+                        onDaysOfWeekChange={() => handleReturnWeekdaysChange([])}
+                        onDaysRangeChange={() => handleReturnDaysNumberChange({})}
                     />
-                    {getRetTimeBox(focusedRetTime)}
-                </SelectionBox>
+                    <SelectionBox>
+                        <ButtonBox
+                            onChange={onFocusRetTime}
+                            options={[
+                                { id: 'RET_TIME_CAL', text: 'Dates' },
+                                { id: 'RET_TIME_DAYS', text: 'Days of week' },
+                                { id: 'RET_TIME_RANGE', text: 'Number Days' },
+                            ]}
+                            selected={focusedRetTime}
+                        />
+                        {getRetTimeBox(focusedRetTime)}
+                    </SelectionBox>
+                </>
             ) : null}
 
             <ConfirmBox>
                 {isDepartureSelection ? (
                     <Button
-                        message="Select departure time"
+                        message="Confirm departure time"
                         onPress={onSubmitDeparture}
                         isDisabled={!isDepartureModified || departureText === ''}
                     />
                 ) : (
                     <Button
-                        message="Select return time"
+                        message="Confirm return time"
                         onPress={onSubmitReturn}
                         isDisabled={!isReturnModified || returnText === ''}
                     />
