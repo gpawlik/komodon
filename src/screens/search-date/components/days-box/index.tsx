@@ -3,8 +3,9 @@ import * as R from 'ramda';
 
 import { days } from '~/constants';
 import { QuickBox } from '~/components/quick-box';
+import { CheckboxCell } from '~/components/cell';
 
-import { Container, Content, DayItem, DayText } from './styles';
+import { Container, Content } from './styles';
 import { Props, State } from './types';
 
 export class DaysBox extends React.PureComponent<Props, State> {
@@ -67,13 +68,9 @@ export class DaysBox extends React.PureComponent<Props, State> {
         return (
             <Container>
                 {days.map((item, index) => (
-                    <DayItem isSelected={selected[item]} onPress={() => this.onChange(item)} key={index}>
-                        <DayText>{item}</DayText>
-                    </DayItem>
+                    <CheckboxCell key={index} title={item} value={selected[item]} onPress={() => this.onChange(item)} />
                 ))}
-                <DayItem isSelected={selectedAll} onPress={() => this.onChangeAll()}>
-                    <DayText>All</DayText>
-                </DayItem>
+                <CheckboxCell title="All" value={selectedAll} onPress={() => this.onChangeAll()} />
 
                 <Content>
                     <QuickBox
