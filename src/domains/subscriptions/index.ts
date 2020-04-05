@@ -3,18 +3,21 @@ import {
     RECEIVE_SUBSCRIPTIONS_SUCCESS,
     RECEIVE_SUBSCRIPTIONS_ERROR,
     DELETE_SUBSCRIPTION_SUCCESS,
+    REQUEST_SUBSCRIPTION_HISTORY_SUCCESS,
 } from './actions';
 
-import { SubscriptionResults } from './types';
+import { SubscriptionResults, HistoryResults } from './types';
 
 interface State {
     results: SubscriptionResults;
     isLoading: boolean;
+    history: HistoryResults;
 }
 
 export const initialState: State = {
     results: [],
     isLoading: false,
+    history: {},
 };
 
 export const subscriptionsReducer = (state = initialState, action) => {
@@ -29,6 +32,14 @@ export const subscriptionsReducer = (state = initialState, action) => {
         case DELETE_SUBSCRIPTION_SUCCESS:
             const { payload: id } = action;
             return { ...state, results: state.results.filter(item => item.id !== id) };
+
+        case REQUEST_SUBSCRIPTION_HISTORY_SUCCESS: {
+            const {
+                payload: { id, result },
+            } = action;
+            return { ...state, history: { ...history, [id]: result } };
+        }
+
         default:
             return state;
     }
