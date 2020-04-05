@@ -2,14 +2,10 @@ import styled from 'styled-components';
 
 import { selectors } from '~/theme/main';
 
-export const Container = styled.ScrollView.attrs({
-    contentContainerStyle: {
-        paddingBottom: 180,
-    },
-})`
+export const Container = styled.ScrollView.attrs({})`
     background-color: ${selectors.white};
     margin: 14px 20px;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
 `;
 
 export const Content = styled.View`

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as R from 'ramda';
 import { Dimensions } from 'react-native';
 import moment, { Moment } from 'moment-timezone';
 import { CalendarList } from 'react-native-calendars';
@@ -42,6 +43,16 @@ export class CalendarDaySelector extends React.Component<Props, State> {
         width: Dimensions.get('screen').width,
     };
 
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (R.isEmpty(nextProps.value) && !R.isEmpty(prevState.markedDates)) {
+            return {
+                markedDates: convertRangeToMarked({}),
+            };
+        }
+
+        return null; // Triggers no change in the state
+    }
+
     onChangeCurrentDay = value => {
         const newValues = !this.state.hasFirstClick
             ? convertRangeToMarked({ from: value })
@@ -62,6 +73,7 @@ export class CalendarDaySelector extends React.Component<Props, State> {
     render() {
         const { timezone, minDate, maxDate } = this.props;
         const { markedDates, lastMarkedDate, width } = this.state;
+        console.log({ markedDates });
 
         const today = moment.tz(timezone);
 

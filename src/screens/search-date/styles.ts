@@ -8,7 +8,7 @@ export const Container = styled.View`
 `;
 
 export const SelectionBox = styled.View`
-    height: 100%;
+    flex: 1;
 `;
 
 export const ConfirmBox = styled.View`
@@ -17,7 +17,7 @@ export const ConfirmBox = styled.View`
     border-top-width: 0.3;
     border-top-color: #aaa;
     position: absolute;
-    bottom: 100px;
+    bottom: 0;
     left: 0;
     right: 0;
 `;
