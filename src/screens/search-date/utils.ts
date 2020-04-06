@@ -10,7 +10,7 @@ export const getDescriptiveName = ({ type, value }) => {
         case 'TIME_CAL': {
             if (!value.from) return '';
 
-            return value.from === value.to
+            return value.from === value.to || !value.to
                 ? moment(value.from).format('MMM, Do')
                 : `${moment(value.from).format('MMM, Do')} - ${moment(value.to).format('MMM, Do')}`;
         }
@@ -34,7 +34,9 @@ export const getDescriptiveName = ({ type, value }) => {
 
         case 'RET_TIME_RANGE':
         case 'TIME_RANGE':
-            return value.from === value.to ? `Ìn ${value.from} days` : `In ${value.from} to ${value.to} days`;
+            return value.from === value.to || !value.to
+                ? `Ìn ${value.from} days`
+                : `In ${value.from} to ${value.to} days`;
 
         default:
             return '';

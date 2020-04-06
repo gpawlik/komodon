@@ -8,7 +8,7 @@ import { convertRangeToMarked } from '../utils';
 
 interface Value {
     from: string;
-    to: string;
+    to?: string;
 }
 
 interface Props {
@@ -26,7 +26,6 @@ interface Props {
 }
 
 interface State {
-    markedDates: any;
     hasFirstClick: boolean;
     lastMarkedDate: string;
     width: number;
@@ -36,7 +35,6 @@ const configDateFormat = 'YYYY-MM-DD';
 
 export class CalendarDaySelector extends React.Component<Props, State> {
     state = {
-        markedDates: convertRangeToMarked(this.props.value),
         lastMarkedDate: null,
         hasFirstClick: false,
         // Fix for calendar not appearing on first load
@@ -44,37 +42,30 @@ export class CalendarDaySelector extends React.Component<Props, State> {
     };
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (R.isEmpty(nextProps.value) && !R.isEmpty(prevState.markedDates)) {
+        if (R.isEmpty(nextProps.value)) {
             return {
-                markedDates: convertRangeToMarked({}),
+                lastMarkedDate: null,
+                hasFirstClick: false,
             };
         }
 
-        return null; // Triggers no change in the state
+        return null;
     }
 
     onChangeCurrentDay = value => {
-        const newValues = !this.state.hasFirstClick
-            ? convertRangeToMarked({ from: value })
-            : convertRangeToMarked({ from: this.state.lastMarkedDate, to: value });
+        const newValues = !this.state.hasFirstClick ? { from: value } : { from: this.state.lastMarkedDate, to: value };
 
-        this.setState(
-            state => {
-                return {
-                    markedDates: newValues,
-                    hasFirstClick: !state.hasFirstClick,
-                    lastMarkedDate: !state.hasFirstClick && value,
-                };
-            },
-            () => this.props.onChange(newValues),
-        );
+        this.props.onChange(newValues);
+        this.setState(state => ({
+            hasFirstClick: !state.hasFirstClick,
+            lastMarkedDate: !state.hasFirstClick && value,
+        }));
     };
 
     render() {
-        const { timezone, minDate, maxDate } = this.props;
-        const { markedDates, lastMarkedDate, width } = this.state;
-        console.log({ markedDates });
-
+        const { timezone, minDate, maxDate, value } = this.props;
+        const { lastMarkedDate, width } = this.state;
+        const markedDates = convertRangeToMarked(value);
         const today = moment.tz(timezone);
 
         return (
