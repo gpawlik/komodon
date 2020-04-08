@@ -1,12 +1,11 @@
 import * as React from 'react';
 
 import { CalendarDaySelector } from './calendar';
-import { convertMarkedToRange } from './utils';
 import { Container } from './styles';
 
 interface Value {
     from: string;
-    to: string;
+    to?: string;
 }
 
 interface Props {
@@ -19,19 +18,14 @@ interface Props {
 const timezone = 'Europe/London';
 
 export class CalendarBox extends React.PureComponent<Props> {
-    onChange = dates => {
-        const range = convertMarkedToRange(dates);
-        this.props.onValueChange(range);
-    };
-
     render() {
-        const { value, minDate, maxDate } = this.props;
+        const { value, minDate, maxDate, onValueChange } = this.props;
 
         return (
             <Container>
                 <CalendarDaySelector
                     value={value}
-                    onChange={this.onChange}
+                    onChange={onValueChange}
                     timezone={timezone}
                     minDate={minDate}
                     maxDate={maxDate}
