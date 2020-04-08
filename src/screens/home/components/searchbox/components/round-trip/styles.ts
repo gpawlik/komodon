@@ -1,7 +1,6 @@
-
 import styled from 'styled-components';
 
-import { TextRegular3 } from '~/components/text';
+import { TextRegular2 } from '~/components/text';
 
 import { selectors } from '~/theme/main';
 
@@ -19,6 +18,6 @@ export const Button = styled.TouchableOpacity`
     flex: 1;
 `;
 
-export const ButtonText = styled(TextRegular3)`
+export const ButtonText = styled(TextRegular2)`
     color: ${({ isSelected }) => (isSelected ? selectors.white : selectors.slate)};
 `;

@@ -29,6 +29,7 @@ interface State {
     hasFirstClick: boolean;
     lastMarkedDate: string;
     width: number;
+    key: string;
 }
 
 const configDateFormat = 'YYYY-MM-DD';
@@ -39,6 +40,7 @@ export class CalendarDaySelector extends React.Component<Props, State> {
         hasFirstClick: false,
         // Fix for calendar not appearing on first load
         width: Dimensions.get('screen').width,
+        key: 'initial',
     };
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -62,14 +64,19 @@ export class CalendarDaySelector extends React.Component<Props, State> {
         }));
     };
 
+    handleLayout = () => {
+        this.setState({ key: 'ready' });
+    };
+
     render() {
         const { timezone, minDate, maxDate, value } = this.props;
-        const { lastMarkedDate, width } = this.state;
+        const { lastMarkedDate, width, key } = this.state;
         const markedDates = convertRangeToMarked(value);
         const today = moment.tz(timezone);
 
         return (
             <CalendarList
+                onLayout={this.handleLayout}
                 minDate={lastMarkedDate || minDate || today.format(configDateFormat)}
                 maxDate={maxDate}
                 onDayPress={({ dateString }) => {
@@ -84,8 +91,8 @@ export class CalendarDaySelector extends React.Component<Props, State> {
                 markedDates={markedDates}
                 markingType={'period'}
                 pastScrollRange={0}
-                style={{ flexGrow: 1 }}
                 calendarWidth={width}
+                key={key}
             />
         );
     }
