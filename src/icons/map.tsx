@@ -4,6 +4,8 @@ import { generalIcons } from '~/constants/icons/general';
 import { ArrowLeft } from './arrow-left';
 import { Banknote } from './banknote';
 import { Bell } from './bell';
+import { CirclePlus } from './circle-plus';
+import { CircleTick } from './circle-tick';
 import { Close } from './close';
 import { CloseCircle } from './close-circle';
 import { ExternalLink } from './external-link';
@@ -28,6 +30,8 @@ export const map = {
     [generalIcons.ARROW_LEFT]: ArrowLeft,
     [generalIcons.BANKNOTE]: Banknote,
     [generalIcons.BELL]: Bell,
+    [generalIcons.CIRCLE_PLUS]: CirclePlus,
+    [generalIcons.CIRCLE_TICK]: CircleTick,
     [generalIcons.CLOSE]: Close,
     [generalIcons.CLOSE_CIRCLE]: CloseCircle,
     [generalIcons.EXTERNAL_LINK]: ExternalLink,
