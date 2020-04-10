@@ -175,18 +175,10 @@ export const SearchDateModalComponent = props => {
                         daysOfWeek={departureDaysOfWeek}
                         onExactDatesChange={() => handleDepartureDatesChange({})}
                         onDaysOfWeekChange={() => handleDepartureWeekdaysChange([])}
+                        onPressItem={onFocusDepTime}
+                        isDeparture
                     />
-                    <SelectionBox>
-                        <ButtonBox
-                            onChange={onFocusDepTime}
-                            options={[
-                                { id: 'DEP_TIME_CAL', text: 'Dates' },
-                                { id: 'DEP_TIME_DAYS', text: 'Days of  week' },
-                            ]}
-                            selected={focusedDepTime}
-                        />
-                        {getDepTimeBox(focusedDepTime)}
-                    </SelectionBox>
+                    <SelectionBox>{getDepTimeBox(focusedDepTime)}</SelectionBox>
                 </>
             ) : null}
             {isReturnSelection ? (
@@ -199,19 +191,9 @@ export const SearchDateModalComponent = props => {
                         onExactDatesChange={() => handleReturnDatesChange({})}
                         onDaysOfWeekChange={() => handleReturnWeekdaysChange([])}
                         onDaysRangeChange={() => handleReturnDaysNumberChange({})}
+                        onPressItem={onFocusRetTime}
                     />
-                    <SelectionBox>
-                        <ButtonBox
-                            onChange={onFocusRetTime}
-                            options={[
-                                { id: 'RET_TIME_CAL', text: 'Dates' },
-                                { id: 'RET_TIME_DAYS', text: 'Days of week' },
-                                { id: 'RET_TIME_RANGE', text: 'Number Days' },
-                            ]}
-                            selected={focusedRetTime}
-                        />
-                        {getRetTimeBox(focusedRetTime)}
-                    </SelectionBox>
+                    <SelectionBox>{getRetTimeBox(focusedRetTime)}</SelectionBox>
                 </>
             ) : null}
 
