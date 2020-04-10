@@ -13,6 +13,7 @@ const colors = {
     blue: 'rgb(41, 128, 185)',
     turquoise: 'rgb(15, 185, 177)',
     grey: 'rgb(165, 177, 194)',
+    lightGrey: 'rgb(205, 205, 205)',
 };
 const fontSizes = {
     fs1: '14px',
