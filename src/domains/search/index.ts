@@ -5,7 +5,12 @@ const initialCriteria = {
     departurePlace: {},
     destinationPlace: {},
     departureDates: {},
+    departureDaysOfWeek: [],
     returnDates: {},
+    returnDaysOfWeek: [],
+    daysRange: {},
+    departureText: '',
+    returnText: '',
     roundTrip: true,
 };
 
