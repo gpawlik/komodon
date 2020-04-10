@@ -6,6 +6,7 @@ import {
     Container,
     Item,
     ContentBox,
+    TextBox,
     NameText,
     DescriptionText,
     IconBox,
@@ -55,13 +56,13 @@ export class DateCriteriaBox extends React.PureComponent<Props> {
                             <StatusIcon isSelected={isExactDatesSelected} />
                         </IconBox>
 
-                        {!isExactDatesSelected ? (
-                            <NameText>Exact dates</NameText>
-                        ) : (
+                        <TextBox>
                             <DescriptionText>
-                                {getDescriptiveName({ type: 'TIME_CAL', value: exactDates })}
+                                {!isExactDatesSelected
+                                    ? 'Select dates'
+                                    : getDescriptiveName({ type: 'TIME_CAL', value: exactDates })}
                             </DescriptionText>
-                        )}
+                        </TextBox>
                     </ContentBox>
 
                     {onExactDatesChange && isExactDatesSelected ? (
@@ -77,13 +78,13 @@ export class DateCriteriaBox extends React.PureComponent<Props> {
                             <StatusIcon isSelected={isWeekdaysSelected} />
                         </IconBox>
 
-                        {!isWeekdaysSelected ? (
-                            <NameText>Days of week</NameText>
-                        ) : (
+                        <TextBox>
                             <DescriptionText>
-                                {getDescriptiveName({ type: 'TIME_DAYS', value: daysOfWeek })}
+                                {!isWeekdaysSelected
+                                    ? 'Select days of week'
+                                    : getDescriptiveName({ type: 'TIME_DAYS', value: daysOfWeek })}
                             </DescriptionText>
-                        )}
+                        </TextBox>
                     </ContentBox>
 
                     {onDaysOfWeekChange && isWeekdaysSelected ? (
@@ -100,13 +101,13 @@ export class DateCriteriaBox extends React.PureComponent<Props> {
                                 <StatusIcon isSelected={isDaysRangeSelected} />
                             </IconBox>
 
-                            {!isDaysRangeSelected ? (
-                                <NameText>Days range</NameText>
-                            ) : (
+                            <TextBox>
                                 <DescriptionText>
-                                    {getDescriptiveName({ type: 'TIME_RANGE', value: daysRange })}
+                                    {!isDaysRangeSelected
+                                        ? 'Days range'
+                                        : getDescriptiveName({ type: 'TIME_RANGE', value: daysRange })}
                                 </DescriptionText>
-                            )}
+                            </TextBox>
                         </ContentBox>
 
                         {onDaysRangeChange && isDaysRangeSelected ? (

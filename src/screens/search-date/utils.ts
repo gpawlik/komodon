@@ -3,6 +3,20 @@ import moment from 'moment-timezone';
 
 import { days } from '~/constants';
 
+const getDayText = (array, index) => {
+    let letters = 0;
+
+    if (array.length < 5) {
+        letters = 3;
+    } else if (array.length < 6 || [1, 3, 5, 6].includes(index)) {
+        letters = 2;
+    } else {
+        letters = 1;
+    }
+
+    return days[index].slice(0, letters);
+};
+
 export const getDescriptiveName = ({ type, value }) => {
     switch (type) {
         case 'DEP_TIME_CAL':
@@ -26,7 +40,7 @@ export const getDescriptiveName = ({ type, value }) => {
                     R.always(
                         value
                             .sort()
-                            .map(index => days[index].slice(0, 2))
+                            .map(index => getDayText(value, index))
                             .join(', '),
                     ),
                 ],
