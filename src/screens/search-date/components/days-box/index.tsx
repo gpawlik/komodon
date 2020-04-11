@@ -19,7 +19,7 @@ export class DaysBox extends React.PureComponent<Props, State> {
             Saturday: this.props.value.includes(5),
             Sunday: this.props.value.includes(6),
         },
-        selectedAll: false,
+        selectedAll: this.props.value.length === 7,
     };
 
     onValueChange = () => {
