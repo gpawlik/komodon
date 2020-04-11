@@ -3,7 +3,7 @@ import moment from 'moment-timezone';
 
 import { days } from '~/constants';
 
-const getDayText = (array, index) => {
+const getDayText = (array = [], index) => {
     let letters = 0;
 
     if (array.length < 5) {
@@ -17,7 +17,7 @@ const getDayText = (array, index) => {
     return days[index].slice(0, letters);
 };
 
-export const getDescriptiveName = ({ type, value }) => {
+export const getDescriptiveName = ({ type, value }): string => {
     switch (type) {
         case 'DEP_TIME_CAL':
         case 'RET_TIME_CAL':
@@ -55,4 +55,18 @@ export const getDescriptiveName = ({ type, value }) => {
         default:
             return '';
     }
+};
+
+export const getJointDescriptiveName = (values = []): string => {
+    const validCriteria = values.filter(item => !R.isEmpty(item.value));
+    const numberOfCriteria = validCriteria.length;
+
+    if (numberOfCriteria >= 2) {
+        return `${numberOfCriteria} criteria`;
+    }
+    if (numberOfCriteria === 1) {
+        const item = validCriteria[0];
+        return getDescriptiveName({ type: item?.type, value: item?.value });
+    }
+    return '';
 };
