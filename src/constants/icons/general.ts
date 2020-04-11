@@ -1,5 +1,7 @@
 export const generalIcons = {
     ARROW_LEFT: 'ARROW_LEFT',
+    ARROW_DOWN: 'ARROW_DOWN',
+    ARROW_UP: 'ARROW_UP',
     BANKNOTE: 'BANKNOTE',
     BELL: 'BELL',
     CIRCLE_PLUS: 'CIRCLE_PLUS',
@@ -7,6 +9,8 @@ export const generalIcons = {
     CLOSE: 'CLOSE',
     CLOSE_CIRCLE: 'CLOSE_CIRCLE',
     EXTERNAL_LINK: 'EXTERNAL_LINK',
+    FLIGHT_ON: 'FLIGHT_ON',
+    FLIGHT_OFF: 'FLIGHT_OFF',
     HEART: 'HEART',
     LOGO: 'LOGO',
     LOGO_FACEBOOK: 'LOGO_FACEBOOK',

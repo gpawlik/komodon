@@ -17,6 +17,9 @@ import {
 import { LoginAction, SignupAction, ForgottenPasswordAction, NewCredentialsAction } from './types';
 
 export function* loginSaga({ payload: { username, password, successCb, failureCb } }: LoginAction) {
+    if (!username) {
+        return;
+    }
     try {
         const result = yield call([Auth, 'signIn'], {
             username,
@@ -34,6 +37,9 @@ export function* loginSaga({ payload: { username, password, successCb, failureCb
 }
 
 export function* signupSaga({ payload: { username, email, password, successCb, failureCb } }: SignupAction) {
+    if (!username) {
+        return;
+    }
     try {
         const result = yield call([Auth, 'signUp'], {
             username,
@@ -57,6 +63,9 @@ export function* signupSaga({ payload: { username, email, password, successCb, f
 export function* sendForgottenPasswordSaga({
     payload: { username = '', successCb, failureCb },
 }: ForgottenPasswordAction) {
+    if (!username) {
+        return;
+    }
     try {
         const result = yield call([Auth, 'forgotPassword'], username);
         const email = result?.CodeDeliveryDetails?.Destination;
@@ -72,6 +81,9 @@ export function* sendForgottenPasswordSaga({
 export function* sendNewCredentialsSaga({
     payload: { username, code, password, successCb, failureCb },
 }: NewCredentialsAction) {
+    if (!username) {
+        return;
+    }
     try {
         yield call([Auth, 'forgotPasswordSubmit'], username, code, password);
 

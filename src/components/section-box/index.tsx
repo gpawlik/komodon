@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Container, ButtonBox, Label, Text } from './styles';
+import { Container, ButtonBox, Label, Text, IconBox, Icon } from './styles';
 
 interface Props {
     label1: string;
@@ -25,11 +25,17 @@ export class SectionBox extends React.PureComponent<Props> {
                 <ButtonBox isSelected={selectedIndex === 0} isSingle={!roundTrip} onPress={() => this.onChange(0)}>
                     <Label message={label1} isSelected={selectedIndex === 0} />
                     <Text message={text1} isSelected={selectedIndex === 0} />
+                    <IconBox>
+                        <Icon isSelected={selectedIndex === 0} isDeparture />
+                    </IconBox>
                 </ButtonBox>
                 {roundTrip ? (
                     <ButtonBox isSelected={selectedIndex === 1} onPress={() => this.onChange(1)}>
                         <Label message={label2} isSelected={selectedIndex === 1} />
                         <Text message={text2} isSelected={selectedIndex === 1} />
+                        <IconBox>
+                            <Icon isSelected={selectedIndex === 1} isDeparture />
+                        </IconBox>
                     </ButtonBox>
                 ) : null}
             </Container>
