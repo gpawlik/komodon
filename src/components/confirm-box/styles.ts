@@ -6,6 +6,8 @@ export const Container = styled.View`
     background-color: ${selectors.white};
     border-top-width: 0.3;
     border-top-color: #aaa;
+    flex-direction: row;
+    justify-content: center;
     position: absolute;
     bottom: 0;
     left: 0;

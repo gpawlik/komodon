@@ -4,6 +4,7 @@ import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { LoadingScreen } from '~/components/loading-screen';
 import { ActionModal } from '~/components/action-modal';
+import { Button } from '~/components/button';
 import { ConfirmBox } from '~/components/confirm-box';
 
 import { ResultsMain } from './components/results-main';
@@ -87,7 +88,9 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
                                 criteria.
                             </EmptyText>
                         </EmptyBox>
-                        <ConfirmBox text="Try again" onPress={this.goBack} />
+                        <ConfirmBox>
+                            <Button message="Try again" onPress={this.goBack} />
+                        </ConfirmBox>
                     </EmptyContainer>
                 )}
             </Container>

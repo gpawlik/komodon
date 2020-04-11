@@ -3,6 +3,7 @@ import { Keyboard } from 'react-native';
 
 import { Screen } from '~/components/screen';
 import { InputBox } from '~/components/input';
+import { Button } from '~/components/button';
 import { ConfirmBox } from '~/components/confirm-box';
 
 import { Container, Content, Title, InputContainer, Link, LinkText } from '../../styles';
@@ -116,12 +117,14 @@ export class ForgottenPasswordConfirmation extends React.PureComponent<Props, St
                         </InputContainer>
                     </Content>
 
-                    <ConfirmBox
-                        text="Confirm"
-                        isSubmitting={isSubmitting}
-                        isDisabled={!canAttemptSubmit}
-                        onPress={this.onSubmit}
-                    />
+                    <ConfirmBox>
+                        <Button
+                            message="Confirm"
+                            isSubmitting={isSubmitting}
+                            isDisabled={!canAttemptSubmit}
+                            onPress={this.onSubmit}
+                        />
+                    </ConfirmBox>
                 </Container>
             </Screen>
         );

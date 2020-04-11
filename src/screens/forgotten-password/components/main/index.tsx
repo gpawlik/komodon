@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Screen } from '~/components/screen';
 import { InputBox } from '~/components/input';
+import { Button } from '~/components/button';
 import { ConfirmBox } from '~/components/confirm-box';
 
 import { Container, Content, Title, InputContainer } from '../../styles';
@@ -21,7 +22,7 @@ export class ForgottenPasswordMain extends React.PureComponent<Props, State> {
     state = {
         username: '',
         hasAttemptedSubmit: false,
-        isValid: true,
+        isValid: false,
     };
 
     onSubmit = () => {
@@ -56,12 +57,14 @@ export class ForgottenPasswordMain extends React.PureComponent<Props, State> {
                         </InputContainer>
                     </Content>
 
-                    <ConfirmBox
-                        text="Submit"
-                        isDisabled={!isValid}
-                        onPress={this.onSubmit}
-                        isSubmitting={isSubmitting}
-                    />
+                    <ConfirmBox>
+                        <Button
+                            message="Submit"
+                            isDisabled={!isValid}
+                            onPress={this.onSubmit}
+                            isSubmitting={isSubmitting}
+                        />
+                    </ConfirmBox>
                 </Container>
             </Screen>
         );

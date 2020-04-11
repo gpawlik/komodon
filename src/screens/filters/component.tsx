@@ -5,6 +5,7 @@ import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { SliderBox } from '~/components/slider-box';
 import { RadioCell } from '~/components/cell';
+import { Button } from '~/components/button';
 import { ConfirmBox } from '~/components/confirm-box';
 import { filterEmpty } from '~/utils';
 
@@ -110,7 +111,9 @@ export const FiltersModalComponent = (props: Props) => {
                 </Section>
             </Container>
 
-            <ConfirmBox text="Apply filters" onPress={onSubmit} />
+            <ConfirmBox>
+                <Button message="Apply filters" onPress={onSubmit} />
+            </ConfirmBox>
         </View>
     );
 };

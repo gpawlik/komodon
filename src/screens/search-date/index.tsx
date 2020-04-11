@@ -13,11 +13,10 @@ import {
 } from '~/domains/search/selectors';
 import { setSearchCriteria } from '~/domains/search/actions';
 
-import { generalIcons } from '~/constants/icons/general';
-import { Header } from '~/components/header';
 import { SectionBox } from '~/components/section-box';
 import { DateCriteriaBox } from '~/components/date-criteria-box';
 import { Button } from '~/components/button';
+import { ConfirmBox } from '~/components/confirm-box';
 import { ReduxState } from '~/types';
 
 import { CalendarBox } from './components/calendar-box';
@@ -25,7 +24,7 @@ import { DaysBox } from './components/days-box';
 import { DaysRangeBox } from './components/days-range-box';
 import { getJointDescriptiveName } from './utils';
 
-import { Container, SelectionBox, ConfirmBox } from './styles';
+import { Container, SelectionBox } from './styles';
 
 export const SearchDateModalComponent = props => {
     const [departureDates, onDepartureDatesChange] = React.useState(props.departureDates);
@@ -178,7 +177,6 @@ export const SearchDateModalComponent = props => {
 
     return (
         <Container>
-            <Header backIcon={generalIcons.CLOSE} backAction={closeModal} />
             <SectionBox
                 label1="Departure time"
                 text1={departureText || 'Select time'}
@@ -220,17 +218,21 @@ export const SearchDateModalComponent = props => {
             ) : null}
 
             <ConfirmBox>
+                <Button message="Cancel" onPress={closeModal} isGhost isStretched />
+
                 {isDepartureSelection ? (
                     <Button
-                        message="Confirm departure time"
+                        message="Confirm"
                         onPress={onSubmitDeparture}
                         isDisabled={!isDepartureModified || departureText === ''}
+                        isStretched
                     />
                 ) : (
                     <Button
-                        message="Confirm return time"
+                        message="Confirm"
                         onPress={onSubmitReturn}
                         isDisabled={!isReturnModified || returnText === ''}
+                        isStretched
                     />
                 )}
             </ConfirmBox>

@@ -47,7 +47,7 @@ export const SubscriptionContentComponent = ({
             />
 
             <ButtonBox>
-                <Button onPress={handleSubmit} message="Create alert" isStretched />
+                <Button onPress={handleSubmit} message="Create alert" />
             </ButtonBox>
             <CloseBox onPress={onClose} hitSlop={hitSlop}>
                 <SVGIcon type={generalIcons.CLOSE} size={16} />

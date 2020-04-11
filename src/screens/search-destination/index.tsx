@@ -5,14 +5,13 @@ import { getDeparturePlace, getDestinationPlace } from '~/domains/search/selecto
 import { setSearchCriteria } from '~/domains/search/actions';
 import { resetDestinations } from '~/domains/destinations/actions';
 
-import { generalIcons } from '~/constants/icons/general';
-import { Header } from '~/components/header';
 import { SectionBox } from '~/components/section-box';
+import { ConfirmBox } from '~/components/confirm-box';
 import { Button } from '~/components/button';
 import { ReduxState } from '~/types';
 
 import { DestinationBox } from './components/destination-box';
-import { Container, ConfirmBox } from './styles';
+import { Container } from './styles';
 
 export const SearchPlaceModalComponent = props => {
     const [departurePlace, onDepartureChange] = React.useState(props.departurePlace);
@@ -60,7 +59,6 @@ export const SearchPlaceModalComponent = props => {
 
     return (
         <Container>
-            <Header backIcon={generalIcons.CLOSE} backAction={closeModal} />
             <SectionBox
                 label1="Departure city"
                 text1={departurePlace.placeName || 'Select city'}
@@ -89,17 +87,21 @@ export const SearchPlaceModalComponent = props => {
             ) : null}
 
             <ConfirmBox>
+                <Button message="Cancel" onPress={closeModal} isGhost isStretched />
+
                 {isDeparture ? (
                     <Button
-                        message="Select departure"
+                        message="Confirm"
                         onPress={onSubmitDeparture}
                         isDisabled={!departurePlace.placeName}
+                        isStretched
                     />
                 ) : (
                     <Button
-                        message="Select destination"
+                        message="Confirm"
                         onPress={onSubmitDestination}
                         isDisabled={!destinationPlace.placeName}
+                        isStretched
                     />
                 )}
             </ConfirmBox>
