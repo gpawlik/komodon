@@ -23,8 +23,7 @@ import { ReduxState } from '~/types';
 import { CalendarBox } from './components/calendar-box';
 import { DaysBox } from './components/days-box';
 import { DaysRangeBox } from './components/days-range-box';
-import { ButtonBox } from './components/button-box';
-import { getDescriptiveName } from './utils';
+import { getJointDescriptiveName } from './utils';
 
 import { Container, SelectionBox, ConfirmBox } from './styles';
 
@@ -50,35 +49,58 @@ export const SearchDateModalComponent = props => {
     const roundTrip = props.navigation.getParam('roundTrip');
 
     const handleDepartureDatesChange = value => {
-        const name = getDescriptiveName({ type: 'DEP_TIME_CAL', value });
+        const name = getJointDescriptiveName([
+            { type: 'TIME_CAL', value },
+            { type: 'TIME_DAYS', value: departureDaysOfWeek },
+        ]);
+
         onDepDescriptiveName(name);
         onDepartureDatesChange(value);
         onDepartureModify(true);
     };
 
     const handleDepartureWeekdaysChange = value => {
-        const name = getDescriptiveName({ type: 'DEP_TIME_DAYS', value });
+        const name = getJointDescriptiveName([
+            { type: 'TIME_CAL', value: departureDates },
+            { type: 'TIME_DAYS', value },
+        ]);
+
         onDepDescriptiveName(name);
         onDepartureWeekdaysChange(value);
         onDepartureModify(true);
     };
 
     const handleReturnDatesChange = value => {
-        const name = getDescriptiveName({ type: 'RET_TIME_CAL', value });
+        const name = getJointDescriptiveName([
+            { type: 'TIME_CAL', value },
+            { type: 'TIME_DAYS', value: returnDaysOfWeek },
+            { type: 'TIME_RANGE', value: daysRange },
+        ]);
+
         onRetDescriptiveName(name);
         onReturnDatesChange(value);
         onReturnModify(true);
     };
 
     const handleReturnWeekdaysChange = value => {
-        const name = getDescriptiveName({ type: 'RET_TIME_DAYS', value });
+        const name = getJointDescriptiveName([
+            { type: 'TIME_CAL', value: returnDates },
+            { type: 'TIME_DAYS', value },
+            { type: 'TIME_RANGE', value: daysRange },
+        ]);
+
         onRetDescriptiveName(name);
         onReturnWeekdaysChange(value);
         onReturnModify(true);
     };
 
     const handleReturnDaysNumberChange = (value: any) => {
-        const name = getDescriptiveName({ type: 'RET_TIME_RANGE', value });
+        const name = getJointDescriptiveName([
+            { type: 'TIME_CAL', value: returnDates },
+            { type: 'TIME_DAYS', value: returnDaysOfWeek },
+            { type: 'TIME_RANGE', value },
+        ]);
+
         onRetDescriptiveName(name);
         onReturnDaysNumberChange(value);
         onReturnModify(true);
