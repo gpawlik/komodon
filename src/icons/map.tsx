@@ -2,6 +2,8 @@ import * as React from 'react';
 import { generalIcons } from '~/constants/icons/general';
 
 import { ArrowLeft } from './arrow-left';
+import { ArrowDown } from './arrow-down';
+import { ArrowUp } from './arrow-up';
 import { Banknote } from './banknote';
 import { Bell } from './bell';
 import { CirclePlus } from './circle-plus';
@@ -9,6 +11,8 @@ import { CircleTick } from './circle-tick';
 import { Close } from './close';
 import { CloseCircle } from './close-circle';
 import { ExternalLink } from './external-link';
+import { FlightOn } from './flight-on';
+import { FlightOff } from './flight-off';
 import { Heart } from './heart';
 import { Menu } from './menu';
 import { Logo } from './logo';
@@ -28,6 +32,8 @@ import { OuterProps } from './types';
 
 export const map = {
     [generalIcons.ARROW_LEFT]: ArrowLeft,
+    [generalIcons.ARROW_DOWN]: ArrowDown,
+    [generalIcons.ARROW_UP]: ArrowUp,
     [generalIcons.BANKNOTE]: Banknote,
     [generalIcons.BELL]: Bell,
     [generalIcons.CIRCLE_PLUS]: CirclePlus,
@@ -35,6 +41,8 @@ export const map = {
     [generalIcons.CLOSE]: Close,
     [generalIcons.CLOSE_CIRCLE]: CloseCircle,
     [generalIcons.EXTERNAL_LINK]: ExternalLink,
+    [generalIcons.FLIGHT_ON]: FlightOn,
+    [generalIcons.FLIGHT_OFF]: FlightOff,
     [generalIcons.HEART]: Heart,
     [generalIcons.LOGO]: Logo,
     [generalIcons.LOGO_FACEBOOK]: LogoFacebook,

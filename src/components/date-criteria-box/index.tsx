@@ -4,10 +4,10 @@ import { getDescriptiveName } from '~/screens/search-date/utils';
 
 import {
     Container,
+    ScrollContainer,
     Item,
     ContentBox,
     TextBox,
-    NameText,
     DescriptionText,
     IconBox,
     StatusIcon,
@@ -50,73 +50,75 @@ export class DateCriteriaBox extends React.PureComponent<Props> {
 
         return (
             <Container>
-                <Item isSelected={isExactDatesSelected} onPress={onPressA}>
-                    <ContentBox>
-                        <IconBox>
-                            <StatusIcon isSelected={isExactDatesSelected} />
-                        </IconBox>
-
-                        <TextBox>
-                            <DescriptionText>
-                                {!isExactDatesSelected
-                                    ? 'Select dates'
-                                    : getDescriptiveName({ type: 'TIME_CAL', value: exactDates })}
-                            </DescriptionText>
-                        </TextBox>
-                    </ContentBox>
-
-                    {onExactDatesChange && isExactDatesSelected ? (
-                        <RemoveBox onPress={onExactDatesChange}>
-                            <RemoveIcon />
-                        </RemoveBox>
-                    ) : null}
-                </Item>
-
-                <Item isSelected={isWeekdaysSelected} onPress={onPressB}>
-                    <ContentBox>
-                        <IconBox>
-                            <StatusIcon isSelected={isWeekdaysSelected} />
-                        </IconBox>
-
-                        <TextBox>
-                            <DescriptionText>
-                                {!isWeekdaysSelected
-                                    ? 'Select days of week'
-                                    : getDescriptiveName({ type: 'TIME_DAYS', value: daysOfWeek })}
-                            </DescriptionText>
-                        </TextBox>
-                    </ContentBox>
-
-                    {onDaysOfWeekChange && isWeekdaysSelected ? (
-                        <RemoveBox onPress={onDaysOfWeekChange}>
-                            <RemoveIcon />
-                        </RemoveBox>
-                    ) : null}
-                </Item>
-
-                {daysRange ? (
-                    <Item isSelected={isDaysRangeSelected} onPress={onPressC}>
+                <ScrollContainer horizontal>
+                    <Item isSelected={isExactDatesSelected} onPress={onPressA}>
                         <ContentBox>
                             <IconBox>
-                                <StatusIcon isSelected={isDaysRangeSelected} />
+                                <StatusIcon isSelected={isExactDatesSelected} />
                             </IconBox>
 
                             <TextBox>
                                 <DescriptionText>
-                                    {!isDaysRangeSelected
-                                        ? 'Days range'
-                                        : getDescriptiveName({ type: 'TIME_RANGE', value: daysRange })}
+                                    {!isExactDatesSelected
+                                        ? 'Select dates'
+                                        : getDescriptiveName({ type: 'TIME_CAL', value: exactDates })}
                                 </DescriptionText>
                             </TextBox>
                         </ContentBox>
 
-                        {onDaysRangeChange && isDaysRangeSelected ? (
-                            <RemoveBox onPress={onDaysRangeChange}>
+                        {onExactDatesChange && isExactDatesSelected ? (
+                            <RemoveBox onPress={onExactDatesChange}>
                                 <RemoveIcon />
                             </RemoveBox>
                         ) : null}
                     </Item>
-                ) : null}
+
+                    <Item isSelected={isWeekdaysSelected} onPress={onPressB}>
+                        <ContentBox>
+                            <IconBox>
+                                <StatusIcon isSelected={isWeekdaysSelected} />
+                            </IconBox>
+
+                            <TextBox>
+                                <DescriptionText>
+                                    {!isWeekdaysSelected
+                                        ? 'Select days of week'
+                                        : getDescriptiveName({ type: 'TIME_DAYS', value: daysOfWeek })}
+                                </DescriptionText>
+                            </TextBox>
+                        </ContentBox>
+
+                        {onDaysOfWeekChange && isWeekdaysSelected ? (
+                            <RemoveBox onPress={onDaysOfWeekChange}>
+                                <RemoveIcon />
+                            </RemoveBox>
+                        ) : null}
+                    </Item>
+
+                    {daysRange ? (
+                        <Item isSelected={isDaysRangeSelected} onPress={onPressC}>
+                            <ContentBox>
+                                <IconBox>
+                                    <StatusIcon isSelected={isDaysRangeSelected} />
+                                </IconBox>
+
+                                <TextBox>
+                                    <DescriptionText>
+                                        {!isDaysRangeSelected
+                                            ? 'Days range'
+                                            : getDescriptiveName({ type: 'TIME_RANGE', value: daysRange })}
+                                    </DescriptionText>
+                                </TextBox>
+                            </ContentBox>
+
+                            {onDaysRangeChange && isDaysRangeSelected ? (
+                                <RemoveBox onPress={onDaysRangeChange}>
+                                    <RemoveIcon />
+                                </RemoveBox>
+                            ) : null}
+                        </Item>
+                    ) : null}
+                </ScrollContainer>
             </Container>
         );
     }

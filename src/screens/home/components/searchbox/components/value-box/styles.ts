@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import styled from 'styled-components';
 
-import { TextMedium1, TextRegular2, TextMedium7 } from '~/components/text';
+import { TextMedium1, TextRegular1, TextMedium7 } from '~/components/text';
 
 import { selectors } from '~/theme/main';
 
@@ -23,16 +23,16 @@ export const Container = styled.TouchableOpacity`
     border-color: #dedede;
     height: ${({ isLarge }) => (isLarge ? 105 : 60)};
     padding-top: ${({ isLarge }) => (isLarge ? 15 : 5)};
-    padding-bottom: 5px;
+    padding-bottom: 0;
     padding-horizontal: 10px;
-    margin-bottom: 10;
+    margin-bottom: 10px;
     flex: 1;
     width: 50%;
     align-items: ${({ alignRight }) => (alignRight ? 'flex-end' : 'flex-start')};
 `;
 
 export const Label = styled(TextMedium1)`
-    margin-bottom: 6;
+    margin-vertical: 3px;
     color: ${getLabelColor};
 `;
 
@@ -40,6 +40,6 @@ export const Highlight = styled(TextMedium7)`
     color: ${getHighlightColor};
 `;
 
-export const Value = styled(TextRegular2)`
+export const Value = styled(TextRegular1)`
     color: ${getLabelColor};
 `;

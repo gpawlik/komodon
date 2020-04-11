@@ -180,10 +180,10 @@ export const SearchDateModalComponent = props => {
         <Container>
             <Header backIcon={generalIcons.CLOSE} backAction={closeModal} />
             <SectionBox
-                label1="Departure dates"
-                text1={departureText || 'Select dates'}
-                label2="Return dates"
-                text2={returnText || 'Select dates'}
+                label1="Departure time"
+                text1={departureText || 'Select time'}
+                label2="Return time"
+                text2={returnText || 'Select time'}
                 selectedIndex={focusedField}
                 roundTrip={roundTrip}
                 onChange={onFocusTab}

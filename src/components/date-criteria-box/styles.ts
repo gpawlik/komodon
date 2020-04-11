@@ -8,15 +8,22 @@ import { selectors } from '~/theme/main';
 
 export const Container = styled.View`
     margin-horizontal: 16px;
-    margin-vertical: 10px;
-    flex-direction: row;
+    height: 115px;
 `;
 
+export const ScrollContainer = styled.ScrollView.attrs({
+    contentContainerStyle: {
+        marginVertical: 10,
+        flexDirection: 'row',
+    },
+    showsHorizontalScrollIndicator: false,
+})``;
+
 export const Item = styled.TouchableOpacity`
-    padding: 14px 18px;
+    padding: 14px 8px;
     margin-bottom: 10;
     border-radius: 8;
-    width: 125px;
+    width: 120px;
     height: 105px;
     align-items: center;
     margin-right: ${selectors.ss4};
