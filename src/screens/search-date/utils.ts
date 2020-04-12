@@ -52,13 +52,16 @@ export const getDescriptiveName = ({ type, value }): string => {
                 ? `Ìn ${value.from} days`
                 : `In ${value.from} to ${value.to} days`;
 
+        case 'TIME_HOUR':
+            return `${value.from} - ${value.to}`;
+
         default:
             return '';
     }
 };
 
 export const getJointDescriptiveName = (values = []): string => {
-    const validCriteria = values.filter(item => !R.isEmpty(item.value));
+    const validCriteria = values.filter(item => item.value && !R.isEmpty(item.value));
     const numberOfCriteria = validCriteria.length;
 
     if (numberOfCriteria >= 2) {
