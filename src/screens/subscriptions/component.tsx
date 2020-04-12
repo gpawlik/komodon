@@ -4,6 +4,7 @@ import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { LoadingScreen } from '~/components/loading-screen';
 import { SubscriptionItem } from '~/components/subscription-item';
+import { getJointDescriptiveName } from '~/screens/search-date/utils';
 
 import { Container, Content, ItemBox } from './styles';
 import { Props, State } from './types';
@@ -31,14 +32,33 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
                 <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => navigation.goBack()} />
                 <Content style={{ width: '100%' }}>
                     {subscriptions.map(({ id, searchCriteria }, index) => {
-                        const { departurePlace, destinationPlace } = searchCriteria || {};
+                        const {
+                            departurePlace,
+                            destinationPlace,
+                            departureDates,
+                            departureDaysOfWeek,
+                            returnDates,
+                            returnDaysOfWeek,
+                            daysRange,
+                        } = searchCriteria || {};
+
+                        const departureText = getJointDescriptiveName([
+                            { type: 'TIME_CAL', value: departureDates },
+                            { type: 'TIME_DAYS', value: departureDaysOfWeek },
+                        ]);
+
+                        const returnText = getJointDescriptiveName([
+                            { type: 'TIME_CAL', value: returnDates },
+                            { type: 'TIME_DAYS', value: returnDaysOfWeek },
+                            { type: 'TIME_RANGE', value: daysRange },
+                        ]);
+
                         return (
                             <ItemBox
                                 key={index}
                                 onPress={() => {
                                     navigation.navigate('SubscriptionModal', {
-                                        departurePlace,
-                                        destinationPlace,
+                                        searchCriteria,
                                         deleteSubscription,
                                         id,
                                     });
@@ -49,8 +69,8 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
                                     departureName={departurePlace?.placeName}
                                     destinationCode={destinationPlace?.placeCode}
                                     destinationName={destinationPlace?.placeName}
-                                    departureText="Departure text"
-                                    returnText="Return text"
+                                    departureText={departureText}
+                                    returnText={returnText}
                                 />
                             </ItemBox>
                         );
