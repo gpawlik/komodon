@@ -5,13 +5,13 @@ import { getIsFlexibleSearch } from './selectors';
 
 export function* getFlightResults(payload) {
     const isFlexible = yield select(getIsFlexibleSearch);
-    const type = isFlexible ? '/flexible' : '';
+    const flexibleOptions = isFlexible ? { showType: 'ONE_PER_CITY', sort: 'PRICE', showOnlyPrices: true } : {};
 
-    return yield call(fetch, `${API_ENDPOINT}/flights${type}`, {
+    return yield call(fetch, `${API_ENDPOINT}/flights`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ ...payload, ...flexibleOptions }),
     });
 }

@@ -10,41 +10,38 @@ export interface Route {
 }
 
 export interface FlightItem {
+    id: string;
+    price: number;
+    quality: number;
     duration: {
         departure: number;
         _return: number;
         total: number;
     };
-    price: number;
     deepLink: string;
-    priceLevel: string;
-    id: string;
     routes: Array<Route>;
+    flags: Array<string>;
+}
+
+export interface Place {
+    placeId: string;
+    placeName: string;
+    placeCode: string;
+    cityId: string;
+    cityName: string;
+    countryId: string;
+    countryName: string;
+    type: string;
+    airports: number;
+    subPlaces: Array<string>;
 }
 
 export interface ItineraryResult {
-    departure: string;
-    destination: string;
+    departure: Place;
+    destination: Place;
     departureDate: string;
     returnDate: string;
-    flightPrices: {
-        cheapest: FlightItem;
-        fastest: FlightItem;
-        best: FlightItem;
-        equivalents: Array<string>;
-    };
-}
-
-export interface DestinationResult {
-    price: number;
-    destination: {
-        placeId: string;
-        placeName: string;
-        countryId: string;
-        countryName: string;
-        subPlaces: Array<string>;
-    };
-    stops: number;
+    flightResults: Array<FlightItem>;
 }
 
 export interface Results {
@@ -53,5 +50,4 @@ export interface Results {
     departure: string;
     destination: string;
     itineraryResults?: Array<ItineraryResult>;
-    destinationResults?: Array<DestinationResult>;
 }

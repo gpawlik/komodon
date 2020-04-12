@@ -27,12 +27,12 @@ import {
 
 interface Props {
     price: number;
-    priceLevel: string;
+    flags: Array<string>;
     routes: Array<any>;
     deepLink: string;
 }
 
-export const ResultBox = ({ price, routes = [], deepLink = '', priceLevel }: Props) => {
+export const ResultBox = ({ price, routes = [], deepLink = '', flags = [] }: Props) => {
     const openLink = () => Linking.openURL(deepLink).catch(e => console.log('An error occurred', e));
     const airlineList = routes.map(({ airlines = [] }) =>
         airlines.map(iata => (airlineCodes[iata] || iata).slice(0, 15)),
@@ -89,7 +89,7 @@ export const ResultBox = ({ price, routes = [], deepLink = '', priceLevel }: Pro
             </TopBox>
             <InfoBox>
                 <AirlineText>{uniqueAirlines.join(' + ')}</AirlineText>
-                {priceLevel === 'CHEAP' ? <SVGIcon type={generalIcons.BANKNOTE} colour="#ccc" /> : null}
+                {flags.includes('CHEAPEST') ? <SVGIcon type={generalIcons.BANKNOTE} colour="#ccc" /> : null}
             </InfoBox>
         </Container>
     );
