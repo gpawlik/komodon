@@ -7,6 +7,7 @@ import {
     getReturnText,
     getSubscriptionCriteria,
 } from '~/domains/search/selectors';
+import { getIsLoggedIn } from '~/domains/auth/selectors';
 import { createSubscription } from '~/domains/subscriptions/actions';
 import { ReduxState } from '~/types';
 
@@ -19,6 +20,7 @@ export const mapStateToProps = (state: ReduxState): StateProps => ({
     departureText: getDepartureText(state),
     returnText: getReturnText(state),
     subscriptionCriteria: getSubscriptionCriteria(state),
+    isLoggedIn: getIsLoggedIn(state),
 });
 
 const mapDispatchToProps: DispatchProps = {

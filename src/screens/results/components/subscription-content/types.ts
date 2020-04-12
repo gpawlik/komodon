@@ -11,6 +11,7 @@ export interface StateProps {
     departureText: string;
     returnText: string;
     subscriptionCriteria: SubscriptionPayload;
+    isLoggedIn: boolean;
 }
 
 export interface DispatchProps {
@@ -21,6 +22,7 @@ interface OwnProps {
     onPress: () => void;
     onClose: () => void;
     onSubmit: () => void;
+    onAuthRequired: () => void;
 }
 
 export type Props = StateProps & DispatchProps & OwnProps;
