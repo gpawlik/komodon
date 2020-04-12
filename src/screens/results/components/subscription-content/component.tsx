@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Alert } from 'react-native';
 
 import { SVGIcon } from '~/icons';
 import { generalIcons } from '~/constants/icons/general';
@@ -16,15 +17,39 @@ export const SubscriptionContentComponent = ({
     departureText,
     returnText,
     subscriptionCriteria,
+    isLoggedIn,
     createSubscription,
     onClose,
     onSubmit,
+    onAuthRequired,
 }: Props) => {
     const { placeCode: departureCode = '', placeName: departureName = '' } = departure || {};
     const { placeCode: destinationCode = '', placeName: destinationName = '' } = destination || {};
     const handleSubmit = () => {
-        createSubscription(subscriptionCriteria);
-        onSubmit();
+        if (isLoggedIn) {
+            createSubscription(subscriptionCriteria);
+            onSubmit();
+        } else {
+            Alert.alert(
+                'Action not available',
+                'You need to be logged in to save your subscription',
+                [
+                    {
+                        text: 'Cancel',
+                        style: 'cancel',
+                        onPress: onClose,
+                    },
+                    {
+                        text: 'Log in',
+                        onPress: () => {
+                            onClose();
+                            onAuthRequired();
+                        },
+                    },
+                ],
+                { cancelable: false },
+            );
+        }
     };
 
     // TODO: add place icon in between

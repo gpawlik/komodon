@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import * as routes from '~/constants/routes';
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { LoadingScreen } from '~/components/loading-screen';
@@ -41,6 +42,8 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
 
     goBack = () => this.props.navigation.goBack();
 
+    goToLogin = () => this.props.navigation.navigate(routes.login);
+
     render() {
         const { isLoading, isFlexible, hasResults } = this.props;
         const { type, isModalOpen, isSubscriptionVisible } = this.state;
@@ -56,7 +59,11 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
                     <React.Fragment>
                         <Content>
                             <ActionModal animationType="fade" isModalOpen={isModalOpen}>
-                                <SubscriptionContent onClose={this.closeModal} onSubmit={this.submitSubscription} />
+                                <SubscriptionContent
+                                    onClose={this.closeModal}
+                                    onSubmit={this.submitSubscription}
+                                    onAuthRequired={this.goToLogin}
+                                />
                             </ActionModal>
 
                             {isSubscriptionVisible && !isFlexible ? <SubscriptionBox onPress={this.openModal} /> : null}
