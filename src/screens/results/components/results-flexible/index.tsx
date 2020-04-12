@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import { searchFlights, setSearchCriteria } from '~/domains/search/actions';
 
 import { getState as getCriteria } from '~/domains/search/selectors';
-import { getResultsFlexible } from '~/domains/results/selectors';
-import { DestinationResult } from '~/domains/results/types';
+import { getItineraryResults } from '~/domains/results/selectors';
+import { ItineraryResult } from '~/domains/results/types';
 import { ReduxState } from '~/types';
 
 import { Container, TextBox, CityName, CountryName, ButtonBox, Button, ButtonText } from './styles';
 
 interface Props {
-    results: Array<DestinationResult>;
+    results: Array<ItineraryResult>;
     setSearchCriteria: (arg0: any) => void;
     searchFlights: (arg0: any) => void;
     criteria: any;
@@ -31,7 +31,7 @@ export const ResultsFlexibleComponent = ({ results, criteria, searchFlights, set
             </TextBox>
             <ButtonBox>
                 <Button onPress={() => onPress(item)}>
-                    <ButtonText>{`€${item.price}`}</ButtonText>
+                    <ButtonText>{`€${item.flightResults?.[0]?.price}`}</ButtonText>
                 </Button>
             </ButtonBox>
         </Container>
@@ -39,7 +39,7 @@ export const ResultsFlexibleComponent = ({ results, criteria, searchFlights, set
 };
 
 export const mapStateToProps = (state: ReduxState) => ({
-    results: getResultsFlexible(state),
+    results: getItineraryResults(state),
     criteria: getCriteria(state),
 });
 

@@ -9,27 +9,22 @@ export const getIsLoading = createSelector([getState], state => !!state.isLoadin
 
 export const getItineraryResults = createSelector([getResults], results => results.itineraryResults || []);
 
-export const getResultsFlexible = createSelector([getResults], results => results.destinationResults || []);
-
-export const getHasResults = createSelector(
-    [getItineraryResults, getResultsFlexible],
-    (itineraryResults, destinationResults) => !!itineraryResults.length || !!destinationResults.length,
-);
+export const getHasResults = createSelector([getItineraryResults], itineraryResults => !!itineraryResults.length);
 
 export const getResultsById = createSelector([getItineraryResults], results => {
     const map = results.reduce((acc, item) => {
-        acc[item.flightPrices.cheapest.id] = {
-            ...item.flightPrices.cheapest,
-            duration: item.flightPrices.cheapest.duration.total,
-        };
-        acc[item.flightPrices.fastest.id] = {
-            ...item.flightPrices.fastest,
-            duration: item.flightPrices.cheapest.duration.total,
-        };
-        acc[item.flightPrices.best.id] = {
-            ...item.flightPrices.best,
-            duration: item.flightPrices.cheapest.duration.total,
-        };
+        if (!Array.isArray(item.flightResults)) {
+            return acc;
+        }
+
+        item.flightResults.forEach(result => {
+            if (result?.id) {
+                acc[result?.id] = {
+                    ...result,
+                    duration: result?.duration?.total,
+                };
+            }
+        });
 
         return acc;
     }, {});
