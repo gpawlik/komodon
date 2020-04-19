@@ -17,7 +17,7 @@ export const SearchPlaceModalComponent = props => {
     const [departurePlace, onDepartureChange] = React.useState(props.departurePlace);
     const [destinationPlace, onDestinationChange] = React.useState(props.destinationPlace);
 
-    const [focusedField, onFocus] = React.useState(props.navigation.getParam('focused'));
+    const [focusedField, onFocus] = React.useState(props.route?.params?.focused);
 
     const isDeparture = focusedField === 0;
     const isDestination = focusedField === 1;

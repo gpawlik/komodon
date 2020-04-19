@@ -43,9 +43,9 @@ export const SearchDateModalComponent = props => {
     const [isDepartureModified, onDepartureModify] = React.useState(false);
     const [isReturnModified, onReturnModify] = React.useState(false);
 
-    const [focusedField, onFocusTab] = React.useState(props.navigation.getParam('focused'));
+    const [focusedField, onFocusTab] = React.useState(props.route?.params?.focused);
 
-    const roundTrip = props.navigation.getParam('roundTrip');
+    const roundTrip = props.route?.params?.roundTrip;
 
     const handleDepartureDatesChange = value => {
         const name = getJointDescriptiveName([

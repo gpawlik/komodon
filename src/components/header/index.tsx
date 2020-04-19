@@ -14,7 +14,7 @@ interface Props {
     backIcon?: string;
     secondaryIcon?: string;
     secondaryAction?: () => Promise<any> | void;
-    backAction?: () => Promise<any> | void;
+    backAction: () => Promise<any> | void;
 }
 
 export class Header extends React.PureComponent<Props> {
@@ -25,7 +25,10 @@ export class Header extends React.PureComponent<Props> {
             <React.Fragment>
                 <Container>
                     <SideBox>
-                        <BackButton backIcon={backIcon} backAction={backAction} />
+                        {backIcon && backAction ? (
+                            // @ts-ignore react-navigation HOC
+                            <BackButton backIcon={backIcon} backAction={backAction} />
+                        ) : null}
                     </SideBox>
 
                     {title ? <TextMedium3 message={title} /> : null}
