@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Animated } from 'react-native';
 
+import { createAnimatedComponent } from '~/utils/stateless';
+
 import animate from './animation';
 import { Container } from './styles';
 
@@ -15,7 +17,7 @@ interface State {
     isAnimating: boolean;
 }
 
-const AnimatedContainer: any = Animated.createAnimatedComponent(Container);
+const AnimatedContainer: any = createAnimatedComponent(Container);
 
 class DrawerContent extends React.Component<Props, State> {
     animatedValue = new Animated.Value(-this.props.width);

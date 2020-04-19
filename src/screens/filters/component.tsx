@@ -45,13 +45,13 @@ export const FiltersModalComponent = (props: Props) => {
                 returnArrivalTime,
             }),
         });
-        props.navigation.goBack();
+        props.navigation?.goBack();
     };
 
     return (
         <View style={{ width: '100%' }}>
             <Container>
-                <Header backIcon={generalIcons.CLOSE} backAction={() => props.navigation.goBack()} />
+                <Header backIcon={generalIcons.CLOSE} backAction={() => props.navigation?.goBack()} />
                 <Section>
                     <SectionTitle>Stops</SectionTitle>
                     <RadioCell

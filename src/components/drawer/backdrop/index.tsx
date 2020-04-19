@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Animated, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import AnimatedValue from 'react-native/Libraries/Animated/src/nodes/AnimatedValue';
 
+import { createAnimatedComponent } from '~/utils/stateless';
+
 import animate from './animation';
 import { Container } from './styles';
 
@@ -49,7 +51,7 @@ class Backdrop extends React.Component<Props, State> {
     render() {
         const { isVisible, onHide } = this.props;
         const { opacity, isAnimating } = this.state;
-        const AnimatedContainer: any = Animated.createAnimatedComponent(Container);
+        const AnimatedContainer: any = createAnimatedComponent(Container);
 
         return isVisible || (!isVisible && isAnimating) ? (
             <TouchableWithoutFeedback onPress={onHide}>

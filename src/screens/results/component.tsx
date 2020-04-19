@@ -40,9 +40,9 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
 
     submitSubscription = () => this.setState({ isSubscriptionVisible: false, isModalOpen: false });
 
-    goBack = () => this.props.navigation.goBack();
+    goBack = () => this.props.navigation?.goBack();
 
-    goToLogin = () => this.props.navigation.navigate(routes.login);
+    goToLogin = () => this.props.navigation?.navigate(routes.login);
 
     render() {
         const { isLoading, isFlexible, hasResults } = this.props;
@@ -79,7 +79,7 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
                             <FiltersBox>
                                 <FiltersButton
                                     onPress={() => {
-                                        this.props.navigation.navigate('FiltersModal');
+                                        this.props.navigation?.navigate('FiltersModal');
                                     }}
                                 >
                                     <FiltersText>Filters</FiltersText>

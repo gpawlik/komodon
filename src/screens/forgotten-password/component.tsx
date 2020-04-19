@@ -28,7 +28,7 @@ export class ForgottenPasswordComponent extends React.Component<Props, State> {
     onConfirmationSuccess = () => {
         const { navigation } = this.props;
 
-        this.setState({ isSubmitting: false }, navigation.goBack);
+        this.setState({ isSubmitting: false }, navigation?.goBack);
     };
 
     onFailure = () => {

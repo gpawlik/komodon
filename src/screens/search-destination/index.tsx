@@ -40,7 +40,7 @@ export const SearchPlaceModalComponent = props => {
         }
     };
 
-    const closeModal = () => props.navigation.goBack();
+    const closeModal = () => props.navigation?.goBack();
 
     const onFocusTab = index => {
         props.resetDestinations();

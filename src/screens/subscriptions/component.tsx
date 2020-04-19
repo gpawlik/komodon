@@ -29,7 +29,7 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
 
         return (
             <Container>
-                <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => navigation.goBack()} />
+                <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => navigation?.goBack()} />
                 <Content style={{ width: '100%' }}>
                     {subscriptions.map(({ id, searchCriteria }, index) => {
                         const {
@@ -57,7 +57,7 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
                             <ItemBox
                                 key={index}
                                 onPress={() => {
-                                    navigation.navigate('SubscriptionModal', {
+                                    navigation?.navigate('SubscriptionModal', {
                                         searchCriteria,
                                         deleteSubscription,
                                         id,

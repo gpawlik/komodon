@@ -64,7 +64,7 @@ export class SubscriptionDetailsComponent extends React.PureComponent<Props, Sta
 
         return (
             <Container>
-                <Header backIcon={generalIcons.ARROW_LEFT} backAction={navigation.goBack} />
+                <Header backIcon={generalIcons.ARROW_LEFT} backAction={navigation?.goBack} />
                 <Content style={{ width: '100%' }}>
                     <SectionBox>
                         <MainTitle>{`${departurePlace?.placeCode} - ${destinationPlace?.placeCode}`}</MainTitle>
@@ -144,7 +144,7 @@ export class SubscriptionDetailsComponent extends React.PureComponent<Props, Sta
                         ) : null}
                     </SectionBox>
 
-                    <IconBox onPress={() => deleteSubscription({ id, successCb: navigation.goBack })}>
+                    <IconBox onPress={() => deleteSubscription({ id, successCb: navigation?.goBack })}>
                         <Icon type={generalIcons.TRASH} />
                     </IconBox>
 

@@ -15,13 +15,13 @@ export class HomeComponent extends React.PureComponent<Props, void> {
     openProfile = () => {
         const { isLoggedIn, navigation } = this.props;
         const route = isLoggedIn ? routes.subscriptions : routes.login;
-        navigation.navigate(route);
+        navigation?.navigate(route);
     };
 
     render() {
         return (
             <Container>
-                <NavigationMenu navigate={this.props.navigation.navigate} />
+                <NavigationMenu navigate={this.props.navigation?.navigate} />
                 <Header
                     backIcon={generalIcons.MENU}
                     backAction={this.onMenuPress}
@@ -29,7 +29,7 @@ export class HomeComponent extends React.PureComponent<Props, void> {
                     secondaryAction={this.openProfile}
                 />
                 <Content isFullWidth>
-                    <Searchbox navigate={this.props.navigation.navigate} />
+                    <Searchbox navigate={this.props.navigation?.navigate} />
                 </Content>
             </Container>
         );
