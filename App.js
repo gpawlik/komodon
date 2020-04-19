@@ -1,6 +1,8 @@
 // @flow
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import * as routes from '~/constants/routes';
 
@@ -15,43 +17,34 @@ import { SearchPlaceModal } from '~/screens/search-destination';
 import { SearchDateModal } from '~/screens/search-date';
 import { FiltersModal } from '~/screens/filters';
 
-const MainStack = createStackNavigator(
-    {
-        [routes.home]: { screen: Home },
-        [routes.about]: { screen: About },
-        [routes.results]: { screen: Results },
-        [routes.login]: { screen: Login },
-        [routes.forgottenPassword]: { screen: ForgottenPassword },
-        [routes.subscriptions]: { screen: Subscriptions },
-    },
-    {
-        initialRouteName: routes.home,
-        headerMode: 'none',
-    },
-);
+const MainStack = createStackNavigator();
+const RootStack = createStackNavigator();
 
-const RootStack = createStackNavigator(
-    {
-        Main: {
-            screen: MainStack,
-        },
-        SearchPlaceModal: {
-            screen: SearchPlaceModal,
-        },
-        SearchDateModal: {
-            screen: SearchDateModal,
-        },
-        FiltersModal: {
-            screen: FiltersModal,
-        },
-        SubscriptionModal: {
-            screen: SubscriptionModal,
-        },
-    },
-    {
-        mode: 'modal',
-        headerMode: 'none',
-    },
-);
+function MainStackScreen() {
+    return (
+        <MainStack.Navigator initialRouteName={routes.home} headerMode="none">
+            <MainStack.Screen name={routes.home} component={Home} />
+            <MainStack.Screen name={routes.about} component={About} />
+            <MainStack.Screen name={routes.results} component={Results} />
+            <MainStack.Screen name={routes.login} component={Login} />
+            <MainStack.Screen name={routes.forgottenPassword} component={ForgottenPassword} />
+            <MainStack.Screen name={routes.subscriptions} component={Subscriptions} />
+        </MainStack.Navigator>
+    );
+}
 
-export default createAppContainer(RootStack);
+function RootStackScreen() {
+    return (
+        <NavigationContainer>
+            <RootStack.Navigator mode="modal" headerMode="none">
+                <RootStack.Screen name="Main" component={MainStackScreen} options={{ headerShown: false }} />
+                <RootStack.Screen name="SearchPlaceModal" component={SearchPlaceModal} />
+                <RootStack.Screen name="SearchDateModal" component={SearchDateModal} />
+                <RootStack.Screen name="FiltersModal" component={FiltersModal} />
+                <RootStack.Screen name="SubscriptionModal" component={SubscriptionModal} />
+            </RootStack.Navigator>
+        </NavigationContainer>
+    );
+}
+
+export default RootStackScreen;
