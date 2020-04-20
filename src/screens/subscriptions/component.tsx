@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Platform } from 'react-native';
 
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
@@ -21,7 +22,7 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
     handleType = (type: number) => this.setState({ type });
 
     render() {
-        const { subscriptions = [], isLoading, deleteSubscription, navigation } = this.props;
+        const { subscriptions = [], isLoading, navigation } = this.props;
 
         if (isLoading) {
             return <LoadingScreen />;
@@ -57,9 +58,11 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
                             <ItemBox
                                 key={index}
                                 onPress={() => {
-                                    navigation?.navigate('SubscriptionModal', {
+                                    const path =
+                                        Platform.OS === 'web' ? `SubscriptionModal/${id}` : 'SubscriptionModal';
+
+                                    navigation?.navigate(path, {
                                         searchCriteria,
-                                        deleteSubscription,
                                         id,
                                     });
                                 }}

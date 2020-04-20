@@ -17,7 +17,8 @@ import { SearchPlaceModal } from '~/screens/search-destination';
 const customHistory = createBrowserHistory();
 
 const navigation = {
-    navigate: path => customHistory.push(path),
+    navigate: (path, opt) => customHistory.push(path, opt),
+    goBack: customHistory.goBack,
 };
 
 const getPath = route => `/${route}`;
@@ -29,6 +30,7 @@ const getRoute = (Component, route) => (
 );
 
 const App = () => {
+    console.log(customHistory);
     return (
         <Router history={customHistory}>
             <Switch>

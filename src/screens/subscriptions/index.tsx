@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { getSubscriptions, getIsLoading } from '~/domains/subscriptions/selectors';
-import { requestSubscriptions, deleteSubscription } from '~/domains/subscriptions/actions';
+import { requestSubscriptions } from '~/domains/subscriptions/actions';
 import { ReduxState } from '~/types';
 
 import { SubscriptionsComponent } from './component';
@@ -14,7 +14,6 @@ export const mapStateToProps = (state: ReduxState): StateProps => ({
 
 const mapDispatchToProps: DispatchProps = {
     requestSubscriptions,
-    deleteSubscription,
 };
 
 export const Subscriptions = connect(mapStateToProps, mapDispatchToProps)(SubscriptionsComponent);

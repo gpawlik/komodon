@@ -1,16 +1,21 @@
 import { connect } from 'react-redux';
 
-import { getSubscriptionHistory, getIsLoadingHistory } from '~/domains/subscriptions/selectors';
+import { getSubscriptionHistory, getIsLoadingHistory, getCriteriaById } from '~/domains/subscriptions/selectors';
 import { requestSubscriptionHistory, deleteSubscription } from '~/domains/subscriptions/actions';
 import { ReduxState } from '~/types';
 
 import { SubscriptionDetailsComponent } from './component';
 import { StateProps, DispatchProps } from './types';
 
-export const mapStateToProps = (state: ReduxState): StateProps => ({
-    subscriptionHistory: getSubscriptionHistory(state),
-    isLoading: getIsLoadingHistory(state),
-});
+export const mapStateToProps = (state: ReduxState, props): StateProps => {
+    console.log({ props });
+    const id = '';
+    return {
+        subscriptionHistory: getSubscriptionHistory(state),
+        searchCriteria: getCriteriaById(state, { id }),
+        isLoading: getIsLoadingHistory(state),
+    };
+};
 
 const mapDispatchToProps: DispatchProps = {
     requestSubscriptionHistory,

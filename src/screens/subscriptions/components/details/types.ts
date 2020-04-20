@@ -1,7 +1,8 @@
-import { GetSubscriptionHistoryPayload } from '~/domains/subscriptions/types';
+import { GetSubscriptionHistoryPayload, SubscriptionResult } from '~/domains/subscriptions/types';
 
 export interface StateProps {
     subscriptionHistory: Array<any>;
+    searchCriteria: SubscriptionResult;
     isLoading: boolean;
 }
 
