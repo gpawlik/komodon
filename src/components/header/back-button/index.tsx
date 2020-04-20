@@ -14,7 +14,7 @@ interface Props {
 export class BackButtonComponent extends React.PureComponent<Props> {
     goBack = () => {
         const { backAction, navigation } = this.props;
-        return typeof backAction === 'function' ? backAction() : navigation.goBack();
+        return typeof backAction === 'function' ? backAction() : navigation?.goBack();
     };
 
     render() {
@@ -28,4 +28,5 @@ export class BackButtonComponent extends React.PureComponent<Props> {
     }
 }
 
-export const BackButton = withNavigation(BackButtonComponent);
+//export const BackButton = withNavigation(BackButtonComponent);
+export const BackButton = BackButtonComponent;

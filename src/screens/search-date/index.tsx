@@ -105,7 +105,7 @@ export const SearchDateModalComponent = props => {
         onReturnModify(true);
     };
 
-    const closeModal = () => props.navigation.goBack();
+    const closeModal = () => props.navigation?.goBack();
 
     const onSubmitDeparture = () => {
         props.setSearchCriteria({ departureDates, departureDaysOfWeek, departureText });

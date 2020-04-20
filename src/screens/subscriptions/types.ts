@@ -5,7 +5,6 @@ export interface StateProps {
 
 export interface DispatchProps {
     requestSubscriptions: () => void;
-    deleteSubscription: (arg0: string) => void;
 }
 
 interface OwnProps {

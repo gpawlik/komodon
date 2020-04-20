@@ -14,11 +14,11 @@ import { Props } from './types';
 export const LoginComponent = (props: Props) => {
     const [currentTab, changeTab] = React.useState(0);
 
-    const goBack = () => props.navigation.goBack();
+    const goBack = () => props.navigation?.goBack();
 
     return (
         <Container>
-            <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => props.navigation.goBack()} />
+            <Header backIcon={generalIcons.ARROW_LEFT} backAction={() => props.navigation?.goBack()} />
             <Tabs tabTitles={['Log in', 'Sign up']} currentTab={currentTab}>
                 <Content>
                     {/* <SocialLogin title="Please log in with" />
@@ -29,7 +29,7 @@ export const LoginComponent = (props: Props) => {
 
                     <StandardLogin
                         changeTab={() => changeTab(1)}
-                        onForgot={() => props.navigation.navigate(routes.forgottenPassword)}
+                        onForgot={() => props.navigation?.navigate(routes.forgottenPassword)}
                         onLogin={props.loginAttempt}
                         goBack={goBack}
                     />

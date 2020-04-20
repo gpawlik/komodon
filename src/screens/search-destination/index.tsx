@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import { getDeparturePlace, getDestinationPlace } from '~/domains/search/selectors';
 import { setSearchCriteria } from '~/domains/search/actions';
@@ -14,10 +15,13 @@ import { DestinationBox } from './components/destination-box';
 import { Container } from './styles';
 
 export const SearchPlaceModalComponent = props => {
+    let location = useLocation();
+    const navigationState = props.route?.params || location?.state;
+
     const [departurePlace, onDepartureChange] = React.useState(props.departurePlace);
     const [destinationPlace, onDestinationChange] = React.useState(props.destinationPlace);
 
-    const [focusedField, onFocus] = React.useState(props.route?.params?.focused);
+    const [focusedField, onFocus] = React.useState(navigationState?.focused);
 
     const isDeparture = focusedField === 0;
     const isDestination = focusedField === 1;
@@ -40,7 +44,7 @@ export const SearchPlaceModalComponent = props => {
         }
     };
 
-    const closeModal = () => props.navigation.goBack();
+    const closeModal = () => props.navigation?.goBack();
 
     const onFocusTab = index => {
         props.resetDestinations();
