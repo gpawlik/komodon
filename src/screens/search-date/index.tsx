@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as R from 'ramda';
 import { connect } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import {
     getDepartureDates,
@@ -27,6 +28,9 @@ import { getJointDescriptiveName } from './utils';
 import { Container, SelectionBox } from './styles';
 
 export const SearchDateModalComponent = props => {
+    let location = useLocation();
+    const navigationState = props.route?.params || location?.state;
+
     const [departureDates, onDepartureDatesChange] = React.useState(props.departureDates);
     const [departureDaysOfWeek, onDepartureWeekdaysChange] = React.useState(props.departureDaysOfWeek);
 
@@ -43,9 +47,9 @@ export const SearchDateModalComponent = props => {
     const [isDepartureModified, onDepartureModify] = React.useState(false);
     const [isReturnModified, onReturnModify] = React.useState(false);
 
-    const [focusedField, onFocusTab] = React.useState(props.route?.params?.focused);
+    const [focusedField, onFocusTab] = React.useState(navigationState?.focused);
 
-    const roundTrip = props.route?.params?.roundTrip;
+    const roundTrip = navigationState?.roundTrip;
 
     const handleDepartureDatesChange = value => {
         const name = getJointDescriptiveName([
