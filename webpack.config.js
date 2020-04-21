@@ -56,6 +56,7 @@ module.exports = () => {
                 '@react-native-community/async-storage$': path.resolve(appDirectory, 'src/utils/native/async-storage'),
                 'aws-amplify$': path.resolve(appDirectory, 'src/utils/native/aws-amplify'),
                 'react-native-svg$': path.resolve(appDirectory, 'src/utils/native/svg'),
+                'rn-range-slider$': path.resolve(appDirectory, 'src/utils/native/range-slider'),
             },
         },
     };

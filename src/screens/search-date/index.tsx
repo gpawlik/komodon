@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as R from 'ramda';
 import { connect } from 'react-redux';
+//import { useLocation } from 'react-router-dom';
 
 import {
     getDepartureDates,
@@ -18,6 +19,7 @@ import { DateCriteriaBox } from '~/components/date-criteria-box';
 import { Button } from '~/components/button';
 import { ConfirmBox } from '~/components/confirm-box';
 import { ReduxState } from '~/types';
+import { getLocationParams } from '~/utils/location';
 
 import { CalendarBox } from './components/calendar-box';
 import { DaysBox } from './components/days-box';
@@ -27,6 +29,8 @@ import { getJointDescriptiveName } from './utils';
 import { Container, SelectionBox } from './styles';
 
 export const SearchDateModalComponent = props => {
+    const params = getLocationParams(props).state;
+
     const [departureDates, onDepartureDatesChange] = React.useState(props.departureDates);
     const [departureDaysOfWeek, onDepartureWeekdaysChange] = React.useState(props.departureDaysOfWeek);
 
@@ -43,9 +47,9 @@ export const SearchDateModalComponent = props => {
     const [isDepartureModified, onDepartureModify] = React.useState(false);
     const [isReturnModified, onReturnModify] = React.useState(false);
 
-    const [focusedField, onFocusTab] = React.useState(props.route?.params?.focused);
+    const [focusedField, onFocusTab] = React.useState(params?.focused);
 
-    const roundTrip = props.route?.params?.roundTrip;
+    const roundTrip = params?.roundTrip;
 
     const handleDepartureDatesChange = value => {
         const name = getJointDescriptiveName([
