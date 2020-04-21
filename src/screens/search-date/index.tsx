@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as R from 'ramda';
 import { connect } from 'react-redux';
-//import { useLocation } from 'react-router-dom';
 
 import {
     getDepartureDates,
