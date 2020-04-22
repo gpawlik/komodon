@@ -52,13 +52,12 @@ module.exports = () => {
             }),
         ],
         resolve: {
-            extensions: ['.web.js', '.js', '.json', '.web.ts', '.web.tsx', '.ts', '.tsx'],
+            extensions: ['.mjs', '.web.js', '.js', '.json', '.web.ts', '.web.tsx', '.ts', '.tsx'],
             alias: {
                 'react-native$': 'react-native-web',
                 'styled-components$': 'styled-components/native',
                 '~': 'src',
                 '@react-native-community/async-storage$': path.resolve(appDirectory, 'src/utils/native/async-storage'),
-                'aws-amplify$': path.resolve(appDirectory, 'src/utils/native/aws-amplify'),
                 'react-native-svg$': path.resolve(appDirectory, 'src/utils/native/svg'),
                 'rn-range-slider$': path.resolve(appDirectory, 'src/utils/native/range-slider'),
             },
