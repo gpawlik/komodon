@@ -6,7 +6,6 @@ import {
     Container,
     ScrollContainer,
     Item,
-    ContentBox,
     TextBox,
     DescriptionText,
     IconBox,
@@ -52,19 +51,17 @@ export class DateCriteriaBox extends React.PureComponent<Props> {
             <Container>
                 <ScrollContainer horizontal>
                     <Item isSelected={isExactDatesSelected} onPress={onPressA}>
-                        <ContentBox>
-                            <IconBox>
-                                <StatusIcon isSelected={isExactDatesSelected} />
-                            </IconBox>
+                        <IconBox>
+                            <StatusIcon isSelected={isExactDatesSelected} />
+                        </IconBox>
 
-                            <TextBox>
-                                <DescriptionText>
-                                    {!isExactDatesSelected
-                                        ? 'Select dates'
-                                        : getDescriptiveName({ type: 'TIME_CAL', value: exactDates })}
-                                </DescriptionText>
-                            </TextBox>
-                        </ContentBox>
+                        <TextBox>
+                            <DescriptionText>
+                                {!isExactDatesSelected
+                                    ? 'Select dates'
+                                    : getDescriptiveName({ type: 'TIME_CAL', value: exactDates })}
+                            </DescriptionText>
+                        </TextBox>
 
                         {onExactDatesChange && isExactDatesSelected ? (
                             <RemoveBox onPress={onExactDatesChange}>
@@ -74,19 +71,17 @@ export class DateCriteriaBox extends React.PureComponent<Props> {
                     </Item>
 
                     <Item isSelected={isWeekdaysSelected} onPress={onPressB}>
-                        <ContentBox>
-                            <IconBox>
-                                <StatusIcon isSelected={isWeekdaysSelected} />
-                            </IconBox>
+                        <IconBox>
+                            <StatusIcon isSelected={isWeekdaysSelected} />
+                        </IconBox>
 
-                            <TextBox>
-                                <DescriptionText>
-                                    {!isWeekdaysSelected
-                                        ? 'Select days of week'
-                                        : getDescriptiveName({ type: 'TIME_DAYS', value: daysOfWeek })}
-                                </DescriptionText>
-                            </TextBox>
-                        </ContentBox>
+                        <TextBox>
+                            <DescriptionText>
+                                {!isWeekdaysSelected
+                                    ? 'Select days of week'
+                                    : getDescriptiveName({ type: 'TIME_DAYS', value: daysOfWeek })}
+                            </DescriptionText>
+                        </TextBox>
 
                         {onDaysOfWeekChange && isWeekdaysSelected ? (
                             <RemoveBox onPress={onDaysOfWeekChange}>
@@ -97,19 +92,17 @@ export class DateCriteriaBox extends React.PureComponent<Props> {
 
                     {daysRange ? (
                         <Item isSelected={isDaysRangeSelected} onPress={onPressC}>
-                            <ContentBox>
-                                <IconBox>
-                                    <StatusIcon isSelected={isDaysRangeSelected} />
-                                </IconBox>
+                            <IconBox>
+                                <StatusIcon isSelected={isDaysRangeSelected} />
+                            </IconBox>
 
-                                <TextBox>
-                                    <DescriptionText>
-                                        {!isDaysRangeSelected
-                                            ? 'Days range'
-                                            : getDescriptiveName({ type: 'TIME_RANGE', value: daysRange })}
-                                    </DescriptionText>
-                                </TextBox>
-                            </ContentBox>
+                            <TextBox>
+                                <DescriptionText>
+                                    {!isDaysRangeSelected
+                                        ? 'Days range'
+                                        : getDescriptiveName({ type: 'TIME_RANGE', value: daysRange })}
+                                </DescriptionText>
+                            </TextBox>
 
                             {onDaysRangeChange && isDaysRangeSelected ? (
                                 <RemoveBox onPress={onDaysRangeChange}>

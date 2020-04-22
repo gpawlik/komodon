@@ -11,6 +11,7 @@ module.exports = () => {
         output: {
             path: path.resolve(appDirectory, 'dist'),
             filename: 'bundle.js',
+            publicPath: '/',
         },
         module: {
             rules: [
@@ -40,6 +41,9 @@ module.exports = () => {
                     parser: { skipStorybook: true },
                 },
             ],
+        },
+        devServer: {
+            historyApiFallback: true,
         },
         plugins: [
             new HtmlWebPackPlugin({

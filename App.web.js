@@ -12,7 +12,7 @@ import { Subscriptions } from '~/screens/subscriptions';
 // import { SubscriptionModal } from '~/screens/subscriptions/components/details';
 import { SearchPlaceModal } from '~/screens/search-destination';
 import { SearchDateModal } from '~/screens/search-date';
-//import { FiltersModal } from '~/screens/filters';
+import { FiltersModal } from '~/screens/filters';
 
 const customHistory = createBrowserHistory();
 
@@ -30,7 +30,6 @@ const getRoute = (Component, route) => (
 );
 
 const App = () => {
-    console.log(customHistory);
     return (
         <Router history={customHistory}>
             <Switch>
@@ -42,7 +41,7 @@ const App = () => {
                 {/*getRoute(SubscriptionModal, 'SubscriptionModal')*/}
                 {getRoute(SearchPlaceModal, 'SearchPlaceModal')}
                 {getRoute(SearchDateModal, 'SearchDateModal')}
-                {/*getRoute(FiltersModal, 'FiltersModal')*/}
+                {getRoute(FiltersModal, 'FiltersModal')}
                 {getRoute(Home, '')}
             </Switch>
         </Router>

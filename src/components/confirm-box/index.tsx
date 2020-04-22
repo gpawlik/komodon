@@ -4,6 +4,7 @@ import { Container } from './styles';
 
 interface Props {
     children: React.ReactNode;
+    isFixed?: boolean;
 }
 
-export const ConfirmBox = ({ children }: Props) => <Container>{children}</Container>;
+export const ConfirmBox = ({ children, isFixed }: Props) => <Container isFixed={!!isFixed}>{children}</Container>;
