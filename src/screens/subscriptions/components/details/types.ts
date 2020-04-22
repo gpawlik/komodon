@@ -1,14 +1,16 @@
-import { GetSubscriptionHistoryPayload, SubscriptionResult } from '~/domains/subscriptions/types';
+import { SubscriptionResult } from '~/domains/subscriptions/types';
+import { requestSubscriptionHistory, deleteSubscription } from '~/domains/subscriptions/actions';
 
 export interface StateProps {
     subscriptionHistory: Array<any>;
     searchCriteria: SubscriptionResult;
+    id: string;
     isLoading: boolean;
 }
 
 export interface DispatchProps {
-    requestSubscriptionHistory: (arg0: GetSubscriptionHistoryPayload) => void;
-    deleteSubscription: (arg0: string) => void;
+    requestSubscriptionHistory: typeof requestSubscriptionHistory;
+    deleteSubscription: typeof deleteSubscription;
 }
 
 export interface OwnProps {

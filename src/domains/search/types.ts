@@ -3,6 +3,7 @@ export interface CitySearch {
     placeName?: string;
     placeCode?: string;
     countryName?: string;
+    countryId?: string;
 }
 
 export interface ValidatedCriteria {

@@ -36,27 +36,22 @@ export class SubscriptionDetailsComponent extends React.PureComponent<Props, Sta
     handleType = (type: number) => this.setState({ type });
 
     render() {
-        const { isLoading, navigation } = this.props;
-        const searchCriteria = navigation?.state?.params?.searchCriteria;
-        const searchFilter = searchCriteria?.searchFilter;
+        const { isLoading, navigation, searchCriteria, id, deleteSubscription } = this.props;
+        const criteria = searchCriteria?.searchCriteria;
+        const searchFilter = criteria?.searchFilter;
 
-        const departurePlace = searchCriteria?.departurePlace;
-        const destinationPlace = searchCriteria?.destinationPlace;
-        const departureDates = searchCriteria?.departureDates;
-        const departureDaysOfWeek = searchCriteria?.departureDaysOfWeek;
-        const returnDates = searchCriteria?.returnDates;
-        const returnDaysOfWeek = searchCriteria?.returnDaysOfWeek;
-        const daysRange = searchCriteria?.daysRange;
+        const departurePlace = criteria?.departurePlace;
+        const destinationPlace = criteria?.destinationPlace;
+        const departureDates = criteria?.departureDates;
+        const departureDaysOfWeek = criteria?.departureDaysOfWeek;
+        const returnDates = criteria?.returnDates;
+        const returnDaysOfWeek = criteria?.returnDaysOfWeek;
+        const daysRange = criteria?.daysRange;
 
         const departureTimeFilter = searchFilter?.departureTime;
         const arrivalTimeFilter = searchFilter?.arrivalTime;
         const returnDepartureTimeFilter = searchFilter?.returnDepartureTime;
         const returnArrivalTimeFilter = searchFilter?.returnArrivalTime;
-
-        const deleteSubscription = navigation?.state?.params?.deleteSubscription;
-        const id = navigation?.state?.params?.id;
-
-        console.log({ searchCriteria });
 
         if (isLoading) {
             return <LoadingScreen />;

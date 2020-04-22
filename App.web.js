@@ -9,7 +9,7 @@ import { Results } from '~/screens/results';
 import { Login } from '~/screens/login';
 import { ForgottenPassword } from '~/screens/forgotten-password';
 import { Subscriptions } from '~/screens/subscriptions';
-// import { SubscriptionModal } from '~/screens/subscriptions/components/details';
+import { SubscriptionModal } from '~/screens/subscriptions/components/details';
 import { SearchPlaceModal } from '~/screens/search-destination';
 import { SearchDateModal } from '~/screens/search-date';
 import { FiltersModal } from '~/screens/filters';
@@ -23,11 +23,9 @@ const navigation = {
 
 const getPath = route => `/${route}`;
 
-const getRoute = (Component, route) => (
-    <Route path={getPath(route)}>
-        <Component navigation={navigation} />
-    </Route>
-);
+const render = Component => ({ match }) => <Component navigation={navigation} params={match?.params} />;
+
+const getRoute = (Component, route) => <Route path={getPath(route)} render={render(Component)} />;
 
 const App = () => {
     return (
@@ -38,7 +36,7 @@ const App = () => {
                 {getRoute(Login, routes.login)}
                 {getRoute(ForgottenPassword, routes.forgottenPassword)}
                 {getRoute(Subscriptions, routes.subscriptions)}
-                {/*getRoute(SubscriptionModal, 'SubscriptionModal')*/}
+                {getRoute(SubscriptionModal, 'SubscriptionModal/:id')}
                 {getRoute(SearchPlaceModal, 'SearchPlaceModal')}
                 {getRoute(SearchDateModal, 'SearchDateModal')}
                 {getRoute(FiltersModal, 'FiltersModal')}

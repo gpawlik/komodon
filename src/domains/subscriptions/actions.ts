@@ -39,7 +39,11 @@ export const createSubscriptionError = () => ({
 });
 
 export const DELETE_SUBSCRIPTION_ATTEMPT: 'subscriptions/DELETE_ATTEMPT' = 'subscriptions/DELETE_ATTEMPT';
-export const deleteSubscription = (payload: string) => ({
+interface DeleteSubscriptionPayload {
+    id: string;
+    successCb: () => void;
+}
+export const deleteSubscription = (payload: DeleteSubscriptionPayload) => ({
     type: DELETE_SUBSCRIPTION_ATTEMPT,
     payload,
 });

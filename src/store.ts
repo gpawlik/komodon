@@ -11,7 +11,7 @@ const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
     transforms: [immutableTransform()],
-    whitelist: ['search', 'destinations', 'auth'],
+    whitelist: ['search', 'destinations', 'auth', 'subscriptions'],
     blacklist: ['results'],
 };
 
