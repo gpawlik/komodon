@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as R from 'ramda';
+import { Platform } from 'react-native';
 import { connect } from 'react-redux';
 
 import {
@@ -220,7 +221,7 @@ export const SearchDateModalComponent = props => {
                 </>
             ) : null}
 
-            <ConfirmBox>
+            <ConfirmBox isFixed={Platform.OS === 'web'}>
                 <Button message="Cancel" onPress={closeModal} isGhost isStretched />
 
                 {isDepartureSelection ? (

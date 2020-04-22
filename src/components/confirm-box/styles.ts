@@ -8,7 +8,7 @@ export const Container = styled.View`
     border-top-color: #aaa;
     flex-direction: row;
     justify-content: center;
-    position: absolute;
+    position: ${({ isFixed }) => (isFixed ? 'fixed' : 'absolute')};
     bottom: 0;
     left: 0;
     right: 0;

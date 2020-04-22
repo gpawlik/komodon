@@ -47,8 +47,6 @@ export const DescriptionText = styled(TextRegular2)`
     text-align: center;
 `;
 
-export const ContentBox = styled.View``;
-
 export const IconBox = styled.View`
     align-items: center;
     margin-bottom: ${selectors.ss4};
