@@ -63,6 +63,8 @@ export interface SubscriptionResult {
             placeName: string;
             placeCode: string;
             cityId: string;
+            cityName: string;
+            countryId: string;
             type: string;
             subPlaces: Array<string>;
         };

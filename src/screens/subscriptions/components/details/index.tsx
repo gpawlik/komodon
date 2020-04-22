@@ -8,12 +8,13 @@ import { SubscriptionDetailsComponent } from './component';
 import { StateProps, DispatchProps } from './types';
 
 export const mapStateToProps = (state: ReduxState, props): StateProps => {
-    console.log({ props });
-    const id = '';
+    const id = props?.navigation?.state?.params?.id || props?.params?.id;
+
     return {
         subscriptionHistory: getSubscriptionHistory(state),
         searchCriteria: getCriteriaById(state, { id }),
         isLoading: getIsLoadingHistory(state),
+        id,
     };
 };
 

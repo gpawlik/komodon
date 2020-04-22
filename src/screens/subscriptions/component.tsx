@@ -62,7 +62,6 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
                                         Platform.OS === 'web' ? `SubscriptionModal/${id}` : 'SubscriptionModal';
 
                                     navigation?.navigate(path, {
-                                        searchCriteria,
                                         id,
                                     });
                                 }}

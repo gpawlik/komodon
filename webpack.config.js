@@ -58,6 +58,7 @@ module.exports = () => {
                 'styled-components$': 'styled-components/native',
                 '~': 'src',
                 '@react-native-community/async-storage$': path.resolve(appDirectory, 'src/utils/native/async-storage'),
+                'react-native-chart-kit$': path.resolve(appDirectory, 'src/utils/native/chart-kit'),
                 'react-native-svg$': path.resolve(appDirectory, 'src/utils/native/svg'),
                 'rn-range-slider$': path.resolve(appDirectory, 'src/utils/native/range-slider'),
             },
