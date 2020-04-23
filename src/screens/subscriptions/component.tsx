@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Platform } from 'react-native';
 
+import * as routes from '~/constants/routes';
 import { generalIcons } from '~/constants/icons/general';
 import { Header } from '~/components/header';
 import { LoadingScreen } from '~/components/loading-screen';
@@ -59,7 +60,9 @@ export class SubscriptionsComponent extends React.PureComponent<Props, State> {
                                 key={index}
                                 onPress={() => {
                                     const path =
-                                        Platform.OS === 'web' ? `SubscriptionModal/${id}` : 'SubscriptionModal';
+                                        Platform.OS === 'web'
+                                            ? `${routes.subscriptionModal}/${id}`
+                                            : routes.subscriptionModal;
 
                                     navigation?.navigate(path, {
                                         id,

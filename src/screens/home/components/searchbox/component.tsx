@@ -63,7 +63,7 @@ export class SearchboxComponent extends React.Component<Props, State> {
                     <ValueBox
                         label="From"
                         onPress={() => {
-                            navigate('SearchPlaceModal', {
+                            navigate(routes.searchPlaceModal, {
                                 focused: 0,
                             });
                         }}
@@ -82,7 +82,7 @@ export class SearchboxComponent extends React.Component<Props, State> {
                     <ValueBox
                         label="To"
                         onPress={() => {
-                            navigate('SearchPlaceModal', {
+                            navigate(routes.searchPlaceModal, {
                                 focused: 1,
                             });
                         }}
@@ -100,7 +100,7 @@ export class SearchboxComponent extends React.Component<Props, State> {
                     <ValueBox
                         label="Departure Time"
                         onPress={() => {
-                            navigate('SearchDateModal', {
+                            navigate(routes.searchDateModal, {
                                 focused: 0,
                                 roundTrip,
                             });
@@ -114,7 +114,7 @@ export class SearchboxComponent extends React.Component<Props, State> {
                         <ValueBox
                             label="Return Time"
                             onPress={() => {
-                                navigate('SearchDateModal', {
+                                navigate(routes.searchDateModal, {
                                     focused: 1,
                                     roundTrip,
                                 });

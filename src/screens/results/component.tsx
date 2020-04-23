@@ -79,7 +79,7 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
                             <FiltersBox>
                                 <FiltersButton
                                     onPress={() => {
-                                        this.props.navigation?.navigate('FiltersModal');
+                                        this.props.navigation?.navigate(routes.filtersModal);
                                     }}
                                 >
                                     <FiltersText>Filters</FiltersText>

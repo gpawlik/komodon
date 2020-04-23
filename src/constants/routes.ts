@@ -1,7 +1,12 @@
-export const home = 'Home';
-export const results = 'Results';
-export const login = 'Login';
-export const forgottenPassword = 'ForgottenPassword';
-export const subscriptions = 'Subscriptions';
-export const about = 'About';
-export const userInfo = 'UserInfo';
+export const home = 'home';
+export const results = 'results';
+export const login = 'login';
+export const forgottenPassword = 'forgotten-password';
+export const subscriptions = 'subscriptions';
+export const about = 'about';
+export const userInfo = 'user-info';
+
+export const subscriptionModal = 'subscription';
+export const searchPlaceModal = 'search-place';
+export const searchDateModal = 'search-date';
+export const filtersModal = 'filters';

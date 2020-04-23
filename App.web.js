@@ -36,10 +36,10 @@ const App = () => {
                 {getRoute(Login, routes.login)}
                 {getRoute(ForgottenPassword, routes.forgottenPassword)}
                 {getRoute(Subscriptions, routes.subscriptions)}
-                {getRoute(SubscriptionModal, 'SubscriptionModal/:id')}
-                {getRoute(SearchPlaceModal, 'SearchPlaceModal')}
-                {getRoute(SearchDateModal, 'SearchDateModal')}
-                {getRoute(FiltersModal, 'FiltersModal')}
+                {getRoute(SubscriptionModal, `${routes.subscriptionModal}/:id`)}
+                {getRoute(SearchPlaceModal, routes.searchPlaceModal)}
+                {getRoute(SearchDateModal, routes.searchDateModal)}
+                {getRoute(FiltersModal, routes.filtersModal)}
                 {getRoute(Home, '')}
             </Switch>
         </Router>

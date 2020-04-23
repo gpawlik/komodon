@@ -1,4 +1,3 @@
-// @flow
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -38,10 +37,10 @@ function RootStackScreen() {
         <NavigationContainer>
             <RootStack.Navigator mode="modal" headerMode="none">
                 <RootStack.Screen name="Main" component={MainStackScreen} options={{ headerShown: false }} />
-                <RootStack.Screen name="SearchPlaceModal" component={SearchPlaceModal} />
-                <RootStack.Screen name="SearchDateModal" component={SearchDateModal} />
-                <RootStack.Screen name="FiltersModal" component={FiltersModal} />
-                <RootStack.Screen name="SubscriptionModal" component={SubscriptionModal} />
+                <RootStack.Screen name={routes.searchPlaceModal} component={SearchPlaceModal} />
+                <RootStack.Screen name={routes.searchDateModal} component={SearchDateModal} />
+                <RootStack.Screen name={routes.filtersModal} component={FiltersModal} />
+                <RootStack.Screen name={routes.subscriptionModal} component={SubscriptionModal} />
             </RootStack.Navigator>
         </NavigationContainer>
     );
