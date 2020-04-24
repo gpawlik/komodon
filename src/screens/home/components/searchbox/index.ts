@@ -11,7 +11,7 @@ import {
     getReturnText,
     getValidatedCriteria,
 } from '~/domains/search/selectors';
-import { searchFlights, setSearchCriteria } from '~/domains/search/actions';
+import { setSearchCriteria } from '~/domains/search/actions';
 import { ReduxState } from '~/types';
 
 import { SearchboxComponent } from './component';
@@ -22,14 +22,12 @@ export const mapStateToProps = (state: ReduxState) => ({
     departureDates: getDepartureDates(state),
     returnDates: getReturnDates(state),
     roundTrip: getRoundTrip(state),
-    criteria: getCriteria(state),
     departureText: getDepartureText(state),
     returnText: getReturnText(state),
     validatedCriteria: getValidatedCriteria(state),
 });
 
 const mapDispatchToProps = {
-    searchFlights,
     setSearchCriteria,
 };
 

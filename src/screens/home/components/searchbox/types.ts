@@ -1,4 +1,4 @@
-import { State as Criteria, OptionalCriteria, CitySearch, ValidatedCriteria } from '~/domains/search/types';
+import { OptionalCriteria, CitySearch, ValidatedCriteria } from '~/domains/search/types';
 
 export interface StateProps {
     validatedCriteria: ValidatedCriteria;
@@ -8,12 +8,10 @@ export interface StateProps {
     destinationPlace: CitySearch;
     departureText: string;
     returnText: string;
-    criteria: Criteria;
 }
 
 export interface DispatchProps {
     returnText: string;
-    searchFlights: (arg0: Criteria) => void;
     setSearchCriteria: (arg0: OptionalCriteria) => void;
 }
 

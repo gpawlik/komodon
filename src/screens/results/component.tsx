@@ -32,6 +32,11 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
         isModalOpen: false,
     };
 
+    componentDidMount() {
+        const { searchFlights, criteria } = this.props;
+        searchFlights(criteria);
+    }
+
     handleType = (type: number) => this.setState({ type });
 
     openModal = () => this.setState({ isModalOpen: true });

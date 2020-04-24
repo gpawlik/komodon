@@ -20,13 +20,12 @@ export class SearchboxComponent extends React.Component<Props, State> {
     };
 
     onSubmit = () => {
-        const { validatedCriteria, navigate, searchFlights, criteria } = this.props;
+        const { validatedCriteria, navigate } = this.props;
         this.onAttemptSubmit();
         const isValid = Object.values(validatedCriteria).findIndex(item => item === false) < 0;
 
         if (isValid) {
             navigate(routes.results);
-            searchFlights(criteria);
         }
     };
 
