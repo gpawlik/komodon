@@ -13,7 +13,6 @@ export interface StateProps {
 
 export interface DispatchProps {
     returnText: string;
-    searchFlights: (arg0: Criteria) => void;
     setSearchCriteria: (arg0: OptionalCriteria) => void;
 }
 

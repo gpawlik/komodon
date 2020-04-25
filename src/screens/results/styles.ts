@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { TextRegular3 } from '~/components/text';
 import { selectors } from '~/theme/main';
 
-export const Container = styled.View``;
+export const Container = styled.View`
+    height: 100%;
+`;
 
 export const Content = styled.ScrollView`
     background-color: #eee;

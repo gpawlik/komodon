@@ -11,7 +11,7 @@ import {
     getReturnText,
     getValidatedCriteria,
 } from '~/domains/search/selectors';
-import { searchFlights, setSearchCriteria } from '~/domains/search/actions';
+import { setSearchCriteria } from '~/domains/search/actions';
 import { ReduxState } from '~/types';
 
 import { SearchboxComponent } from './component';
@@ -29,7 +29,6 @@ export const mapStateToProps = (state: ReduxState) => ({
 });
 
 const mapDispatchToProps = {
-    searchFlights,
     setSearchCriteria,
 };
 

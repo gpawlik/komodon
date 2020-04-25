@@ -32,6 +32,11 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
         isModalOpen: false,
     };
 
+    componentDidMount() {
+        const { searchFlights, criteria } = this.props;
+        searchFlights(criteria);
+    }
+
     handleType = (type: number) => this.setState({ type });
 
     openModal = () => this.setState({ isModalOpen: true });
@@ -45,8 +50,10 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
     goToLogin = () => this.props.navigation?.navigate(routes.login);
 
     render() {
-        const { isLoading, isFlexible, hasResults } = this.props;
+        const { isLoading, isFlexible, hasResults, isCriteriaValid } = this.props;
         const { type, isModalOpen, isSubscriptionVisible } = this.state;
+
+        const showSubscriptionBox = isSubscriptionVisible && !isFlexible && isCriteriaValid;
 
         if (isLoading) {
             return <LoadingScreen />;
@@ -66,7 +73,7 @@ export class ResultsComponent extends React.PureComponent<Props, State> {
                                 />
                             </ActionModal>
 
-                            {isSubscriptionVisible && !isFlexible ? <SubscriptionBox onPress={this.openModal} /> : null}
+                            {showSubscriptionBox ? <SubscriptionBox onPress={this.openModal} /> : null}
 
                             {!isFlexible ? (
                                 <ResultsMain type={type} handleType={this.handleType} />

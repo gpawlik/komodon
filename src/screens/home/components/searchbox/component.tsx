@@ -1,9 +1,12 @@
 import * as React from 'react';
+import { Platform } from 'react-native';
 
 import * as routes from '~/constants/routes';
 import { SVGIcon } from '~/icons';
 import { generalIcons } from '~/constants/icons/general';
 import { Button } from '~/components/button';
+import { getUrlParamsFromCriteria } from '~/utils/url';
+
 import { ValueBox } from './components/value-box';
 import { RoundTripBox } from './components/round-trip';
 
@@ -20,13 +23,13 @@ export class SearchboxComponent extends React.Component<Props, State> {
     };
 
     onSubmit = () => {
-        const { validatedCriteria, navigate, searchFlights, criteria } = this.props;
+        const { validatedCriteria, navigate, criteria } = this.props;
         this.onAttemptSubmit();
         const isValid = Object.values(validatedCriteria).findIndex(item => item === false) < 0;
 
         if (isValid) {
-            navigate(routes.results);
-            searchFlights(criteria);
+            const params = Platform.OS === 'web' ? `/?${getUrlParamsFromCriteria(criteria)}` : '';
+            navigate(`${routes.results}${params}`);
         }
     };
 
