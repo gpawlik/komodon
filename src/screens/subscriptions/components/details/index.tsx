@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { connect } from 'react-redux';
 
 import { getSubscriptionHistory, getIsLoadingHistory, getCriteriaById } from '~/domains/subscriptions/selectors';
@@ -8,7 +9,7 @@ import { SubscriptionDetailsComponent } from './component';
 import { StateProps, DispatchProps } from './types';
 
 export const mapStateToProps = (state: ReduxState, props): StateProps => {
-    const id = props?.navigation?.state?.params?.id || props?.params?.id;
+    const id = Platform.OS === 'web' ? props?.navigation?.state?.params?.id : props?.route?.params?.id;
 
     return {
         subscriptionHistory: getSubscriptionHistory(state),
