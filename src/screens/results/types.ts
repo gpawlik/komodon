@@ -1,6 +1,7 @@
 import { State as Criteria } from '~/domains/search/types';
 
 export interface StateProps {
+    isCriteriaValid: boolean;
     isLoading: boolean;
     isFlexible: boolean;
     hasResults: boolean;

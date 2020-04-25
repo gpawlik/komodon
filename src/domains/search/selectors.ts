@@ -12,6 +12,11 @@ export const getDeparturePlace = createSelector([getState], state => state.depar
 
 export const getDestinationPlace = createSelector([getState], state => state.destinationPlace || {});
 
+export const getIsCriteriaValid = createSelector(
+    [getDeparturePlace, getDestinationPlace],
+    (departurePlace, destinationPlace) => !R.isEmpty(departurePlace) && !R.isEmpty(destinationPlace),
+);
+
 export const getDepartureDates = createSelector([getState], state => state.departureDates || {});
 
 export const getDepartureDaysOfWeek = createSelector([getState], state => state.departureDaysOfWeek || []);
