@@ -34,6 +34,8 @@ export const getCriteriaFromUrlParams = (params: string) => {
     const urlParams = new URLSearchParams(params);
 
     const {
+        departurePlace,
+        destinationPlace,
         departureDateFrom,
         departureDateTo,
         returnDateFrom,
@@ -49,6 +51,12 @@ export const getCriteriaFromUrlParams = (params: string) => {
 
     return pickNotEmpty({
         ...rest,
+        departurePlace: {
+            placeId: departurePlace,
+        },
+        destinationPlace: {
+            placeId: destinationPlace,
+        },
         departureDates: departureDateFrom && {
             from: departureDateFrom,
             to: departureDateTo,

@@ -23,7 +23,9 @@ const navigation = {
 
 const getPath = route => `/${route}`;
 
-const render = Component => ({ match }) => <Component navigation={navigation} params={match?.params} />;
+const render = Component => ({ match, location }) => (
+    <Component navigation={navigation} params={match?.params} search={location?.search} />
+);
 
 const getRoute = (Component, route) => <Route path={getPath(route)} render={render(Component)} />;
 
