@@ -22,6 +22,7 @@ export const mapStateToProps = (state: ReduxState) => ({
     departureDates: getDepartureDates(state),
     returnDates: getReturnDates(state),
     roundTrip: getRoundTrip(state),
+    criteria: getCriteria(state),
     departureText: getDepartureText(state),
     returnText: getReturnText(state),
     validatedCriteria: getValidatedCriteria(state),
