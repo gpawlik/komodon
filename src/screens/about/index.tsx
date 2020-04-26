@@ -7,14 +7,21 @@ import { SVGIcon } from '~/icons';
 
 import { HeaderBox, SubTitle, ContentBox, ContentText } from './styles';
 
-interface Props {}
+interface Props {
+    navigation: any;
+}
 
 export class About extends React.PureComponent<Props> {
     render() {
         return (
-            <Screen title="About" hasContentScroll>
+            <Screen
+                title="About"
+                backIcon={generalIcons.ARROW_LEFT}
+                backAction={() => this.props?.navigation?.goBack()}
+                hasContentScroll
+            >
                 <HeaderBox>
-                    <SVGIcon type={generalIcons.LOGO} size={120} />
+                    <SVGIcon type={generalIcons.LOGO} size={340} />
                 </HeaderBox>
 
                 <ContentBox>

@@ -1,11 +1,11 @@
 import styled from 'styled-components/native';
 
-import { TextRegular4, TextMedium6 } from '~/components/text';
+import { TextRegular2, TextMedium5 } from '~/components/text';
 
 import { selectors } from '~/theme/main';
 
 export const HeaderBox = styled.View`
-    margin-vertical: 30px;
+    margin-vertical: 0px;
     align-items: center;
 `;
 
@@ -13,10 +13,11 @@ export const ContentBox = styled.View`
     margin-bottom: ${selectors.ss8};
 `;
 
-export const ContentText = styled(TextRegular4)`
+export const ContentText = styled(TextRegular2)`
     margin-bottom: ${selectors.ss6};
+    line-height: 25px;
 `;
 
-export const SubTitle = styled(TextMedium6)`
+export const SubTitle = styled(TextMedium5)`
     margin-bottom: ${selectors.ss6};
 `;
