@@ -23,7 +23,7 @@
     "aws-amplify": "^2.2.7",
     "aws-amplify-react-native": "^3.2.2",
     "immutable": "^4.0.0-rc.12",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "moment-range": "^4.0.2",
     "moment-timezone": "^0.5.27",
     "ramda": "^0.26.1",
