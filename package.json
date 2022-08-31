@@ -25,7 +25,7 @@
     "immutable": "^4.0.0-rc.12",
     "moment": "^2.24.0",
     "moment-range": "^4.0.2",
-    "moment-timezone": "^0.5.27",
+    "moment-timezone": "^0.5.35",
     "ramda": "^0.26.1",
     "react": "16.9.0",
     "react-dom": "^16.13.1",
